@@ -4,3 +4,9 @@
 [submodule "links/SARS"]
 	path = links/SARS
 	url = https://github.com/mquad/sars_tutorial.git
+[submodule "links/Microsoft Recommenders"]
+	path = links/Microsoft Recommenders
+	url = https://github.com/microsoft/recommenders.git
+[submodule "links/Nvidia"]
+	path = links/Nvidia
+	url = https://github.com/rapidsai/deeplearning.git
