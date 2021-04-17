@@ -1,0 +1,3 @@
+[submodule "links/recommender-system-capstone"]
+	path = links/recommender-system-capstone
+	url = https://github.com/rachelkoenig10/recommender-system-capstone.git
