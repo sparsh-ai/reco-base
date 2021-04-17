@@ -10,3 +10,9 @@
 [submodule "links/Nvidia"]
 	path = links/Nvidia
 	url = https://github.com/rapidsai/deeplearning.git
+[submodule "links/Nvidia RapidsAI"]
+	path = links/Nvidia RapidsAI
+	url = https://github.com/rapidsai/deeplearning.git
+[submodule "links/Recommender System Capstone"]
+	path = links/Recommender System Capstone
+	url = https://github.com/rachelkoenig10/recommender-system-capstone.git
