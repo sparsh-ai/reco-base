@@ -1,3 +1,6 @@
 [submodule "links/recommender-system-capstone"]
 	path = links/recommender-system-capstone
 	url = https://github.com/rachelkoenig10/recommender-system-capstone.git
+[submodule "links/SARS"]
+	path = links/SARS
+	url = https://github.com/mquad/sars_tutorial.git
