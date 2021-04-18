@@ -23,4 +23,4 @@ No installation required.
   - Clone the repo to your local environment
 
 ### Credits
-All the contribution goes to the respective authors of these notebooks and scripts
+Full credit goes to the respective authors of these notebooks and scripts
