@@ -1,4 +1,7 @@
-# Recommender Systems - Code and notebooks
+# Recommender Systems Code and Notebooks
+[![Awesome](images/awesome.svg)](https://github.com/sindresorhus/awesome)
+![GitHub](https://img.shields.io/badge/License-MIT-lightgrey.svg)
+
 This repo contains hands-on tutorials for training and deploying recommender systems. 
 
 ### Table of Contents
