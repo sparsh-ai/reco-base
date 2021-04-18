@@ -1,6 +1,7 @@
 # Recommender Systems Code and Notebooks
 ![Awesome](https://raw.githubusercontent.com/EthicalML/awesome-production-machine-learning/master/images/awesome.svg)
 ![GitHub](https://img.shields.io/badge/License-MIT-lightgrey.svg)
+[![Code Style](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/ambv/black)
 
 This repo contains hands-on tutorials for training and deploying recommender systems. 
 
