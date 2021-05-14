@@ -1,0 +1,304 @@
+
+<!doctype html>
+
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <meta name="theme-color" content="#4F7DC9">
+  <meta charset="UTF-8">
+  <title></title>
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Code+Pro:400|Roboto:400,300,400italic,500,700|Roboto+Mono">
+  <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://storage.googleapis.com/codelab-elements/codelab-elements.css">
+  <style>
+    .success {
+      color: #1e8e3e;
+    }
+    .error {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <google-codelab-analytics gaid="UA-49880327-14"></google-codelab-analytics>
+  <google-codelab codelab-gaid=""
+                  id=""
+                  title=""
+                  environment="web"
+                  feedback-link="">
+    
+      <google-codelab-step label="Introduction" duration="0">
+        <h3 is-upgraded>Santander Bank Product Recommendation System</h3>
+<p>Our goal is to implement a product recommendation system based on user personalization and item-similarity, to help banks improve customer acquisition and revenue on products by better marketing techniques.</p>
+<h4 is-upgraded>Dataset</h4>
+<p>For this, we utilized the Santander Product Recommendation dataset which is available on Kaggle. </p>
+<p>Link - <a href="https://www.kaggle.com/c/santander-product-recommendation/data" target="_blank">https://www.kaggle.com/c/santander-product-recommendation/data</a></p>
+<p>The dataset contains 1.5 years of Spain customers behavior data from Santander bank to predict what new products customers will purchase. The data starts at 2015-01-28 and has monthly records of products a customer has, such as &#34;credit card&#34;, &#34;savings account&#34;, etc. Our goal is to recommend products based on customer interactions. The dataset contains around 200K rows and 49 columns.</p>
+<p>The dataset description is as follows:</p>
+<table>
+<tr><td colspan="1" rowspan="1"><p><strong>S no.</strong></p>
+</td><td colspan="1" rowspan="1"><p><strong>Column Name</strong></p>
+</td><td colspan="1" rowspan="1"><p><strong>Description</strong></p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>1</p>
+</td><td colspan="1" rowspan="1"><p>data_date</p>
+</td><td colspan="1" rowspan="1"><p>The table is partitioned for this column</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>2</p>
+</td><td colspan="1" rowspan="1"><p>ncodpers</p>
+</td><td colspan="1" rowspan="1"><p>Customer code</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>3</p>
+</td><td colspan="1" rowspan="1"><p>ind_empleado</p>
+</td><td colspan="1" rowspan="1"><p>Employee index: A active, B ex employed, F filial, N not employee, P passive</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>4</p>
+</td><td colspan="1" rowspan="1"><p>country_residence</p>
+</td><td colspan="1" rowspan="1"><p>Customer&#39;s Country residence</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>5</p>
+</td><td colspan="1" rowspan="1"><p>sex</p>
+</td><td colspan="1" rowspan="1"><p>Customer&#39;s sex</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>6</p>
+</td><td colspan="1" rowspan="1"><p>age</p>
+</td><td colspan="1" rowspan="1"><p>Age</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>7</p>
+</td><td colspan="1" rowspan="1"><p>high_date</p>
+</td><td colspan="1" rowspan="1"><p>The date in which the customer became as the first holder of a contract in the bank</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>8</p>
+</td><td colspan="1" rowspan="1"><p>ind_new</p>
+</td><td colspan="1" rowspan="1"><p>New customer Index. 1 if the customer registered in the last 6 months.</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>9</p>
+</td><td colspan="1" rowspan="1"><p>antiquity</p>
+</td><td colspan="1" rowspan="1"><p>Customer seniority (in months)</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>10</p>
+</td><td colspan="1" rowspan="1"><p>indrel</p>
+</td><td colspan="1" rowspan="1"><p>1 (First/Primary), 99 (Primary customer during the month but not at the end of the month)</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>11</p>
+</td><td colspan="1" rowspan="1"><p>ult_fec_cli_1t</p>
+</td><td colspan="1" rowspan="1"><p>Last date as primary customer (if he isn&#39;t at the end of the month)</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>12</p>
+</td><td colspan="1" rowspan="1"><p>indrel_1mes</p>
+</td><td colspan="1" rowspan="1"><p>Customer type at the beginning of the month ,1 (First/Primary customer), 2 (co-owner ),P (Potential),3 (former primary), 4(former co-owner)</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>13</p>
+</td><td colspan="1" rowspan="1"><p>tiprel_1mes</p>
+</td><td colspan="1" rowspan="1"><p>Customer relation type at the beginning of the month, A (active), I (inactive), P (former customer),R (Potential)</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>14</p>
+</td><td colspan="1" rowspan="1"><p>indresi</p>
+</td><td colspan="1" rowspan="1"><p>Residence index (S (Yes) or N (No) if the residence country is the same than the bank country)</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>15</p>
+</td><td colspan="1" rowspan="1"><p>index</p>
+</td><td colspan="1" rowspan="1"><p>Foreigner index (S (Yes) or N (No) if the customer&#39;s birth country is different than the bank country)</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>16</p>
+</td><td colspan="1" rowspan="1"><p>conyuemp</p>
+</td><td colspan="1" rowspan="1"><p>Spouse index. 1 if the customer is spouse of an employee</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>17</p>
+</td><td colspan="1" rowspan="1"><p>channel_in</p>
+</td><td colspan="1" rowspan="1"><p>channel used by the customer to join</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>18</p>
+</td><td colspan="1" rowspan="1"><p>indfall</p>
+</td><td colspan="1" rowspan="1"><p>Deceased index. N/S</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>19</p>
+</td><td colspan="1" rowspan="1"><p>typo dom</p>
+</td><td colspan="1" rowspan="1"><p>Addres type. 1, primary address</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>20</p>
+</td><td colspan="1" rowspan="1"><p>cod_prov</p>
+</td><td colspan="1" rowspan="1"><p>Province code (customer&#39;s address)</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>21</p>
+</td><td colspan="1" rowspan="1"><p>nomprov</p>
+</td><td colspan="1" rowspan="1"><p>Province name</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>22</p>
+</td><td colspan="1" rowspan="1"><p>ind_actividad_cliente</p>
+</td><td colspan="1" rowspan="1"><p>Activity index (1, active customer; 0, inactive customer)</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>23</p>
+</td><td colspan="1" rowspan="1"><p>renta</p>
+</td><td colspan="1" rowspan="1"><p>Gross income of the household</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>24</p>
+</td><td colspan="1" rowspan="1"><p>segmento</p>
+</td><td colspan="1" rowspan="1"><p>segmentation: 01 - VIP, 02 - Individuals 03 - college graduated</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>25</p>
+</td><td colspan="1" rowspan="1"><p>ind_ahor_fin_ult1</p>
+</td><td colspan="1" rowspan="1"><p>Saving Account</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>26</p>
+</td><td colspan="1" rowspan="1"><p>ind_aval_fin_ult1</p>
+</td><td colspan="1" rowspan="1"><p>Guarantees</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>27</p>
+</td><td colspan="1" rowspan="1"><p>ind_cco_fin_ult1</p>
+</td><td colspan="1" rowspan="1"><p>Current Accounts</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>28</p>
+</td><td colspan="1" rowspan="1"><p>ind_cder_fin_ult1</p>
+</td><td colspan="1" rowspan="1"><p>Derivada Account</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>29</p>
+</td><td colspan="1" rowspan="1"><p>ind_cno_fin_ult1</p>
+</td><td colspan="1" rowspan="1"><p>Payroll Account</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>30</p>
+</td><td colspan="1" rowspan="1"><p>ind_ctju_fin_ult1</p>
+</td><td colspan="1" rowspan="1"><p>Junior Account</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>31</p>
+</td><td colspan="1" rowspan="1"><p>ind_ctma_fin_ult1</p>
+</td><td colspan="1" rowspan="1"><p>Más particular Account</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>32</p>
+</td><td colspan="1" rowspan="1"><p>ind_ctop_fin_ult1</p>
+</td><td colspan="1" rowspan="1"><p>particular Account</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>33</p>
+</td><td colspan="1" rowspan="1"><p>ind_ctpp_fin_ult1</p>
+</td><td colspan="1" rowspan="1"><p>particular Plus Account</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>34</p>
+</td><td colspan="1" rowspan="1"><p>ind_deco_fin_ult1</p>
+</td><td colspan="1" rowspan="1"><p>Short-term deposits</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>35</p>
+</td><td colspan="1" rowspan="1"><p>ind_deme_fin_ult1</p>
+</td><td colspan="1" rowspan="1"><p>Medium-term deposits</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>36</p>
+</td><td colspan="1" rowspan="1"><p>ind_dela_fin_ult1</p>
+</td><td colspan="1" rowspan="1"><p>Long-term deposits</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>37</p>
+</td><td colspan="1" rowspan="1"><p>ind_ecue_fin_ult1</p>
+</td><td colspan="1" rowspan="1"><p>e-account</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>38</p>
+</td><td colspan="1" rowspan="1"><p>ind_fond_fin_ult1</p>
+</td><td colspan="1" rowspan="1"><p>Funds</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>39</p>
+</td><td colspan="1" rowspan="1"><p>ind_hip_fin_ult1</p>
+</td><td colspan="1" rowspan="1"><p>Mortgage</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>40</p>
+</td><td colspan="1" rowspan="1"><p>ind_plan_fin_ult1</p>
+</td><td colspan="1" rowspan="1"><p>Pensions</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>41</p>
+</td><td colspan="1" rowspan="1"><p>ind_pres_fin_ult1</p>
+</td><td colspan="1" rowspan="1"><p>Loans</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>42</p>
+</td><td colspan="1" rowspan="1"><p>ind_reca_fin_ult1</p>
+</td><td colspan="1" rowspan="1"><p>Taxes</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>43</p>
+</td><td colspan="1" rowspan="1"><p>ind_tjcr_fin_ult1</p>
+</td><td colspan="1" rowspan="1"><p>Credit Card</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>44</p>
+</td><td colspan="1" rowspan="1"><p>ind_valo_fin_ult1</p>
+</td><td colspan="1" rowspan="1"><p>Securities</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>45</p>
+</td><td colspan="1" rowspan="1"><p>ind_viv_fin_ult1</p>
+</td><td colspan="1" rowspan="1"><p>Home Account</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>46</p>
+</td><td colspan="1" rowspan="1"><p>ind_nomina_ult1</p>
+</td><td colspan="1" rowspan="1"><p>Payroll</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>47</p>
+</td><td colspan="1" rowspan="1"><p>ind_nom_pens_ult1</p>
+</td><td colspan="1" rowspan="1"><p>Pensions</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>49</p>
+</td><td colspan="1" rowspan="1"><p>ind_recibo_ult1</p>
+</td><td colspan="1" rowspan="1"><p>Direct Debit</p>
+</td></tr>
+</table>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Architecture" duration="0">
+        <p class="image-container"><img style="width: 688.50px" src="img/4377d3be5ca6ae3d.png"></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Visualization" duration="0">
+        <h2 is-upgraded><img style="width: 680.50px" src="img/c016a44c67be2339.png"></h2>
+<h2 is-upgraded>RF segmentation</h2>
+<p>RFM factors illustrate these facts:</p>
+<ul>
+<li>the more recent the purchase, the more responsive the customer is to promotions</li>
+<li>the more frequently the customer buys, the more engaged and satisfied they are</li>
+</ul>
+<p class="image-container"><img style="width: 624.00px" src="img/9c4aee8ab156feb1.png"></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Algorithms" duration="0">
+        <h2 is-upgraded>User-Personalization recipe</h2>
+<p>Predicts items a user will interact with and performs exploration on cold items. Based on Hierarchical Recurrent Neural Networks which model the temporal order of user-item interactions.</p>
+<h2 is-upgraded>Item-to-item similarities (SIMS)</h2>
+<p>Computes items similar to a given item based on co-occurrence of items in the user-item interactions dataset. </p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Web App" duration="0">
+        <p>Sign-in Page:</p>
+<p class="image-container"><img style="width: 624.00px" src="img/cb0ff0980b89bf57.png"></p>
+<p>Product recommendation based on user-item interaction dataset using user personalization algorithm on AWS Personalize:</p>
+<p class="image-container"><img style="width: 624.00px" src="img/dd12d1b29b800f9f.png"></p>
+<p>Product recommendation based on user-item interaction dataset using Item-to-item similarities (SIMS) algorithm on AWS Personalize:</p>
+<p class="image-container"><img style="width: 624.00px" src="img/931d062a6f3d12d9.png"></p>
+<p><strong>Note:</strong> We added a filter on our recommendation engine to show only those products which are not owned by the user</p>
+<p>Product recommendation (Cold start) with a new user login:</p>
+<p class="image-container"><img style="width: 624.00px" src="img/79f12c6165b8ab5a.png"></p>
+<p>Used Smtplib python library to push recommendations to the users via email: </p>
+<p class="image-container"><img style="width: 624.00px" src="img/47fb0dc075be2f8f.png"></p>
+<p>Email:</p>
+<p class="image-container"><img style="width: 624.00px" src="img/c7a7a1bfa4fd9402.png"></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="References" duration="0">
+        <p><a href="https://docs.aws.amazon.com/personalize/latest/dg/native-recipe-sims.html" target="_blank">https://docs.aws.amazon.com/personalize/latest/dg/native-recipe-sims.html</a></p>
+<p><a href="https://docs.aws.amazon.com/personalize/latest/dg/native-recipe-new-item-USER_PERSONALIZATION.html" target="_blank">https://docs.aws.amazon.com/personalize/latest/dg/native-recipe-new-item-USER_PERSONALIZATION.html</a></p>
+<p><a href="https://databricks-prod-cloudfront.cloud.databricks.com/public/4027ec902e239c93eaaa8714f173bcfc/2885002711960994/97004730824646/7533496735645217/latest.html" target="_blank">https://databricks-prod-cloudfront.cloud.databricks.com/public/4027ec902e239c93eaaa8714f17</a></p>
+<p><a href="https://databricks-prod-cloudfront.cloud.databricks.com/public/4027ec902e239c93eaaa8714f173bcfc/2885002711960994/97004730824646/7533496735645217/latest.html" target="_blank">3bcfc/2885002711960994/97004730824646/7533496735645217/latest.html</a></p>
+
+
+      </google-codelab-step>
+    
+  </google-codelab>
+
+  <script src="https://storage.googleapis.com/codelab-elements/native-shim.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/custom-elements.min.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/prettify.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/codelab-elements.js"></script>
+  <script src="//support.google.com/inapp/api.js"></script>
+
+</body>
+</html>
