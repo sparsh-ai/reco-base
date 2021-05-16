@@ -1,37 +1,12 @@
 site_name: RecoBase
-repo_url: https://github.com/sparsh-ai/reco-base/
-google_analytics: ['UA-36723568-3', 'mkdocs.org']
+# repo_url: https://github.com/sparsh-ai/reco-base/
 theme:
   name: material
-  palette:
-    primary: "blue"
-    accent: "indigo"
-  # name: mkdocs
-  # include_sidebar: false
-docs_dir: 'docs'
-markdown_extensions:
-  - admonition
-  - codehilite:
-      guess_lang: false
-  - toc:
-      permalink: true
-# plugins:
-#   - mknotebooks
-# mknotebooks:
-#   enable_default_jupyter_cell_styling: true
-#   enable_default_pandas_dataframe_styling: true
-#   binder: true
-#   binder_service_name: "gh"
-#   binder_branch: "mkdocs"
-#   binder_ui: "lab"
+# docs_dir: 'docs'
 # plugins:
 #   - mknotebooks:
-#       enable_default_jupyter_cell_styling: true
-#       enable_default_pandas_dataframe_styling: true
 #       write_markdown: true
 #       binder: true
 #       binder_service_name: "gh"
 #       binder_branch: "master"
 #       binder_ui: "lab"
-# markdown_extensions:
-#   - codehilite
