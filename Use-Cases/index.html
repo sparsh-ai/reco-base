@@ -1,0 +1,807 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-7.1.4">
+    
+    
+      
+        <title>Use Cases - RecoBase</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.bde7dde4.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ef6f36e2.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+      
+    
+    
+    
+      <link rel="stylesheet" href="../css/ansi-colours.css">
+    
+      <link rel="stylesheet" href="../css/jupyter-cells.css">
+    
+      <link rel="stylesheet" href="../css/pandas-dataframe.css">
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+  
+    
+    <script>function __prefix(e){return new URL("..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#most-common" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="RecoBase" class="md-header__button md-logo" aria-label="RecoBase" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            RecoBase
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Use Cases
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+    
+      <div class="md-header__source">
+        
+<a href="https://github.com/sparsh-ai/reco-base/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="RecoBase" class="md-nav__button md-logo" aria-label="RecoBase" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    RecoBase
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/sparsh-ai/reco-base/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        Welcome to RecoBase
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Datasets/" class="md-nav__link">
+        Datasets
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Examples/" class="md-nav__link">
+        Examples
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Home/" class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Libraries/" class="md-nav__link">
+        Libraries
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Models/" class="md-nav__link">
+        Models
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Notebooks/" class="md-nav__link">
+        Notebooks
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Overview/" class="md-nav__link">
+        Overview
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Papers/" class="md-nav__link">
+        Papers
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Projects/" class="md-nav__link">
+        Projects
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Resources/" class="md-nav__link">
+        Resources
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Use Cases
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Use Cases
+      </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#most-common" class="md-nav__link">
+    Most common
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#industry-specific" class="md-nav__link">
+    Industry specific
+  </a>
+  
+    <nav class="md-nav" aria-label="Industry specific">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#e-commerce" class="md-nav__link">
+    e-Commerce
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#retail" class="md-nav__link">
+    Retail
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#media" class="md-nav__link">
+    Media
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#banking" class="md-nav__link">
+    Banking
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#telecom" class="md-nav__link">
+    Telecom
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#utilities" class="md-nav__link">
+    Utilities
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#other" class="md-nav__link">
+    Other
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Vendors/" class="md-nav__link">
+        Vendors
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_14" type="checkbox" id="__nav_14" >
+      
+      <label class="md-nav__link" for="__nav_14">
+        Tutorials
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Tutorials" data-md-level="1">
+        <label class="md-nav__title" for="__nav_14">
+          <span class="md-nav__icon md-icon"></span>
+          Tutorials
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tutorials/recsys-imgsim/" class="md-nav__link">
+        Recsys imgsim
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tutorials/recsys-implicit-negative/" class="md-nav__link">
+        Recsys implicit negative
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tutorials/recsys-ncf/" class="md-nav__link">
+        Recsys ncf
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tutorials/recsys-prodsim/" class="md-nav__link">
+        Recsys prodsim
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tutorials/recsys-retrieval/" class="md-nav__link">
+        Recsys retrieval
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tutorials/recsys-vw-contextual/" class="md-nav__link">
+        Recsys vw contextual
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tutorials/recsys-word2vec/" class="md-nav__link">
+        Recsys word2vec
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#most-common" class="md-nav__link">
+    Most common
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#industry-specific" class="md-nav__link">
+    Industry specific
+  </a>
+  
+    <nav class="md-nav" aria-label="Industry specific">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#e-commerce" class="md-nav__link">
+    e-Commerce
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#retail" class="md-nav__link">
+    Retail
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#media" class="md-nav__link">
+    Media
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#banking" class="md-nav__link">
+    Banking
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#telecom" class="md-nav__link">
+    Telecom
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#utilities" class="md-nav__link">
+    Utilities
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#other" class="md-nav__link">
+    Other
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/sparsh-ai/reco-base/edit/master/docs/Use-Cases.md" title="Edit this page" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                  <h1>Use Cases</h1>
+                
+                <h2 id="most-common">Most common</h2>
+<ul>
+<li>Popular Products - This is a basic but powerful recommendation logic that works splendidly in nearly all ecommerce stores. The popularity of a product is determined by the number of times it has been purchased (weighted with how long it’s been available). However, more sophisticated recommender systems incorporate other event data into their logics in order to serve even more accurate recommendations (e.g., clicks, views, add-to-cart events, and so on). Getting this right is extremely important, given that the Pareto’s rule in marketing says 80% of product sales come from 20% of products. In the case of content sites (i.e. news sites and video portals), other factors such as time spent on page, percentage scrolled, or seconds watched (of a video) can also be important popularity factors.</li>
+<li>Personalized recommendations - Personalized recommender widgets display different products to each user based on their past purchase and browsing history. Recommendation algorithms used for this task can differ greatly in terms of how they’re implemented and the factors they consider (and often times, “the devil is in the details,” as they say). Nevertheless, as popular product recommendations are good for catering for the mainstream, one of the main benefits of personalization in product recommendations is that they can increase the sales of “long tail” items. However, personalized recommendations require considerable amounts of behavioral data on users, which a system does not have in the case of new visitors. This is called the cold start problem for recommender systems. Personalized collaborative filtering recommendations logic is the most common way of personalized recommendations. It’s focusing on the average similarity of products, to the last X number of products a user has viewed. The system uses the same item-to-item collaborative similarity for this task, but it doesn’t compare one item to another, but to all items in the user’s history. Weighing the output based on the recency of interactions usually improves accuracy further.</li>
+<li>Similar products - Similar product boxes can be based on very different logics. The least complex one is simple category-based filtering, which can be implemented even without a recommendation engine (needless to say, it lags behind in performance as well). If you combine this simple filtering method with meta-data based similarity (descriptions, product titles, tags, prices, etc.), you can greatly enhance the performance, such as by recommending items of the same brand or same color from the current category). For this, you will need to have advanced recommender functionality available on your site. One of the best-performing similarity based logics is a method called “item-to-item collaborative filtering,” a method pioneered by Amazon. I’ll elaborate on this below.</li>
+<li>“Customer who bought/viewed this also bought/viewer” collaborative filtering - Collaborative filtering in ecommerce product recommendations was first implemented at scale by Amazon—they filed their initial patent for item-to-item collaborative filtering as early as 1999. I believe their results speak for themselves. At its core, collaborative filtering works by collecting preferences or taste information from many users (collaborating). Collaborative filtering can fuel item-to-item (product similarity based) and personalized recommendations as well. Item-to-item collaborative filtering recommendation logic basically determines the similarity of two products by looking at how often they’re present together in the browsing or purchase histories of users. In practice, widgets using this kind of logics are named “Customers who viewed this also viewed…” which pretty much explains the basic idea. The preference models these algorithms build are very authentic and specific to your website and your users—they quantify the real interactions between your visitors and platform. Moreover, with ample amount of data, even problems such as automated accessory recommendations can be answered with a reasonable accuracy. (More on this below, in the cart page accessory recommendation section.)</li>
+<li>Recommending accessories - Recommending accessories for products can significantly increase average order size and value on your site. Moreover, implementing such widgets can be quite easy from a technical point of view. However, depending on the size of your catalog and your category structure, it can be relatively admin-heavy, as it is hard to automate the process of recommending compatible accessories for each item. Therefore, such logics are usually fueled by manually assigned item relations. Ideally, you can recommend categories to categories directly (i.e. iPhone -&gt; iPhone Accessories). This is a lot easier to automate and scale, but requires extremely conscious category structure planning. Of course, with enough data and a bit of creativity, one can abstract rules on how to analyze behavioral information, so that the output of the system will be actual, compatible accessories. One of such easily codifiable rules that can define an accessory in relation to a product is items that are often bought together with it, but cost significantly (two times, three times, or more) less. This is a method we utilize at some of our enterprise clients. This is where volume comes into play, as with a few purchases, results generated by this algorithm would be unpredictable, but reaching a critical amount of data, all statistics tend to correlate with reality more and more (given that the premises are correct).</li>
+<li>Frequently bought together - Displaying frequently bought together products on cart pages can be very effective. However, in order for virtually any cart page recommendation to provide results, the checkout process must lead customers through the cart page, where the actual recommendations are featured. It is also a relatively data-heavy recommendation technique. The layout of this page is also an important factor. If you have the time and resources, A/B testing different layouts and designs can yield excellent results and insights. (Needless to say, this holds true globally, not just for recommendations.) Netflix, for instance, uses A/B tests extensively for home screen layouts on different platforms, featured shows, and even movie artworks. There’s certainly a lot to learn form their approach.</li>
+</ul>
+<h2 id="industry-specific">Industry specific</h2>
+<h3 id="e-commerce"><strong>e-Commerce</strong></h3>
+<p>Industry where recommendation systems were first widely used. With millions of customers and data on their online behavior, e-commerce companies are best suited to generate accurate recommendations</p>
+<h3 id="retail"><strong>Retail</strong></h3>
+<p>Target scared shoppers back in 2000s when <a href="https://www.nytimes.com/2012/02/19/magazine/shopping-habits.html?pagewanted=1&amp;_r=1&amp;hp">Target systems were able to predict pregnancies even before mothers realized their own pregnancies</a>. Shopping data is the most valuable data as it is the most direct data point on a customer’s intent. Retailers with troves of shopping data are at the forefront of companies making accurate recommendations</p>
+<h3 id="media"><strong>Media</strong></h3>
+<p>Similar to e-commerce, media businesses are one of the first to jump into recommendations. It is difficult to see a news site without a recommendation system.</p>
+<h3 id="banking"><strong>Banking</strong></h3>
+<p>A mass market product that is consumed digitally by millions. Banking for masses and SMEs are prime for recommendations. Knowing a customer’s detailed financial situation, along with their past preferences, coupled by data of thousands of similar users is quite powerful.</p>
+<h3 id="telecom"><strong>Telecom</strong></h3>
+<p>Shares similar dynamics with banking. Telcos have access to millions of customers whose every interaction is recorded. Their product range is also rather limited compared to other industries, making recommendations in telecom an easier problem.</p>
+<h3 id="utilities"><strong>Utilities</strong></h3>
+<p>Similar dynamics with telecom but utilities have an even narrower range of products, making recommendations rather simple.</p>
+<h2 id="other">Other</h2>
+<ul>
+<li>Personalised merchandising</li>
+<li>Personalised content</li>
+<li>Search re-ranking</li>
+<li>Related product</li>
+<li>Popular product</li>
+<li>Similar product</li>
+<li>Purchase: People who bought X also bought Y</li>
+<li>Experience: People who read/watched/enjoyed X also enjoyed Y</li>
+<li>Location: People who have been at/ate at/stayed at X also went to Y</li>
+<li>Current website: People who come to this website also browse Y</li>
+<li>Education: People who knew about/worked on/learnt/ X also learnt Y</li>
+<li>Hiring: People who have skills like your employees</li>
+<li>Recipes: People who cooked X also cooked Y</li>
+<li>Context: People in X mood, at Z time do activity Y more</li>
+<li>Finance: Stocks bought by successful X people</li>
+<li>Popularity: Items popular in the last hour, week, year</li>
+<li>Promotions: People who should be offered promotion Y</li>
+<li>Social: People/friends are talking about item Y</li>
+<li>Health: People who are healthy do Y more</li>
+<li>Drugs: People with X characteristics respond to drug Y better</li>
+<li>Ideas: Past ideas/patents/companies related to your idea</li>
+<li>Law: Past cases related to your current lawsuit</li>
+<li>Law Enforcement (slightly scary): People similar to X are likely to commit a crime Y</li>
+</ul>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        <a href="../Resources/" class="md-footer__link md-footer__link--prev" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Resources
+            </div>
+          </div>
+        </a>
+      
+      
+        <a href="../Vendors/" class="md-footer__link md-footer__link--next" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Vendors
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+        
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "..", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}, "search": "../assets/javascripts/workers/search.4fa0e4ee.min.js", "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.1d3bfcf1.min.js"></script>
+      
+    
+  </body>
+</html>

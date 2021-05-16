@@ -1,0 +1,1424 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-7.1.4">
+    
+    
+      
+        <title>Datasets - RecoBase</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.bde7dde4.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ef6f36e2.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+      
+    
+    
+    
+      <link rel="stylesheet" href="../css/ansi-colours.css">
+    
+      <link rel="stylesheet" href="../css/jupyter-cells.css">
+    
+      <link rel="stylesheet" href="../css/pandas-dataframe.css">
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+  
+    
+    <script>function __prefix(e){return new URL("..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#shopping" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="RecoBase" class="md-header__button md-logo" aria-label="RecoBase" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            RecoBase
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Datasets
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+    
+      <div class="md-header__source">
+        
+<a href="https://github.com/sparsh-ai/reco-base/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="RecoBase" class="md-nav__button md-logo" aria-label="RecoBase" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    RecoBase
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/sparsh-ai/reco-base/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        Welcome to RecoBase
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Datasets
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Datasets
+      </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#shopping" class="md-nav__link">
+    Shopping
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#advertising" class="md-nav__link">
+    Advertising
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#check-in" class="md-nav__link">
+    Check-in
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#movies" class="md-nav__link">
+    Movies
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#music" class="md-nav__link">
+    Music
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#books" class="md-nav__link">
+    Books
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#games" class="md-nav__link">
+    Games
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#anime" class="md-nav__link">
+    Anime
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pictures" class="md-nav__link">
+    Pictures
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#jokes" class="md-nav__link">
+    Jokes
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercises" class="md-nav__link">
+    Exercises
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#websites" class="md-nav__link">
+    Websites
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#adult" class="md-nav__link">
+    Adult
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#news" class="md-nav__link">
+    News
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uncategorized" class="md-nav__link">
+    Uncategorized
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#statistics" class="md-nav__link">
+    Statistics
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#data-sources" class="md-nav__link">
+    Data Sources
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#references" class="md-nav__link">
+    References
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#appendix" class="md-nav__link">
+    Appendix
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Examples/" class="md-nav__link">
+        Examples
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Home/" class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Libraries/" class="md-nav__link">
+        Libraries
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Models/" class="md-nav__link">
+        Models
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Notebooks/" class="md-nav__link">
+        Notebooks
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Overview/" class="md-nav__link">
+        Overview
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Papers/" class="md-nav__link">
+        Papers
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Projects/" class="md-nav__link">
+        Projects
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Resources/" class="md-nav__link">
+        Resources
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Use-Cases/" class="md-nav__link">
+        Use Cases
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Vendors/" class="md-nav__link">
+        Vendors
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_14" type="checkbox" id="__nav_14" >
+      
+      <label class="md-nav__link" for="__nav_14">
+        Tutorials
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Tutorials" data-md-level="1">
+        <label class="md-nav__title" for="__nav_14">
+          <span class="md-nav__icon md-icon"></span>
+          Tutorials
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tutorials/recsys-imgsim/" class="md-nav__link">
+        Recsys imgsim
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tutorials/recsys-implicit-negative/" class="md-nav__link">
+        Recsys implicit negative
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tutorials/recsys-ncf/" class="md-nav__link">
+        Recsys ncf
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tutorials/recsys-prodsim/" class="md-nav__link">
+        Recsys prodsim
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tutorials/recsys-retrieval/" class="md-nav__link">
+        Recsys retrieval
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tutorials/recsys-vw-contextual/" class="md-nav__link">
+        Recsys vw contextual
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tutorials/recsys-word2vec/" class="md-nav__link">
+        Recsys word2vec
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#shopping" class="md-nav__link">
+    Shopping
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#advertising" class="md-nav__link">
+    Advertising
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#check-in" class="md-nav__link">
+    Check-in
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#movies" class="md-nav__link">
+    Movies
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#music" class="md-nav__link">
+    Music
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#books" class="md-nav__link">
+    Books
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#games" class="md-nav__link">
+    Games
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#anime" class="md-nav__link">
+    Anime
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pictures" class="md-nav__link">
+    Pictures
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#jokes" class="md-nav__link">
+    Jokes
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercises" class="md-nav__link">
+    Exercises
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#websites" class="md-nav__link">
+    Websites
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#adult" class="md-nav__link">
+    Adult
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#news" class="md-nav__link">
+    News
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uncategorized" class="md-nav__link">
+    Uncategorized
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#statistics" class="md-nav__link">
+    Statistics
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#data-sources" class="md-nav__link">
+    Data Sources
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#references" class="md-nav__link">
+    References
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#appendix" class="md-nav__link">
+    Appendix
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/sparsh-ai/reco-base/edit/master/docs/Datasets.md" title="Edit this page" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                  <h1>Datasets</h1>
+                
+                <h3 id="shopping">Shopping</h3>
+<ul>
+<li><a href="http://jmcauley.ucsd.edu/data/amazon/">Amazon</a>:
+This dataset contains product reviews, only-rating data (ratings) and metadata(descriptions, category information, price, brand, and image features) from Amazon, including 142.8 million reviews spanning May 1996 - July 2014.  </li>
+<li><a href="https://cseweb.ucsd.edu/~jmcauley/datasets.html#social_data">Epinions</a>:
+This dataset was collected from Epinions.com, a popular online consumer review website. It contains trust relationships
+amongst users and spans more than a decade, from January 2001 to November 2013.</li>
+<li><a href="https://www.yelp.com/dataset">Yelp</a>:
+This dataset was collected from Yelp.com. The Yelp dataset is a subset of our businesses, reviews,
+and user data for use in personal, educational, and academic purposes.</li>
+<li><a href="https://tianchi.aliyun.com/dataset/dataDetail?dataId=53">Tmall</a>:
+This dataset is provided by Ant Financial Services, using in the IJCAI16 contest.</li>
+<li><a href="https://competitions.codalab.org/competitions/11161">DIGINETICA</a>:
+The dataset includes user sessions extracted from an e-commerce search engine logs, with anonymized user ids,
+hashed queries, hashed query terms, hashed product descriptions and meta-data, log-scaled prices, clicks, and purchases.</li>
+<li><a href="https://2015.recsyschallenge.com/challenge.html">YOOCHOOSE</a>:
+This dataset was constructed by YOOCHOOSE GmbH to support participants in the RecSys Challenge 2015.</li>
+<li><a href="https://www.kaggle.com/retailrocket/ecommerce-dataset">Retailrocket</a>:
+The data has been collected from a real-world ecommerce website. It is raw data, i.e.
+without any content transformations, however, all values are hashed due to confidential issues.</li>
+<li><a href="https://www.kaggle.com/chiranjivdas09/ta-feng-grocery-dataset">Ta Feng</a>:
+The dataset contains a Chinese grocery store transaction data from November 2000 to February 2001.</li>
+</ul>
+<h3 id="advertising">Advertising</h3>
+<ul>
+<li><a href="https://www.kaggle.com/c/criteo-display-ad-challenge/data">Criteo</a>:
+  This dataset was collected from Criteo, which consists of a portion of Criteo's traffic over a period of several days.</li>
+<li><a href="https://www.kaggle.com/c/avazu-ctr-prediction/data">Avazu</a>:
+  This dataset is used in Avazu CTR prediction contest.</li>
+<li><a href="http://contest.ipinyou.com">iPinYou</a>: This dataset was provided by iPinYou, which contains all training datasets and leaderboard testing datasets of the three seasons iPinYou Global RTB(Real-Time Bidding) Bidding Algorithm Competition.</li>
+</ul>
+<h3 id="check-in">Check-in</h3>
+<ul>
+<li><a href="https://www.kaggle.com/chetanism/foursquare-nyc-and-tokyo-checkin-dataset">Foursquare</a>:
+This dataset contains check-ins in NYC and Tokyo collected for about 10 month. Each check-in is associated with
+its time stamp, its GPS coordinates and its semantic meaning.</li>
+<li><a href="https://snap.stanford.edu/data/loc-gowalla.html">Gowalla</a>:
+This dataset is from a location-based social networking website where users share their locations by checking-in,
+and contains a total of 6,442,890 check-ins of these users over the period of Feb. 2009 - Oct. 2010.</li>
+</ul>
+<h3 id="movies">Movies</h3>
+<ul>
+<li><a href="https://grouplens.org/datasets/movielens/">MovieLens</a>:
+GroupLens Research has collected and made available rating datasets from their movie web site.</li>
+<li><a href="https://www.kaggle.com/netflix-inc/netflix-prize-data">Netflix</a>:
+This is the official data set used in the Netflix Prize competition.</li>
+<li><a href="https://www.kaggle.com/utmhikari/doubanmovieshortcomments">Douban</a>:
+Douban Movie is a Chinese website that allows Internet users to share their comments and viewpoints about movies.
+This dataset contains more than 2 million short comments of 28 movies in Douban Movie website.</li>
+</ul>
+<h3 id="music">Music</h3>
+<ul>
+<li><a href="https://grouplens.org/datasets/hetrec-2011/">Last.FM</a>:
+This dataset contains social networking, tagging, and music artist listening information from a set of 2K users from Last.fm online music system.</li>
+<li><a href="http://www.cp.jku.at/datasets/LFM-1b/">LFM-1b</a>:
+This dataset contains more than one billion music listening events created by more than 120,000 users of Last.FM.
+Each listening event is characterized by artist, album, and track name, and includes a timestamp.</li>
+<li><a href="https://webscope.sandbox.yahoo.com/catalog.php?datatype=r">Yahoo Music</a>:
+This dataset represents a snapshot of the Yahoo! Music community's preferences for various musical artists.</li>
+</ul>
+<h3 id="books">Books</h3>
+<ul>
+<li><a href="http://www2.informatik.uni-freiburg.de/~cziegler/BX/">Book-Crossing</a>:
+This dataset was collected by Cai-Nicolas Ziegler in a 4-week crawl (August / September 2004) from
+the <a href="http://www.bookcrossing.com/">Book-Crossing</a> community with kind permission from Ron Hornbaker,
+CTO of <a href="http://www.humankindsystems.com/">Humankind Systems</a>. It contains 278,858 users
+(anonymized but with demographic information) providing 1,149,780 ratings (explicit / implicit) about 271,379 books.</li>
+</ul>
+<h3 id="games">Games</h3>
+<ul>
+<li><a href="https://github.com/kang205/SASRec">Steam</a>:
+This dataset is reviews and game information from Steam, which contains 7,793,069 reviews, 2,567,538 users,
+and 32,135 games. In addition to the review text, the data also includes the users' play hours in each review.</li>
+</ul>
+<h3 id="anime">Anime</h3>
+<ul>
+<li><a href="https://www.kaggle.com/CooperUnion/anime-recommendations-database">Anime</a>:
+This dataset contains information on user preference data from myanimelist.net. Each user is able to add anime to
+their completed list and give it a rating and this dataset is a compilation of those ratings.</li>
+</ul>
+<h3 id="pictures">Pictures</h3>
+<ul>
+<li><a href="https://github.com/hexiangnan/neural_collaborative_filtering/tree/master/Data">Pinterest</a>:
+This dataset is originally constructed by paper Learning image and user features for recommendations in social networks
+for evaluating content-based image recommendation, and processed by paper Neural Collaborative Filtering.</li>
+</ul>
+<h3 id="jokes">Jokes</h3>
+<ul>
+<li><a href="http://eigentaste.berkeley.edu/dataset/">Jester</a>:
+This dataset contains anonymous ratings of jokes by users of the Jester Joke Recommender System.</li>
+</ul>
+<h3 id="exercises">Exercises</h3>
+<ul>
+<li><a href="https://pslcdatashop.web.cmu.edu/KDDCup/downloads.jsp">KDD2010</a>:
+This dataset was released in KDD Cup 2010 Educational Data Mining Challenge,
+which contains the situations of students submitting exercises on the systems.</li>
+</ul>
+<h3 id="websites">Websites</h3>
+<ul>
+<li><a href="http://archive.ics.uci.edu/ml/datasets/Phishing+Websites">Phishing Websites</a>:
+This dataset contains 30 kinds of features of 11,055 websites and labels of whether they are phishing websites or not.
+The websites' features includes 12 address-bar based features, 6 abnormal based features, 5 HTML-and-JavaScript based
+features and 7 domain based features.</li>
+</ul>
+<h3 id="adult">Adult</h3>
+<ul>
+<li><a href="http://archive.ics.uci.edu/ml/datasets/Adult">Adult</a>:
+This dataset is extracted by Barry Becker from the 1994 Census database, which consists of a list of
+people's attributes and whether they make over 50k a year.</li>
+</ul>
+<h3 id="news">News</h3>
+<ul>
+<li><a href="https://msnews.github.io/">MIND</a>
+This dataset is a large-scale dataset for news recommendation research. It was collected from anonymized behavior logs 
+of Microsoft News website. MIND contains about 160k English news articles and more than 15 million impression logs 
+generated by 1 million users.</li>
+</ul>
+<h3 id="uncategorized">Uncategorized</h3>
+<ul>
+<li><a href="http://shichuan.org/HIN_dataset.html">Douban</a> This is the anonymized Douban dataset contains 129,490 unique users and 58,541 unique movie items.</li>
+<li><a href="http://www.trustlet.org/epinions.html">Epinions</a> Epinions is a website where people can review products.</li>
+<li><a href="http://socialcomputing.asu.edu/datasets/Flixster">Flixster</a> Flixster is a social movie site allowing users to share movie ratings, discover new movies and meet others with similar movie taste.</li>
+<li><a href="https://www.librec.net/datasets.html">CiaoDVD</a> CiaoDVD is a dataset crawled from the entire category of DVDs from the dvd.ciao.co.uk website in December, 2013</li>
+<li><a href="http://mac.citi.sinica.edu.tw/LJ#.VRGYfOHlZ40">MACLab</a> With the text in the post, the mood tag, and the music title, this project is aimed at studying the users' moods and music emotions.</li>
+<li><a href="http://www.eecs.qmul.ac.uk/mmv/datasets/deap/index.html">DEAPdataset</a> A dataset for emotion analysis using eeg, physiological and video signals.</li>
+<li><a href="http://mypersonality.org/wiki/doku.php">MyPersonalityDataset</a> myPersonality was a popular Facebook application that allowed users to take real psychometric tests, and allowed us to record (with consent!) their psychological and Facebook profiles. Currently, our database contains more than 6,000,000 test results, together with more than 4,000,000 individual Facebook profiles.</li>
+<li><a href="http://www.kde.cs.uni-kassel.de/bibsonomy/dumps">Bibsonomy</a> Tag Recommendations in Social Bookmarking Systems.</li>
+<li><a href="http://www.dai-labor.de/en/competence_centers/irml/datasets/">Delicious</a> plista News Recommendation Dataset and Delicious.</li>
+<li><a href="https://grouplens.org/datasets/movielens/">Movielens</a> Stable benchmark dataset. 20 million ratings and 465,000 tag applications applied to 27,000 movies by 138,000 users. Includes tag genome data with 12 million relevance scores across 1,100 tags.</li>
+<li><a href="http://eigentaste.berkeley.edu/dataset/">Jester</a> Anonymous Ratings from the Jester Online Joke Recommender System.</li>
+<li><a href="http://www2.informatik.uni-freiburg.de/~cziegler/BX/">BookCrossing</a>  Book-Crossing Dataset.</li>
+<li><a href="https://grouplens.org/datasets/hetrec-2011/">LastFM</a> 92,800 artist listening records from 1892 users.</li>
+<li><a href="https://en.wikipedia.org/wiki/Wikipedia:Database_download#English-language_Wikipedia">Wikipedia</a> Wikipedia offers free copies of all available content to interested users. These databases can be used for mirroring, personal use, informal backups, offline use or database queries.</li>
+<li><a href="http://planet.openstreetmap.org/planet/full-history/">OpenStreetMap</a> The files found here are complete copies of the OpenStreetMap.org database, including editing history. These are published under an Open Data Commons Open Database License 1.0 licensed. For more information.</li>
+<li><a href="https://github.com/lab41/hermes">PythonGitCode</a> Hermes is Lab41's foray into recommender systems. It explores how to choose a recommender system for a new application by analyzing the performance of multiple recommender system algorithms on a variety of datasets.</li>
+<li><a href="https://gist.github.com/entaroadun/1653794">Gist</a> Recommendation and Ratings Public Data Sets For Machine Learning.</li>
+<li><a href="https://www.yelp.com/dataset">Yelp</a> The Yelp dataset is a subset of our businesses, reviews, and user data for use in personal, educational, and academic purposes. Available in both JSON and SQL files, use it to teach students about databases, to learn NLP, or for sample production data while you learn how to make mobile apps</li>
+<li><a href="http://jmcauley.ucsd.edu/data/amazon/">AmazonReviews</a> This dataset contains product reviews and metadata from Amazon, including 142.8 million reviews spanning May 1996 - July 2014. This dataset includes reviews (ratings, text, helpfulness votes), product metadata (descriptions, category information, price, brand, and image features), and links (also viewed/also bought graphs).</li>
+<li><a href="http://www.citeulike.org/faq/data.adp">CiteULike</a> The CiteULike database is potentially useful for researchers in various fields. Physicists and computer scientists have expressed an interest in trying to analyse the structure of the data, and frequently ask for datasets to be made available. Previously this was done on an ad-hoc basis, and it relied on us remembering to update the data file. Now, there is an automatic process which runs every night producing a snapshot summary of what articles have been posted with which tags.</li>
+<li><a href="https://tianchi.aliyun.com/datalab/dataSet.htm?spm=5176.100073.888.13.62f83f62aOlMEI&amp;id=1">Taobao</a> The data set contains anonymized users' shopping logs in the past 6 months before and on the "Double 11" day,and the label information indicating whether they are repeated buyers. Due to privacy issue, data is sampled in a biased way, so the statistical result on this data set would deviate from the actual of Tmall.com.</li>
+</ul>
+<h2 id="statistics">Statistics</h2>
+<table>
+<thead>
+<tr>
+<th align="center">Data Set</th>
+<th align="center">Users</th>
+<th align="center">Items</th>
+<th align="center">Ratings (Scale)</th>
+<th align="center">Density</th>
+<th align="center">Users</th>
+<th align="center">Links (Type)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">Ciao</td>
+<td align="center">7,375</td>
+<td align="center">99,746</td>
+<td align="center">278,483--[1, 5]</td>
+<td align="center">0.0379%</td>
+<td align="center">7,375</td>
+<td align="center">111,781--Trust</td>
+</tr>
+<tr>
+<td align="center">Douban</td>
+<td align="center">129,490</td>
+<td align="center">58,541</td>
+<td align="center">16,830,839--[1, 5]</td>
+<td align="center">0.222%</td>
+<td align="center">129,490</td>
+<td align="center">1,692,952--Friendship</td>
+</tr>
+<tr>
+<td align="center">Epinions (665K)</td>
+<td align="center">40,163</td>
+<td align="center">139,738</td>
+<td align="center">664,824--[1, 5]</td>
+<td align="center">0.0118%</td>
+<td align="center">49,289</td>
+<td align="center">487,183--Trust</td>
+</tr>
+<tr>
+<td align="center">Epinions (510K)</td>
+<td align="center">71,002</td>
+<td align="center">104,356</td>
+<td align="center">508,960--[1, 5]</td>
+<td align="center">0.00687%</td>
+<td align="center"></td>
+<td align="center">Trust</td>
+</tr>
+<tr>
+<td align="center">Epinions (Extended)</td>
+<td align="center">120,492</td>
+<td align="center">755,760</td>
+<td align="center">13,668,320--[1, 5]</td>
+<td align="center">0.015%</td>
+<td align="center"></td>
+<td align="center">Trust Distrust</td>
+</tr>
+<tr>
+<td align="center">Flixster</td>
+<td align="center">147,612</td>
+<td align="center">48,794</td>
+<td align="center">8,196,077--[0.5, 5.0]</td>
+<td align="center">0.1138%</td>
+<td align="center">787,213</td>
+<td align="center">11,794,648--Friendship</td>
+</tr>
+<tr>
+<td align="center">FilmTrust</td>
+<td align="center">1,508</td>
+<td align="center">2,071</td>
+<td align="center">35,497--[0.5, 4.0]</td>
+<td align="center">1.14%</td>
+<td align="center">1,642</td>
+<td align="center">1,853--Trust</td>
+</tr>
+<tr>
+<td align="center">Jester</td>
+<td align="center">59,132</td>
+<td align="center">140</td>
+<td align="center">1,761,439--Explicit</td>
+<td align="center">21.28%</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">MovieLens 100K    </td>
+<td align="center">943   </td>
+<td align="center">1,682</td>
+<td align="center">100,000--[1, 5]    </td>
+<td align="center">6.30%</td>
+<td align="center"></td>
+<td align="center">                   </td>
+</tr>
+<tr>
+<td align="center">MovieLens 1M      </td>
+<td align="center">6,040</td>
+<td align="center">3,706</td>
+<td align="center">1,000,209--[1, 5]</td>
+<td align="center">4.47%</td>
+<td align="center"></td>
+<td align="center">                   </td>
+</tr>
+<tr>
+<td align="center">MovieLens 10M    </td>
+<td align="center">71,567</td>
+<td align="center">10,681</td>
+<td align="center">10,000,054--[1, 5]</td>
+<td align="center">1.308%</td>
+<td align="center"></td>
+<td align="center">                   </td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>SN</th>
+<th>Dataset</th>
+<th>#User</th>
+<th>#Item</th>
+<th>#Inteaction</th>
+<th>Sparsity</th>
+<th>Interaction Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><a href="https://github.com/RUCAIBox/RecDatasets/tree/master/dataset_info/MovieLens">MovieLens</a></td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>Rating</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Anime</td>
+<td>73,515</td>
+<td>11,200</td>
+<td>7,813,737</td>
+<td>99.05%</td>
+<td>Rating [-1, 1-10]</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Epinions</td>
+<td>116,260</td>
+<td>41,269</td>
+<td>188,478</td>
+<td>99.99%</td>
+<td>Rating [1-5]</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Yelp</td>
+<td>1,968,703</td>
+<td>209,393</td>
+<td>8,021,122</td>
+<td>99.99%</td>
+<td>Rating [1-5]</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Netflix</td>
+<td>480,189</td>
+<td>17,770</td>
+<td>100,480,507</td>
+<td>98.82%</td>
+<td>Rating [1-5]</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Book-crossing</td>
+<td>105,284</td>
+<td>340,557</td>
+<td>1,149,780</td>
+<td>99.99%</td>
+<td>Rating [0-10]</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Jester</td>
+<td>73,421</td>
+<td>101</td>
+<td>4,136,360</td>
+<td>44.22%</td>
+<td>Rating [-10, 10]</td>
+</tr>
+<tr>
+<td>8</td>
+<td>Douban</td>
+<td>738,701</td>
+<td>28</td>
+<td>2,125,056</td>
+<td>89.73%</td>
+<td>Rating [0,5]</td>
+</tr>
+<tr>
+<td>9</td>
+<td>Yahoo Music</td>
+<td>1,948,882</td>
+<td>98,211</td>
+<td>11,557,943</td>
+<td>99.99%</td>
+<td>Rating [0, 100]</td>
+</tr>
+<tr>
+<td>10</td>
+<td><a href="https://github.com/RUCAIBox/RecommenderSystems-Datasets/tree/master/dataset_info/KDD2010">KDD2010</a></td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>Rating</td>
+</tr>
+<tr>
+<td>11</td>
+<td><a href="https://github.com/RUCAIBox/RecommenderSystems-Datasets/tree/master/dataset_info/Amazon">Amazon</a></td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>Rating</td>
+</tr>
+<tr>
+<td>12</td>
+<td>Pinterest</td>
+<td>55,187</td>
+<td>9,911</td>
+<td>1,445,622</td>
+<td>99.74%</td>
+<td>-</td>
+</tr>
+<tr>
+<td>13</td>
+<td><a href="https://github.com/RUCAIBox/RecommenderSystems-Datasets/tree/master/dataset_info/Gowalla">Gowalla</a></td>
+<td>107,092</td>
+<td>1,280,969</td>
+<td>6,442,892</td>
+<td>99.99%</td>
+<td>Check-in</td>
+</tr>
+<tr>
+<td>14</td>
+<td>LastFM</td>
+<td>1,892</td>
+<td>17,632</td>
+<td>92,834</td>
+<td>99.72%</td>
+<td>Click</td>
+</tr>
+<tr>
+<td>15</td>
+<td><a href="https://github.com/RUCAIBox/RecommenderSystems-Datasets/tree/master/dataset_info/DIGINETICA">DIGINETICA</a></td>
+<td>600,684</td>
+<td>184,047</td>
+<td>993,483</td>
+<td>99.99%</td>
+<td>Click</td>
+</tr>
+<tr>
+<td>16</td>
+<td><a href="https://github.com/RUCAIBox/RecommenderSystems-Datasets/tree/master/dataset_info/Steam">Steam</a></td>
+<td>2,567,538</td>
+<td>32,135</td>
+<td>7,793,069</td>
+<td>99.99%</td>
+<td>Buy</td>
+</tr>
+<tr>
+<td>17</td>
+<td><a href="https://github.com/RUCAIBox/RecommenderSystems-Datasets/tree/master/dataset_info/TaFeng">Ta Feng</a></td>
+<td>32,266</td>
+<td>23,812</td>
+<td>817,741</td>
+<td>99.89%</td>
+<td>Click</td>
+</tr>
+<tr>
+<td>18</td>
+<td><a href="https://github.com/RUCAIBox/RecDatasets/tree/master/dataset_info/Foursquare">Foursquare</a></td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>Check-in</td>
+</tr>
+<tr>
+<td>19</td>
+<td><a href="https://github.com/RUCAIBox/RecommenderSystems-Datasets/tree/master/dataset_info/Tmall">Tmall</a></td>
+<td>963,923</td>
+<td>2,353,207</td>
+<td>44,528,127</td>
+<td>99.99%</td>
+<td>Click/Buy</td>
+</tr>
+<tr>
+<td>20</td>
+<td><a href="https://github.com/RUCAIBox/RecommenderSystems-Datasets/tree/master/dataset_info/YOOCHOOSE">YOOCHOOSE</a></td>
+<td>9,249,729</td>
+<td>52,739</td>
+<td>34,154,697</td>
+<td>99.99%</td>
+<td>Click/Buy</td>
+</tr>
+<tr>
+<td>21</td>
+<td><a href="https://github.com/RUCAIBox/RecDatasets/tree/master/dataset_info/iPinYou">iPinYou</a></td>
+<td>12,931,430</td>
+<td>131</td>
+<td>15,367,312</td>
+<td>99.09%</td>
+<td>View/Click</td>
+</tr>
+<tr>
+<td>22</td>
+<td><a href="https://github.com/RUCAIBox/RecommenderSystems-Datasets/tree/master/dataset_info/Retailrocket">Retailrocket</a></td>
+<td>1,407,580</td>
+<td>247,085</td>
+<td>2,756,101</td>
+<td>99.99%</td>
+<td>View/Addtocart/Transaction</td>
+</tr>
+<tr>
+<td>23</td>
+<td><a href="https://github.com/RUCAIBox/RecommenderSystems-Datasets/tree/master/dataset_info/LFM-1b">LFM-1b</a></td>
+<td>120,322</td>
+<td>3,123,496</td>
+<td>1,088,161,692</td>
+<td>99.71%</td>
+<td>Click</td>
+</tr>
+<tr>
+<td>24</td>
+<td>Criteo</td>
+<td>-</td>
+<td>-</td>
+<td>45,850,617</td>
+<td>-</td>
+<td>Click</td>
+</tr>
+<tr>
+<td>25</td>
+<td>Avazu</td>
+<td>-</td>
+<td>-</td>
+<td>40,428,967</td>
+<td>-</td>
+<td>Click [0, 1]</td>
+</tr>
+<tr>
+<td>26</td>
+<td>Phishing Websites</td>
+<td>-</td>
+<td>-</td>
+<td>11,055</td>
+<td>-</td>
+<td></td>
+</tr>
+<tr>
+<td>27</td>
+<td>Adult</td>
+<td>-</td>
+<td>-</td>
+<td>32,561</td>
+<td>-</td>
+<td>income&gt;=50k [0, 1]</td>
+</tr>
+<tr>
+<td>28</td>
+<td>MIND</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>Click</td>
+</tr>
+</tbody>
+</table>
+<h2 id="data-sources">Data Sources</h2>
+<ul>
+<li><a href="https://drive.google.com/drive/folders/1so0lckI6N6_niVEYaBu-LIcpOdZf99kj?usp=sharing">Google Drive</a></li>
+<li><a href="https://pan.baidu.com/s/1p51sWMgVFbAaHQmL4aD_-g">Baidu Wangpan</a> (Password: e272)</li>
+</ul>
+<h2 id="references">References</h2>
+<ul>
+<li><a href="https://recbole.io/index.html">RecBole</a></li>
+<li>https://github.com/RUCAIBox/RecSysDatasets</li>
+</ul>
+<h2 id="appendix">Appendix</h2>
+<ul>
+<li><a href="https://docs.google.com/spreadsheets/d/1iufwr6Zkayu0SUoG78tVQ412oeluil958KakWAjI4gs/edit?usp=sharing">Table format - Google Sheet</a></li>
+</ul>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        <a href=".." class="md-footer__link md-footer__link--prev" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Welcome to RecoBase
+            </div>
+          </div>
+        </a>
+      
+      
+        <a href="../Examples/" class="md-footer__link md-footer__link--next" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Examples
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+        
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "..", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}, "search": "../assets/javascripts/workers/search.4fa0e4ee.min.js", "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.1d3bfcf1.min.js"></script>
+      
+    
+  </body>
+</html>

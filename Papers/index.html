@@ -1,0 +1,1003 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-7.1.4">
+    
+    
+      
+        <title>Papers - RecoBase</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.bde7dde4.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ef6f36e2.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+      
+    
+    
+    
+      <link rel="stylesheet" href="../css/ansi-colours.css">
+    
+      <link rel="stylesheet" href="../css/jupyter-cells.css">
+    
+      <link rel="stylesheet" href="../css/pandas-dataframe.css">
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+  
+    
+    <script>function __prefix(e){return new URL("..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#survey" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="RecoBase" class="md-header__button md-logo" aria-label="RecoBase" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            RecoBase
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Papers
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+    
+      <div class="md-header__source">
+        
+<a href="https://github.com/sparsh-ai/reco-base/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="RecoBase" class="md-nav__button md-logo" aria-label="RecoBase" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    RecoBase
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/sparsh-ai/reco-base/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        Welcome to RecoBase
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Datasets/" class="md-nav__link">
+        Datasets
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Examples/" class="md-nav__link">
+        Examples
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Home/" class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Libraries/" class="md-nav__link">
+        Libraries
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Models/" class="md-nav__link">
+        Models
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Notebooks/" class="md-nav__link">
+        Notebooks
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Overview/" class="md-nav__link">
+        Overview
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Papers
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Papers
+      </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#survey" class="md-nav__link">
+    Survey
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#general-methods" class="md-nav__link">
+    General Methods
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#social-recommendation" class="md-nav__link">
+    Social Recommendation
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sequential-recommendation" class="md-nav__link">
+    Sequential Recommendation
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#feature-based-recommendation-ctr-prediction" class="md-nav__link">
+    Feature-based Recommendation (CTR Prediction)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#knowledge-graph-based-recommendation" class="md-nav__link">
+    Knowledge Graph-based Recommendation
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reinforcement-learning-for-recommendation" class="md-nav__link">
+    Reinforcement Learning for Recommendation
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#poi-recommendation" class="md-nav__link">
+    POI Recommendation
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cold-start-recommendation" class="md-nav__link">
+    Cold-Start Recommendation
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#securityrobutness-of-recsys" class="md-nav__link">
+    Security/Robutness of RecSys
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#causal-recommendation" class="md-nav__link">
+    Causal Recommendation
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Projects/" class="md-nav__link">
+        Projects
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Resources/" class="md-nav__link">
+        Resources
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Use-Cases/" class="md-nav__link">
+        Use Cases
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Vendors/" class="md-nav__link">
+        Vendors
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_14" type="checkbox" id="__nav_14" >
+      
+      <label class="md-nav__link" for="__nav_14">
+        Tutorials
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Tutorials" data-md-level="1">
+        <label class="md-nav__title" for="__nav_14">
+          <span class="md-nav__icon md-icon"></span>
+          Tutorials
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tutorials/recsys-imgsim/" class="md-nav__link">
+        Recsys imgsim
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tutorials/recsys-implicit-negative/" class="md-nav__link">
+        Recsys implicit negative
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tutorials/recsys-ncf/" class="md-nav__link">
+        Recsys ncf
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tutorials/recsys-prodsim/" class="md-nav__link">
+        Recsys prodsim
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tutorials/recsys-retrieval/" class="md-nav__link">
+        Recsys retrieval
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tutorials/recsys-vw-contextual/" class="md-nav__link">
+        Recsys vw contextual
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tutorials/recsys-word2vec/" class="md-nav__link">
+        Recsys word2vec
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#survey" class="md-nav__link">
+    Survey
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#general-methods" class="md-nav__link">
+    General Methods
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#social-recommendation" class="md-nav__link">
+    Social Recommendation
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sequential-recommendation" class="md-nav__link">
+    Sequential Recommendation
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#feature-based-recommendation-ctr-prediction" class="md-nav__link">
+    Feature-based Recommendation (CTR Prediction)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#knowledge-graph-based-recommendation" class="md-nav__link">
+    Knowledge Graph-based Recommendation
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reinforcement-learning-for-recommendation" class="md-nav__link">
+    Reinforcement Learning for Recommendation
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#poi-recommendation" class="md-nav__link">
+    POI Recommendation
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cold-start-recommendation" class="md-nav__link">
+    Cold-Start Recommendation
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#securityrobutness-of-recsys" class="md-nav__link">
+    Security/Robutness of RecSys
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#causal-recommendation" class="md-nav__link">
+    Causal Recommendation
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/sparsh-ai/reco-base/edit/master/docs/Papers.md" title="Edit this page" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                  <h1>Papers</h1>
+                
+                <h2 id="survey">Survey</h2>
+<ul>
+<li>Measuring the Business Value of Recommender Systems. arxiv'19. (<a href="https://arxiv.org/pdf/1908.08328.pdf">paper</a>)</li>
+<li>A Survey on Session-based Recommender Systems. arxiv'19. (<a href="https://arxiv.org/pdf/1902.04864.pdf">paper</a>)</li>
+<li>Deep Learning-based Sequential Recommender Systems: Concepts, Algorithms, and Evaluations. arxiv'19. (<a href="https://arxiv.org/pdf/1905.01997.pdf">paper</a>)</li>
+<li>A review on deep learning for recommender systems: challenges and remedies. AI Review'18. (<a href="https://link.springer.com/article/10.1007/s10462-018-9654-y">paper</a>)</li>
+<li>Explainable Recommendation: A Survey and New Perspectives. arxiv'18. (<a href="https://arxiv.org/pdf/1804.11192.pdf">paper</a>)</li>
+<li>Evaluation of Session-based Recommendation Algorithms. arxiv'18. (<a href="https://arxiv.org/pdf/1803.09587.pdf">paper</a>)</li>
+<li>Deep learning based recommender system: A survey and new perspectives. CSUR'18. (<a href="https://arxiv.org/pdf/1707.07435.pdf">paper</a>)</li>
+<li>Sequence-Aware Recommender Systems. arxiv'18. (<a href="https://arxiv.org/pdf/1802.08452.pdf">paper</a>)</li>
+<li>A survey of point-of-interest recommendation in location-based social networks. arxiv'16. (<a href="https://arxiv.org/pdf/1607.00647.pdf">paper</a>)</li>
+<li>Social Recommendation: A Review. SNAM'13. (<a href="https://www.cse.msu.edu/~tangjili/publication/socialrecommendationreview.pdf">paper</a>)</li>
+<li>Recommender systems survey. 2013. (<a href="https://www.sciencedirect.com/science/article/pii/S0950705113001044">paper</a>)</li>
+</ul>
+<h2 id="general-methods">General Methods</h2>
+<ul>
+<li>Markov Random Field for Collaborative Filtering. NeurIPS'19. (<a href="https://arxiv.org/pdf/1910.09645.pdf">paper</a>)</li>
+<li>Are We Really Making Much Progress? A Worrying Analysis of Recent Neural Recommendation Approaches. RecSys'19. (<a href="https://arxiv.org/pdf/1907.06902.pdf">paper</a>)(<a href="https://github.com/MaurizioFD/RecSys2019_DeepLearning_Evaluation">code</a>)</li>
+<li>Infer Implicit Contexts in Real-time Online-to-Offline Recommendation. KDD'19. (<a href="https://arxiv.org/pdf/1907.04924.pdf">paper</a>)</li>
+<li>A Capsule Network for Recommendation and Explaining What You Like and Dislike. SIGIR'19. (<a href="https://arxiv.org/pdf/1907.00687.pdf">paper</a>)(<a href="https://github.com/WHUIR/CARP">code</a>)</li>
+<li>Compositional Coding for Collaborative Filtering. SIGIR'19. (<a href="https://arxiv.org/pdf/1905.03752.pdf">paper</a>)(<a href="https://github.com/3140102441/CCCF">code</a>)</li>
+<li>Joint Optimization of Tree-based Index and Deep Model for Recommender Systems. arxiv'19. (<a href="https://arxiv.org/pdf/1902.07565.pdf">paper</a>)</li>
+<li>Gated Attentive-Autoencoder for Content-Aware Recommendation. WSDM'19. (<a href="https://arxiv.org/abs/1812.02869.pdf">paper</a>)</li>
+<li>Real-time Personalization using Embeddings for Search Ranking at Airbnb. KDD'18. (<a href="https://astro.temple.edu/~tua95067/kdd2018.pdf">paper</a>)</li>
+<li>Graph Convolutional Neural Networks for Web-Scale Recommender Systems. KDD'18. (<a href="https://arxiv.org/pdf/1806.01973.pdf">paper</a>)</li>
+<li>Local Latent Space Models for Top-N Recommendation. KDD'18. (<a href="https://dl.acm.org/citation.cfm?id=3220112">paper</a>)</li>
+<li>Learning from History and Present: Next-item Recommendation via Discriminatively Exploiting User Behaviors. KDD'18. (<a href="https://arxiv.org/pdf/1808.01075.pdf">paper</a>)</li>
+<li>Variational Autoencoders for Collaborative Filtering. WWW'18. (<a href="https://arxiv.org/abs/1802.05814.pdf">paper</a>)</li>
+<li>Learning Tree-based Deep Model for Recommender Systems. arxiv'18. (<a href="https://arxiv.org/pdf/1801.02294.pdf">paper</a>)</li>
+<li>Collaborative Memory Network for Recommendation Systems. SIGIR'18. (<a href="https://arxiv.org/pdf/1804.10862.pdf">paper</a>)</li>
+<li>Regularizing Matrix Factorization with User and Item Embeddings for Recommendation. CIKM'18. (<a href="https://arxiv.org/pdf/1809.00979.pdf">paper</a>)</li>
+<li>Neural collaborative filtering. WWW'17. (<a href="https://www.comp.nus.edu.sg/~xiangnan/papers/ncf.pdf">paper</a>)(<a href="https://github.com/hexiangnan/neural_collaborative_filtering">code</a>)</li>
+<li>CCCFNet: a content-boosted collaborative filtering neural network for cross domain recommender systems. WWW'17. (<a href="https://dl.acm.org/citation.cfm?id=3054207">paper</a>)</li>
+<li>Collaborative metric learning. WWW'17. (<a href="http://www.cs.cornell.edu/~ylongqi/paper/HsiehYCLBE17.pdf">paper</a>)</li>
+<li>Collaborative denoising auto-encoders for top-n recommender systems. WSDM'16. (<a href="https://alicezheng.org/papers/wsdm16-cdae.pdf">paper</a>)</li>
+<li>Fast matrix factorization for online recommendation with implicit feedback. SIGIR'16. (<a href="https://www.comp.nus.edu.sg/~xiangnan/papers/sigir16-eals-cm.pdf">paper</a>)</li>
+<li>A neural autoregressive approach to collaborative filtering. ICML'16. (<a href="https://arxiv.org/abs/1605.09477.pdf">paper</a>)</li>
+<li>Deep neural networks for youtube recommendations. RecSys'16. (<a href="https://static.googleusercontent.com/media/research.google.com/zh-CN//pubs/archive/45530.pdf">paper</a>)</li>
+<li>Autorec: Autoencoders meet collaborative filtering. WWW'15. (<a href="http://users.cecs.anu.edu.au/~akmenon/papers/autorec/autorec-paper.pdf">paper</a>)</li>
+<li>Collaborative deep learning for recommender systems. KDD'15. (<a href="http://www.wanghao.in/paper/KDD15_CDL.pdf">paper</a>)</li>
+<li>Probabilistic matrix factorization with non-random missing data. ICML'14. (<a href="http://proceedings.mlr.press/v32/hernandez-lobatob14.pdf">paper</a>)</li>
+<li>FISM: Factored Item Similarity Models for Top-N Recommender Systems. KDD'13. (<a href="https://dl.acm.org/citation.cfm?id=2487589">paper</a>)</li>
+<li>BPR: Bayesian personalized ranking from implicit feedback. UAI'09. (<a href="https://arxiv.org/pdf/1205.2618.pdf">paper</a>)</li>
+<li>Matrix factorization techniques for recommender systems. Computer'09. (<a href="https://datajobs.com/data-science-repo/Recommender-Systems-[Netflix].pdf">paper</a>)</li>
+<li>Probabilistic matrix factorization. NIPS'08. (<a href="https://papers.nips.cc/paper/3208-probabilistic-matrix-factorization.pdf">paper</a>)</li>
+<li>Restricted Boltzmann machines for collaborative filtering. ICML'07. (<a href="https://www.cs.toronto.edu/~rsalakhu/papers/rbmcf.pdf">paper</a>)</li>
+<li>Amazon.com recommendations: Item-to-item collaborative filtering. IEEE INTERNET COMPUT'03. (<a href="https://www.cs.umd.edu/~samir/498/Amazon-Recommendations.pdf">paper</a>)</li>
+<li>Item-based collaborative filtering recommendation algorithms. WWW'01. (<a href="http://files.grouplens.org/papers/www10_sarwar.pdf">paper</a>)</li>
+</ul>
+<h2 id="social-recommendation">Social Recommendation</h2>
+<ul>
+<li>A Modular Adversarial Approach to Social Recommendation. CIKM'2019. (<a href="http://www.cikm2019.net/attachments/papers/p1753-krishnanA.pdf">paper</a>)(<a href="https://github.com/CrowdDynamicsLab/Adversarial-Social-Recommendation">code</a>)</li>
+<li>Deep Adversarial Social Recommendation. IJCAI'19. (<a href="https://arxiv.org/pdf/1905.13160.pdf">paper</a>)</li>
+<li>Beyond Personalization: Social Content Recommendation for Creator Equality and Consumer Satisfaction. KDD'19. (<a href="https://arxiv.org/pdf/1905.11900.pdf">paper</a>)(<a href="https://github.com/HKUST-KnowComp/Social-Explorative-Attention-Networks">code</a>)</li>
+<li>A Neural Influence Diffusion Model for Social Recommendation. SIGIR'19. (<a href="https://arxiv.org/pdf/1904.10322.pdf">paper</a>)(<a href="https://github.com/PeiJieSun/diffnet">code</a>)</li>
+<li>An Efficient Adaptive Transfer Neural Network for Social-aware Recommendation. (<a href="http://www.thuir.cn/group/~mzhang/publications/SIGIR2019ChenC.pdf">paper</a>)</li>
+<li>Dual Graph Attention Networks for Deep Latent Representation of Multifaceted Social Effects in Recommender Systems. WWW'19. (<a href="https://arxiv.org/pdf/1903.10433.pdf">paper</a>)</li>
+<li>Session-based Social Recommendation via Dynamic Graph Attention Networks. WSDM'19. (<a href="https://arxiv.org/pdf/1902.09362.pdf">paper</a>)(<a href="https://github.com/DeepGraphLearning/RecommenderSystems/tree/master/socialRec">code</a>)</li>
+<li>Social Attentional Memory Network: Modeling Aspect- and Friend-level Diferences in Recommendation. WSDM'19. (<a href="http://www.thuir.cn/group/~mzhang/publications/WSDM2019ChenChong.pdf">paper</a>)</li>
+<li>Graph Neural Networks for Social Recommendation. WWW'19. (<a href="https://arxiv.org/pdf/1902.07243.pdf">paper</a>)</li>
+<li>Attentive Recurrent Social Recommendation. SIGIR'19. (<a href="https://dl.acm.org/citation.cfm?id=3210023">paper</a>)</li>
+<li>Collaborative Filtering with Social Exposure: A Modular Approach to Social Recommendation. AAAI'18. (<a href="https://arxiv.org/pdf/1711.11458.pdf">paper</a>)</li>
+<li>SocialGCN: An Efficient Graph Convolutional Network based Model for Social Recommendation. AAAI'18. (<a href="https://arxiv.org/pdf/1811.02815.pdf">paper</a>)</li>
+<li>Learning and Transferring Social and Item Visibilities for Personalized Recommendation. CIKM'17. (<a href="https://dl.acm.org/citation.cfm?id=3132847.3132911">paper</a>)</li>
+<li>Learning to Rank with Trust and Distrust in Recommender Systems. Recsys'17. (<a href="https://cseweb.ucsd.edu/classes/fa17/cse291-b/reading/p5-rafailidis.pdf">paper</a>)</li>
+<li>Collaborative User Network Embedding for Social Recommender Systems. SDM'17. (<a href="https://repository.kaust.edu.sa/bitstream/handle/10754/625053/1.9781611974973.43.pdf?sequence=1&amp;isAllowed=y">paper</a>)</li>
+<li>Social recommendation with strong and weak ties. CIKM'16. (<a href="https://dl.acm.org/citation.cfm?id=2983701">paper</a>)</li>
+<li>Context-aware collaborative topic regression with social matrix factorization for recommender systems. AAAI'14. (<a href="https://dl.acm.org/citation.cfm?id=2893875">paper</a>)</li>
+<li>Leveraging social connections to improve personalized ranking for collaborative filtering. CIKM'14. (<a href="https://cseweb.ucsd.edu/~jmcauley/pdfs/cikm14.pdf">paper</a>)</li>
+<li>Social collaborative filtering for cold-start recommendations. RecSys'14. (<a href="http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.499.736&amp;rep=rep1&amp;type=pdf">paper</a>)</li>
+<li>Social collaborative filtering by trust. IJCAI'13. (<a href="https://dl.acm.org/citation.cfm?id=2540524">paper</a>)</li>
+<li>Recommender systems with social regularization. WSDM'11. (<a href="http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.352.9959&amp;rep=rep1&amp;type=pdf">paper</a>)</li>
+<li>A matrix factorization technique with trust propagation for recommendation in social networks. RecSys'10. (<a href="https://dl.acm.org/citation.cfm?id=1864736">paper</a>)</li>
+<li>Trustwalker: a random walk model for combining trust-based and item-based recommendation. KDD'09. (<a href="http://www.cs.sfu.ca/~ester/papers/KDD-2009-TrustWalker.final.pdf">paper</a>)</li>
+<li>Learning to recommend with social trust ensemble. SIGIR'09. (<a href="https://www.cc.gatech.edu/~zha/CSE8801/CF/p203-ma.pdf">paper</a>)</li>
+<li>Learning to recommend with trust and distrust relationships. RecSys'09. (<a href="http://www.cse.cuhk.edu.hk/~king/PUB/Recsys2009-Ma.pdf">paper</a>)</li>
+<li>Sorec: social recommendation using probabilistic matrix factorization. CIKM'08. (<a href="http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.304.2464&amp;rep=rep1&amp;type=pdf">paper</a>)</li>
+</ul>
+<h2 id="sequential-recommendation">Sequential Recommendation</h2>
+<ul>
+<li>A Dynamic Co-attention Network for Session-based Recommendation. CIKM'2019. (<a href="http://www.cikm2019.net/attachments/papers/p1461-chenA.pdf">paper</a>)</li>
+<li>BERT4Rec: Sequential Recommendation with Bidirectional Encoder Representations from Transformer. CIKM'2019. (<a href="http://www.cikm2019.net/attachments/papers/p1441-sunA.pdf">paper</a>)(<a href="https://github.com/FeiSun/BERT4Rec">code</a>)</li>
+<li>Hierarchical Gating Networks for Sequential Recommendation. KDD2019. (<a href="https://arxiv.org/pdf/1906.09217.pdf">paper</a>)(<a href="https://github.com/allenjack/HGN">code</a>)</li>
+<li>Hierarchical Context enabled Recurrent Neural Network for Recommendation. AAAI2019. (<a href="https://arxiv.org/pdf/1904.12674.pdf">paper</a>)(<a href="https://github.com/gtshs2/HCRNN">code</a>)</li>
+<li>Lifelong Sequential Modeling with Personalized Memorization for User Response Prediction. SIGIR'19. (<a href="https://arxiv.org/pdf/1905.00758.pdf">paper</a>)(<a href="https://github.com/alimamarankgroup/HPMN">code</a>)</li>
+<li>Hierarchical Temporal Convolutional Networks for Dynamic Recommender Systems. WWW'19. (<a href="https://arxiv.org/pdf/1904.04381.pdf">paper</a>)</li>
+<li>A Simple Convolutional Generative Network for Next Item Recommendation. WSDM'19. (<a href="https://arxiv.org/pdf/1808.05163.pdf">paper</a>)(<a href="https://github.com/fajieyuan/nextitnet">code</a>)</li>
+<li>Sequential Variational Autoencoders for Collaborative Filtering. WSDM'19. (<a href="https://dl.acm.org/citation.cfm?id=3291007">paper</a>)</li>
+<li>Session-based Recommendation with Graph Neural Networks. AAAI'19. (<a href="https://arxiv.org/pdf/1811.00855.pdf">paper</a>)(<a href="https://github.com/CRIPAC-DIG/SR-GNN">code</a>)</li>
+<li>Self-Attentive Sequential Recommendation. ICDM'18. (<a href="https://arxiv.org/pdf/1808.09781.pdf">paper</a>)(<a href="https://github.com/kang205/SASRec">code</a>)</li>
+<li>Personalized Top-N Sequential Recommendation via Convolutional Sequence Embedding. WSDM'18. (<a href="http://www.sfu.ca/~jiaxit/resources/wsdm18caser.pdf">paper</a>)(<a href="https://github.com/graytowne/caser_pytorch">code</a>)</li>
+<li>Latent Cross: Making Use of Context in Recurrent Recommender Systems. WSDM'18. (<a href="https://static.googleusercontent.com/media/research.google.com/zh-CN//pubs/archive/46488.pdf">paper</a>)</li>
+<li>Sequential Recommendation with User Memory Networks. WSDM'18. (<a href="https://dl.acm.org/citation.cfm?id=3159668">paper</a>)</li>
+<li>STAMP: Short-Term A ention/Memory Priority Model for Session-based Recommendation. KDD'18. (<a href="https://www.kdd.org/kdd2018/accepted-papers/view/stamp-short-term-attentionmemory-priority-model-for-session-based-recommend">paper</a>)(<a href="https://github.com/uestcnlp/STAMP">code</a>)</li>
+<li>Recurrent Neural Networks with Top-k Gains for Session-based Recommendations. CIKM'18. (<a href="https://arxiv.org/pdf/1706.03847.pdf">paper</a>)</li>
+<li>Translation-based recommendation. RecSys'17. (<a href="https://arxiv.org/pdf/1707.02410.pdf">paper</a>)(<a href="https://drive.google.com/file/d/0B9Ck8jw-TZUEVmdROWZKTy1fcEE/view">code</a>)</li>
+<li>Neural Attentive Session-based Recommendation. CIKM'17. (<a href="https://arxiv.org/pdf/1711.04725.pdf">paper</a>)</li>
+<li>Neural Survival Recommender. WSDM'17. (<a href="https://cseweb.ucsd.edu/classes/fa17/cse291-b/reading/p515-jing.pdf">paper</a>)</li>
+<li>Recurrent recommender networks. WSDM'17. (<a href="http://alexbeutel.com/papers/rrn_wsdm2017.pdf">paper</a>)</li>
+<li>Improved Recurrent Neural Networks for Session-based Recommendations. arxiv'16. (<a href="https://arxiv.org/pdf/1606.08117.pdf">paper</a>)</li>
+<li>Session-based Recommendations with Recurrent Neural Networks. ICLR'16. (<a href="https://arxiv.org/pdf/1511.06939.pdf">paper</a>)(<a href="https://github.com/hidasib/GRU4Rec">code-Theano</a>, <a href="https://github.com/Songweiping/GRU4Rec_TensorFlow">code-TensorFlow</a>)</li>
+<li>Fusing similarity models with markov chains for sparse sequential recommendation. ICDM'16. (<a href="https://cseweb.ucsd.edu/~jmcauley/pdfs/icdm16a.pdf">paper</a>)</li>
+<li>Dynamic Poisson Factorization. RecSys'15. (<a href="http://www.cs.toronto.edu/~lcharlin/papers/2015_CharlinRanganathMcInerneyBlei.pdf">paper</a>)</li>
+<li>Factorizing personalized markov chains for next-basket recommendation. WWW'10. (<a href="https://www.ismll.uni-hildesheim.de/pub/pdfs/RendleFreudenthaler2010-FPMC.pdf">paper</a>)</li>
+<li>Temporal collaborative filtering with bayesian probabilistic tensor factorization. SIAM'10. (<a href="https://www.cs.cmu.edu/~jgc/publication/PublicationPDF/Temporal_Collaborative_Filtering_With_Bayesian_Probabilidtic_Tensor_Factorization.pdf">paper</a>)</li>
+<li>Collaborative Filtering with Temporal Dynamics. KDD'09. (<a href="http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.379.1951&amp;rep=rep1&amp;type=pdf">paper</a>)</li>
+</ul>
+<h2 id="feature-based-recommendation-ctr-prediction">Feature-based Recommendation (CTR Prediction)</h2>
+<ul>
+<li>Recommending What Video to Watch Next: A Multitask Ranking System. RecSys'19. (<a href="https://dl.acm.org/citation.cfm?id=3346997">paper</a>)</li>
+<li>AutoInt: Automatic Feature Interaction Learning via Self-Attentive Neural Networks. CIKM'19. (<a href="https://arxiv.org/pdf/1810.11921.pdf">paper</a>)(<a href="https://github.com/DeepGraphLearning/RecommenderSystems/tree/master/featureRec">code</a>)</li>
+<li>Deep Spatio-Temporal Neural Networks for Click-Through Rate Prediction. KDD'19. (<a href="https://arxiv.org/pdf/1906.03776.pdf">paper</a>)</li>
+<li>Feature Generation by Convolutional Neural Network for Click-Through Rate Prediction. WWW'19. (<a href="https://arxiv.org/pdf/1904.04447.pdf">paper</a>)</li>
+<li>Interaction-aware Factorization Machines for Recommender Systems. AAAI'19. (<a href="https://arxiv.org/pdf/1902.09757.pdf">paper</a>)</li>
+<li>Deep Session Interest Network for Click-Through Rate Prediction. IJCAI'19. (<a href="https://arxiv.org/pdf/1905.06482.pdf">paper</a>)(<a href="https://github.com/shenweichen/DSIN">code</a>)</li>
+<li>xDeepFM: Combining Explicit and Implicit Feature Interactions for Recommender Systems. KDD'18. (<a href="https://arxiv.org/pdf/1803.05170.pdf">paper</a>)(<a href="https://github.com/Leavingseason/xDeepFM">code</a>) </li>
+<li>TEM: Tree-enhanced Embedding Model for Explainable Recommendation. WWW'18. (<a href="https://www.comp.nus.edu.sg/~xiangnan/papers/www18-tem.pdf">paper</a>)</li>
+<li>Deepfm: A factorization-machine based neural network for CTR prediction. IJCAI'17. (<a href="https://www.ijcai.org/proceedings/2017/0239.pdf">paper</a>)(<a href="https://github.com/ChenglongChen/tensorflow-DeepFM">code</a>)</li>
+<li>Attentional Factorization Machines: Learning the Weight of Feature Interactions via Attention Networks. IJCAI. (<a href="https://www.comp.nus.edu.sg/~xiangnan/papers/ijcai17-afm.pdf">paper</a>)(<a href="https://github.com/hexiangnan/attentional_factorization_machine">code</a>)</li>
+<li>Neural Factorization Machines for Sparse Predictive Analytics. SIGIR'17. (<a href="https://www.comp.nus.edu.sg/~xiangnan/papers/sigir17-nfm.pdf">paper</a>)(<a href="https://github.com/hexiangnan/neural_factorization_machine">code</a>)</li>
+<li>Deep &amp; Cross Network for Ad Click Predictions. arxiv'17. (<a href="https://arxiv.org/pdf/1708.05123.pdf">paper</a>)</li>
+<li>Product-based neural networks for user response prediction. ICDM'16. (<a href="https://arxiv.org/pdf/1807.00311.pdf">paper</a>)</li>
+<li>Deep Crossing: Web-Scale Modeling without Manually Crafted Combinatorial Features. KDD'16. (<a href="https://www.kdd.org/kdd2016/papers/files/adf0975-shanA.pdf">paper</a>)</li>
+<li>Field-aware factorization machines for CTR prediction. RecSys'16. (<a href="https://www.csie.ntu.edu.tw/~cjlin/papers/ffm.pdf">paper</a>)</li>
+<li>Deep learning over multi-field categorical data. ECIR'16. (<a href="https://arxiv.org/pdf/1601.02376.pdf">paper</a>)</li>
+<li>Wide &amp; Deep Learning for Recommender Systems. arxiv'16. (<a href="https://arxiv.org/pdf/1606.07792.pdf">paper</a>)</li>
+</ul>
+<h2 id="knowledge-graph-based-recommendation">Knowledge Graph-based Recommendation</h2>
+<ul>
+<li>Explainable Knowledge Graph-based Recommendation via Deep Reinforcement Learning. arXiv'19. (<a href="https://arxiv.org/pdf/1906.09506.pdf">paper</a>)</li>
+<li>Reinforcement Knowledge Graph Reasoning for Explainable Recommendation. SIGIR'19. (<a href="https://arxiv.org/pdf/1906.05237.pdf">paper</a>)</li>
+<li>Exploring High-Order User Preference on the Knowledge Graph for Recommender Systems. TOIS'19. (<a href="https://dl.acm.org/citation.cfm?id=3312738">paper</a>)</li>
+<li>Knowledge Graph Convolutional Networks for Recommender Systems with Label Smoothness Regularization. KDD'19. (<a href="https://arxiv.org/pdf/1905.04413.pdf">paper</a>)(<a href="https://github.com/hwwang55/KGCN">code</a>)</li>
+<li>Unifying Knowledge Graph Learning and Recommendation: Towards a Better Understanding of User Preference. WWW'19. (<a href="https://www.comp.nus.edu.sg/~xiangnan/papers/www19-KGRec.pdf">paper</a>)</li>
+<li>Jointly Learning Explainable Rules for Recommendation with Knowledge Graph. WWW'19. (<a href="https://arxiv.org/pdf/1903.03714.pdf">paper</a>)</li>
+<li>Multi-Task Feature Learning for Knowledge Graph Enhanced Recommendation. WWW'19. (<a href="https://arxiv.org/pdf/1901.08907.pdf">paper</a>)</li>
+<li>Explainable Reasoning over Knowledge Graph Paths for Recommendation. AAAI'19. (<a href="https://arxiv.org/pdf/1811.04540.pdf">paper</a>)</li>
+<li>Heterogeneous Information Network Embedding for Recommendation. TKDE'18. (<a href="http://shichuan.org/doc/48.pdf">paper</a>)(<a href="https://github.com/librahu/HERec">code</a>)</li>
+<li>Leveraging Meta-path based Context for Top-N Recommendation with A Neural Co-Attention Model. KDD'18. (<a href="http://shichuan.org/doc/47.pdf">paper</a>)(<a href="https://github.com/librahu/MCRec">code</a>)</li>
+<li>RippleNet: Propagating User Preferences on the Knowledge Graph for Recommender Systems. CIKM'18. (<a href="https://arxiv.org/pdf/1803.03467.pdf">paper</a>)(<a href="https://github.com/hwwang55/RippleNet">code</a>)</li>
+<li>DKN: Deep Knowledge-Aware Network for News Recommendation. WWW'18. (<a href="https://arxiv.org/abs/1801.08284">paper</a>)</li>
+<li>SHINE: Signed Heterogeneous Information Network Embedding for Sentiment Link Prediction. WSDM'18. (<a href="https://dl.acm.org/citation.cfm?doid=3159652.3159666">paper</a>)</li>
+<li>Learning Heterogeneous Knowledge Base Embeddings for Explainable Recommendation. Arxiv'18. (<a href="https://arxiv.org/pdf/1805.03352.pdf">paper</a>)</li>
+<li>Meta-Graph Based Recommendation Fusion over Heterogeneous Information Networks. KDD'17. (<a href="http://www.cse.ust.hk/~hzhaoaf/data/kdd17-paper.pdf">paper</a>)(<a href="https://github.com/HKUST-KnowComp/FMG">code</a>)</li>
+<li>Collaborative Knowledge Base Embedding for Recommender Systems. KDD'16. (<a href="https://dl.acm.org/citation.cfm?id=2939673">paper</a>)</li>
+<li>Personalized Recommendations using Knowledge Graphs: A Probabilistic Logic Programming Approach.RecSys'16. (<a href="https://www.cs.cmu.edu/~wcohen/postscript/recsys-2016.pdf">paper</a>)</li>
+<li>Personalized Entity Recommendation: A Heterogeneous Information Network Approach. WSDM'14. (<a href="http://hanj.cs.illinois.edu/pdf/wsdm14_xyu.pdf">paper</a>)</li>
+<li>PathSim: Meta Path-Based Top-K Similarity Search in Heterogeneous Information Networks.VLDB'11.(<a href="http://vldb.org/pvldb/vol4/p992-sun.pdf">paper</a>)</li>
+</ul>
+<h2 id="reinforcement-learning-for-recommendation">Reinforcement Learning for Recommendation</h2>
+<ul>
+<li>Explainable Knowledge Graph-based Recommendation via Deep Reinforcement Learning. arXiv'19. (<a href="https://arxiv.org/pdf/1906.09506.pdf">paper</a>)</li>
+<li>Reinforcement Knowledge Graph Reasoning for Explainable Recommendation. SIGIR'19. (<a href="https://arxiv.org/pdf/1906.05237.pdf">paper</a>)</li>
+<li>Reinforcement Learning for Slate-based Recommender Systems: A Tractable Decomposition and Practical Methodology. IJCAI'19. (<a href="https://www.cs.toronto.edu/~cebly/Papers/SlateQ_IJCAI_2019.pdf">paper</a>)</li>
+<li>Generative Adversarial User Model for Reinforcement Learning Based Recommendation System. ICML'19. (<a href="https://arxiv.org/pdf/1812.10613v2.pdf">paper</a>)</li>
+<li>Value-aware Recommendation based on Reinforced Profit Maximization in E-commerce Systems. arxiv'19. (<a href="https://arxiv.org/pdf/1902.00851.pdf">paper</a>)(<a href="https://github.com/rec-agent/rec-rl">code</a>)</li>
+<li>Top-K Off-Policy Correction for a REINFORCE Recommender System. WSDM'19. (<a href="https://arxiv.org/pdf/1812.02353.pdf">paper</a>)</li>
+<li>Deep Reinforcement Learning for Page-wise Recommendations. RecSys'18. (<a href="https://arxiv.org/pdf/1805.02343.pdf">paper</a>)</li>
+<li>DRN: A Deep Reinforcement Learning Framework for News Recommendation. KDD'18. (<a href="http://www.personal.psu.edu/~gjz5038/paper/www2018_reinforceRec/www2018_reinforceRec.pdf">paper</a>)</li>
+<li>Recommendations with Negative Feedback via Pairwise Deep Reinforcement Learning. KDD'18. (<a href="https://arxiv.org/pdf/1802.06501.pdf">paper</a>)</li>
+<li>Supervised Reinforcement Learning with Recurrent Neural Network for Dynamic Treatment Recommendation. KDD'18. (<a href="https://arxiv.org/pdf/1807.01473.pdf">paper</a>)</li>
+<li>Reinforcement Learning to Rank with Markov Decision Process. SIGIR'17. (<a href="http://www.bigdatalab.ac.cn/~junxu/publications/SIGIR2017_RL_L2R.pdf">paper</a>)</li>
+<li>Deep Reinforcement Learning for List-wise Recommendations. arxiv'17. (<a href="https://arxiv.org/pdf/1801.00209.pdf">paper</a>)</li>
+<li>Factored MDPs for Detecting Topics of User Sessions. RecSys'14. (<a href="http://ml3.leuphana.de/publications/recsy160-tavakolATS.pdf">paper</a>)</li>
+<li>Optimal Radio Channel Recommendations with Explicit and Implicit Feedback. RecSys'12. (<a href="http://www.inf.unibz.it/~ricci/papers/fp024-moling.pdf">paper</a>)</li>
+<li>Improving recommender systems with adaptive conversational strategies. HT'09. (<a href="http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.395.8513&amp;rep=rep1&amp;type=pdf">paper</a>)</li>
+<li>A hybrid web recommender system based on q-learning. SAC'08. (<a href="https://dl.acm.org/citation.cfm?id=1363954">paper</a>)</li>
+<li>Usage-based web recommendations: a reinforcement learning approach. RecSys'07. (<a href="http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.157.9640&amp;rep=rep1&amp;type=pdf">paper</a>)</li>
+<li>An MDP-Based Recommender System. JMLR'05. (<a href="http://www.jmlr.org/papers/volume6/shani05a/shani05a.pdf">paper</a>)</li>
+</ul>
+<h2 id="poi-recommendation">POI Recommendation</h2>
+<ul>
+<li>Spatiotemporal Representation Learning for Translation-Based POI Recommendation. TOIS'19. (<a href="https://www.dropbox.com/s/6l28nsge8mheim1/TOIS19-Qian.pdf?dl=0">paper</a>)</li>
+<li>Topic-Enhanced Memory Networks for Personalised Point-of-Interest Recommendation. KDD'19. (<a href="https://arxiv.org/pdf/1905.13127.pdf">paper</a>)</li>
+<li>Exploiting POI-Specific Geographical Influence for Point-of-Interest Recommendation. IJCAI'18. (<a href="https://www.ijcai.org/proceedings/2018/0539.pdf">paper</a>)</li>
+<li>Content-Aware Hierarchical Point-of-Interest Embedding Model for Successive POI Recommendation. IJCAI'18. (<a href="https://www.ijcai.org/proceedings/2018/0458.pdf">paper</a>)</li>
+<li>A Contextual Attention Recurrent Architecture for Context-Aware Venue Recommendation. SIGIR'18. (<a href="https://core.ac.uk/download/pdf/155789835.pdf">paper</a>)</li>
+<li>A location-sentiment-aware recommender system for both hometown and out-of-town users. KDD'17. (<a href="https://arxiv.org/pdf/1706.06239.pdf">paper</a>)</li>
+<li>What your images reveal: Exploiting visual contents for point-of-interest recommendation. WWW'17. (<a href="http://www.public.asu.edu/~swang187/publications/VPOI.pdf">paper</a>)</li>
+<li>POI2Vec: Geographical Latent Representation for Predicting Future Visitors. AAAI'17. (<a href="https://pdfs.semanticscholar.org/ff85/033527eef66c7d89deac5f73da42c7b11682.pdf">paper</a>)</li>
+<li>Category-aware next point-of-interest recommendation via listwise Bayesian personalized ranking. IJCAI'17. (<a href="https://www.ijcai.org/proceedings/2017/0255.pdf">paper</a>)</li>
+<li>Predicting the Next Location: A Recurrent Model with Spatial and Temporal Contexts. AAAI'16. (<a href="https://pdfs.semanticscholar.org/5bdf/0970034d0bb8a218c06ba3f2ddf97d29103d.pdf">paper</a>)(<a href="https://github.com/yongqyu/STRNN">code</a>)</li>
+<li>Point-of-interest recommendations: Learning potential check-ins from friends. KDD'16. (<a href="https://www.kdd.org/kdd2016/papers/files/rfp0448-liA.pdf">paper</a>)</li>
+<li>Gmove: Group-level mobility modeling using geo-tagged social media. KDD'16. (<a href="http://hanj.cs.illinois.edu/pdf/kdd16_czhang.pdf">paper</a>)</li>
+<li>Learning graph-based poi embedding for location-based recommendation. CIKM'16. (<a href="https://static.aminer.org/pdf/fa/cikm2016/lfp0055-xieA..pdf">paper</a>)</li>
+<li>Geo-teaser: Geo-temporal sequential embedding rank for point-of-interest recommendation. WWW'16. (<a href="https://arxiv.org/pdf/1606.05859.pdf">paper</a>)</li>
+<li>GeoSoCa: Exploiting geographical, social and categorical correlations for point-of-interest recommendations. SIGIR'15. (<a href="http://www.cs.cityu.edu.hk/~chiychow/papers/SIGIR_2015.pdf">paper</a>)</li>
+<li>GeoMF: joint geographical modeling and matrix factorization for point-of-interest recommendation. KDD'14. (<a href="http://dnslab.jnu.ac.kr/classes/old_courses/2015s_das/[KDD_2014]%20GeoMF-%20Joint%20Geographical%20Modeling%20and%20Matrix%20Factorization%20for%20Point-of-Interest%20Recommendation.pdf">paper</a>)</li>
+<li>Exploiting geographical neighborhood characteristics for location recommendation. CIKM'14. (<a href="https://ink.library.smu.edu.sg/cgi/viewcontent.cgi?article=4772&amp;context=sis_research">paper</a>)</li>
+<li>Nlpmm: A next location predictor with markov modeling. PAKDD'14. (<a href="https://github.com/vatika/Algorithm-Name-Detection/blob/master/big_dataset/NLPMM%20-%20a%20Next%20Location%20Predictor%20with%20Markov%20Modeling.pdf">paper</a>)</li>
+<li>Lore: Exploiting sequential influence for location recommendations. SIGSPATIAL’14. (<a href="http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.699.8008&amp;rep=rep1&amp;type=pdf">paper</a>)</li>
+<li>Exploring Temporal Effects for Location Recommendation on Location-Based Social Networks. RecSys'13. (<a href="http://faculty.cs.tamu.edu/xiahu/papers/recsys2013_Gao.pdf">paper</a>)</li>
+<li>Where You Like to Go Next: Successive Point-of-Interest Recommendation. AAAI'13. (<a href="https://pdfs.semanticscholar.org/01a0/438352146dea1129121a94fe428d97971547.pdf">paper</a>)</li>
+<li>Fused Matrix Factorization with Geographical and Social Influence in Location-Based Social Networks. AAAI'12. (<a href="https://dl.acm.org/citation.cfm?id=2900731">paper</a>)</li>
+<li>Friendship and mobility: user movement in location-based social networks. KDD'11. (<a href="https://cs.stanford.edu/people/jure/pubs/mobile-kdd11.pdf">paper</a>)</li>
+</ul>
+<h2 id="cold-start-recommendation">Cold-Start Recommendation</h2>
+<ul>
+<li>From Zero-Shot Learning to Cold-Start Recommendation. AAAI'2019. (<a href="https://arxiv.org/pdf/1906.08511.pdf">paper</a>)(<a href="https://github.com/lijin118/LLAE">code</a>)</li>
+<li>MeLU: Meta-Learned User Preference Estimator for Cold-Start Recommendation. KDD'2019. (<a href="https://arxiv.org/pdf/1908.00413.pdf">paper</a>)(<a href="https://github.com/hoyeoplee/MeLU">code</a>)</li>
+<li>DropoutNet: Addressing Cold Start in Recommender Systems. NeurIPS'2019. (<a href="https://papers.nips.cc/paper/7081-dropoutnet-addressing-cold-start-in-recommender-systems.pdf">paper</a>)(<a href="https://github.com/layer6ai-labs/DropoutNet">code</a>)</li>
+</ul>
+<h2 id="securityrobutness-of-recsys">Security/Robutness of RecSys</h2>
+<ul>
+<li>Data Poisoning Attacks on Neighborhood-based Recommender Systems. arxiv'19. (<a href="https://arxiv.org/pdf/1912.04109.pdf">paper</a>)</li>
+<li>Adversarial recommendation attack of the learned fake users. arxiv'18. (<a href="https://arxiv.org/pdf/1809.08336.pdf">paper</a>)</li>
+<li>Poisoning Attacks to Graph-Based Recommender Systems. arxiv'18. (<a href="https://arxiv.org/abs/1809.04127.pdf">paper</a>)</li>
+<li>Adversarial Personalized Ranking for Recommendation. SIGIR'18. (<a href="https://www.comp.nus.edu.sg/~xiangnan/papers/sigir18-adversarial-ranking.pdf">paper</a>)</li>
+<li>Adversarial Collaborative Auto-encoder for Top-N Recommendation. arxiv'18. (<a href="https://arxiv.org/pdf/1808.05361.pdf">paper</a>)</li>
+<li>Fake Co-visitation Injection Attacks to Recommender Systems. NDSS'17. (<a href="http://people.duke.edu/~zg70/papers/ndss17-attackRS.pdf">paper</a>)</li>
+<li>Data Poisoning Attacks on Factorization-Based Collaborative Filtering. NIPS'16. (<a href="https://arxiv.org/pdf/1608.08182.pdf">paper</a>)</li>
+</ul>
+<h2 id="causal-recommendation">Causal Recommendation</h2>
+<ul>
+<li>Large-scale Causal Approaches to Debiasing Post-click Conversion Rate Estimation with Multi-task Learning. arxiv'2020. (<a href="https://arxiv.org/pdf/1910.09337v2.pdf">paper</a>)</li>
+<li>The Blessings of Multiple Causes. JASA'19. (<a href="https://arxiv.org/pdf/1805.06826.pdf">paper</a>)</li>
+<li>Observational Data for Heterogeneous Treatment Effects with Application to Recommender Systems. EC'19. (<a href="https://dl.acm.org/doi/10.1145/3328526.3329558">paper</a>)</li>
+<li>The Deconfounded Recommender: A Causal Inference Approach to Recommendation. arxiv'19. (<a href="https://arxiv.org/pdf/1808.06581.pdf">paper</a>)</li>
+<li>Causal Embeddings for Recommendation: An Extended Abstract. IJCAI'2019. (<a href="https://www.ijcai.org/Proceedings/2019/0870.pdf">paper</a>)</li>
+<li>Causal Embeddings for Recommendation. RecSys'18. (<a href="https://arxiv.org/pdf/1706.07639.pdf">paper</a>)</li>
+<li>Collaborative Filtering with Social Exposure: A Modular Approach to Social Recommendation. AAAI'2018. (<a href="https://arxiv.org/pdf/1711.11458.pdf">paper</a>)</li>
+<li>Modeling User Exposure in Recommendation. WWW'16. (<a href="http://www.cs.columbia.edu/~blei/papers/LiangCharlinMcInerneyBlei2016.pdf">paper</a>)</li>
+<li>Causal Inference for Recommendation. UAI Workshop'16. (<a href="http://www.its.caltech.edu/~fehardt/UAI2016WS/papers/Liang.pdf">paper</a>)</li>
+<li>Recommendations as Treatments: Debiasing Learning and Evaluation. ICML'16. (<a href="https://arxiv.org/pdf/1602.05352.pdf">paper</a>)</li>
+<li>Batch Learning from Logged Bandit Feedback through Counterfactual Risk Minimization. JMLR'15. (<a href="https://www.cs.cornell.edu/people/tj/publications/swaminathan_joachims_15c.pdf">paper</a>)</li>
+<li>Estimating the Causal Impact of Recommendation Systems from Observational Data. EC'15. (<a href="https://arxiv.org/pdf/1510.05569.pdf">paper</a>)</li>
+<li>Consistence beats causality in recommender systems. arxiv'15. (<a href="https://arxiv.org/pdf/2004.03774.pdf">paper</a>)</li>
+</ul>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        <a href="../Overview/" class="md-footer__link md-footer__link--prev" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Overview
+            </div>
+          </div>
+        </a>
+      
+      
+        <a href="../Projects/" class="md-footer__link md-footer__link--next" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Projects
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+        
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "..", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}, "search": "../assets/javascripts/workers/search.4fa0e4ee.min.js", "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.1d3bfcf1.min.js"></script>
+      
+    
+  </body>
+</html>

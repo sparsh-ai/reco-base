@@ -1,0 +1,1258 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-7.1.4">
+    
+    
+      
+        <title>Notebooks - RecoBase</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.bde7dde4.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ef6f36e2.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+      
+    
+    
+    
+      <link rel="stylesheet" href="../css/ansi-colours.css">
+    
+      <link rel="stylesheet" href="../css/jupyter-cells.css">
+    
+      <link rel="stylesheet" href="../css/pandas-dataframe.css">
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+  
+    
+    <script>function __prefix(e){return new URL("..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="RecoBase" class="md-header__button md-logo" aria-label="RecoBase" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            RecoBase
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Notebooks
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+    
+      <div class="md-header__source">
+        
+<a href="https://github.com/sparsh-ai/reco-base/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="RecoBase" class="md-nav__button md-logo" aria-label="RecoBase" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    RecoBase
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/sparsh-ai/reco-base/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        Welcome to RecoBase
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Datasets/" class="md-nav__link">
+        Datasets
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Examples/" class="md-nav__link">
+        Examples
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Home/" class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Libraries/" class="md-nav__link">
+        Libraries
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Models/" class="md-nav__link">
+        Models
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Notebooks
+      </a>
+      
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Overview/" class="md-nav__link">
+        Overview
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Papers/" class="md-nav__link">
+        Papers
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Projects/" class="md-nav__link">
+        Projects
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Resources/" class="md-nav__link">
+        Resources
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Use-Cases/" class="md-nav__link">
+        Use Cases
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Vendors/" class="md-nav__link">
+        Vendors
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_14" type="checkbox" id="__nav_14" >
+      
+      <label class="md-nav__link" for="__nav_14">
+        Tutorials
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Tutorials" data-md-level="1">
+        <label class="md-nav__title" for="__nav_14">
+          <span class="md-nav__icon md-icon"></span>
+          Tutorials
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tutorials/recsys-imgsim/" class="md-nav__link">
+        Recsys imgsim
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tutorials/recsys-implicit-negative/" class="md-nav__link">
+        Recsys implicit negative
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tutorials/recsys-ncf/" class="md-nav__link">
+        Recsys ncf
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tutorials/recsys-prodsim/" class="md-nav__link">
+        Recsys prodsim
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tutorials/recsys-retrieval/" class="md-nav__link">
+        Recsys retrieval
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tutorials/recsys-vw-contextual/" class="md-nav__link">
+        Recsys vw contextual
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tutorials/recsys-word2vec/" class="md-nav__link">
+        Recsys word2vec
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/sparsh-ai/reco-base/edit/master/docs/Notebooks.md" title="Edit this page" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                  <h1>Notebooks</h1>
+                
+                <table>
+<thead>
+<tr>
+<th>Notebook name</th>
+<th>Colab button</th>
+<th>nbviewer</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>00 Overview</td>
+<td><a href="https://colab.research.google.com/github/sparsh-ai/recsys/blob/main/notebooks/00_Overview.ipynb"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></td>
+<td><a href="https://nbviewer.jupyter.org/github/sparsh-ai/recsys/blob/main/notebooks/00_Overview.ipynb"><img alt="Open In nbviewer" src="https://raw.githubusercontent.com/jupyter/design/master/logos/Badges/nbviewer_badge.svg" /></a></td>
+</tr>
+<tr>
+<td>01 Train Recommendations AdHoc</td>
+<td><a href="https://colab.research.google.com/github/sparsh-ai/recsys/blob/main/notebooks/01_Train_Recommendations_AdHoc.ipynb"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></td>
+<td><a href="https://nbviewer.jupyter.org/github/sparsh-ai/recsys/blob/main/notebooks/01_Train_Recommendations_AdHoc.ipynb"><img alt="Open In nbviewer" src="https://raw.githubusercontent.com/jupyter/design/master/logos/Badges/nbviewer_badge.svg" /></a></td>
+</tr>
+<tr>
+<td>01 Validating And Importing User Item Interaction Data</td>
+<td><a href="https://colab.research.google.com/github/sparsh-ai/recsys/blob/main/notebooks/01_Validating_and_Importing_User_Item_Interaction_Data.ipynb"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></td>
+<td><a href="https://nbviewer.jupyter.org/github/sparsh-ai/recsys/blob/main/notebooks/01_Validating_and_Importing_User_Item_Interaction_Data.ipynb"><img alt="Open In nbviewer" src="https://raw.githubusercontent.com/jupyter/design/master/logos/Badges/nbviewer_badge.svg" /></a></td>
+</tr>
+<tr>
+<td>02 Creating And Evaluating Solutions</td>
+<td><a href="https://colab.research.google.com/github/sparsh-ai/recsys/blob/main/notebooks/02_Creating_and_Evaluating_Solutions.ipynb"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></td>
+<td><a href="https://nbviewer.jupyter.org/github/sparsh-ai/recsys/blob/main/notebooks/02_Creating_and_Evaluating_Solutions.ipynb"><img alt="Open In nbviewer" src="https://raw.githubusercontent.com/jupyter/design/master/logos/Badges/nbviewer_badge.svg" /></a></td>
+</tr>
+<tr>
+<td>02 Recommenders Retrieval AdHoc</td>
+<td><a href="https://colab.research.google.com/github/sparsh-ai/recsys/blob/main/notebooks/02_Recommenders_Retrieval_AdHoc.ipynb"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></td>
+<td><a href="https://nbviewer.jupyter.org/github/sparsh-ai/recsys/blob/main/notebooks/02_Recommenders_Retrieval_AdHoc.ipynb"><img alt="Open In nbviewer" src="https://raw.githubusercontent.com/jupyter/design/master/logos/Badges/nbviewer_badge.svg" /></a></td>
+</tr>
+<tr>
+<td>02 Train Recommendations ScriptMode</td>
+<td><a href="https://colab.research.google.com/github/sparsh-ai/recsys/blob/main/notebooks/02_Train_Recommendations_ScriptMode.ipynb"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></td>
+<td><a href="https://nbviewer.jupyter.org/github/sparsh-ai/recsys/blob/main/notebooks/02_Train_Recommendations_ScriptMode.ipynb"><img alt="Open In nbviewer" src="https://raw.githubusercontent.com/jupyter/design/master/logos/Badges/nbviewer_badge.svg" /></a></td>
+</tr>
+<tr>
+<td>03 Deploying Campaigns And Interacting</td>
+<td><a href="https://colab.research.google.com/github/sparsh-ai/recsys/blob/main/notebooks/03_Deploying_Campaigns_and_Interacting.ipynb"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></td>
+<td><a href="https://nbviewer.jupyter.org/github/sparsh-ai/recsys/blob/main/notebooks/03_Deploying_Campaigns_and_Interacting.ipynb"><img alt="Open In nbviewer" src="https://raw.githubusercontent.com/jupyter/design/master/logos/Badges/nbviewer_badge.svg" /></a></td>
+</tr>
+<tr>
+<td>03 Optimize Recommendations</td>
+<td><a href="https://colab.research.google.com/github/sparsh-ai/recsys/blob/main/notebooks/03_Optimize_Recommendations.ipynb"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></td>
+<td><a href="https://nbviewer.jupyter.org/github/sparsh-ai/recsys/blob/main/notebooks/03_Optimize_Recommendations.ipynb"><img alt="Open In nbviewer" src="https://raw.githubusercontent.com/jupyter/design/master/logos/Badges/nbviewer_badge.svg" /></a></td>
+</tr>
+<tr>
+<td>03 Recommenders Ranking AdHoc</td>
+<td><a href="https://colab.research.google.com/github/sparsh-ai/recsys/blob/main/notebooks/03_Recommenders_Ranking_AdHoc.ipynb"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></td>
+<td><a href="https://nbviewer.jupyter.org/github/sparsh-ai/recsys/blob/main/notebooks/03_Recommenders_Ranking_AdHoc.ipynb"><img alt="Open In nbviewer" src="https://raw.githubusercontent.com/jupyter/design/master/logos/Badges/nbviewer_badge.svg" /></a></td>
+</tr>
+<tr>
+<td>04 Clean Up Resources</td>
+<td><a href="https://colab.research.google.com/github/sparsh-ai/recsys/blob/main/notebooks/04_Clean_Up_Resources.ipynb"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></td>
+<td><a href="https://nbviewer.jupyter.org/github/sparsh-ai/recsys/blob/main/notebooks/04_Clean_Up_Resources.ipynb"><img alt="Open In nbviewer" src="https://raw.githubusercontent.com/jupyter/design/master/logos/Badges/nbviewer_badge.svg" /></a></td>
+</tr>
+<tr>
+<td>04 Deploy Recommendations REST Endpoint</td>
+<td><a href="https://colab.research.google.com/github/sparsh-ai/recsys/blob/main/notebooks/04_Deploy_Recommendations_REST_Endpoint.ipynb"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></td>
+<td><a href="https://nbviewer.jupyter.org/github/sparsh-ai/recsys/blob/main/notebooks/04_Deploy_Recommendations_REST_Endpoint.ipynb"><img alt="Open In nbviewer" src="https://raw.githubusercontent.com/jupyter/design/master/logos/Badges/nbviewer_badge.svg" /></a></td>
+</tr>
+<tr>
+<td>04 Featurization</td>
+<td><a href="https://colab.research.google.com/github/sparsh-ai/recsys/blob/main/notebooks/04_Featurization.ipynb"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></td>
+<td><a href="https://nbviewer.jupyter.org/github/sparsh-ai/recsys/blob/main/notebooks/04_Featurization.ipynb"><img alt="Open In nbviewer" src="https://raw.githubusercontent.com/jupyter/design/master/logos/Badges/nbviewer_badge.svg" /></a></td>
+</tr>
+<tr>
+<td>04 Prepare Dataset Recommend</td>
+<td><a href="https://colab.research.google.com/github/sparsh-ai/recsys/blob/main/notebooks/04_Prepare_Dataset_Recommend.ipynb"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></td>
+<td><a href="https://nbviewer.jupyter.org/github/sparsh-ai/recsys/blob/main/notebooks/04_Prepare_Dataset_Recommend.ipynb"><img alt="Open In nbviewer" src="https://raw.githubusercontent.com/jupyter/design/master/logos/Badges/nbviewer_badge.svg" /></a></td>
+</tr>
+<tr>
+<td>05 Context Features</td>
+<td><a href="https://colab.research.google.com/github/sparsh-ai/recsys/blob/main/notebooks/05_Context_Features.ipynb"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></td>
+<td><a href="https://nbviewer.jupyter.org/github/sparsh-ai/recsys/blob/main/notebooks/05_Context_Features.ipynb"><img alt="Open In nbviewer" src="https://raw.githubusercontent.com/jupyter/design/master/logos/Badges/nbviewer_badge.svg" /></a></td>
+</tr>
+<tr>
+<td>05 Train Model Recommend</td>
+<td><a href="https://colab.research.google.com/github/sparsh-ai/recsys/blob/main/notebooks/05_Train_Model_Recommend.ipynb"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></td>
+<td><a href="https://nbviewer.jupyter.org/github/sparsh-ai/recsys/blob/main/notebooks/05_Train_Model_Recommend.ipynb"><img alt="Open In nbviewer" src="https://raw.githubusercontent.com/jupyter/design/master/logos/Badges/nbviewer_badge.svg" /></a></td>
+</tr>
+<tr>
+<td>05 Train Multitask Recommendations AdHoc</td>
+<td><a href="https://colab.research.google.com/github/sparsh-ai/recsys/blob/main/notebooks/05_Train_Multitask_Recommendations_AdHoc.ipynb"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></td>
+<td><a href="https://nbviewer.jupyter.org/github/sparsh-ai/recsys/blob/main/notebooks/05_Train_Multitask_Recommendations_AdHoc.ipynb"><img alt="Open In nbviewer" src="https://raw.githubusercontent.com/jupyter/design/master/logos/Badges/nbviewer_badge.svg" /></a></td>
+</tr>
+<tr>
+<td>06 Deep Recommenders</td>
+<td><a href="https://colab.research.google.com/github/sparsh-ai/recsys/blob/main/notebooks/06_Deep_Recommenders.ipynb"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></td>
+<td><a href="https://nbviewer.jupyter.org/github/sparsh-ai/recsys/blob/main/notebooks/06_Deep_Recommenders.ipynb"><img alt="Open In nbviewer" src="https://raw.githubusercontent.com/jupyter/design/master/logos/Badges/nbviewer_badge.svg" /></a></td>
+</tr>
+<tr>
+<td>06 Predict Model Recommend</td>
+<td><a href="https://colab.research.google.com/github/sparsh-ai/recsys/blob/main/notebooks/06_Predict_Model_Recommend.ipynb"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></td>
+<td><a href="https://nbviewer.jupyter.org/github/sparsh-ai/recsys/blob/main/notebooks/06_Predict_Model_Recommend.ipynb"><img alt="Open In nbviewer" src="https://raw.githubusercontent.com/jupyter/design/master/logos/Badges/nbviewer_badge.svg" /></a></td>
+</tr>
+<tr>
+<td>06 Train Multitask Recommendations ScriptMode</td>
+<td><a href="https://colab.research.google.com/github/sparsh-ai/recsys/blob/main/notebooks/06_Train_Multitask_Recommendations_ScriptMode.ipynb"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></td>
+<td><a href="https://nbviewer.jupyter.org/github/sparsh-ai/recsys/blob/main/notebooks/06_Train_Multitask_Recommendations_ScriptMode.ipynb"><img alt="Open In nbviewer" src="https://raw.githubusercontent.com/jupyter/design/master/logos/Badges/nbviewer_badge.svg" /></a></td>
+</tr>
+<tr>
+<td>07 Multitask</td>
+<td><a href="https://colab.research.google.com/github/sparsh-ai/recsys/blob/main/notebooks/07_Multitask.ipynb"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></td>
+<td><a href="https://nbviewer.jupyter.org/github/sparsh-ai/recsys/blob/main/notebooks/07_Multitask.ipynb"><img alt="Open In nbviewer" src="https://raw.githubusercontent.com/jupyter/design/master/logos/Badges/nbviewer_badge.svg" /></a></td>
+</tr>
+<tr>
+<td>07 Optimize Multitask Recommendations</td>
+<td><a href="https://colab.research.google.com/github/sparsh-ai/recsys/blob/main/notebooks/07_Optimize_Multitask_Recommendations.ipynb"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></td>
+<td><a href="https://nbviewer.jupyter.org/github/sparsh-ai/recsys/blob/main/notebooks/07_Optimize_Multitask_Recommendations.ipynb"><img alt="Open In nbviewer" src="https://raw.githubusercontent.com/jupyter/design/master/logos/Badges/nbviewer_badge.svg" /></a></td>
+</tr>
+<tr>
+<td>08 Deploy Multitask Recommendations REST Endpoint</td>
+<td><a href="https://colab.research.google.com/github/sparsh-ai/recsys/blob/main/notebooks/08_Deploy_Multitask_Recommendations_REST_Endpoint.ipynb"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></td>
+<td><a href="https://nbviewer.jupyter.org/github/sparsh-ai/recsys/blob/main/notebooks/08_Deploy_Multitask_Recommendations_REST_Endpoint.ipynb"><img alt="Open In nbviewer" src="https://raw.githubusercontent.com/jupyter/design/master/logos/Badges/nbviewer_badge.svg" /></a></td>
+</tr>
+<tr>
+<td>09 Recommendation Overview</td>
+<td><a href="https://colab.research.google.com/github/sparsh-ai/recsys/blob/main/notebooks/09_Recommendation_Overview.ipynb"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></td>
+<td><a href="https://nbviewer.jupyter.org/github/sparsh-ai/recsys/blob/main/notebooks/09_Recommendation_Overview.ipynb"><img alt="Open In nbviewer" src="https://raw.githubusercontent.com/jupyter/design/master/logos/Badges/nbviewer_badge.svg" /></a></td>
+</tr>
+<tr>
+<td>09 Train Spark Recommendations ScriptMode</td>
+<td><a href="https://colab.research.google.com/github/sparsh-ai/recsys/blob/main/notebooks/09_Train_Spark_Recommendations_ScriptMode.ipynb"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></td>
+<td><a href="https://nbviewer.jupyter.org/github/sparsh-ai/recsys/blob/main/notebooks/09_Train_Spark_Recommendations_ScriptMode.ipynb"><img alt="Open In nbviewer" src="https://raw.githubusercontent.com/jupyter/design/master/logos/Badges/nbviewer_badge.svg" /></a></td>
+</tr>
+<tr>
+<td>10 Recommendation Prepare User Item Dataset</td>
+<td><a href="https://colab.research.google.com/github/sparsh-ai/recsys/blob/main/notebooks/10_Recommendation_Prepare_User_Item_Dataset.ipynb"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></td>
+<td><a href="https://nbviewer.jupyter.org/github/sparsh-ai/recsys/blob/main/notebooks/10_Recommendation_Prepare_User_Item_Dataset.ipynb"><img alt="Open In nbviewer" src="https://raw.githubusercontent.com/jupyter/design/master/logos/Badges/nbviewer_badge.svg" /></a></td>
+</tr>
+<tr>
+<td>11 Recommendation Matrix Factorization</td>
+<td><a href="https://colab.research.google.com/github/sparsh-ai/recsys/blob/main/notebooks/11_Recommendation_Matrix_Factorization.ipynb"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></td>
+<td><a href="https://nbviewer.jupyter.org/github/sparsh-ai/recsys/blob/main/notebooks/11_Recommendation_Matrix_Factorization.ipynb"><img alt="Open In nbviewer" src="https://raw.githubusercontent.com/jupyter/design/master/logos/Badges/nbviewer_badge.svg" /></a></td>
+</tr>
+<tr>
+<td>12 Recommendation Matrix Factorization Explanation</td>
+<td><a href="https://colab.research.google.com/github/sparsh-ai/recsys/blob/main/notebooks/12_Recommendation_Matrix_Factorization_Explanation.ipynb"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></td>
+<td><a href="https://nbviewer.jupyter.org/github/sparsh-ai/recsys/blob/main/notebooks/12_Recommendation_Matrix_Factorization_Explanation.ipynb"><img alt="Open In nbviewer" src="https://raw.githubusercontent.com/jupyter/design/master/logos/Badges/nbviewer_badge.svg" /></a></td>
+</tr>
+<tr>
+<td>13 Recommendation Train Model</td>
+<td><a href="https://colab.research.google.com/github/sparsh-ai/recsys/blob/main/notebooks/13_Recommendation_Train_Model.ipynb"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></td>
+<td><a href="https://nbviewer.jupyter.org/github/sparsh-ai/recsys/blob/main/notebooks/13_Recommendation_Train_Model.ipynb"><img alt="Open In nbviewer" src="https://raw.githubusercontent.com/jupyter/design/master/logos/Badges/nbviewer_badge.svg" /></a></td>
+</tr>
+<tr>
+<td>14 Recommendation Prepare Item Metadata Dataset</td>
+<td><a href="https://colab.research.google.com/github/sparsh-ai/recsys/blob/main/notebooks/14_Recommendation_Prepare_Item_Metadata_Dataset.ipynb"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></td>
+<td><a href="https://nbviewer.jupyter.org/github/sparsh-ai/recsys/blob/main/notebooks/14_Recommendation_Prepare_Item_Metadata_Dataset.ipynb"><img alt="Open In nbviewer" src="https://raw.githubusercontent.com/jupyter/design/master/logos/Badges/nbviewer_badge.svg" /></a></td>
+</tr>
+<tr>
+<td>15 Recommendation Deploy</td>
+<td><a href="https://colab.research.google.com/github/sparsh-ai/recsys/blob/main/notebooks/15_Recommendation_Deploy.ipynb"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></td>
+<td><a href="https://nbviewer.jupyter.org/github/sparsh-ai/recsys/blob/main/notebooks/15_Recommendation_Deploy.ipynb"><img alt="Open In nbviewer" src="https://raw.githubusercontent.com/jupyter/design/master/logos/Badges/nbviewer_badge.svg" /></a></td>
+</tr>
+<tr>
+<td>16 Recommendation Predict</td>
+<td><a href="https://colab.research.google.com/github/sparsh-ai/recsys/blob/main/notebooks/16_Recommendation_Predict.ipynb"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></td>
+<td><a href="https://nbviewer.jupyter.org/github/sparsh-ai/recsys/blob/main/notebooks/16_Recommendation_Predict.ipynb"><img alt="Open In nbviewer" src="https://raw.githubusercontent.com/jupyter/design/master/logos/Badges/nbviewer_badge.svg" /></a></td>
+</tr>
+<tr>
+<td>17 Recommendation Clean Up</td>
+<td><a href="https://colab.research.google.com/github/sparsh-ai/recsys/blob/main/notebooks/17_Recommendation_Clean_Up.ipynb"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></td>
+<td><a href="https://nbviewer.jupyter.org/github/sparsh-ai/recsys/blob/main/notebooks/17_Recommendation_Clean_Up.ipynb"><img alt="Open In nbviewer" src="https://raw.githubusercontent.com/jupyter/design/master/logos/Badges/nbviewer_badge.svg" /></a></td>
+</tr>
+<tr>
+<td>2021 04 20 Dl Retrieval</td>
+<td><a href="https://colab.research.google.com/github/sparsh-ai/recsys/blob/main/notebooks/2021-04-20-dl-retrieval.ipynb"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></td>
+<td><a href="https://nbviewer.jupyter.org/github/sparsh-ai/recsys/blob/main/notebooks/2021-04-20-dl-retrieval.ipynb"><img alt="Open In nbviewer" src="https://raw.githubusercontent.com/jupyter/design/master/logos/Badges/nbviewer_badge.svg" /></a></td>
+</tr>
+<tr>
+<td>2021 04 21 Rec Algo Ncf Pytorch Pyy0715</td>
+<td><a href="https://colab.research.google.com/github/sparsh-ai/recsys/blob/main/notebooks/2021-04-21-rec-algo-ncf-pytorch-pyy0715.ipynb"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></td>
+<td><a href="https://nbviewer.jupyter.org/github/sparsh-ai/recsys/blob/main/notebooks/2021-04-21-rec-algo-ncf-pytorch-pyy0715.ipynb"><img alt="Open In nbviewer" src="https://raw.githubusercontent.com/jupyter/design/master/logos/Badges/nbviewer_badge.svg" /></a></td>
+</tr>
+<tr>
+<td>2021 04 22 Vowpal Wabbit Contextual Recommender</td>
+<td><a href="https://colab.research.google.com/github/sparsh-ai/recsys/blob/main/notebooks/2021-04-22-vowpal-wabbit-contextual-recommender.ipynb"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></td>
+<td><a href="https://nbviewer.jupyter.org/github/sparsh-ai/recsys/blob/main/notebooks/2021-04-22-vowpal-wabbit-contextual-recommender.ipynb"><img alt="Open In nbviewer" src="https://raw.githubusercontent.com/jupyter/design/master/logos/Badges/nbviewer_badge.svg" /></a></td>
+</tr>
+<tr>
+<td>2021 04 23 Similar Product Recommender</td>
+<td><a href="https://colab.research.google.com/github/sparsh-ai/recsys/blob/main/notebooks/2021-04-23-similar-product-recommender.ipynb"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></td>
+<td><a href="https://nbviewer.jupyter.org/github/sparsh-ai/recsys/blob/main/notebooks/2021-04-23-similar-product-recommender.ipynb"><img alt="Open In nbviewer" src="https://raw.githubusercontent.com/jupyter/design/master/logos/Badges/nbviewer_badge.svg" /></a></td>
+</tr>
+<tr>
+<td>2021 04 24 Recommendation Node2vec</td>
+<td><a href="https://colab.research.google.com/github/sparsh-ai/recsys/blob/main/notebooks/2021-04-24-Recommendation-Node2vec.ipynb"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></td>
+<td><a href="https://nbviewer.jupyter.org/github/sparsh-ai/recsys/blob/main/notebooks/2021-04-24-Recommendation-Node2vec.ipynb"><img alt="Open In nbviewer" src="https://raw.githubusercontent.com/jupyter/design/master/logos/Badges/nbviewer_badge.svg" /></a></td>
+</tr>
+<tr>
+<td>2021 04 24 Rec Medium Word2vec</td>
+<td><a href="https://colab.research.google.com/github/sparsh-ai/recsys/blob/main/notebooks/2021-04-24-rec-medium-word2vec.ipynb"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></td>
+<td><a href="https://nbviewer.jupyter.org/github/sparsh-ai/recsys/blob/main/notebooks/2021-04-24-rec-medium-word2vec.ipynb"><img alt="Open In nbviewer" src="https://raw.githubusercontent.com/jupyter/design/master/logos/Badges/nbviewer_badge.svg" /></a></td>
+</tr>
+<tr>
+<td>2021 04 25 Recommender Implicit Negative Feedback</td>
+<td><a href="https://colab.research.google.com/github/sparsh-ai/recsys/blob/main/notebooks/2021-04-25-Recommender-Implicit-Negative-Feedback.ipynb"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></td>
+<td><a href="https://nbviewer.jupyter.org/github/sparsh-ai/recsys/blob/main/notebooks/2021-04-25-Recommender-Implicit-Negative-Feedback.ipynb"><img alt="Open In nbviewer" src="https://raw.githubusercontent.com/jupyter/design/master/logos/Badges/nbviewer_badge.svg" /></a></td>
+</tr>
+<tr>
+<td>2021 04 26 Sequence Aware Recommenders Music</td>
+<td><a href="https://colab.research.google.com/github/sparsh-ai/recsys/blob/main/notebooks/2021-04-26-Sequence-Aware-Recommenders-Music.ipynb"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></td>
+<td><a href="https://nbviewer.jupyter.org/github/sparsh-ai/recsys/blob/main/notebooks/2021-04-26-Sequence-Aware-Recommenders-Music.ipynb"><img alt="Open In nbviewer" src="https://raw.githubusercontent.com/jupyter/design/master/logos/Badges/nbviewer_badge.svg" /></a></td>
+</tr>
+<tr>
+<td>2021 04 27 Image Similarity Recommendations</td>
+<td><a href="https://colab.research.google.com/github/sparsh-ai/recsys/blob/main/notebooks/2021-04-27-image-similarity-recommendations.ipynb"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></td>
+<td><a href="https://nbviewer.jupyter.org/github/sparsh-ai/recsys/blob/main/notebooks/2021-04-27-image-similarity-recommendations.ipynb"><img alt="Open In nbviewer" src="https://raw.githubusercontent.com/jupyter/design/master/logos/Badges/nbviewer_badge.svg" /></a></td>
+</tr>
+<tr>
+<td>99 01 Validating And Importing User Item Interaction Data</td>
+<td><a href="https://colab.research.google.com/github/sparsh-ai/recsys/blob/main/notebooks/99_01_Validating_and_Importing_User_Item_Interaction_Data.ipynb"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></td>
+<td><a href="https://nbviewer.jupyter.org/github/sparsh-ai/recsys/blob/main/notebooks/99_01_Validating_and_Importing_User_Item_Interaction_Data.ipynb"><img alt="Open In nbviewer" src="https://raw.githubusercontent.com/jupyter/design/master/logos/Badges/nbviewer_badge.svg" /></a></td>
+</tr>
+<tr>
+<td>99 02 Validating And Importing Item Metadata</td>
+<td><a href="https://colab.research.google.com/github/sparsh-ai/recsys/blob/main/notebooks/99_02_Validating_and_Importing_Item_Metadata.ipynb"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></td>
+<td><a href="https://nbviewer.jupyter.org/github/sparsh-ai/recsys/blob/main/notebooks/99_02_Validating_and_Importing_Item_Metadata.ipynb"><img alt="Open In nbviewer" src="https://raw.githubusercontent.com/jupyter/design/master/logos/Badges/nbviewer_badge.svg" /></a></td>
+</tr>
+<tr>
+<td>99 03 Creating And Evaluating Solutions</td>
+<td><a href="https://colab.research.google.com/github/sparsh-ai/recsys/blob/main/notebooks/99_03_Creating_and_Evaluating_Solutions.ipynb"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></td>
+<td><a href="https://nbviewer.jupyter.org/github/sparsh-ai/recsys/blob/main/notebooks/99_03_Creating_and_Evaluating_Solutions.ipynb"><img alt="Open In nbviewer" src="https://raw.githubusercontent.com/jupyter/design/master/logos/Badges/nbviewer_badge.svg" /></a></td>
+</tr>
+<tr>
+<td>99 04 Deploying Campaigns And Filters</td>
+<td><a href="https://colab.research.google.com/github/sparsh-ai/recsys/blob/main/notebooks/99_04_Deploying_Campaigns_and_Filters.ipynb"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></td>
+<td><a href="https://nbviewer.jupyter.org/github/sparsh-ai/recsys/blob/main/notebooks/99_04_Deploying_Campaigns_and_Filters.ipynb"><img alt="Open In nbviewer" src="https://raw.githubusercontent.com/jupyter/design/master/logos/Badges/nbviewer_badge.svg" /></a></td>
+</tr>
+<tr>
+<td>99 05 Interacting With Campaigns And Filters</td>
+<td><a href="https://colab.research.google.com/github/sparsh-ai/recsys/blob/main/notebooks/99_05_Interacting_with_Campaigns_and_Filters.ipynb"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></td>
+<td><a href="https://nbviewer.jupyter.org/github/sparsh-ai/recsys/blob/main/notebooks/99_05_Interacting_with_Campaigns_and_Filters.ipynb"><img alt="Open In nbviewer" src="https://raw.githubusercontent.com/jupyter/design/master/logos/Badges/nbviewer_badge.svg" /></a></td>
+</tr>
+<tr>
+<td>99 06 Clean Up Resources</td>
+<td><a href="https://colab.research.google.com/github/sparsh-ai/recsys/blob/main/notebooks/99_06_Clean_Up_Resources.ipynb"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></td>
+<td><a href="https://nbviewer.jupyter.org/github/sparsh-ai/recsys/blob/main/notebooks/99_06_Clean_Up_Resources.ipynb"><img alt="Open In nbviewer" src="https://raw.githubusercontent.com/jupyter/design/master/logos/Badges/nbviewer_badge.svg" /></a></td>
+</tr>
+<tr>
+<td>Validating And Importing Item Metadata</td>
+<td><a href="https://colab.research.google.com/github/sparsh-ai/recsys/blob/main/notebooks/Validating_and_Importing_Item_Metadata.ipynb"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></td>
+<td><a href="https://nbviewer.jupyter.org/github/sparsh-ai/recsys/blob/main/notebooks/Validating_and_Importing_Item_Metadata.ipynb"><img alt="Open In nbviewer" src="https://raw.githubusercontent.com/jupyter/design/master/logos/Badges/nbviewer_badge.svg" /></a></td>
+</tr>
+<tr>
+<td>Als Bqml</td>
+<td><a href="https://colab.research.google.com/github/sparsh-ai/recsys/blob/main/notebooks/als_bqml.ipynb"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></td>
+<td><a href="https://nbviewer.jupyter.org/github/sparsh-ai/recsys/blob/main/notebooks/als_bqml.ipynb"><img alt="Open In nbviewer" src="https://raw.githubusercontent.com/jupyter/design/master/logos/Badges/nbviewer_badge.svg" /></a></td>
+</tr>
+<tr>
+<td>Als Bqml Hybrid</td>
+<td><a href="https://colab.research.google.com/github/sparsh-ai/recsys/blob/main/notebooks/als_bqml_hybrid.ipynb"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></td>
+<td><a href="https://nbviewer.jupyter.org/github/sparsh-ai/recsys/blob/main/notebooks/als_bqml_hybrid.ipynb"><img alt="Open In nbviewer" src="https://raw.githubusercontent.com/jupyter/design/master/logos/Badges/nbviewer_badge.svg" /></a></td>
+</tr>
+<tr>
+<td>Amazon</td>
+<td><a href="https://colab.research.google.com/github/sparsh-ai/recsys/blob/main/notebooks/amazon.ipynb"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></td>
+<td><a href="https://nbviewer.jupyter.org/github/sparsh-ai/recsys/blob/main/notebooks/amazon.ipynb"><img alt="Open In nbviewer" src="https://raw.githubusercontent.com/jupyter/design/master/logos/Badges/nbviewer_badge.svg" /></a></td>
+</tr>
+<tr>
+<td>Amazon Graph Mf Nlp</td>
+<td><a href="https://colab.research.google.com/github/sparsh-ai/recsys/blob/main/notebooks/amazon_graph_mf_nlp.ipynb"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></td>
+<td><a href="https://nbviewer.jupyter.org/github/sparsh-ai/recsys/blob/main/notebooks/amazon_graph_mf_nlp.ipynb"><img alt="Open In nbviewer" src="https://raw.githubusercontent.com/jupyter/design/master/logos/Badges/nbviewer_badge.svg" /></a></td>
+</tr>
+<tr>
+<td>Amazonmusic</td>
+<td><a href="https://colab.research.google.com/github/sparsh-ai/recsys/blob/main/notebooks/amazonmusic.ipynb"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></td>
+<td><a href="https://nbviewer.jupyter.org/github/sparsh-ai/recsys/blob/main/notebooks/amazonmusic.ipynb"><img alt="Open In nbviewer" src="https://raw.githubusercontent.com/jupyter/design/master/logos/Badges/nbviewer_badge.svg" /></a></td>
+</tr>
+<tr>
+<td>Amazonmusic2</td>
+<td><a href="https://colab.research.google.com/github/sparsh-ai/recsys/blob/main/notebooks/amazonmusic2.ipynb"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></td>
+<td><a href="https://nbviewer.jupyter.org/github/sparsh-ai/recsys/blob/main/notebooks/amazonmusic2.ipynb"><img alt="Open In nbviewer" src="https://raw.githubusercontent.com/jupyter/design/master/logos/Badges/nbviewer_badge.svg" /></a></td>
+</tr>
+<tr>
+<td>Amazonmusic Caserec</td>
+<td><a href="https://colab.research.google.com/github/sparsh-ai/recsys/blob/main/notebooks/amazonmusic_caserec.ipynb"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></td>
+<td><a href="https://nbviewer.jupyter.org/github/sparsh-ai/recsys/blob/main/notebooks/amazonmusic_caserec.ipynb"><img alt="Open In nbviewer" src="https://raw.githubusercontent.com/jupyter/design/master/logos/Badges/nbviewer_badge.svg" /></a></td>
+</tr>
+<tr>
+<td>Bookcrossing</td>
+<td><a href="https://colab.research.google.com/github/sparsh-ai/recsys/blob/main/notebooks/bookcrossing.ipynb"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></td>
+<td><a href="https://nbviewer.jupyter.org/github/sparsh-ai/recsys/blob/main/notebooks/bookcrossing.ipynb"><img alt="Open In nbviewer" src="https://raw.githubusercontent.com/jupyter/design/master/logos/Badges/nbviewer_badge.svg" /></a></td>
+</tr>
+<tr>
+<td>Booking Challenge WSDM2021</td>
+<td><a href="https://colab.research.google.com/github/sparsh-ai/recsys/blob/main/notebooks/booking_challenge_WSDM2021.ipynb"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></td>
+<td><a href="https://nbviewer.jupyter.org/github/sparsh-ai/recsys/blob/main/notebooks/booking_challenge_WSDM2021.ipynb"><img alt="Open In nbviewer" src="https://raw.githubusercontent.com/jupyter/design/master/logos/Badges/nbviewer_badge.svg" /></a></td>
+</tr>
+<tr>
+<td>Cfmodel Softmax Model Solution</td>
+<td><a href="https://colab.research.google.com/github/sparsh-ai/recsys/blob/main/notebooks/cfmodel_softmax_model_solution.ipynb"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></td>
+<td><a href="https://nbviewer.jupyter.org/github/sparsh-ai/recsys/blob/main/notebooks/cfmodel_softmax_model_solution.ipynb"><img alt="Open In nbviewer" src="https://raw.githubusercontent.com/jupyter/design/master/logos/Badges/nbviewer_badge.svg" /></a></td>
+</tr>
+<tr>
+<td>Composertriggered</td>
+<td><a href="https://colab.research.google.com/github/sparsh-ai/recsys/blob/main/notebooks/composertriggered.ipynb"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></td>
+<td><a href="https://nbviewer.jupyter.org/github/sparsh-ai/recsys/blob/main/notebooks/composertriggered.ipynb"><img alt="Open In nbviewer" src="https://raw.githubusercontent.com/jupyter/design/master/logos/Badges/nbviewer_badge.svg" /></a></td>
+</tr>
+<tr>
+<td>Content Based By Hand</td>
+<td><a href="https://colab.research.google.com/github/sparsh-ai/recsys/blob/main/notebooks/content_based_by_hand.ipynb"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></td>
+<td><a href="https://nbviewer.jupyter.org/github/sparsh-ai/recsys/blob/main/notebooks/content_based_by_hand.ipynb"><img alt="Open In nbviewer" src="https://raw.githubusercontent.com/jupyter/design/master/logos/Badges/nbviewer_badge.svg" /></a></td>
+</tr>
+<tr>
+<td>Content Based Preproc</td>
+<td><a href="https://colab.research.google.com/github/sparsh-ai/recsys/blob/main/notebooks/content_based_preproc.ipynb"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></td>
+<td><a href="https://nbviewer.jupyter.org/github/sparsh-ai/recsys/blob/main/notebooks/content_based_preproc.ipynb"><img alt="Open In nbviewer" src="https://raw.githubusercontent.com/jupyter/design/master/logos/Badges/nbviewer_badge.svg" /></a></td>
+</tr>
+<tr>
+<td>Content Based Using Neural Networks</td>
+<td><a href="https://colab.research.google.com/github/sparsh-ai/recsys/blob/main/notebooks/content_based_using_neural_networks.ipynb"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></td>
+<td><a href="https://nbviewer.jupyter.org/github/sparsh-ai/recsys/blob/main/notebooks/content_based_using_neural_networks.ipynb"><img alt="Open In nbviewer" src="https://raw.githubusercontent.com/jupyter/design/master/logos/Badges/nbviewer_badge.svg" /></a></td>
+</tr>
+<tr>
+<td>Coursetalk Nonpersonalized</td>
+<td><a href="https://colab.research.google.com/github/sparsh-ai/recsys/blob/main/notebooks/coursetalk_nonpersonalized.ipynb"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></td>
+<td><a href="https://nbviewer.jupyter.org/github/sparsh-ai/recsys/blob/main/notebooks/coursetalk_nonpersonalized.ipynb"><img alt="Open In nbviewer" src="https://raw.githubusercontent.com/jupyter/design/master/logos/Badges/nbviewer_badge.svg" /></a></td>
+</tr>
+<tr>
+<td>Douban Social</td>
+<td><a href="https://colab.research.google.com/github/sparsh-ai/recsys/blob/main/notebooks/douban_social.ipynb"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></td>
+<td><a href="https://nbviewer.jupyter.org/github/sparsh-ai/recsys/blob/main/notebooks/douban_social.ipynb"><img alt="Open In nbviewer" src="https://raw.githubusercontent.com/jupyter/design/master/logos/Badges/nbviewer_badge.svg" /></a></td>
+</tr>
+<tr>
+<td>Endtoend</td>
+<td><a href="https://colab.research.google.com/github/sparsh-ai/recsys/blob/main/notebooks/endtoend.ipynb"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></td>
+<td><a href="https://nbviewer.jupyter.org/github/sparsh-ai/recsys/blob/main/notebooks/endtoend.ipynb"><img alt="Open In nbviewer" src="https://raw.githubusercontent.com/jupyter/design/master/logos/Badges/nbviewer_badge.svg" /></a></td>
+</tr>
+<tr>
+<td>Goodreads Lightfm</td>
+<td><a href="https://colab.research.google.com/github/sparsh-ai/recsys/blob/main/notebooks/goodreads_lightfm.ipynb"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></td>
+<td><a href="https://nbviewer.jupyter.org/github/sparsh-ai/recsys/blob/main/notebooks/goodreads_lightfm.ipynb"><img alt="Open In nbviewer" src="https://raw.githubusercontent.com/jupyter/design/master/logos/Badges/nbviewer_badge.svg" /></a></td>
+</tr>
+<tr>
+<td>Groceries</td>
+<td><a href="https://colab.research.google.com/github/sparsh-ai/recsys/blob/main/notebooks/groceries.ipynb"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></td>
+<td><a href="https://nbviewer.jupyter.org/github/sparsh-ai/recsys/blob/main/notebooks/groceries.ipynb"><img alt="Open In nbviewer" src="https://raw.githubusercontent.com/jupyter/design/master/logos/Badges/nbviewer_badge.svg" /></a></td>
+</tr>
+<tr>
+<td>Grocery Recommendations</td>
+<td><a href="https://colab.research.google.com/github/sparsh-ai/recsys/blob/main/notebooks/grocery_recommendations.ipynb"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></td>
+<td><a href="https://nbviewer.jupyter.org/github/sparsh-ai/recsys/blob/main/notebooks/grocery_recommendations.ipynb"><img alt="Open In nbviewer" src="https://raw.githubusercontent.com/jupyter/design/master/logos/Badges/nbviewer_badge.svg" /></a></td>
+</tr>
+<tr>
+<td>Hackernews</td>
+<td><a href="https://colab.research.google.com/github/sparsh-ai/recsys/blob/main/notebooks/hackernews.ipynb"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></td>
+<td><a href="https://nbviewer.jupyter.org/github/sparsh-ai/recsys/blob/main/notebooks/hackernews.ipynb"><img alt="Open In nbviewer" src="https://raw.githubusercontent.com/jupyter/design/master/logos/Badges/nbviewer_badge.svg" /></a></td>
+</tr>
+<tr>
+<td>Handson Deep Learning Retrieval</td>
+<td><a href="https://colab.research.google.com/github/sparsh-ai/recsys/blob/main/notebooks/handson_deep_learning_retrieval.ipynb"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></td>
+<td><a href="https://nbviewer.jupyter.org/github/sparsh-ai/recsys/blob/main/notebooks/handson_deep_learning_retrieval.ipynb"><img alt="Open In nbviewer" src="https://raw.githubusercontent.com/jupyter/design/master/logos/Badges/nbviewer_badge.svg" /></a></td>
+</tr>
+<tr>
+<td>Hybrid Recommendations</td>
+<td><a href="https://colab.research.google.com/github/sparsh-ai/recsys/blob/main/notebooks/hybrid_recommendations.ipynb"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></td>
+<td><a href="https://nbviewer.jupyter.org/github/sparsh-ai/recsys/blob/main/notebooks/hybrid_recommendations.ipynb"><img alt="Open In nbviewer" src="https://raw.githubusercontent.com/jupyter/design/master/logos/Badges/nbviewer_badge.svg" /></a></td>
+</tr>
+<tr>
+<td>Hybrid Recommendations Preproc</td>
+<td><a href="https://colab.research.google.com/github/sparsh-ai/recsys/blob/main/notebooks/hybrid_recommendations_preproc.ipynb"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></td>
+<td><a href="https://nbviewer.jupyter.org/github/sparsh-ai/recsys/blob/main/notebooks/hybrid_recommendations_preproc.ipynb"><img alt="Open In nbviewer" src="https://raw.githubusercontent.com/jupyter/design/master/logos/Badges/nbviewer_badge.svg" /></a></td>
+</tr>
+<tr>
+<td>Kafka Pyspark</td>
+<td><a href="https://colab.research.google.com/github/sparsh-ai/recsys/blob/main/notebooks/kafka_pyspark.ipynb"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></td>
+<td><a href="https://nbviewer.jupyter.org/github/sparsh-ai/recsys/blob/main/notebooks/kafka_pyspark.ipynb"><img alt="Open In nbviewer" src="https://raw.githubusercontent.com/jupyter/design/master/logos/Badges/nbviewer_badge.svg" /></a></td>
+</tr>
+<tr>
+<td>Matrix Factorization</td>
+<td><a href="https://colab.research.google.com/github/sparsh-ai/recsys/blob/main/notebooks/matrix_factorization.ipynb"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></td>
+<td><a href="https://nbviewer.jupyter.org/github/sparsh-ai/recsys/blob/main/notebooks/matrix_factorization.ipynb"><img alt="Open In nbviewer" src="https://raw.githubusercontent.com/jupyter/design/master/logos/Badges/nbviewer_badge.svg" /></a></td>
+</tr>
+<tr>
+<td>Mentor Recommender</td>
+<td><a href="https://colab.research.google.com/github/sparsh-ai/recsys/blob/main/notebooks/mentor_recommender.ipynb"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></td>
+<td><a href="https://nbviewer.jupyter.org/github/sparsh-ai/recsys/blob/main/notebooks/mentor_recommender.ipynb"><img alt="Open In nbviewer" src="https://raw.githubusercontent.com/jupyter/design/master/logos/Badges/nbviewer_badge.svg" /></a></td>
+</tr>
+<tr>
+<td>Ml 100k2</td>
+<td><a href="https://colab.research.google.com/github/sparsh-ai/recsys/blob/main/notebooks/ml-100k2.ipynb"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></td>
+<td><a href="https://nbviewer.jupyter.org/github/sparsh-ai/recsys/blob/main/notebooks/ml-100k2.ipynb"><img alt="Open In nbviewer" src="https://raw.githubusercontent.com/jupyter/design/master/logos/Badges/nbviewer_badge.svg" /></a></td>
+</tr>
+<tr>
+<td>Ml 100k</td>
+<td><a href="https://colab.research.google.com/github/sparsh-ai/recsys/blob/main/notebooks/ml_100k.ipynb"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></td>
+<td><a href="https://nbviewer.jupyter.org/github/sparsh-ai/recsys/blob/main/notebooks/ml_100k.ipynb"><img alt="Open In nbviewer" src="https://raw.githubusercontent.com/jupyter/design/master/logos/Badges/nbviewer_badge.svg" /></a></td>
+</tr>
+<tr>
+<td>Movie Poster Detection</td>
+<td><a href="https://colab.research.google.com/github/sparsh-ai/recsys/blob/main/notebooks/movie-poster-detection.ipynb"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></td>
+<td><a href="https://nbviewer.jupyter.org/github/sparsh-ai/recsys/blob/main/notebooks/movie-poster-detection.ipynb"><img alt="Open In nbviewer" src="https://raw.githubusercontent.com/jupyter/design/master/logos/Badges/nbviewer_badge.svg" /></a></td>
+</tr>
+<tr>
+<td>Movie Recommender</td>
+<td><a href="https://colab.research.google.com/github/sparsh-ai/recsys/blob/main/notebooks/movie_recommender.ipynb"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></td>
+<td><a href="https://nbviewer.jupyter.org/github/sparsh-ai/recsys/blob/main/notebooks/movie_recommender.ipynb"><img alt="Open In nbviewer" src="https://raw.githubusercontent.com/jupyter/design/master/logos/Badges/nbviewer_badge.svg" /></a></td>
+</tr>
+<tr>
+<td>Movie Recommender Collaborative</td>
+<td><a href="https://colab.research.google.com/github/sparsh-ai/recsys/blob/main/notebooks/movie_recommender_collaborative.ipynb"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></td>
+<td><a href="https://nbviewer.jupyter.org/github/sparsh-ai/recsys/blob/main/notebooks/movie_recommender_collaborative.ipynb"><img alt="Open In nbviewer" src="https://raw.githubusercontent.com/jupyter/design/master/logos/Badges/nbviewer_badge.svg" /></a></td>
+</tr>
+<tr>
+<td>Movielens 100k</td>
+<td><a href="https://colab.research.google.com/github/sparsh-ai/recsys/blob/main/notebooks/movielens_100k.ipynb"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></td>
+<td><a href="https://nbviewer.jupyter.org/github/sparsh-ai/recsys/blob/main/notebooks/movielens_100k.ipynb"><img alt="Open In nbviewer" src="https://raw.githubusercontent.com/jupyter/design/master/logos/Badges/nbviewer_badge.svg" /></a></td>
+</tr>
+<tr>
+<td>Movielens 100k Cornac</td>
+<td><a href="https://colab.research.google.com/github/sparsh-ai/recsys/blob/main/notebooks/movielens_100k_cornac.ipynb"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></td>
+<td><a href="https://nbviewer.jupyter.org/github/sparsh-ai/recsys/blob/main/notebooks/movielens_100k_cornac.ipynb"><img alt="Open In nbviewer" src="https://raw.githubusercontent.com/jupyter/design/master/logos/Badges/nbviewer_badge.svg" /></a></td>
+</tr>
+<tr>
+<td>Movielens 1m Wordcloud</td>
+<td><a href="https://colab.research.google.com/github/sparsh-ai/recsys/blob/main/notebooks/movielens_1m_wordcloud.ipynb"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></td>
+<td><a href="https://nbviewer.jupyter.org/github/sparsh-ai/recsys/blob/main/notebooks/movielens_1m_wordcloud.ipynb"><img alt="Open In nbviewer" src="https://raw.githubusercontent.com/jupyter/design/master/logos/Badges/nbviewer_badge.svg" /></a></td>
+</tr>
+<tr>
+<td>Movielens Explicit</td>
+<td><a href="https://colab.research.google.com/github/sparsh-ai/recsys/blob/main/notebooks/movielens_explicit.ipynb"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></td>
+<td><a href="https://nbviewer.jupyter.org/github/sparsh-ai/recsys/blob/main/notebooks/movielens_explicit.ipynb"><img alt="Open In nbviewer" src="https://raw.githubusercontent.com/jupyter/design/master/logos/Badges/nbviewer_badge.svg" /></a></td>
+</tr>
+<tr>
+<td>Movielens Fm Aws Sagemaker</td>
+<td><a href="https://colab.research.google.com/github/sparsh-ai/recsys/blob/main/notebooks/movielens_fm_aws_sagemaker.ipynb"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></td>
+<td><a href="https://nbviewer.jupyter.org/github/sparsh-ai/recsys/blob/main/notebooks/movielens_fm_aws_sagemaker.ipynb"><img alt="Open In nbviewer" src="https://raw.githubusercontent.com/jupyter/design/master/logos/Badges/nbviewer_badge.svg" /></a></td>
+</tr>
+<tr>
+<td>Movielens Fm Knn Sagemaker</td>
+<td><a href="https://colab.research.google.com/github/sparsh-ai/recsys/blob/main/notebooks/movielens_fm_knn_sagemaker.ipynb"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></td>
+<td><a href="https://nbviewer.jupyter.org/github/sparsh-ai/recsys/blob/main/notebooks/movielens_fm_knn_sagemaker.ipynb"><img alt="Open In nbviewer" src="https://raw.githubusercontent.com/jupyter/design/master/logos/Badges/nbviewer_badge.svg" /></a></td>
+</tr>
+<tr>
+<td>Movielens Hetrec Contextual Libfm</td>
+<td><a href="https://colab.research.google.com/github/sparsh-ai/recsys/blob/main/notebooks/movielens_hetrec_contextual_libfm.ipynb"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></td>
+<td><a href="https://nbviewer.jupyter.org/github/sparsh-ai/recsys/blob/main/notebooks/movielens_hetrec_contextual_libfm.ipynb"><img alt="Open In nbviewer" src="https://raw.githubusercontent.com/jupyter/design/master/logos/Badges/nbviewer_badge.svg" /></a></td>
+</tr>
+<tr>
+<td>Movielens Implicit</td>
+<td><a href="https://colab.research.google.com/github/sparsh-ai/recsys/blob/main/notebooks/movielens_implicit.ipynb"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></td>
+<td><a href="https://nbviewer.jupyter.org/github/sparsh-ai/recsys/blob/main/notebooks/movielens_implicit.ipynb"><img alt="Open In nbviewer" src="https://raw.githubusercontent.com/jupyter/design/master/logos/Badges/nbviewer_badge.svg" /></a></td>
+</tr>
+<tr>
+<td>Movielens Latest</td>
+<td><a href="https://colab.research.google.com/github/sparsh-ai/recsys/blob/main/notebooks/movielens_latest.ipynb"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></td>
+<td><a href="https://nbviewer.jupyter.org/github/sparsh-ai/recsys/blob/main/notebooks/movielens_latest.ipynb"><img alt="Open In nbviewer" src="https://raw.githubusercontent.com/jupyter/design/master/logos/Badges/nbviewer_badge.svg" /></a></td>
+</tr>
+<tr>
+<td>Movielens Latest Als</td>
+<td><a href="https://colab.research.google.com/github/sparsh-ai/recsys/blob/main/notebooks/movielens_latest_als.ipynb"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></td>
+<td><a href="https://nbviewer.jupyter.org/github/sparsh-ai/recsys/blob/main/notebooks/movielens_latest_als.ipynb"><img alt="Open In nbviewer" src="https://raw.githubusercontent.com/jupyter/design/master/logos/Badges/nbviewer_badge.svg" /></a></td>
+</tr>
+<tr>
+<td>Movielens Pytorch</td>
+<td><a href="https://colab.research.google.com/github/sparsh-ai/recsys/blob/main/notebooks/movielens_pytorch.ipynb"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></td>
+<td><a href="https://nbviewer.jupyter.org/github/sparsh-ai/recsys/blob/main/notebooks/movielens_pytorch.ipynb"><img alt="Open In nbviewer" src="https://raw.githubusercontent.com/jupyter/design/master/logos/Badges/nbviewer_badge.svg" /></a></td>
+</tr>
+<tr>
+<td>Movielens Pytorch Matrixfactorization</td>
+<td><a href="https://colab.research.google.com/github/sparsh-ai/recsys/blob/main/notebooks/movielens_pytorch_matrixfactorization.ipynb"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></td>
+<td><a href="https://nbviewer.jupyter.org/github/sparsh-ai/recsys/blob/main/notebooks/movielens_pytorch_matrixfactorization.ipynb"><img alt="Open In nbviewer" src="https://raw.githubusercontent.com/jupyter/design/master/logos/Badges/nbviewer_badge.svg" /></a></td>
+</tr>
+<tr>
+<td>Movielens Sagemaker</td>
+<td><a href="https://colab.research.google.com/github/sparsh-ai/recsys/blob/main/notebooks/movielens_sagemaker.ipynb"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></td>
+<td><a href="https://nbviewer.jupyter.org/github/sparsh-ai/recsys/blob/main/notebooks/movielens_sagemaker.ipynb"><img alt="Open In nbviewer" src="https://raw.githubusercontent.com/jupyter/design/master/logos/Badges/nbviewer_badge.svg" /></a></td>
+</tr>
+<tr>
+<td>Movielens Surprise Nlp</td>
+<td><a href="https://colab.research.google.com/github/sparsh-ai/recsys/blob/main/notebooks/movielens_surprise_nlp.ipynb"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></td>
+<td><a href="https://nbviewer.jupyter.org/github/sparsh-ai/recsys/blob/main/notebooks/movielens_surprise_nlp.ipynb"><img alt="Open In nbviewer" src="https://raw.githubusercontent.com/jupyter/design/master/logos/Badges/nbviewer_badge.svg" /></a></td>
+</tr>
+<tr>
+<td>Movielens Tensorflow</td>
+<td><a href="https://colab.research.google.com/github/sparsh-ai/recsys/blob/main/notebooks/movielens_tensorflow.ipynb"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></td>
+<td><a href="https://nbviewer.jupyter.org/github/sparsh-ai/recsys/blob/main/notebooks/movielens_tensorflow.ipynb"><img alt="Open In nbviewer" src="https://raw.githubusercontent.com/jupyter/design/master/logos/Badges/nbviewer_badge.svg" /></a></td>
+</tr>
+<tr>
+<td>Movielens Tensorflow Official</td>
+<td><a href="https://colab.research.google.com/github/sparsh-ai/recsys/blob/main/notebooks/movielens_tensorflow_official.ipynb"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></td>
+<td><a href="https://nbviewer.jupyter.org/github/sparsh-ai/recsys/blob/main/notebooks/movielens_tensorflow_official.ipynb"><img alt="Open In nbviewer" src="https://raw.githubusercontent.com/jupyter/design/master/logos/Badges/nbviewer_badge.svg" /></a></td>
+</tr>
+<tr>
+<td>Music Recommender Pyspark</td>
+<td><a href="https://colab.research.google.com/github/sparsh-ai/recsys/blob/main/notebooks/music_recommender_pyspark.ipynb"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></td>
+<td><a href="https://nbviewer.jupyter.org/github/sparsh-ai/recsys/blob/main/notebooks/music_recommender_pyspark.ipynb"><img alt="Open In nbviewer" src="https://raw.githubusercontent.com/jupyter/design/master/logos/Badges/nbviewer_badge.svg" /></a></td>
+</tr>
+<tr>
+<td>Netflix</td>
+<td><a href="https://colab.research.google.com/github/sparsh-ai/recsys/blob/main/notebooks/netflix.ipynb"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></td>
+<td><a href="https://nbviewer.jupyter.org/github/sparsh-ai/recsys/blob/main/notebooks/netflix.ipynb"><img alt="Open In nbviewer" src="https://raw.githubusercontent.com/jupyter/design/master/logos/Badges/nbviewer_badge.svg" /></a></td>
+</tr>
+<tr>
+<td>Netflix2</td>
+<td><a href="https://colab.research.google.com/github/sparsh-ai/recsys/blob/main/notebooks/netflix2.ipynb"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></td>
+<td><a href="https://nbviewer.jupyter.org/github/sparsh-ai/recsys/blob/main/notebooks/netflix2.ipynb"><img alt="Open In nbviewer" src="https://raw.githubusercontent.com/jupyter/design/master/logos/Badges/nbviewer_badge.svg" /></a></td>
+</tr>
+<tr>
+<td>Preferredai 01 Introduction</td>
+<td><a href="https://colab.research.google.com/github/sparsh-ai/recsys/blob/main/notebooks/preferredai_01_introduction.ipynb"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></td>
+<td><a href="https://nbviewer.jupyter.org/github/sparsh-ai/recsys/blob/main/notebooks/preferredai_01_introduction.ipynb"><img alt="Open In nbviewer" src="https://raw.githubusercontent.com/jupyter/design/master/logos/Badges/nbviewer_badge.svg" /></a></td>
+</tr>
+<tr>
+<td>Preferredai 02 Neighborhood</td>
+<td><a href="https://colab.research.google.com/github/sparsh-ai/recsys/blob/main/notebooks/preferredai_02_neighborhood.ipynb"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></td>
+<td><a href="https://nbviewer.jupyter.org/github/sparsh-ai/recsys/blob/main/notebooks/preferredai_02_neighborhood.ipynb"><img alt="Open In nbviewer" src="https://raw.githubusercontent.com/jupyter/design/master/logos/Badges/nbviewer_badge.svg" /></a></td>
+</tr>
+<tr>
+<td>Preferredai 03 Matrix Factorization</td>
+<td><a href="https://colab.research.google.com/github/sparsh-ai/recsys/blob/main/notebooks/preferredai_03_matrix_factorization.ipynb"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></td>
+<td><a href="https://nbviewer.jupyter.org/github/sparsh-ai/recsys/blob/main/notebooks/preferredai_03_matrix_factorization.ipynb"><img alt="Open In nbviewer" src="https://raw.githubusercontent.com/jupyter/design/master/logos/Badges/nbviewer_badge.svg" /></a></td>
+</tr>
+<tr>
+<td>Preferredai 04 Implicit Feedback</td>
+<td><a href="https://colab.research.google.com/github/sparsh-ai/recsys/blob/main/notebooks/preferredai_04_implicit_feedback.ipynb"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></td>
+<td><a href="https://nbviewer.jupyter.org/github/sparsh-ai/recsys/blob/main/notebooks/preferredai_04_implicit_feedback.ipynb"><img alt="Open In nbviewer" src="https://raw.githubusercontent.com/jupyter/design/master/logos/Badges/nbviewer_badge.svg" /></a></td>
+</tr>
+<tr>
+<td>Preferredai 05 Multimodality</td>
+<td><a href="https://colab.research.google.com/github/sparsh-ai/recsys/blob/main/notebooks/preferredai_05_multimodality.ipynb"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></td>
+<td><a href="https://nbviewer.jupyter.org/github/sparsh-ai/recsys/blob/main/notebooks/preferredai_05_multimodality.ipynb"><img alt="Open In nbviewer" src="https://raw.githubusercontent.com/jupyter/design/master/logos/Badges/nbviewer_badge.svg" /></a></td>
+</tr>
+<tr>
+<td>Preferredai 06 Contextual Awareness</td>
+<td><a href="https://colab.research.google.com/github/sparsh-ai/recsys/blob/main/notebooks/preferredai_06_contextual_awareness.ipynb"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></td>
+<td><a href="https://nbviewer.jupyter.org/github/sparsh-ai/recsys/blob/main/notebooks/preferredai_06_contextual_awareness.ipynb"><img alt="Open In nbviewer" src="https://raw.githubusercontent.com/jupyter/design/master/logos/Badges/nbviewer_badge.svg" /></a></td>
+</tr>
+<tr>
+<td>Preferredai 07 Explanations</td>
+<td><a href="https://colab.research.google.com/github/sparsh-ai/recsys/blob/main/notebooks/preferredai_07_explanations.ipynb"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></td>
+<td><a href="https://nbviewer.jupyter.org/github/sparsh-ai/recsys/blob/main/notebooks/preferredai_07_explanations.ipynb"><img alt="Open In nbviewer" src="https://raw.githubusercontent.com/jupyter/design/master/logos/Badges/nbviewer_badge.svg" /></a></td>
+</tr>
+<tr>
+<td>Preferredai 08 Retrieval</td>
+<td><a href="https://colab.research.google.com/github/sparsh-ai/recsys/blob/main/notebooks/preferredai_08_retrieval.ipynb"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></td>
+<td><a href="https://nbviewer.jupyter.org/github/sparsh-ai/recsys/blob/main/notebooks/preferredai_08_retrieval.ipynb"><img alt="Open In nbviewer" src="https://raw.githubusercontent.com/jupyter/design/master/logos/Badges/nbviewer_badge.svg" /></a></td>
+</tr>
+<tr>
+<td>Preferredai 09 Deep Learning</td>
+<td><a href="https://colab.research.google.com/github/sparsh-ai/recsys/blob/main/notebooks/preferredai_09_deep_learning.ipynb"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></td>
+<td><a href="https://nbviewer.jupyter.org/github/sparsh-ai/recsys/blob/main/notebooks/preferredai_09_deep_learning.ipynb"><img alt="Open In nbviewer" src="https://raw.githubusercontent.com/jupyter/design/master/logos/Badges/nbviewer_badge.svg" /></a></td>
+</tr>
+<tr>
+<td>Product Review Collaborative</td>
+<td><a href="https://colab.research.google.com/github/sparsh-ai/recsys/blob/main/notebooks/product_review_collaborative.ipynb"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></td>
+<td><a href="https://nbviewer.jupyter.org/github/sparsh-ai/recsys/blob/main/notebooks/product_review_collaborative.ipynb"><img alt="Open In nbviewer" src="https://raw.githubusercontent.com/jupyter/design/master/logos/Badges/nbviewer_badge.svg" /></a></td>
+</tr>
+<tr>
+<td>Rec Tut Contentbased Imgsim Shirts</td>
+<td><a href="https://colab.research.google.com/github/sparsh-ai/recsys/blob/main/notebooks/rec-tut-contentbased-imgsim-shirts.ipynb"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></td>
+<td><a href="https://nbviewer.jupyter.org/github/sparsh-ai/recsys/blob/main/notebooks/rec-tut-contentbased-imgsim-shirts.ipynb"><img alt="Open In nbviewer" src="https://raw.githubusercontent.com/jupyter/design/master/logos/Badges/nbviewer_badge.svg" /></a></td>
+</tr>
+<tr>
+<td>Rec Tut Rees46 Nvidia</td>
+<td><a href="https://colab.research.google.com/github/sparsh-ai/recsys/blob/main/notebooks/rec-tut-rees46-nvidia.ipynb"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></td>
+<td><a href="https://nbviewer.jupyter.org/github/sparsh-ai/recsys/blob/main/notebooks/rec-tut-rees46-nvidia.ipynb"><img alt="Open In nbviewer" src="https://raw.githubusercontent.com/jupyter/design/master/logos/Badges/nbviewer_badge.svg" /></a></td>
+</tr>
+<tr>
+<td>Rec Algo Ncf Mxnet D2ai</td>
+<td><a href="https://colab.research.google.com/github/sparsh-ai/recsys/blob/main/notebooks/rec_algo_ncf_mxnet_d2ai.ipynb"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></td>
+<td><a href="https://nbviewer.jupyter.org/github/sparsh-ai/recsys/blob/main/notebooks/rec_algo_ncf_mxnet_d2ai.ipynb"><img alt="Open In nbviewer" src="https://raw.githubusercontent.com/jupyter/design/master/logos/Badges/nbviewer_badge.svg" /></a></td>
+</tr>
+<tr>
+<td>Rec Algo Ncf Pytorch Pyy0715</td>
+<td><a href="https://colab.research.google.com/github/sparsh-ai/recsys/blob/main/notebooks/rec_algo_ncf_pytorch_pyy0715.ipynb"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></td>
+<td><a href="https://nbviewer.jupyter.org/github/sparsh-ai/recsys/blob/main/notebooks/rec_algo_ncf_pytorch_pyy0715.ipynb"><img alt="Open In nbviewer" src="https://raw.githubusercontent.com/jupyter/design/master/logos/Badges/nbviewer_badge.svg" /></a></td>
+</tr>
+<tr>
+<td>Rec Algo Ncf Pytorch Yihongchen</td>
+<td><a href="https://colab.research.google.com/github/sparsh-ai/recsys/blob/main/notebooks/rec_algo_ncf_pytorch_yihongchen.ipynb"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></td>
+<td><a href="https://nbviewer.jupyter.org/github/sparsh-ai/recsys/blob/main/notebooks/rec_algo_ncf_pytorch_yihongchen.ipynb"><img alt="Open In nbviewer" src="https://raw.githubusercontent.com/jupyter/design/master/logos/Badges/nbviewer_badge.svg" /></a></td>
+</tr>
+<tr>
+<td>Rec Algo Ncf Tensorflow1 X Fdb78</td>
+<td><a href="https://colab.research.google.com/github/sparsh-ai/recsys/blob/main/notebooks/rec_algo_ncf_tensorflow1_x_fdb78.ipynb"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></td>
+<td><a href="https://nbviewer.jupyter.org/github/sparsh-ai/recsys/blob/main/notebooks/rec_algo_ncf_tensorflow1_x_fdb78.ipynb"><img alt="Open In nbviewer" src="https://raw.githubusercontent.com/jupyter/design/master/logos/Badges/nbviewer_badge.svg" /></a></td>
+</tr>
+<tr>
+<td>Rec Concept Retrieval Preferredai</td>
+<td><a href="https://colab.research.google.com/github/sparsh-ai/recsys/blob/main/notebooks/rec_concept_retrieval_preferredai.ipynb"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></td>
+<td><a href="https://nbviewer.jupyter.org/github/sparsh-ai/recsys/blob/main/notebooks/rec_concept_retrieval_preferredai.ipynb"><img alt="Open In nbviewer" src="https://raw.githubusercontent.com/jupyter/design/master/logos/Badges/nbviewer_badge.svg" /></a></td>
+</tr>
+<tr>
+<td>Rec Tool Elliot Basics</td>
+<td><a href="https://colab.research.google.com/github/sparsh-ai/recsys/blob/main/notebooks/rec_tool_elliot_basics.ipynb"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></td>
+<td><a href="https://nbviewer.jupyter.org/github/sparsh-ai/recsys/blob/main/notebooks/rec_tool_elliot_basics.ipynb"><img alt="Open In nbviewer" src="https://raw.githubusercontent.com/jupyter/design/master/logos/Badges/nbviewer_badge.svg" /></a></td>
+</tr>
+<tr>
+<td>Recsys Streamlit App</td>
+<td><a href="https://colab.research.google.com/github/sparsh-ai/recsys/blob/main/notebooks/recsys_streamlit_app.ipynb"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></td>
+<td><a href="https://nbviewer.jupyter.org/github/sparsh-ai/recsys/blob/main/notebooks/recsys_streamlit_app.ipynb"><img alt="Open In nbviewer" src="https://raw.githubusercontent.com/jupyter/design/master/logos/Badges/nbviewer_badge.svg" /></a></td>
+</tr>
+<tr>
+<td>Retailrocket</td>
+<td><a href="https://colab.research.google.com/github/sparsh-ai/recsys/blob/main/notebooks/retailrocket.ipynb"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></td>
+<td><a href="https://nbviewer.jupyter.org/github/sparsh-ai/recsys/blob/main/notebooks/retailrocket.ipynb"><img alt="Open In nbviewer" src="https://raw.githubusercontent.com/jupyter/design/master/logos/Badges/nbviewer_badge.svg" /></a></td>
+</tr>
+<tr>
+<td>SongMSD</td>
+<td><a href="https://colab.research.google.com/github/sparsh-ai/recsys/blob/main/notebooks/songMSD.ipynb"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></td>
+<td><a href="https://nbviewer.jupyter.org/github/sparsh-ai/recsys/blob/main/notebooks/songMSD.ipynb"><img alt="Open In nbviewer" src="https://raw.githubusercontent.com/jupyter/design/master/logos/Badges/nbviewer_badge.svg" /></a></td>
+</tr>
+<tr>
+<td>Triplet Keras</td>
+<td><a href="https://colab.research.google.com/github/sparsh-ai/recsys/blob/main/notebooks/triplet_keras.ipynb"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></td>
+<td><a href="https://nbviewer.jupyter.org/github/sparsh-ai/recsys/blob/main/notebooks/triplet_keras.ipynb"><img alt="Open In nbviewer" src="https://raw.githubusercontent.com/jupyter/design/master/logos/Badges/nbviewer_badge.svg" /></a></td>
+</tr>
+<tr>
+<td>Trivago 001 Itempop</td>
+<td><a href="https://colab.research.google.com/github/sparsh-ai/recsys/blob/main/notebooks/trivago_001_itempop.ipynb"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></td>
+<td><a href="https://nbviewer.jupyter.org/github/sparsh-ai/recsys/blob/main/notebooks/trivago_001_itempop.ipynb"><img alt="Open In nbviewer" src="https://raw.githubusercontent.com/jupyter/design/master/logos/Badges/nbviewer_badge.svg" /></a></td>
+</tr>
+<tr>
+<td>Trivago 002 Benchmark</td>
+<td><a href="https://colab.research.google.com/github/sparsh-ai/recsys/blob/main/notebooks/trivago_002_benchmark.ipynb"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></td>
+<td><a href="https://nbviewer.jupyter.org/github/sparsh-ai/recsys/blob/main/notebooks/trivago_002_benchmark.ipynb"><img alt="Open In nbviewer" src="https://raw.githubusercontent.com/jupyter/design/master/logos/Badges/nbviewer_badge.svg" /></a></td>
+</tr>
+<tr>
+<td>Turicreate</td>
+<td><a href="https://colab.research.google.com/github/sparsh-ai/recsys/blob/main/notebooks/turicreate.ipynb"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></td>
+<td><a href="https://nbviewer.jupyter.org/github/sparsh-ai/recsys/blob/main/notebooks/turicreate.ipynb"><img alt="Open In nbviewer" src="https://raw.githubusercontent.com/jupyter/design/master/logos/Badges/nbviewer_badge.svg" /></a></td>
+</tr>
+<tr>
+<td>Twitter Nvtabular</td>
+<td><a href="https://colab.research.google.com/github/sparsh-ai/recsys/blob/main/notebooks/twitter_nvtabular.ipynb"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></td>
+<td><a href="https://nbviewer.jupyter.org/github/sparsh-ai/recsys/blob/main/notebooks/twitter_nvtabular.ipynb"><img alt="Open In nbviewer" src="https://raw.githubusercontent.com/jupyter/design/master/logos/Badges/nbviewer_badge.svg" /></a></td>
+</tr>
+<tr>
+<td>Visual Content Based Sagemaker</td>
+<td><a href="https://colab.research.google.com/github/sparsh-ai/recsys/blob/main/notebooks/visual_content_based_sagemaker.ipynb"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></td>
+<td><a href="https://nbviewer.jupyter.org/github/sparsh-ai/recsys/blob/main/notebooks/visual_content_based_sagemaker.ipynb"><img alt="Open In nbviewer" src="https://raw.githubusercontent.com/jupyter/design/master/logos/Badges/nbviewer_badge.svg" /></a></td>
+</tr>
+<tr>
+<td>Wals</td>
+<td><a href="https://colab.research.google.com/github/sparsh-ai/recsys/blob/main/notebooks/wals.ipynb"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></td>
+<td><a href="https://nbviewer.jupyter.org/github/sparsh-ai/recsys/blob/main/notebooks/wals.ipynb"><img alt="Open In nbviewer" src="https://raw.githubusercontent.com/jupyter/design/master/logos/Badges/nbviewer_badge.svg" /></a></td>
+</tr>
+<tr>
+<td>Wals Tft</td>
+<td><a href="https://colab.research.google.com/github/sparsh-ai/recsys/blob/main/notebooks/wals_tft.ipynb"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></td>
+<td><a href="https://nbviewer.jupyter.org/github/sparsh-ai/recsys/blob/main/notebooks/wals_tft.ipynb"><img alt="Open In nbviewer" src="https://raw.githubusercontent.com/jupyter/design/master/logos/Badges/nbviewer_badge.svg" /></a></td>
+</tr>
+<tr>
+<td>Yelp</td>
+<td><a href="https://colab.research.google.com/github/sparsh-ai/recsys/blob/main/notebooks/yelp.ipynb"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></td>
+<td><a href="https://nbviewer.jupyter.org/github/sparsh-ai/recsys/blob/main/notebooks/yelp.ipynb"><img alt="Open In nbviewer" src="https://raw.githubusercontent.com/jupyter/design/master/logos/Badges/nbviewer_badge.svg" /></a></td>
+</tr>
+<tr>
+<td>Yoochoose</td>
+<td><a href="https://colab.research.google.com/github/sparsh-ai/recsys/blob/main/notebooks/yoochoose.ipynb"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></td>
+<td><a href="https://nbviewer.jupyter.org/github/sparsh-ai/recsys/blob/main/notebooks/yoochoose.ipynb"><img alt="Open In nbviewer" src="https://raw.githubusercontent.com/jupyter/design/master/logos/Badges/nbviewer_badge.svg" /></a></td>
+</tr>
+<tr>
+<td>Yoochoose2</td>
+<td><a href="https://colab.research.google.com/github/sparsh-ai/recsys/blob/main/notebooks/yoochoose2.ipynb"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></td>
+<td><a href="https://nbviewer.jupyter.org/github/sparsh-ai/recsys/blob/main/notebooks/yoochoose2.ipynb"><img alt="Open In nbviewer" src="https://raw.githubusercontent.com/jupyter/design/master/logos/Badges/nbviewer_badge.svg" /></a></td>
+</tr>
+<tr>
+<td>Yoochoose Eda</td>
+<td><a href="https://colab.research.google.com/github/sparsh-ai/recsys/blob/main/notebooks/yoochoose_eda.ipynb"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></td>
+<td><a href="https://nbviewer.jupyter.org/github/sparsh-ai/recsys/blob/main/notebooks/yoochoose_eda.ipynb"><img alt="Open In nbviewer" src="https://raw.githubusercontent.com/jupyter/design/master/logos/Badges/nbviewer_badge.svg" /></a></td>
+</tr>
+<tr>
+<td>Yoochoose Eda 2</td>
+<td><a href="https://colab.research.google.com/github/sparsh-ai/recsys/blob/main/notebooks/yoochoose_eda_2.ipynb"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></td>
+<td><a href="https://nbviewer.jupyter.org/github/sparsh-ai/recsys/blob/main/notebooks/yoochoose_eda_2.ipynb"><img alt="Open In nbviewer" src="https://raw.githubusercontent.com/jupyter/design/master/logos/Badges/nbviewer_badge.svg" /></a></td>
+</tr>
+<tr>
+<td>Yoochoose Matrixnet</td>
+<td><a href="https://colab.research.google.com/github/sparsh-ai/recsys/blob/main/notebooks/yoochoose_matrixnet.ipynb"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></td>
+<td><a href="https://nbviewer.jupyter.org/github/sparsh-ai/recsys/blob/main/notebooks/yoochoose_matrixnet.ipynb"><img alt="Open In nbviewer" src="https://raw.githubusercontent.com/jupyter/design/master/logos/Badges/nbviewer_badge.svg" /></a></td>
+</tr>
+<tr>
+<td>Yoochoose Pytorch Geometric</td>
+<td><a href="https://colab.research.google.com/github/sparsh-ai/recsys/blob/main/notebooks/yoochoose_pytorch_geometric.ipynb"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></td>
+<td><a href="https://nbviewer.jupyter.org/github/sparsh-ai/recsys/blob/main/notebooks/yoochoose_pytorch_geometric.ipynb"><img alt="Open In nbviewer" src="https://raw.githubusercontent.com/jupyter/design/master/logos/Badges/nbviewer_badge.svg" /></a></td>
+</tr>
+</tbody>
+</table>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        <a href="../Models/" class="md-footer__link md-footer__link--prev" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Models
+            </div>
+          </div>
+        </a>
+      
+      
+        <a href="../Overview/" class="md-footer__link md-footer__link--next" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Overview
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+        
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "..", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}, "search": "../assets/javascripts/workers/search.4fa0e4ee.min.js", "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.1d3bfcf1.min.js"></script>
+      
+    
+  </body>
+</html>

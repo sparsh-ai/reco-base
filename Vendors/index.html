@@ -1,0 +1,629 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-7.1.4">
+    
+    
+      
+        <title>Vendors - RecoBase</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.bde7dde4.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ef6f36e2.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+      
+    
+    
+    
+      <link rel="stylesheet" href="../css/ansi-colours.css">
+    
+      <link rel="stylesheet" href="../css/jupyter-cells.css">
+    
+      <link rel="stylesheet" href="../css/pandas-dataframe.css">
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+  
+    
+    <script>function __prefix(e){return new URL("..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="RecoBase" class="md-header__button md-logo" aria-label="RecoBase" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            RecoBase
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Vendors
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+    
+      <div class="md-header__source">
+        
+<a href="https://github.com/sparsh-ai/reco-base/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="RecoBase" class="md-nav__button md-logo" aria-label="RecoBase" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    RecoBase
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/sparsh-ai/reco-base/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        Welcome to RecoBase
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Datasets/" class="md-nav__link">
+        Datasets
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Examples/" class="md-nav__link">
+        Examples
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Home/" class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Libraries/" class="md-nav__link">
+        Libraries
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Models/" class="md-nav__link">
+        Models
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Notebooks/" class="md-nav__link">
+        Notebooks
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Overview/" class="md-nav__link">
+        Overview
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Papers/" class="md-nav__link">
+        Papers
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Projects/" class="md-nav__link">
+        Projects
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Resources/" class="md-nav__link">
+        Resources
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Use-Cases/" class="md-nav__link">
+        Use Cases
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Vendors
+      </a>
+      
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_14" type="checkbox" id="__nav_14" >
+      
+      <label class="md-nav__link" for="__nav_14">
+        Tutorials
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Tutorials" data-md-level="1">
+        <label class="md-nav__title" for="__nav_14">
+          <span class="md-nav__icon md-icon"></span>
+          Tutorials
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tutorials/recsys-imgsim/" class="md-nav__link">
+        Recsys imgsim
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tutorials/recsys-implicit-negative/" class="md-nav__link">
+        Recsys implicit negative
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tutorials/recsys-ncf/" class="md-nav__link">
+        Recsys ncf
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tutorials/recsys-prodsim/" class="md-nav__link">
+        Recsys prodsim
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tutorials/recsys-retrieval/" class="md-nav__link">
+        Recsys retrieval
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tutorials/recsys-vw-contextual/" class="md-nav__link">
+        Recsys vw contextual
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tutorials/recsys-word2vec/" class="md-nav__link">
+        Recsys word2vec
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/sparsh-ai/reco-base/edit/master/docs/Vendors.md" title="Edit this page" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                  <h1>Vendors</h1>
+                
+                <ol>
+<li><a href="https://kibocommerce.com/personalization-software/">Personalization Software: Real-Time, AI-Driven Individualization</a></li>
+<li><a href="https://optinmonster.com/">OptinMonster - Most Powerful Lead Generation Software for Marketers</a></li>
+<li><a href="https://www.barilliance.com/">Ecommerce Personalization &amp; Conversion Optimization</a></li>
+<li><a href="https://www.dynamicyield.com/">Experience Optimization Platform — Dynamic Yield</a></li>
+<li><a href="https://richrelevance.com/">Personalization Technology &amp; Personalization Solutions | RichRelevance</a></li>
+<li><a href="https://www.yusp.com/">Yusp Personalization Engine</a></li>
+<li><a href="https://www.apptus.com/">Apptus: Optimize your eCommerce Business with AI solutions</a></li>
+<li><a href="https://www.attraqt.com/">Attraqt | Powering Exceptional Shopping Experiences</a></li>
+<li><a href="https://bunting.com/software/personalize">Personalize - Website Personalization Software</a></li>
+<li><a href="https://cloudengage.com/">Home - People Engagement Company | CloudEngage</a></li>
+<li><a href="https://optinmonster.com/ecommerce-personalization-tools/">28 Powerful Ecommerce Personalization Tools to Boost Your Sales</a></li>
+<li><a href="http://commercestack.com/">CommerceStack – Related Products Manager for Magento</a></li>
+<li><a href="https://www.cxense.com/">Personalization, Conversion Rate Optimization, Individual Experiences | Cxense</a></li>
+<li><a href="https://emarsys.com/">Omnichannel Customer Engagement Platform | Emarsys</a></li>
+<li><a href="https://www.livechat.com/">LiveChat | Live Chat Software and Chat Support Software</a></li>
+<li><a href="https://www.personyze.com/">Website Personalization | Product &amp; Content recommendations</a></li>
+<li><a href="https://www.pure360.com/">Better starts here with our all-in-one AI marketing platform | Pure360</a></li>
+<li><a href="https://www.pureclarity.com/">PureClarity | Intelligent AI-Driven Ecommerce Personalisation</a></li>
+<li><a href="https://www.qubit.com/">Qubit | Personalization Engine for Ecommerce | Making Ecommerce Better</a></li>
+<li><a href="https://reflektion.com/">Real-Time Intelligent Personalization Platform | Reflektion</a></li>
+<li><a href="https://unbxd.com/">eCommerce Search &amp; Product Discovery AI Powered Solutions</a></li>
+<li><a href="https://www.linkcious.com/">https://www.linkcious.com</a></li>
+<li><a href="https://www.certona.com/">Welcome to Certona - The leader in personalization engines</a></li>
+<li><a href="https://vwo.com/">VWO | #1 A/B Testing Tool in the World</a></li>
+<li><a href="https://unless.com/">Unless - rapid UX optimization</a></li>
+<li><a href="http://qwardo.com/">Intelligent Content Marketing - Qwardo</a></li>
+<li><a href="https://www.datarevenue.com/en-digital-media">Recommender systems for movies, music &amp; media | DataRevenue</a></li>
+<li><a href="https://www.recombee.com/">AI-Powered Real-Time Recommender | Recombee</a></li>
+<li><a href="https://getstream.io/activity-feeds/personalization/">Personalized feeds &amp; Feed relevance</a></li>
+<li><a href="https://magento.com/products/product-recommendations">Product Recommendations | Magento</a></li>
+<li><a href="https://www.freshegg.co.uk/cro/personalisation/">Website Personalisation Services | Conversion Services | Fresh Egg</a></li>
+<li><a href="https://www.omniconvert.com/">The website conversion optimization tool for smart marketers - Omniconvert</a></li>
+<li><a href="https://www.kameleoon.com/en">A/B testing platform and AI-driven personalization | Kameleoon</a></li>
+<li><a href="https://www.brightinfo.com/">Automated Content Personalization Engine | BrightInfo</a></li>
+<li><a href="https://www.sitespect.com/personalization-targeting/">Personalized and Targeted Audience Segmentation | SiteSpect</a></li>
+<li><a href="https://www.klevu.com/smart-recommendations/?utm_term=recommendation%20system&amp;utm_campaign=US+-+Merchandising+-+Exact&amp;utm_source=adwords&amp;utm_medium=ppc&amp;hsa_acc=6102192936&amp;hsa_cam=12711540958&amp;hsa_grp=123775829514&amp;hsa_ad=513929474815&amp;hsa_src=g&amp;hsa_tgt=kwd-491498919072&amp;hsa_kw=recommendation%20system&amp;hsa_mt=p&amp;hsa_net=adwords&amp;hsa_ver=3&amp;gclid=Cj0KCQjwyN-DBhCDARIsAFOELTl8XN8shwtl8qsdQHkmvVbP3kpVW-TINi_Zz1B01Qk_eOv7SW8B4dEaAjFyEALw_wcB">Smart Recommendations | Klevu</a></li>
+<li><a href="https://www.smartinsights.com/ecommerce/web-personalisation/web-personalization-software/">30 Website Personalization and Recommendations Software options</a></li>
+<li><a href="https://loopclub.io/">Personalized Recommendations for Shopify. | LoopClub</a></li>
+<li><a href="https://www.optimizely.com/platform/personalization/">Personalization from Optimizely</a></li>
+<li><a href="https://sherpa.ai/product-recommendation-predictive-ai?lang=en">SHERPA.AI</a></li>
+<li><a href="https://www.frankieai.com/">Frankie AI - Personalizing Ecommerce</a></li>
+<li><a href="https://www.zoorix.com/">Zoorix Shopify App - Upsell and Cross Sell for Shopify Store</a></li>
+<li><a href="https://business.adobe.com/in/products/target/adobe-target.html">Adobe Target for testing and optimization success</a></li>
+<li><a href="https://rebuyengine.com/">Rebuy</a></li>
+<li><a href="https://tasteguru.ai/">tasteguru.ai</a></li>
+<li><a href="https://yesplz.ai/">YesPlz - Ecommerce Recommendation Engine for Fashion Retail</a></li>
+<li><a href="https://www.perzonalization.com/">AI Powered Personalization That Sells - Perzonalization</a></li>
+<li><a href="https://engage.zubi.ai/">engage - E-commerce Data Platform</a></li>
+<li><a href="https://quarticon.com/en/">QuarticOn - personalization power | Improve e-commerce indicators</a></li>
+<li><a href="https://www.sli-systems.com/">www.sli-systems.com</a></li>
+<li><a href="https://kealabs.com/recommendations-api">Kea Labs - Recommender System as a Service. API &amp; SDK for Custom-made Recommendation systems</a></li>
+<li><a href="https://www.youtube.com/watch?v=RGDAEau5cSs">Frankie #1 personalization app for Shopify stores - YouTube</a></li>
+<li><a href="https://www.limespot.com/">LimeSpot: eCommerce Personalized Recommendations, Upsell, Cross-sell</a></li>
+<li><a href="https://autocommerce.io/">Sell 29% more in 2019 without spending a dollar on ads</a></li>
+<li><a href="https://www.bigcommerce.com/apps/personalization-recommendations/">Personalization &amp; Recommendations | BigCommerce</a></li>
+</ol>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        <a href="../Use-Cases/" class="md-footer__link md-footer__link--prev" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Use Cases
+            </div>
+          </div>
+        </a>
+      
+      
+        <a href="../tutorials/recsys-imgsim/" class="md-footer__link md-footer__link--next" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Recsys imgsim
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+        
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "..", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}, "search": "../assets/javascripts/workers/search.4fa0e4ee.min.js", "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.1d3bfcf1.min.js"></script>
+      
+    
+  </body>
+</html>
