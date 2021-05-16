@@ -1,0 +1,765 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Datasets &mdash; recobase  documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> recobase
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Knowledge</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Welcome.html">Welcome to RecoBase</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">recobase</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Datasets</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/src/Datasets.md.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<div class="section" id="datasets">
+<h1>Datasets<a class="headerlink" href="#datasets" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="shopping">
+<h2>Shopping<a class="headerlink" href="#shopping" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="http://jmcauley.ucsd.edu/data/amazon/">Amazon</a>:
+This dataset contains product reviews, only-rating data (ratings) and metadata(descriptions, category information, price, brand, and image features) from Amazon, including 142.8 million reviews spanning May 1996 - July 2014.</p></li>
+<li><p><a class="reference external" href="https://cseweb.ucsd.edu/~jmcauley/datasets.html#social_data">Epinions</a>:
+This dataset was collected from Epinions.com, a popular online consumer review website. It contains trust relationships
+amongst users and spans more than a decade, from January 2001 to November 2013.</p></li>
+<li><p><a class="reference external" href="https://www.yelp.com/dataset">Yelp</a>:
+This dataset was collected from Yelp.com. The Yelp dataset is a subset of our businesses, reviews,
+and user data for use in personal, educational, and academic purposes.</p></li>
+<li><p><a class="reference external" href="https://tianchi.aliyun.com/dataset/dataDetail?dataId=53">Tmall</a>:
+This dataset is provided by Ant Financial Services, using in the IJCAI16 contest.</p></li>
+<li><p><a class="reference external" href="https://competitions.codalab.org/competitions/11161">DIGINETICA</a>:
+The dataset includes user sessions extracted from an e-commerce search engine logs, with anonymized user ids,
+hashed queries, hashed query terms, hashed product descriptions and meta-data, log-scaled prices, clicks, and purchases.</p></li>
+<li><p><a class="reference external" href="https://2015.recsyschallenge.com/challenge.html">YOOCHOOSE</a>:
+This dataset was constructed by YOOCHOOSE GmbH to support participants in the RecSys Challenge 2015.</p></li>
+<li><p><a class="reference external" href="https://www.kaggle.com/retailrocket/ecommerce-dataset">Retailrocket</a>:
+The data has been collected from a real-world ecommerce website. It is raw data, i.e.
+without any content transformations, however, all values are hashed due to confidential issues.</p></li>
+<li><p><a class="reference external" href="https://www.kaggle.com/chiranjivdas09/ta-feng-grocery-dataset">Ta Feng</a>:
+The dataset contains a Chinese grocery store transaction data from November 2000 to February 2001.</p></li>
+</ul>
+</div>
+<div class="section" id="advertising">
+<h2>Advertising<a class="headerlink" href="#advertising" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.kaggle.com/c/criteo-display-ad-challenge/data">Criteo</a>:
+This dataset was collected from Criteo, which consists of a portion of Criteo’s traffic over a period of several days.</p></li>
+<li><p><a class="reference external" href="https://www.kaggle.com/c/avazu-ctr-prediction/data">Avazu</a>:
+This dataset is used in Avazu CTR prediction contest.</p></li>
+<li><p><a class="reference external" href="http://contest.ipinyou.com">iPinYou</a>: This dataset was provided by iPinYou, which contains all training datasets and leaderboard testing datasets of the three seasons iPinYou Global RTB(Real-Time Bidding) Bidding Algorithm Competition.</p></li>
+</ul>
+</div>
+<div class="section" id="check-in">
+<h2>Check-in<a class="headerlink" href="#check-in" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.kaggle.com/chetanism/foursquare-nyc-and-tokyo-checkin-dataset">Foursquare</a>:
+This dataset contains check-ins in NYC and Tokyo collected for about 10 month. Each check-in is associated with
+its time stamp, its GPS coordinates and its semantic meaning.</p></li>
+<li><p><a class="reference external" href="https://snap.stanford.edu/data/loc-gowalla.html">Gowalla</a>:
+This dataset is from a location-based social networking website where users share their locations by checking-in,
+and contains a total of 6,442,890 check-ins of these users over the period of Feb. 2009 - Oct. 2010.</p></li>
+</ul>
+</div>
+<div class="section" id="movies">
+<h2>Movies<a class="headerlink" href="#movies" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://grouplens.org/datasets/movielens/">MovieLens</a>:
+GroupLens Research has collected and made available rating datasets from their movie web site.</p></li>
+<li><p><a class="reference external" href="https://www.kaggle.com/netflix-inc/netflix-prize-data">Netflix</a>:
+This is the official data set used in the Netflix Prize competition.</p></li>
+<li><p><a class="reference external" href="https://www.kaggle.com/utmhikari/doubanmovieshortcomments">Douban</a>:
+Douban Movie is a Chinese website that allows Internet users to share their comments and viewpoints about movies.
+This dataset contains more than 2 million short comments of 28 movies in Douban Movie website.</p></li>
+</ul>
+</div>
+<div class="section" id="music">
+<h2>Music<a class="headerlink" href="#music" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://grouplens.org/datasets/hetrec-2011/">Last.FM</a>:
+This dataset contains social networking, tagging, and music artist listening information from a set of 2K users from Last.fm online music system.</p></li>
+<li><p><a class="reference external" href="http://www.cp.jku.at/datasets/LFM-1b/">LFM-1b</a>:
+This dataset contains more than one billion music listening events created by more than 120,000 users of Last.FM.
+Each listening event is characterized by artist, album, and track name, and includes a timestamp.</p></li>
+<li><p><a class="reference external" href="https://webscope.sandbox.yahoo.com/catalog.php?datatype=r">Yahoo Music</a>:
+This dataset represents a snapshot of the Yahoo! Music community’s preferences for various musical artists.</p></li>
+</ul>
+</div>
+<div class="section" id="books">
+<h2>Books<a class="headerlink" href="#books" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="http://www2.informatik.uni-freiburg.de/~cziegler/BX/">Book-Crossing</a>:
+This dataset was collected by Cai-Nicolas Ziegler in a 4-week crawl (August / September 2004) from
+the <a class="reference external" href="http://www.bookcrossing.com/">Book-Crossing</a> community with kind permission from Ron Hornbaker,
+CTO of <a class="reference external" href="http://www.humankindsystems.com/">Humankind Systems</a>. It contains 278,858 users
+(anonymized but with demographic information) providing 1,149,780 ratings (explicit / implicit) about 271,379 books.</p></li>
+</ul>
+</div>
+<div class="section" id="games">
+<h2>Games<a class="headerlink" href="#games" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/kang205/SASRec">Steam</a>:
+This dataset is reviews and game information from Steam, which contains 7,793,069 reviews, 2,567,538 users,
+and 32,135 games. In addition to the review text, the data also includes the users’ play hours in each review.</p></li>
+</ul>
+</div>
+<div class="section" id="anime">
+<h2>Anime<a class="headerlink" href="#anime" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.kaggle.com/CooperUnion/anime-recommendations-database">Anime</a>:
+This dataset contains information on user preference data from myanimelist.net. Each user is able to add anime to
+their completed list and give it a rating and this dataset is a compilation of those ratings.</p></li>
+</ul>
+</div>
+<div class="section" id="pictures">
+<h2>Pictures<a class="headerlink" href="#pictures" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/hexiangnan/neural_collaborative_filtering/tree/master/Data">Pinterest</a>:
+This dataset is originally constructed by paper Learning image and user features for recommendations in social networks
+for evaluating content-based image recommendation, and processed by paper Neural Collaborative Filtering.</p></li>
+</ul>
+</div>
+<div class="section" id="jokes">
+<h2>Jokes<a class="headerlink" href="#jokes" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="http://eigentaste.berkeley.edu/dataset/">Jester</a>:
+This dataset contains anonymous ratings of jokes by users of the Jester Joke Recommender System.</p></li>
+</ul>
+</div>
+<div class="section" id="exercises">
+<h2>Exercises<a class="headerlink" href="#exercises" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://pslcdatashop.web.cmu.edu/KDDCup/downloads.jsp">KDD2010</a>:
+This dataset was released in KDD Cup 2010 Educational Data Mining Challenge,
+which contains the situations of students submitting exercises on the systems.</p></li>
+</ul>
+</div>
+<div class="section" id="websites">
+<h2>Websites<a class="headerlink" href="#websites" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="http://archive.ics.uci.edu/ml/datasets/Phishing+Websites">Phishing Websites</a>:
+This dataset contains 30 kinds of features of 11,055 websites and labels of whether they are phishing websites or not.
+The websites’ features includes 12 address-bar based features, 6 abnormal based features, 5 HTML-and-JavaScript based
+features and 7 domain based features.</p></li>
+</ul>
+</div>
+<div class="section" id="adult">
+<h2>Adult<a class="headerlink" href="#adult" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="http://archive.ics.uci.edu/ml/datasets/Adult">Adult</a>:
+This dataset is extracted by Barry Becker from the 1994 Census database, which consists of a list of
+people’s attributes and whether they make over 50k a year.</p></li>
+</ul>
+</div>
+<div class="section" id="news">
+<h2>News<a class="headerlink" href="#news" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://msnews.github.io/">MIND</a>
+This dataset is a large-scale dataset for news recommendation research. It was collected from anonymized behavior logs
+of Microsoft News website. MIND contains about 160k English news articles and more than 15 million impression logs
+generated by 1 million users.</p></li>
+</ul>
+</div>
+<div class="section" id="uncategorized">
+<h2>Uncategorized<a class="headerlink" href="#uncategorized" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="http://shichuan.org/HIN_dataset.html">Douban</a> This is the anonymized Douban dataset contains 129,490 unique users and 58,541 unique movie items.</p></li>
+<li><p><a class="reference external" href="http://www.trustlet.org/epinions.html">Epinions</a> Epinions is a website where people can review products.</p></li>
+<li><p><a class="reference external" href="http://socialcomputing.asu.edu/datasets/Flixster">Flixster</a> Flixster is a social movie site allowing users to share movie ratings, discover new movies and meet others with similar movie taste.</p></li>
+<li><p><a class="reference external" href="https://www.librec.net/datasets.html">CiaoDVD</a> CiaoDVD is a dataset crawled from the entire category of DVDs from the dvd.ciao.co.uk website in December, 2013</p></li>
+<li><p><a class="reference external" href="http://mac.citi.sinica.edu.tw/LJ#.VRGYfOHlZ40">MACLab</a> With the text in the post, the mood tag, and the music title, this project is aimed at studying the users’ moods and music emotions.</p></li>
+<li><p><a class="reference external" href="http://www.eecs.qmul.ac.uk/mmv/datasets/deap/index.html">DEAPdataset</a> A dataset for emotion analysis using eeg, physiological and video signals.</p></li>
+<li><p><a class="reference external" href="http://mypersonality.org/wiki/doku.php">MyPersonalityDataset</a> myPersonality was a popular Facebook application that allowed users to take real psychometric tests, and allowed us to record (with consent!) their psychological and Facebook profiles. Currently, our database contains more than 6,000,000 test results, together with more than 4,000,000 individual Facebook profiles.</p></li>
+<li><p><a class="reference external" href="http://www.kde.cs.uni-kassel.de/bibsonomy/dumps">Bibsonomy</a> Tag Recommendations in Social Bookmarking Systems.</p></li>
+<li><p><a class="reference external" href="http://www.dai-labor.de/en/competence_centers/irml/datasets/">Delicious</a> plista News Recommendation Dataset and Delicious.</p></li>
+<li><p><a class="reference external" href="https://grouplens.org/datasets/movielens/">Movielens</a> Stable benchmark dataset. 20 million ratings and 465,000 tag applications applied to 27,000 movies by 138,000 users. Includes tag genome data with 12 million relevance scores across 1,100 tags.</p></li>
+<li><p><a class="reference external" href="http://eigentaste.berkeley.edu/dataset/">Jester</a> Anonymous Ratings from the Jester Online Joke Recommender System.</p></li>
+<li><p><a class="reference external" href="http://www2.informatik.uni-freiburg.de/~cziegler/BX/">BookCrossing</a>  Book-Crossing Dataset.</p></li>
+<li><p><a class="reference external" href="https://grouplens.org/datasets/hetrec-2011/">LastFM</a> 92,800 artist listening records from 1892 users.</p></li>
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Wikipedia:Database_download#English-language_Wikipedia">Wikipedia</a> Wikipedia offers free copies of all available content to interested users. These databases can be used for mirroring, personal use, informal backups, offline use or database queries.</p></li>
+<li><p><a class="reference external" href="http://planet.openstreetmap.org/planet/full-history/">OpenStreetMap</a> The files found here are complete copies of the OpenStreetMap.org database, including editing history. These are published under an Open Data Commons Open Database License 1.0 licensed. For more information.</p></li>
+<li><p><a class="reference external" href="https://github.com/lab41/hermes">PythonGitCode</a> Hermes is Lab41’s foray into recommender systems. It explores how to choose a recommender system for a new application by analyzing the performance of multiple recommender system algorithms on a variety of datasets.</p></li>
+<li><p><a class="reference external" href="https://gist.github.com/entaroadun/1653794">Gist</a> Recommendation and Ratings Public Data Sets For Machine Learning.</p></li>
+<li><p><a class="reference external" href="https://www.yelp.com/dataset">Yelp</a> The Yelp dataset is a subset of our businesses, reviews, and user data for use in personal, educational, and academic purposes. Available in both JSON and SQL files, use it to teach students about databases, to learn NLP, or for sample production data while you learn how to make mobile apps</p></li>
+<li><p><a class="reference external" href="http://jmcauley.ucsd.edu/data/amazon/">AmazonReviews</a> This dataset contains product reviews and metadata from Amazon, including 142.8 million reviews spanning May 1996 - July 2014. This dataset includes reviews (ratings, text, helpfulness votes), product metadata (descriptions, category information, price, brand, and image features), and links (also viewed/also bought graphs).</p></li>
+<li><p><a class="reference external" href="http://www.citeulike.org/faq/data.adp">CiteULike</a> The CiteULike database is potentially useful for researchers in various fields. Physicists and computer scientists have expressed an interest in trying to analyse the structure of the data, and frequently ask for datasets to be made available. Previously this was done on an ad-hoc basis, and it relied on us remembering to update the data file. Now, there is an automatic process which runs every night producing a snapshot summary of what articles have been posted with which tags.</p></li>
+<li><p><a class="reference external" href="https://tianchi.aliyun.com/datalab/dataSet.htm?spm=5176.100073.888.13.62f83f62aOlMEI&amp;id=1">Taobao</a> The data set contains anonymized users’ shopping logs in the past 6 months before and on the “Double 11” day,and the label information indicating whether they are repeated buyers. Due to privacy issue, data is sampled in a biased way, so the statistical result on this data set would deviate from the actual of Tmall.com.</p></li>
+</ul>
+</div>
+<div class="section" id="statistics">
+<h2>Statistics<a class="headerlink" href="#statistics" title="Permalink to this headline">¶</a></h2>
+<table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="text-align:center head"><p>Data Set</p></th>
+<th class="text-align:center head"><p>Users</p></th>
+<th class="text-align:center head"><p>Items</p></th>
+<th class="text-align:center head"><p>Ratings (Scale)</p></th>
+<th class="text-align:center head"><p>Density</p></th>
+<th class="text-align:center head"><p>Users</p></th>
+<th class="text-align:center head"><p>Links (Type)</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-align:center"><p>Ciao</p></td>
+<td class="text-align:center"><p>7,375</p></td>
+<td class="text-align:center"><p>99,746</p></td>
+<td class="text-align:center"><p>278,483–[1, 5]</p></td>
+<td class="text-align:center"><p>0.0379%</p></td>
+<td class="text-align:center"><p>7,375</p></td>
+<td class="text-align:center"><p>111,781–Trust</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:center"><p>Douban</p></td>
+<td class="text-align:center"><p>129,490</p></td>
+<td class="text-align:center"><p>58,541</p></td>
+<td class="text-align:center"><p>16,830,839–[1, 5]</p></td>
+<td class="text-align:center"><p>0.222%</p></td>
+<td class="text-align:center"><p>129,490</p></td>
+<td class="text-align:center"><p>1,692,952–Friendship</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:center"><p>Epinions (665K)</p></td>
+<td class="text-align:center"><p>40,163</p></td>
+<td class="text-align:center"><p>139,738</p></td>
+<td class="text-align:center"><p>664,824–[1, 5]</p></td>
+<td class="text-align:center"><p>0.0118%</p></td>
+<td class="text-align:center"><p>49,289</p></td>
+<td class="text-align:center"><p>487,183–Trust</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:center"><p>Epinions (510K)</p></td>
+<td class="text-align:center"><p>71,002</p></td>
+<td class="text-align:center"><p>104,356</p></td>
+<td class="text-align:center"><p>508,960–[1, 5]</p></td>
+<td class="text-align:center"><p>0.00687%</p></td>
+<td class="text-align:center"><p></p></td>
+<td class="text-align:center"><p>Trust</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:center"><p>Epinions (Extended)</p></td>
+<td class="text-align:center"><p>120,492</p></td>
+<td class="text-align:center"><p>755,760</p></td>
+<td class="text-align:center"><p>13,668,320–[1, 5]</p></td>
+<td class="text-align:center"><p>0.015%</p></td>
+<td class="text-align:center"><p></p></td>
+<td class="text-align:center"><p>Trust Distrust</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:center"><p>Flixster</p></td>
+<td class="text-align:center"><p>147,612</p></td>
+<td class="text-align:center"><p>48,794</p></td>
+<td class="text-align:center"><p>8,196,077–[0.5, 5.0]</p></td>
+<td class="text-align:center"><p>0.1138%</p></td>
+<td class="text-align:center"><p>787,213</p></td>
+<td class="text-align:center"><p>11,794,648–Friendship</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:center"><p>FilmTrust</p></td>
+<td class="text-align:center"><p>1,508</p></td>
+<td class="text-align:center"><p>2,071</p></td>
+<td class="text-align:center"><p>35,497–[0.5, 4.0]</p></td>
+<td class="text-align:center"><p>1.14%</p></td>
+<td class="text-align:center"><p>1,642</p></td>
+<td class="text-align:center"><p>1,853–Trust</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:center"><p>Jester</p></td>
+<td class="text-align:center"><p>59,132</p></td>
+<td class="text-align:center"><p>140</p></td>
+<td class="text-align:center"><p>1,761,439–Explicit</p></td>
+<td class="text-align:center"><p>21.28%</p></td>
+<td class="text-align:center"><p></p></td>
+<td class="text-align:center"><p></p></td>
+</tr>
+<tr class="row-even"><td class="text-align:center"><p>MovieLens 100K</p></td>
+<td class="text-align:center"><p>943</p></td>
+<td class="text-align:center"><p>1,682</p></td>
+<td class="text-align:center"><p>100,000–[1, 5]</p></td>
+<td class="text-align:center"><p>6.30%</p></td>
+<td class="text-align:center"><p></p></td>
+<td class="text-align:center"><p></p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:center"><p>MovieLens 1M</p></td>
+<td class="text-align:center"><p>6,040</p></td>
+<td class="text-align:center"><p>3,706</p></td>
+<td class="text-align:center"><p>1,000,209–[1, 5]</p></td>
+<td class="text-align:center"><p>4.47%</p></td>
+<td class="text-align:center"><p></p></td>
+<td class="text-align:center"><p></p></td>
+</tr>
+<tr class="row-even"><td class="text-align:center"><p>MovieLens 10M</p></td>
+<td class="text-align:center"><p>71,567</p></td>
+<td class="text-align:center"><p>10,681</p></td>
+<td class="text-align:center"><p>10,000,054–[1, 5]</p></td>
+<td class="text-align:center"><p>1.308%</p></td>
+<td class="text-align:center"><p></p></td>
+<td class="text-align:center"><p></p></td>
+</tr>
+</tbody>
+</table>
+<table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>SN</p></th>
+<th class="head"><p>Dataset</p></th>
+<th class="head"><p>#User</p></th>
+<th class="head"><p>#Item</p></th>
+<th class="head"><p>#Inteaction</p></th>
+<th class="head"><p>Sparsity</p></th>
+<th class="head"><p>Interaction Type</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p><a class="reference external" href="https://github.com/RUCAIBox/RecDatasets/tree/master/dataset_info/MovieLens">MovieLens</a></p></td>
+<td><p>-</p></td>
+<td><p>-</p></td>
+<td><p>-</p></td>
+<td><p>-</p></td>
+<td><p>Rating</p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p>Anime</p></td>
+<td><p>73,515</p></td>
+<td><p>11,200</p></td>
+<td><p>7,813,737</p></td>
+<td><p>99.05%</p></td>
+<td><p>Rating [-1, 1-10]</p></td>
+</tr>
+<tr class="row-even"><td><p>3</p></td>
+<td><p>Epinions</p></td>
+<td><p>116,260</p></td>
+<td><p>41,269</p></td>
+<td><p>188,478</p></td>
+<td><p>99.99%</p></td>
+<td><p>Rating [1-5]</p></td>
+</tr>
+<tr class="row-odd"><td><p>4</p></td>
+<td><p>Yelp</p></td>
+<td><p>1,968,703</p></td>
+<td><p>209,393</p></td>
+<td><p>8,021,122</p></td>
+<td><p>99.99%</p></td>
+<td><p>Rating [1-5]</p></td>
+</tr>
+<tr class="row-even"><td><p>5</p></td>
+<td><p>Netflix</p></td>
+<td><p>480,189</p></td>
+<td><p>17,770</p></td>
+<td><p>100,480,507</p></td>
+<td><p>98.82%</p></td>
+<td><p>Rating [1-5]</p></td>
+</tr>
+<tr class="row-odd"><td><p>6</p></td>
+<td><p>Book-crossing</p></td>
+<td><p>105,284</p></td>
+<td><p>340,557</p></td>
+<td><p>1,149,780</p></td>
+<td><p>99.99%</p></td>
+<td><p>Rating [0-10]</p></td>
+</tr>
+<tr class="row-even"><td><p>7</p></td>
+<td><p>Jester</p></td>
+<td><p>73,421</p></td>
+<td><p>101</p></td>
+<td><p>4,136,360</p></td>
+<td><p>44.22%</p></td>
+<td><p>Rating [-10, 10]</p></td>
+</tr>
+<tr class="row-odd"><td><p>8</p></td>
+<td><p>Douban</p></td>
+<td><p>738,701</p></td>
+<td><p>28</p></td>
+<td><p>2,125,056</p></td>
+<td><p>89.73%</p></td>
+<td><p>Rating [0,5]</p></td>
+</tr>
+<tr class="row-even"><td><p>9</p></td>
+<td><p>Yahoo Music</p></td>
+<td><p>1,948,882</p></td>
+<td><p>98,211</p></td>
+<td><p>11,557,943</p></td>
+<td><p>99.99%</p></td>
+<td><p>Rating [0, 100]</p></td>
+</tr>
+<tr class="row-odd"><td><p>10</p></td>
+<td><p><a class="reference external" href="https://github.com/RUCAIBox/RecommenderSystems-Datasets/tree/master/dataset_info/KDD2010">KDD2010</a></p></td>
+<td><p>-</p></td>
+<td><p>-</p></td>
+<td><p>-</p></td>
+<td><p>-</p></td>
+<td><p>Rating</p></td>
+</tr>
+<tr class="row-even"><td><p>11</p></td>
+<td><p><a class="reference external" href="https://github.com/RUCAIBox/RecommenderSystems-Datasets/tree/master/dataset_info/Amazon">Amazon</a></p></td>
+<td><p>-</p></td>
+<td><p>-</p></td>
+<td><p>-</p></td>
+<td><p>-</p></td>
+<td><p>Rating</p></td>
+</tr>
+<tr class="row-odd"><td><p>12</p></td>
+<td><p>Pinterest</p></td>
+<td><p>55,187</p></td>
+<td><p>9,911</p></td>
+<td><p>1,445,622</p></td>
+<td><p>99.74%</p></td>
+<td><p>-</p></td>
+</tr>
+<tr class="row-even"><td><p>13</p></td>
+<td><p><a class="reference external" href="https://github.com/RUCAIBox/RecommenderSystems-Datasets/tree/master/dataset_info/Gowalla">Gowalla</a></p></td>
+<td><p>107,092</p></td>
+<td><p>1,280,969</p></td>
+<td><p>6,442,892</p></td>
+<td><p>99.99%</p></td>
+<td><p>Check-in</p></td>
+</tr>
+<tr class="row-odd"><td><p>14</p></td>
+<td><p>LastFM</p></td>
+<td><p>1,892</p></td>
+<td><p>17,632</p></td>
+<td><p>92,834</p></td>
+<td><p>99.72%</p></td>
+<td><p>Click</p></td>
+</tr>
+<tr class="row-even"><td><p>15</p></td>
+<td><p><a class="reference external" href="https://github.com/RUCAIBox/RecommenderSystems-Datasets/tree/master/dataset_info/DIGINETICA">DIGINETICA</a></p></td>
+<td><p>600,684</p></td>
+<td><p>184,047</p></td>
+<td><p>993,483</p></td>
+<td><p>99.99%</p></td>
+<td><p>Click</p></td>
+</tr>
+<tr class="row-odd"><td><p>16</p></td>
+<td><p><a class="reference external" href="https://github.com/RUCAIBox/RecommenderSystems-Datasets/tree/master/dataset_info/Steam">Steam</a></p></td>
+<td><p>2,567,538</p></td>
+<td><p>32,135</p></td>
+<td><p>7,793,069</p></td>
+<td><p>99.99%</p></td>
+<td><p>Buy</p></td>
+</tr>
+<tr class="row-even"><td><p>17</p></td>
+<td><p><a class="reference external" href="https://github.com/RUCAIBox/RecommenderSystems-Datasets/tree/master/dataset_info/TaFeng">Ta Feng</a></p></td>
+<td><p>32,266</p></td>
+<td><p>23,812</p></td>
+<td><p>817,741</p></td>
+<td><p>99.89%</p></td>
+<td><p>Click</p></td>
+</tr>
+<tr class="row-odd"><td><p>18</p></td>
+<td><p><a class="reference external" href="https://github.com/RUCAIBox/RecDatasets/tree/master/dataset_info/Foursquare">Foursquare</a></p></td>
+<td><p>-</p></td>
+<td><p>-</p></td>
+<td><p>-</p></td>
+<td><p>-</p></td>
+<td><p>Check-in</p></td>
+</tr>
+<tr class="row-even"><td><p>19</p></td>
+<td><p><a class="reference external" href="https://github.com/RUCAIBox/RecommenderSystems-Datasets/tree/master/dataset_info/Tmall">Tmall</a></p></td>
+<td><p>963,923</p></td>
+<td><p>2,353,207</p></td>
+<td><p>44,528,127</p></td>
+<td><p>99.99%</p></td>
+<td><p>Click/Buy</p></td>
+</tr>
+<tr class="row-odd"><td><p>20</p></td>
+<td><p><a class="reference external" href="https://github.com/RUCAIBox/RecommenderSystems-Datasets/tree/master/dataset_info/YOOCHOOSE">YOOCHOOSE</a></p></td>
+<td><p>9,249,729</p></td>
+<td><p>52,739</p></td>
+<td><p>34,154,697</p></td>
+<td><p>99.99%</p></td>
+<td><p>Click/Buy</p></td>
+</tr>
+<tr class="row-even"><td><p>21</p></td>
+<td><p><a class="reference external" href="https://github.com/RUCAIBox/RecDatasets/tree/master/dataset_info/iPinYou">iPinYou</a></p></td>
+<td><p>12,931,430</p></td>
+<td><p>131</p></td>
+<td><p>15,367,312</p></td>
+<td><p>99.09%</p></td>
+<td><p>View/Click</p></td>
+</tr>
+<tr class="row-odd"><td><p>22</p></td>
+<td><p><a class="reference external" href="https://github.com/RUCAIBox/RecommenderSystems-Datasets/tree/master/dataset_info/Retailrocket">Retailrocket</a></p></td>
+<td><p>1,407,580</p></td>
+<td><p>247,085</p></td>
+<td><p>2,756,101</p></td>
+<td><p>99.99%</p></td>
+<td><p>View/Addtocart/Transaction</p></td>
+</tr>
+<tr class="row-even"><td><p>23</p></td>
+<td><p><a class="reference external" href="https://github.com/RUCAIBox/RecommenderSystems-Datasets/tree/master/dataset_info/LFM-1b">LFM-1b</a></p></td>
+<td><p>120,322</p></td>
+<td><p>3,123,496</p></td>
+<td><p>1,088,161,692</p></td>
+<td><p>99.71%</p></td>
+<td><p>Click</p></td>
+</tr>
+<tr class="row-odd"><td><p>24</p></td>
+<td><p>Criteo</p></td>
+<td><p>-</p></td>
+<td><p>-</p></td>
+<td><p>45,850,617</p></td>
+<td><p>-</p></td>
+<td><p>Click</p></td>
+</tr>
+<tr class="row-even"><td><p>25</p></td>
+<td><p>Avazu</p></td>
+<td><p>-</p></td>
+<td><p>-</p></td>
+<td><p>40,428,967</p></td>
+<td><p>-</p></td>
+<td><p>Click [0, 1]</p></td>
+</tr>
+<tr class="row-odd"><td><p>26</p></td>
+<td><p>Phishing Websites</p></td>
+<td><p>-</p></td>
+<td><p>-</p></td>
+<td><p>11,055</p></td>
+<td><p>-</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p>27</p></td>
+<td><p>Adult</p></td>
+<td><p>-</p></td>
+<td><p>-</p></td>
+<td><p>32,561</p></td>
+<td><p>-</p></td>
+<td><p>income&gt;=50k [0, 1]</p></td>
+</tr>
+<tr class="row-odd"><td><p>28</p></td>
+<td><p>MIND</p></td>
+<td><p>-</p></td>
+<td><p>-</p></td>
+<td><p>-</p></td>
+<td><p>-</p></td>
+<td><p>Click</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="data-sources">
+<h2>Data Sources<a class="headerlink" href="#data-sources" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://drive.google.com/drive/folders/1so0lckI6N6_niVEYaBu-LIcpOdZf99kj?usp=sharing">Google Drive</a></p></li>
+<li><p><a class="reference external" href="https://pan.baidu.com/s/1p51sWMgVFbAaHQmL4aD_-g">Baidu Wangpan</a> (Password: e272)</p></li>
+</ul>
+</div>
+<div class="section" id="references">
+<h2>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://recbole.io/index.html">RecBole</a></p></li>
+<li><p>https://github.com/RUCAIBox/RecSysDatasets</p></li>
+</ul>
+</div>
+<div class="section" id="appendix">
+<h2>Appendix<a class="headerlink" href="#appendix" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://docs.google.com/spreadsheets/d/1iufwr6Zkayu0SUoG78tVQ412oeluil958KakWAjI4gs/edit?usp=sharing">Table format - Google Sheet</a></p></li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Sparsh A..
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

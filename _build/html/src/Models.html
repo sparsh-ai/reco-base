@@ -1,0 +1,865 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>&lt;no title&gt; &mdash; recobase  documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+        <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="&lt;no title&gt;" href="Notebooks.html" />
+    <link rel="prev" title="Shopping" href="Datasets.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> recobase
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Knowledge</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Overview.html">Welcome to RecoBase</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Datasets.html">Shopping</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Datasets.html#advertising">Advertising</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Datasets.html#check-in">Check-in</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Datasets.html#movies">Movies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Datasets.html#music">Music</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Datasets.html#books">Books</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Datasets.html#games">Games</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Datasets.html#anime">Anime</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Datasets.html#pictures">Pictures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Datasets.html#jokes">Jokes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Datasets.html#exercises">Exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Datasets.html#websites">Websites</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Datasets.html#adult">Adult</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Datasets.html#news">News</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Datasets.html#uncategorized">Uncategorized</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Datasets.html#statistics">Statistics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Datasets.html#data-sources">Data Sources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Datasets.html#references">References</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Datasets.html#appendix">Appendix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Libraries.html">Graph based</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Libraries.html#conversational">Conversational</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Libraries.html#causal">Causal</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Papers.html">Survey</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Papers.html#general-methods">General Methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Papers.html#social-recommendation">Social Recommendation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Papers.html#sequential-recommendation">Sequential Recommendation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Papers.html#feature-based-recommendation-ctr-prediction">Feature-based Recommendation (CTR Prediction)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Papers.html#knowledge-graph-based-recommendation">Knowledge Graph-based Recommendation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Papers.html#reinforcement-learning-for-recommendation">Reinforcement Learning for Recommendation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Papers.html#poi-recommendation">POI Recommendation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Papers.html#cold-start-recommendation">Cold-Start Recommendation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Papers.html#security-robutness-of-recsys">Security/Robutness of RecSys</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Papers.html#causal-recommendation">Causal Recommendation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Use-Cases.html">Most common</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Use-Cases.html#industry-specific">Industry specific</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Use-Cases.html#other">Other</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Resources.html">Projects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Resources.html#blog-posts">Blog Posts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Resources.html#tutorials">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Resources.html#knowledge-sources">Knowledge Sources</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="tutorials/notebooks/recsys-imgsim.html">Similar Product Recommendations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials/notebooks/recsys-implicit-negative.html">Retail Product Recommendation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials/notebooks/recsys-ncf.html">Neural Matrix Factorization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials/notebooks/recsys-node2vec.html">Recommender System with Node2vec</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials/notebooks/recsys-prodsim.html">Similar Product Recommender</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials/notebooks/recsys-retrieval.html">Document Retrieval with ElasticSearch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials/notebooks/recsys-vw-contextual.html">Contextual News Personalizer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials/notebooks/recsys-word2vec.html">Product Recommender with word2vec</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">recobase</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>&lt;no title&gt;</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/src/Models.md.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Model</p></th>
+<th class="head"><p>Conference</p></th>
+<th class="head"><p>Year</p></th>
+<th class="head"><p>Paper</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="https://recbole.io/docs/user_guide/model/general/pop.html">popularity</a></p></td>
+<td><p>-</p></td>
+<td><p>-</p></td>
+<td><p>-</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="https://recbole.io/docs/user_guide/model/general/itemknn.html">ItemKNN</a></p></td>
+<td><p>TOIS</p></td>
+<td><p>2004</p></td>
+<td><p>Item-based top-N recommendation algorithms</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="https://recbole.io/docs/user_guide/model/general/bpr.html">BPR</a></p></td>
+<td><p>UAI</p></td>
+<td><p>2009</p></td>
+<td><p>BPR: Bayesian Personalized Ranking from Implicit Feedback</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="https://recbole.io/docs/user_guide/model/general/neumf.html">NeuMF</a></p></td>
+<td><p>WWW</p></td>
+<td><p>2017</p></td>
+<td><p>Neural Collaborative Filtering</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="https://recbole.io/docs/user_guide/model/general/convncf.html">ConvNCF</a></p></td>
+<td><p>IJCAI</p></td>
+<td><p>2017</p></td>
+<td><p>Outer Product-based Neural Collaborative Filtering</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="https://recbole.io/docs/user_guide/model/general/dmf.html">DMF</a></p></td>
+<td><p>IJCAI</p></td>
+<td><p>2017</p></td>
+<td><p>Deep Matrix Factorization Models for Recommender Systems</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="https://recbole.io/docs/user_guide/model/general/fism.html">FISM</a></p></td>
+<td><p>SIGKDD</p></td>
+<td><p>2013</p></td>
+<td><p>FISM: Factored Item Similarity Models for Top-N Recommender Systems</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="https://recbole.io/docs/user_guide/model/general/nais.html">NAIS</a></p></td>
+<td><p>TKDE</p></td>
+<td><p>2018</p></td>
+<td><p>NAIS: Neural Attentive Item Similarity Model for Recommendation</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="https://recbole.io/docs/user_guide/model/general/spectralcf.html">SpectralCF</a></p></td>
+<td><p>RecSys</p></td>
+<td><p>2018</p></td>
+<td><p>Spectral Collaborative Filtering</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="https://recbole.io/docs/user_guide/model/general/gcmc.html">GCMC</a></p></td>
+<td><p>SIGKDD</p></td>
+<td><p>2018</p></td>
+<td><p>Graph Convolutional Matrix Completion</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="https://recbole.io/docs/user_guide/model/general/ngcf.html">NGCF</a></p></td>
+<td><p>SIGIR</p></td>
+<td><p>2019</p></td>
+<td><p>Neural Graph Collaborative Filtering</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="https://recbole.io/docs/user_guide/model/general/lightgcn.html">LightGCN</a></p></td>
+<td><p>SIGIR</p></td>
+<td><p>2020</p></td>
+<td><p>LightGCN: Simplifying and Powering Graph Convolution Network for Recommendation</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="https://recbole.io/docs/user_guide/model/general/dgcf.html">DGCF</a></p></td>
+<td><p>SIGIR</p></td>
+<td><p>2020</p></td>
+<td><p>Disentangled Graph Collaborative Filtering</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="https://recbole.io/docs/user_guide/model/general/multivae.html">MultiVAE</a></p></td>
+<td><p>WWW</p></td>
+<td><p>2018</p></td>
+<td><p>Variational Autoencoders for Collaborative Filtering</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="https://recbole.io/docs/user_guide/model/general/multidae.html">MultiDAE</a></p></td>
+<td><p>WWW</p></td>
+<td><p>2018</p></td>
+<td><p>Variational Autoencoders for Collaborative Filtering</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="https://recbole.io/docs/user_guide/model/general/cdae.html">CDAE</a></p></td>
+<td><p>WSDM</p></td>
+<td><p>2016</p></td>
+<td><p>Collaborative denoising auto-encoders for top-n recommender systems</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="https://recbole.io/docs/user_guide/model/general/macridvae.html">MacridVAE</a></p></td>
+<td><p>NeurIPS</p></td>
+<td><p>2019</p></td>
+<td><p>Learning Disentangled Representations for Recommendation</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="https://recbole.io/docs/user_guide/model/general/line.html">LINE</a></p></td>
+<td><p>WWW</p></td>
+<td><p>2015</p></td>
+<td><p>Large-scale Information Network Embedding</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="https://recbole.io/docs/user_guide/model/general/ease.html">EASE</a></p></td>
+<td><p>WWW</p></td>
+<td><p>2019</p></td>
+<td><p>Embarrassingly Shallow Autoencoders for Sparse Data</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="https://recbole.io/docs/user_guide/model/general/ract.html">RaCT</a></p></td>
+<td><p>ICLR</p></td>
+<td><p>2020</p></td>
+<td><p>RaCT: Towards Amortized Ranking-Critical Training for Collaborative Filtering.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="https://recbole.io/docs/user_guide/model/general/recvae.html">RecVAE</a></p></td>
+<td><p>WSDM</p></td>
+<td><p>2020</p></td>
+<td><p>RecVAE: A new variational autoencoder for Top-N recommendations with implicit feedback.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="https://recbole.io/docs/user_guide/model/general/nncf.html">NNCF</a></p></td>
+<td><p>CIKM</p></td>
+<td><p>2017</p></td>
+<td><p>A Neural Collaborative Filtering Model with Interaction-based Neighborhood.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="https://recbole.io/docs/user_guide/model/general/enmf.html">ENMF</a></p></td>
+<td><p>TOIS</p></td>
+<td><p>2020</p></td>
+<td><p>Efficient Neural Matrix Factorization without Sampling for Recommendation.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="https://recbole.io/docs/user_guide/model/general/slimelastic.html">SLIMElastic</a></p></td>
+<td><p>ICDM</p></td>
+<td><p>2011</p></td>
+<td><p>SLIM: Sparse Linear Methods for Top-N Recommender Systems</p></td>
+</tr>
+<tr class="row-odd"><td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="https://recbole.io/docs/user_guide/model/context/lr.html">LR</a></p></td>
+<td><p>WWW</p></td>
+<td><p>2007</p></td>
+<td><p>Predicting Clicks Estimating the Click-Through Rate for New Ads</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="https://recbole.io/docs/user_guide/model/context/fm.html">FM</a></p></td>
+<td><p>ICDM</p></td>
+<td><p>2010</p></td>
+<td><p>Factorization Machines</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="https://recbole.io/docs/user_guide/model/context/nfm.html">NFM</a></p></td>
+<td><p>SIGIR</p></td>
+<td><p>2017</p></td>
+<td><p>Neural Factorization Machines for Sparse Predictive Analytics</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="https://recbole.io/docs/user_guide/model/context/deepfm.html">DeepFM</a></p></td>
+<td><p>IJCAI</p></td>
+<td><p>2017</p></td>
+<td><p>DeepFM A Factorization-Machine based Neural Network for CTR Prediction</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="https://recbole.io/docs/user_guide/model/context/xdeepfm.html">xDeepFM</a></p></td>
+<td><p>SIGKDD</p></td>
+<td><p>2018</p></td>
+<td><p>xDeepFM: Combining Explicit and Implicit Feature Interactions for Recommender Systems</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="https://recbole.io/docs/user_guide/model/context/afm.html">AFM</a></p></td>
+<td><p>IJCAI</p></td>
+<td><p>2017</p></td>
+<td><p>Attentional Factorization Machines: Learning the Weight of Feature Interactions via Attention Networks</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="https://recbole.io/docs/user_guide/model/context/ffm.html">FFM</a></p></td>
+<td><p>RecSys</p></td>
+<td><p>2016</p></td>
+<td><p>Field-aware Factorization Machines for CTR Prediction</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="https://recbole.io/docs/user_guide/model/context/fwfm.html">FwFM</a></p></td>
+<td><p>WWW</p></td>
+<td><p>2018</p></td>
+<td><p>Field-weighted Factorization Machines for Click-Through Rate Prediction in Display Advertising</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="https://recbole.io/docs/user_guide/model/context/fnn.html">FNN(DNN)</a></p></td>
+<td><p>ECIR</p></td>
+<td><p>2016</p></td>
+<td><p>Deep Learning over Multi-field Categorical Data</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="https://recbole.io/docs/user_guide/model/context/pnn.html">PNN</a></p></td>
+<td><p>ICDM</p></td>
+<td><p>2016</p></td>
+<td><p>Product-based Neural Networks for User Response Prediction</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="https://recbole.io/docs/user_guide/model/context/dssm.html">DSSM</a></p></td>
+<td><p>CIKM</p></td>
+<td><p>2013</p></td>
+<td><p>Learning Deep Structured Semantic Models for Web Search using Clickthrough Data</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="https://recbole.io/docs/user_guide/model/context/widedeep.html">Wide&amp;Deep</a></p></td>
+<td><p>RecSys</p></td>
+<td><p>2016</p></td>
+<td><p>Wide &amp; Deep Learning for Recommender Systems</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="https://recbole.io/docs/user_guide/model/context/din.html">DIN</a></p></td>
+<td><p>SIGKDD</p></td>
+<td><p>2018</p></td>
+<td><p>Deep Interest Network for Click-Through Rate Prediction</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="https://recbole.io/docs/user_guide/model/context/dcn.html">DCN</a></p></td>
+<td><p>ADKDD</p></td>
+<td><p>2017</p></td>
+<td><p>Deep &amp; Cross Network for Ad Click Predictions</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="https://recbole.io/docs/user_guide/model/context/autoint.html">AutoInt</a></p></td>
+<td><p>CIKM</p></td>
+<td><p>2019</p></td>
+<td><p>AutoInt: Automatic Feature Interaction Learning via Self-Attentive Neural Networks</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="https://recbole.io/docs/user_guide/model/context/xgboost.html">XGBoost</a></p></td>
+<td><p>KDD</p></td>
+<td><p>2016</p></td>
+<td><p>XGBoost: A Scalable Tree Boosting System</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="https://recbole.io/docs/user_guide/model/general/lightgbm.html">LightGBM</a></p></td>
+<td><p>NIPS</p></td>
+<td><p>2017</p></td>
+<td><p>LightGBM: A Highly Efficient Gradient Boosting Decision Tree</p></td>
+</tr>
+<tr class="row-odd"><td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="https://recbole.io/docs/user_guide/model/sequential/fpmc.html">FPMC</a></p></td>
+<td><p>WWW</p></td>
+<td><p>2010</p></td>
+<td><p>Factorizing Personalized Markov Chains for Next-Basket Recommendation</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="https://recbole.io/docs/user_guide/model/sequential/gru4rec.html">Improved GRU-Rec</a></p></td>
+<td><p>DLRS</p></td>
+<td><p>2016</p></td>
+<td><p>Improved recurrent neural networks for session-based recommendations</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="https://recbole.io/docs/user_guide/model/sequential/narm.html">NARM</a></p></td>
+<td><p>CIKM</p></td>
+<td><p>2017</p></td>
+<td><p>Neural attentive session-based recommendation</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="https://recbole.io/docs/user_guide/model/sequential/stamp.html">STAMP</a></p></td>
+<td><p>SIGKDD</p></td>
+<td><p>2018</p></td>
+<td><p>STAMP: short-term attention/memory priority model for session-based recommendation.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="https://recbole.io/docs/user_guide/model/sequential/caser.html">Caser</a></p></td>
+<td><p>WSDM</p></td>
+<td><p>2018</p></td>
+<td><p>Personalized Top-N Sequential Recommendation via Convolutional Sequence Embedding</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="https://recbole.io/docs/user_guide/model/sequential/nextitnet.html">NextItnet</a></p></td>
+<td><p>WSDM</p></td>
+<td><p>2019</p></td>
+<td><p>A simple convolutional generative network for next item recommendation</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="https://recbole.io/docs/user_guide/model/sequential/transrec.html">TransRec</a></p></td>
+<td><p>RecSys</p></td>
+<td><p>2017</p></td>
+<td><p>Translation-based Recommendation</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="https://recbole.io/docs/user_guide/model/sequential/sasrec.html">SASRec</a></p></td>
+<td><p>ICDM</p></td>
+<td><p>2018</p></td>
+<td><p>Self-Attentive Sequential Recommendation</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="https://recbole.io/docs/user_guide/model/sequential/bert4rec.html">BERT4Rec</a></p></td>
+<td><p>CIKM</p></td>
+<td><p>2019</p></td>
+<td><p>BERT4Rec: Sequential Recommendation with Bidirectional Encoder Representations from Transformer</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="https://recbole.io/docs/user_guide/model/sequential/srgnn.html">SRGNN</a></p></td>
+<td><p>AAAI</p></td>
+<td><p>2019</p></td>
+<td><p>Session-Based Recommendation with Graph Neural Networks</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="https://recbole.io/docs/user_guide/model/sequential/gcsan.html">GCSAN</a></p></td>
+<td><p>IJCAI</p></td>
+<td><p>2019</p></td>
+<td><p>Graph contextualized self-attention network for session-based recommendation</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="https://recbole.io/docs/user_guide/model/sequential/gru4recf.html">GRU4RecF(+feature embedding)</a></p></td>
+<td><p>RecSys</p></td>
+<td><p>2016</p></td>
+<td><p>Parallel Recurrent Neural Network Architectures for Feature-rich Session-based Recommendations</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="https://recbole.io/docs/user_guide/model/sequential/sasrecf.html">SASRecF(+feature embedding)</a></p></td>
+<td><p>IJCAI</p></td>
+<td><p>2019</p></td>
+<td><p>Feature-level Deeper Self-Attention Network for Sequential Recommendation</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="https://recbole.io/docs/user_guide/model/sequential/fdsa.html">FDSA</a></p></td>
+<td><p>IJCAI</p></td>
+<td><p>2019</p></td>
+<td><p>Feature-level Deeper Self-Attention Network for Sequential Recommendation</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="https://recbole.io/docs/user_guide/model/sequential/s3rec.html">S3Rec</a></p></td>
+<td><p>CIKM</p></td>
+<td><p>2020</p></td>
+<td><p>S^3-Rec: Self-Supervised Learning for Sequential Recommendation with Mutual Information Maximization</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="https://recbole.io/docs/user_guide/model/sequential/gru4reckg.html">GRU+KG Embedding</a></p></td>
+<td><p>-</p></td>
+<td><p>-</p></td>
+<td><p>-</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="https://recbole.io/docs/user_guide/model/sequential/ksr.html">KSR</a></p></td>
+<td><p>SIGIR</p></td>
+<td><p>2018</p></td>
+<td><p>Improving Sequential Recommendation with Knowledge-Enhanced Memory Networks</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="https://github.com/TsingZ0/TLSAN">TLSAN</a></p></td>
+<td><p></p></td>
+<td><p>2021</p></td>
+<td><p>TLSAN: Time-aware Long- and Short-term Attention Network for Next-item Recommendation</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="https://recbole.io/docs/user_guide/model/sequential/fossil.html">Fossil</a></p></td>
+<td><p>ICDM</p></td>
+<td><p>2016</p></td>
+<td><p>Fusing similarity models with Markov chains for sparse sequential recommendation</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="https://recbole.io/docs/user_guide/model/sequential/repeatnet.html">RepeatNet</a></p></td>
+<td><p>AAAI</p></td>
+<td><p>2019</p></td>
+<td><p>A Repeat Aware Neural Recommendation Machine for Session-based Recommendation</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="https://recbole.io/docs/user_guide/model/sequential/shan.html">SHAN</a></p></td>
+<td><p>IJCAI</p></td>
+<td><p>2018</p></td>
+<td><p>Sequential Recommender System based on Hierarchical Attention Network</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="https://recbole.io/docs/user_guide/model/sequential/npe.html">NPE</a></p></td>
+<td><p>IJCAI</p></td>
+<td><p>2018</p></td>
+<td><p>Neural Personalized Embedding for Collaborative Filtering</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="https://recbole.io/docs/user_guide/model/sequential/hrm.html">HRM</a></p></td>
+<td><p>SIGIR</p></td>
+<td><p>2015</p></td>
+<td><p>Learning Hierarchical Representation Model for Next Basket Recommendation</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="https://recbole.io/docs/user_guide/model/sequential/hgn.html">HGN</a></p></td>
+<td><p>SIGKDD</p></td>
+<td><p>2019</p></td>
+<td><p>Hierarchical Gating Networks for Sequential Recommendation</p></td>
+</tr>
+<tr class="row-even"><td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="https://recbole.io/docs/user_guide/model/knowledge/cke.html">CKE</a></p></td>
+<td><p>SIGKDD</p></td>
+<td><p>2016</p></td>
+<td><p>Collaborative Knowledge Base Embedding for Recommender Systems</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="https://recbole.io/docs/user_guide/model/knowledge/cfkg.html">CFKG</a></p></td>
+<td><p>MDPI</p></td>
+<td><p>2018</p></td>
+<td><p>Learning Heterogeneous Knowledge Base Embeddings for Explainable Recommendation</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="https://recbole.io/docs/user_guide/model/knowledge/ktup.html">KTUP</a></p></td>
+<td><p>WWW</p></td>
+<td><p>2019</p></td>
+<td><p>Unifying Knowledge Graph Learning and Recommendation:Towards a Better Understanding of User Preferences</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="https://recbole.io/docs/user_guide/model/knowledge/kgat.html">KGAT</a></p></td>
+<td><p>SIGKDD</p></td>
+<td><p>2019</p></td>
+<td><p>KGAT Knowledge Graph Attention Network for Recommendation</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="https://recbole.io/docs/user_guide/model/knowledge/ripplenet.html">RippleNet</a></p></td>
+<td><p>CIKM</p></td>
+<td><p>2018</p></td>
+<td><p>RippleNet Propagating User Preferences on the Knowledge Graph for Recommender Systems.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="https://recbole.io/docs/user_guide/model/knowledge/mkr.html">MKR</a></p></td>
+<td><p>WWW</p></td>
+<td><p>2019</p></td>
+<td><p>Multi-Task Feature Learning for Knowledge Graph Enhanced Recommendation</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="https://recbole.io/docs/user_guide/model/knowledge/kgcn.html">KGCN</a></p></td>
+<td><p>WWW</p></td>
+<td><p>2019</p></td>
+<td><p>Knowledge graph convolution networks for recommender systems</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="https://recbole.io/docs/user_guide/model/knowledge/kgnnls.html">KGNN-LS</a></p></td>
+<td><p>SIGKDD</p></td>
+<td><p>2019</p></td>
+<td><p>Knowledge-aware Graph Neural Networks with Label Smoothness Regularization for Recommender Systems</p></td>
+</tr>
+</tbody>
+</table>
+<p><a class="reference external" href="https://docs.google.com/spreadsheets/d/1iZLMSs64GnW5SN03DCxR1EMf2XKNtpJhQbyJlwdK9R0/edit?usp=sharing">List of Models (Google sheet)</a></p>
+ <table class="table table-hover table-bordered">
+  <tr>
+		<th>Rating prediction</th>
+		<th>Paper</th>
+  </tr>
+  <tr>
+	<td scope="row">SlopeOne</td>
+    <td>Lemire and Maclachlan, Slope One Predictors for Online Rating-Based Collaborative Filtering, SDM'05.<br>
+    </td>
+  </tr>
+  <tr>
+    <td scope="row">PMF</td>
+    <td>Salakhutdinov and Mnih, Probabilistic Matrix Factorization, NIPS'08.
+     </td>
+  </tr> 
+  <tr>
+    <td scope="row">SoRec</td>
+    <td>Ma et al., SoRec: Social Recommendation Using Probabilistic Matrix Factorization, SIGIR'08.
+     </td>
+  </tr>
+     <tr>
+    <td scope="row">SVD++</td>
+    <td>Koren, Factorization meets the neighborhood: a multifaceted collaborative filtering model, SIGKDD'08.
+     </td>
+  </tr>
+    <tr>
+    <td scope="row">RSTE</td>
+    <td>Ma et al., Learning to Recommend with Social Trust Ensemble, SIGIR'09.
+     </td>
+  </tr>
+  <tr>
+    <td scope="row">SVD</td>
+    <td>Y. Koren, Collaborative Filtering with Temporal Dynamics, SIGKDD'09.
+     </td>
+  </tr>
+  <tr>
+    <td scope="row">SocialMF</td>
+    <td>Jamali and Ester, A Matrix Factorization Technique with Trust Propagation for Recommendation in Social Networks, RecSys'10.
+     </td>
+  </tr>
+    <tr>
+    <td scope="row">EE</td>
+    <td>Khoshneshin et al., Collaborative Filtering via Euclidean Embedding, RecSys'10.
+     </td>
+  </tr>
+    <tr>
+    <td scope="row">SoReg</td>
+    <td>Ma et al., Recommender systems with social regularization, WSDM'11.
+     </td>
+  </tr>
+    <tr>
+    <td scope="row">LOCABAL</td>
+    <td>Tang, Jiliang, et al. Exploiting local and global social context for recommendation, AAAI'13.
+     </td>
+  </tr>
+  <tr>
+    <td scope="row">SREE</td>
+    <td>Li et al., Social Recommendation Using Euclidean embedding, IJCNN'17.
+     </td>
+  </tr>
+    <tr>
+    <td scope="row">CUNE-MF</td>
+    <td>Zhang et al., Collaborative User Network Embedding for Social Recommender Systems, SDM'17.
+     </td>
+  </table>
+  </br>
+  <table class="table table-hover table-bordered">
+  <tr>
+		<th>Item Ranking</th>
+		<th>Paper</th>
+   </tr>
+  <tr>
+	<td scope="row">BPR</td>
+    <td>Rendle et al., BPR: Bayesian Personalized Ranking from Implicit Feedback, UAI'09.<br>
+    </td>
+  </tr>
+    <tr>
+    <td scope="row">WRMF</td>
+    <td>Yifan Hu et al.Collaborative Filtering for Implicit Feedback Datasets, KDD'09.
+     </td>
+  </tr>
+  <tr>
+	<td scope="row">SBPR</td>
+    <td>Zhao et al., Leveraing Social Connections to Improve Personalized Ranking for Collaborative Filtering, CIKM'14<br>
+    </td>
+  </tr>
+  <tr>
+	<td scope="row">ExpoMF</td>
+    <td>Liang et al., Modeling User Exposure in Recommendation, WWW''16.<br>
+    </td>
+  </tr>
+    <tr>
+    <td scope="row">CoFactor</td>
+    <td>Liang et al., Factorization Meets the Item Embedding: Regularizing Matrix Factorization with Item Co-occurrence, RecSys'16.
+     </td>
+  </tr>
+  <tr>
+    <td scope="row">TBPR</td>
+    <td>Wang et al. Social Recommendation with Strong and Weak Ties, CIKM'16'.
+     </td>
+  </tr>
+    <tr>
+	<td scope="row">CDAE</td>
+    <td>Wu et al., Collaborative Denoising Auto-Encoders for Top-N Recommender Systems, WSDM'16'.<br>
+    </td>
+  </tr>
+    <tr>
+	<td scope="row">DMF</td>
+    <td>Xue et al., Deep Matrix Factorization Models for Recommender Systems, IJCAI'17'.<br>
+    </td>
+  </tr>
+    <tr>
+    <td scope="row">NeuMF</td>
+    <td>He et al. Neural Collaborative Filtering, WWW'17.
+     </td>
+  </tr>
+  <tr>
+    <td scope="row">CUNE-BPR</td>
+    <td>Zhang et al., Collaborative User Network Embedding for Social Recommender Systems, SDM'17'.
+     </td>
+  </tr>
+   <tr>
+	<td scope="row">IRGAN</td>
+    <td>Wang et al., IRGAN: A Minimax Game for Unifying Generative and Discriminative Information Retrieval Models, SIGIR'17'.<br>
+    </td>
+  </tr>
+    <tr>
+	<td scope="row">SERec</td>
+    <td>Wang et al., Collaborative Filtering with Social Exposure: A Modular Approach to Social Recommendation, AAAI'18'.<br>
+    </td>
+  </tr>
+    <tr>
+	<td scope="row">APR</td>
+    <td>He et al., Adversarial Personalized Ranking for Recommendation, SIGIR'18'.<br>
+    </td>
+  </tr>
+  <tr>
+    <td scope="row">IF-BPR</td>
+    <td>Yu et al. Adaptive Implicit Friends Identification over Heterogeneous Network for Social Recommendation, CIKM'18'.
+     </td>
+  </tr>
+  <tr>
+    <td scope="row">CFGAN</td>
+    <td>Chae et al. CFGAN: A Generic Collaborative Filtering Framework based
+on Generative Adversarial Networks, CIKM'18.
+     </td>    
+    <tr>
+    <td scope="row">NGCF</td>
+        <td>Wang et al. Neural Graph Collaborative Filtering, SIGIR'19'.
+         </td>
+      </tr>
+     <tr>
+    <td scope="row">DiffNet</td>
+        <td>Wu et al. A Neural Influence Diffusion Model for Social Recommendation, SIGIR'19'.
+         </td>
+      </tr>
+    <tr>
+    <td scope="row">RSGAN</td>
+        <td>Yu et al. Generating Reliable Friends via Adversarial Learning to Improve Social Recommendation, ICDM'19'.
+         </td>
+      </tr>
+     <tr>
+    <td scope="row">LightGCN</td>
+        <td>He et al. LightGCN: Simplifying and Powering Graph Convolution Network for Recommendation, SIGIR'20.
+         </td>
+      </tr>
+     <tr>
+    <td scope="row">DHCF</td>
+        <td>Ji et al. Dual Channel Hypergraph Collaborative Filtering, KDD'20.
+         </td>
+      </tr>
+     <tr>
+    <td scope="row">ESRF</td>
+        <td>Yu et al. Enhancing Social Recommendation with Adversarial Graph Convlutional Networks, TKDE'20.
+         </td>
+      </tr>
+      <tr>
+    <td scope="row">MHCN</td>
+        <td>Yu et al. Self-Supervised Multi-Channel Hypergraph Convolutional Network for Social Recommendation, WWW'21.
+         </td>
+      </tr>
+  </table>
+</div>
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="Notebooks.html" class="btn btn-neutral float-right" title="&lt;no title&gt;" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="Datasets.html" class="btn btn-neutral float-left" title="Shopping" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Sparsh A..
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

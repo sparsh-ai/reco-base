@@ -1,0 +1,2508 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Retail Product Recommendation &mdash; recobase  documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+        <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Neural Matrix Factorization" href="recsys-ncf.html" />
+    <link rel="prev" title="Similar Product Recommendations" href="recsys-imgsim.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> recobase
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Knowledge</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Knowledge.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Knowledge.html#Examples">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Knowledge.html#Datasets">Datasets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Knowledge.html#Models">Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Knowledge.html#Notebooks">Notebooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Knowledge.html#Libraries">Libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Knowledge.html#Papers">Papers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Knowledge.html#Projects">Projects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Knowledge.html#Vendors">Vendors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Knowledge.html#Use-Cases">Use Cases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Knowledge.html#Resources">Resources</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Tutorials</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="recsys-imgsim.html">Similar Product Recommendations</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Retail Product Recommendation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#Data-Loading">Data Loading</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Wrangling">Wrangling</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#Removing-Duplicates">Removing Duplicates</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Label-Encoding">Label Encoding</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#Exploration">Exploration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#User-Interactions">User Interactions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Add-to-cart-Event-Counts">Add-to-cart Event Counts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Purchase-Event-Counts">Purchase Event Counts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Item-Interactions">Item Interactions</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#Rule-based-Approaches">Rule-based Approaches</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#Top-N-Trending-Products">Top-N Trending Products</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Top-N-Least-Viewed-Items">Top-N Least Viewed Items</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#Data-Transformation">Data Transformation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#A.-Count">A. Count</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#B.-Weighted-Count">B. Weighted Count</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#C.-Time-dependent-Count">C. Time dependent Count</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#Train-Test-Split">Train Test Split</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Experiments">Experiments</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#Item-Popularity-Recomendation-Model">Item Popularity Recomendation Model</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Cornac-BPR-Model">Cornac BPR Model</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#SARS-Model">SARS Model</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Spotlight">Spotlight</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#Implicit-Factorization-Model">Implicit Factorization Model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#CNN-Pooling-Sequence-Model">CNN Pooling Sequence Model</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#FastAI-CollabLearner">FastAI CollabLearner</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="recsys-ncf.html">Neural Matrix Factorization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recsys-node2vec.html">Recommender System with Node2vec</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recsys-prodsim.html">Similar Product Recommender</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recsys-retrieval.html">Document Retrieval with ElasticSearch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recsys-vw-contextual.html">Contextual News Personalizer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recsys-word2vec.html">Product Recommender with word2vec</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">recobase</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Retail Product Recommendation</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../../_sources/src/tutorials/recsys-implicit-negative.ipynb.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS for nbsphinx extension */
+
+/* remove conflicting styling from Sphinx themes */
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt *,
+div.nbinput.container div.input_area pre,
+div.nboutput.container div.output_area pre,
+div.nbinput.container div.input_area .highlight,
+div.nboutput.container div.output_area .highlight {
+    border: none;
+    padding: 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+div.nbinput.container > div[class*=highlight],
+div.nboutput.container > div[class*=highlight] {
+    margin: 0;
+}
+
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt * {
+    background: none;
+}
+
+div.nboutput.container div.output_area .highlight,
+div.nboutput.container div.output_area pre {
+    background: unset;
+}
+
+div.nboutput.container div.output_area div.highlight {
+    color: unset;  /* override Pygments text color */
+}
+
+/* avoid gaps between output lines */
+div.nboutput.container div[class*=highlight] pre {
+    line-height: normal;
+}
+
+/* input/output containers */
+div.nbinput.container,
+div.nboutput.container {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+    width: 100%;
+}
+@media (max-width: 540px) {
+    div.nbinput.container,
+    div.nboutput.container {
+        flex-direction: column;
+    }
+}
+
+/* input container */
+div.nbinput.container {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast.container {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput.container div.prompt pre {
+    color: #307FC1;
+}
+
+/* output prompt */
+div.nboutput.container div.prompt pre {
+    color: #BF5B3D;
+}
+
+/* all prompts */
+div.nbinput.container div.prompt,
+div.nboutput.container div.prompt {
+    width: 4.5ex;
+    padding-top: 5px;
+    position: relative;
+    user-select: none;
+}
+
+div.nbinput.container div.prompt > div,
+div.nboutput.container div.prompt > div {
+    position: absolute;
+    right: 0;
+    margin-right: 0.3ex;
+}
+
+@media (max-width: 540px) {
+    div.nbinput.container div.prompt,
+    div.nboutput.container div.prompt {
+        width: unset;
+        text-align: left;
+        padding: 0.4em;
+    }
+    div.nboutput.container div.prompt.empty {
+        padding: 0;
+    }
+
+    div.nbinput.container div.prompt > div,
+    div.nboutput.container div.prompt > div {
+        position: unset;
+    }
+}
+
+/* disable scrollbars on prompts */
+div.nbinput.container div.prompt pre,
+div.nboutput.container div.prompt pre {
+    overflow: hidden;
+}
+
+/* input/output area */
+div.nbinput.container div.input_area,
+div.nboutput.container div.output_area {
+    -webkit-flex: 1;
+    flex: 1;
+    overflow: auto;
+}
+@media (max-width: 540px) {
+    div.nbinput.container div.input_area,
+    div.nboutput.container div.output_area {
+        width: 100%;
+    }
+}
+
+/* input area */
+div.nbinput.container div.input_area {
+    border: 1px solid #e0e0e0;
+    border-radius: 2px;
+    /*background: #f5f5f5;*/
+}
+
+/* override MathJax center alignment in output cells */
+div.nboutput.container div[class*=MathJax] {
+    text-align: left !important;
+}
+
+/* override sphinx.ext.imgmath center alignment in output cells */
+div.nboutput.container div.math p {
+    text-align: left;
+}
+
+/* standard error */
+div.nboutput.container div.output_area.stderr {
+    background: #fdd;
+}
+
+/* ANSI colors */
+.ansi-black-fg { color: #3E424D; }
+.ansi-black-bg { background-color: #3E424D; }
+.ansi-black-intense-fg { color: #282C36; }
+.ansi-black-intense-bg { background-color: #282C36; }
+.ansi-red-fg { color: #E75C58; }
+.ansi-red-bg { background-color: #E75C58; }
+.ansi-red-intense-fg { color: #B22B31; }
+.ansi-red-intense-bg { background-color: #B22B31; }
+.ansi-green-fg { color: #00A250; }
+.ansi-green-bg { background-color: #00A250; }
+.ansi-green-intense-fg { color: #007427; }
+.ansi-green-intense-bg { background-color: #007427; }
+.ansi-yellow-fg { color: #DDB62B; }
+.ansi-yellow-bg { background-color: #DDB62B; }
+.ansi-yellow-intense-fg { color: #B27D12; }
+.ansi-yellow-intense-bg { background-color: #B27D12; }
+.ansi-blue-fg { color: #208FFB; }
+.ansi-blue-bg { background-color: #208FFB; }
+.ansi-blue-intense-fg { color: #0065CA; }
+.ansi-blue-intense-bg { background-color: #0065CA; }
+.ansi-magenta-fg { color: #D160C4; }
+.ansi-magenta-bg { background-color: #D160C4; }
+.ansi-magenta-intense-fg { color: #A03196; }
+.ansi-magenta-intense-bg { background-color: #A03196; }
+.ansi-cyan-fg { color: #60C6C8; }
+.ansi-cyan-bg { background-color: #60C6C8; }
+.ansi-cyan-intense-fg { color: #258F8F; }
+.ansi-cyan-intense-bg { background-color: #258F8F; }
+.ansi-white-fg { color: #C5C1B4; }
+.ansi-white-bg { background-color: #C5C1B4; }
+.ansi-white-intense-fg { color: #A1A6B2; }
+.ansi-white-intense-bg { background-color: #A1A6B2; }
+
+.ansi-default-inverse-fg { color: #FFFFFF; }
+.ansi-default-inverse-bg { background-color: #000000; }
+
+.ansi-bold { font-weight: bold; }
+.ansi-underline { text-decoration: underline; }
+
+
+div.nbinput.container div.input_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight].math,
+div.nboutput.container div.output_area.rendered_html,
+div.nboutput.container div.output_area > div.output_javascript,
+div.nboutput.container div.output_area:not(.rendered_html) > img{
+    padding: 5px;
+    margin: 0;
+}
+
+/* fix copybtn overflow problem in chromium (needed for 'sphinx_copybutton') */
+div.nbinput.container div.input_area > div[class^='highlight'],
+div.nboutput.container div.output_area > div[class^='highlight']{
+    overflow-y: hidden;
+}
+
+/* hide copybtn icon on prompts (needed for 'sphinx_copybutton') */
+.prompt a.copybtn {
+    display: none;
+}
+
+/* Some additional styling taken form the Jupyter notebook CSS */
+div.rendered_html table {
+  border: none;
+  border-collapse: collapse;
+  border-spacing: 0;
+  color: black;
+  font-size: 12px;
+  table-layout: fixed;
+}
+div.rendered_html thead {
+  border-bottom: 1px solid black;
+  vertical-align: bottom;
+}
+div.rendered_html tr,
+div.rendered_html th,
+div.rendered_html td {
+  text-align: right;
+  vertical-align: middle;
+  padding: 0.5em 0.5em;
+  line-height: normal;
+  white-space: normal;
+  max-width: none;
+  border: none;
+}
+div.rendered_html th {
+  font-weight: bold;
+}
+div.rendered_html tbody tr:nth-child(odd) {
+  background: #f5f5f5;
+}
+div.rendered_html tbody tr:hover {
+  background: rgba(66, 165, 245, 0.2);
+}
+
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<div class="section" id="Retail-Product-Recommendation">
+<h1>Retail Product Recommendation<a class="headerlink" href="#Retail-Product-Recommendation" title="Permalink to this headline">¶</a></h1>
+<blockquote>
+<div><p><strong>Retail Product Recommendation with Negative Implicit Feedback</strong> - A tutorial to demonstrate the process of training and evaluating various recommender models on a online retail store data. Along with the positive feedbacks like view, add-to-cart, we also have a negative event ‘remove-from-cart’.</p>
+</div></blockquote>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1">#hide</span>
+<span class="o">!</span>pip install git+https://github.com/maciejkula/spotlight.git@master#egg<span class="o">=</span>spotlight
+<span class="o">!</span>git clone https://github.com/microsoft/recommenders.git
+<span class="o">!</span>pip install cornac
+<span class="o">!</span>pip install <span class="nv">pandas</span><span class="o">==</span><span class="m">0</span>.25.0
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1">#hide</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">math</span>
+<span class="kn">import</span> <span class="nn">random</span>
+<span class="kn">import</span> <span class="nn">datetime</span>
+<span class="kn">import</span> <span class="nn">itertools</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">preprocessing</span>
+<span class="kn">from</span> <span class="nn">scipy.sparse</span> <span class="kn">import</span> <span class="n">csr_matrix</span><span class="p">,</span> <span class="n">dok_matrix</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">ParameterGrid</span>
+
+<span class="kn">from</span> <span class="nn">fastai.collab</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">fastai.tabular</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">fastai.text</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="kn">import</span> <span class="nn">cornac</span>
+
+<span class="kn">from</span> <span class="nn">spotlight.interactions</span> <span class="kn">import</span> <span class="n">Interactions</span>
+<span class="kn">from</span> <span class="nn">spotlight.interactions</span> <span class="kn">import</span> <span class="n">SequenceInteractions</span>
+<span class="kn">from</span> <span class="nn">spotlight.cross_validation</span> <span class="kn">import</span> <span class="n">random_train_test_split</span>
+<span class="kn">from</span> <span class="nn">spotlight.cross_validation</span> <span class="kn">import</span> <span class="n">user_based_train_test_split</span>
+<span class="kn">from</span> <span class="nn">spotlight.factorization.implicit</span> <span class="kn">import</span> <span class="n">ImplicitFactorizationModel</span>
+<span class="kn">from</span> <span class="nn">spotlight.evaluation</span> <span class="kn">import</span> <span class="n">mrr_score</span>
+<span class="kn">from</span> <span class="nn">spotlight.evaluation</span> <span class="kn">import</span> <span class="n">precision_recall_score</span>
+
+<span class="kn">from</span> <span class="nn">spotlight.interactions</span> <span class="kn">import</span> <span class="n">Interactions</span>
+<span class="kn">from</span> <span class="nn">spotlight.cross_validation</span> <span class="kn">import</span> <span class="n">random_train_test_split</span>
+<span class="kn">from</span> <span class="nn">spotlight.cross_validation</span> <span class="kn">import</span> <span class="n">user_based_train_test_split</span>
+<span class="kn">from</span> <span class="nn">spotlight.factorization.implicit</span> <span class="kn">import</span> <span class="n">ImplicitFactorizationModel</span>
+<span class="kn">from</span> <span class="nn">spotlight.evaluation</span> <span class="kn">import</span> <span class="n">mrr_score</span>
+<span class="kn">from</span> <span class="nn">spotlight.evaluation</span> <span class="kn">import</span> <span class="n">precision_recall_score</span>
+
+<span class="kn">from</span> <span class="nn">spotlight.interactions</span> <span class="kn">import</span> <span class="n">SequenceInteractions</span>
+<span class="kn">from</span> <span class="nn">spotlight.sequence.implicit</span> <span class="kn">import</span> <span class="n">ImplicitSequenceModel</span>
+<span class="kn">from</span> <span class="nn">spotlight.evaluation</span> <span class="kn">import</span> <span class="n">sequence_mrr_score</span>
+<span class="kn">from</span> <span class="nn">spotlight.evaluation</span> <span class="kn">import</span> <span class="n">sequence_precision_recall_score</span>
+
+<span class="kn">import</span> <span class="nn">warnings</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1">#hide</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;/content/recommenders/&#39;</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">reco_utils.dataset.python_splitters</span> <span class="kn">import</span> <span class="n">python_chrono_split</span>
+<span class="kn">from</span> <span class="nn">reco_utils.evaluation.python_evaluation</span> <span class="kn">import</span> <span class="n">map_at_k</span>
+<span class="kn">from</span> <span class="nn">reco_utils.evaluation.python_evaluation</span> <span class="kn">import</span> <span class="n">precision_at_k</span>
+<span class="kn">from</span> <span class="nn">reco_utils.evaluation.python_evaluation</span> <span class="kn">import</span> <span class="n">ndcg_at_k</span>
+<span class="kn">from</span> <span class="nn">reco_utils.evaluation.python_evaluation</span> <span class="kn">import</span> <span class="n">recall_at_k</span>
+<span class="kn">from</span> <span class="nn">reco_utils.evaluation.python_evaluation</span> <span class="kn">import</span> <span class="n">get_top_k_items</span>
+<span class="kn">from</span> <span class="nn">reco_utils.recommender.cornac.cornac_utils</span> <span class="kn">import</span> <span class="n">predict_ranking</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="Data-Loading">
+<h2>Data Loading<a class="headerlink" href="#Data-Loading" title="Permalink to this headline">¶</a></h2>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1"># loading data</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;rawdata.csv&#39;</span><span class="p">,</span> <span class="n">header</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+                 <span class="n">names</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;event&#39;</span><span class="p">,</span><span class="s1">&#39;userid&#39;</span><span class="p">,</span><span class="s1">&#39;itemid&#39;</span><span class="p">,</span><span class="s1">&#39;timestamp&#39;</span><span class="p">],</span>
+                 <span class="n">dtype</span><span class="o">=</span><span class="p">{</span><span class="mi">0</span><span class="p">:</span><span class="s1">&#39;category&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span><span class="s1">&#39;category&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span><span class="s1">&#39;category&#39;</span><span class="p">},</span>
+                 <span class="n">parse_dates</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;timestamp&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>event</th>
+      <th>userid</th>
+      <th>itemid</th>
+      <th>timestamp</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>view_item</td>
+      <td>2763227</td>
+      <td>11056</td>
+      <td>2020-01-13 16:05:31.244000+00:00</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>add_to_cart</td>
+      <td>2828666</td>
+      <td>14441</td>
+      <td>2020-01-13 22:36:38.680000+00:00</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>view_item</td>
+      <td>0620225789</td>
+      <td>14377</td>
+      <td>2020-01-14 10:54:41.886000+00:00</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>view_item</td>
+      <td>0620225789</td>
+      <td>14377</td>
+      <td>2020-01-14 10:54:47.692000+00:00</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>add_to_cart</td>
+      <td>0620225789</td>
+      <td>14377</td>
+      <td>2020-01-14 10:54:48.479000+00:00</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">df</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+RangeIndex: 99998 entries, 0 to 99997
+Data columns (total 4 columns):
+event        99998 non-null category
+userid       99998 non-null category
+itemid       99998 non-null category
+timestamp    99998 non-null datetime64[ns, UTC]
+dtypes: category(3), datetime64[ns, UTC](1)
+memory usage: 1.7 MB
+</pre></div></div>
+</div>
+</div>
+<div class="section" id="Wrangling">
+<h2>Wrangling<a class="headerlink" href="#Wrangling" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="Removing-Duplicates">
+<h3>Removing Duplicates<a class="headerlink" href="#Removing-Duplicates" title="Permalink to this headline">¶</a></h3>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1"># dropping exact duplicates</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="Label-Encoding">
+<h3>Label Encoding<a class="headerlink" href="#Label-Encoding" title="Permalink to this headline">¶</a></h3>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1"># userid normalization</span>
+<span class="n">userid_encoder</span> <span class="o">=</span> <span class="n">preprocessing</span><span class="o">.</span><span class="n">LabelEncoder</span><span class="p">()</span>
+<span class="n">df</span><span class="o">.</span><span class="n">userid</span> <span class="o">=</span> <span class="n">userid_encoder</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">userid</span><span class="p">)</span>
+
+<span class="c1"># itemid normalization</span>
+<span class="n">itemid_encoder</span> <span class="o">=</span> <span class="n">preprocessing</span><span class="o">.</span><span class="n">LabelEncoder</span><span class="p">()</span>
+<span class="n">df</span><span class="o">.</span><span class="n">itemid</span> <span class="o">=</span> <span class="n">itemid_encoder</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">itemid</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="Exploration">
+<h2>Exploration<a class="headerlink" href="#Exploration" title="Permalink to this headline">¶</a></h2>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">df</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span><span class="o">.</span><span class="n">T</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>count</th>
+      <th>mean</th>
+      <th>std</th>
+      <th>min</th>
+      <th>25%</th>
+      <th>50%</th>
+      <th>75%</th>
+      <th>max</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>userid</th>
+      <td>99432.0</td>
+      <td>4682.814677</td>
+      <td>3011.178734</td>
+      <td>0.0</td>
+      <td>2507.0</td>
+      <td>3687.0</td>
+      <td>6866.0</td>
+      <td>11476.0</td>
+    </tr>
+    <tr>
+      <th>itemid</th>
+      <td>99432.0</td>
+      <td>1344.579964</td>
+      <td>769.627122</td>
+      <td>0.0</td>
+      <td>643.0</td>
+      <td>1356.0</td>
+      <td>1997.0</td>
+      <td>2633.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">df</span><span class="o">.</span><span class="n">describe</span><span class="p">(</span><span class="n">exclude</span><span class="o">=</span><span class="s1">&#39;int&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>count</th>
+      <th>unique</th>
+      <th>top</th>
+      <th>freq</th>
+      <th>first</th>
+      <th>last</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>event</th>
+      <td>99432</td>
+      <td>5</td>
+      <td>begin_checkout</td>
+      <td>41459</td>
+      <td>NaT</td>
+      <td>NaT</td>
+    </tr>
+    <tr>
+      <th>timestamp</th>
+      <td>99432</td>
+      <td>61372</td>
+      <td>2020-01-16 04:21:49.377000+00:00</td>
+      <td>25</td>
+      <td>2020-01-13 16:05:31.244000+00:00</td>
+      <td>2020-03-10 13:02:21.376000+00:00</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">df</span><span class="o">.</span><span class="n">timestamp</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="o">-</span> <span class="n">df</span><span class="o">.</span><span class="n">timestamp</span><span class="o">.</span><span class="n">min</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Timedelta(&#39;56 days 20:56:50.132000&#39;)
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">df</span><span class="o">.</span><span class="n">event</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+begin_checkout      41459
+view_item           35397
+purchase             9969
+add_to_cart          7745
+remove_from_cart     4862
+Name: event, dtype: int64
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">df</span><span class="o">.</span><span class="n">event</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">/</span><span class="n">df</span><span class="o">.</span><span class="n">userid</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+begin_checkout      3.612355
+view_item           3.084168
+purchase            0.868607
+add_to_cart         0.674828
+remove_from_cart    0.423630
+Name: event, dtype: float64
+</pre></div></div>
+</div>
+<div class="section" id="User-Interactions">
+<h3>User Interactions<a class="headerlink" href="#User-Interactions" title="Permalink to this headline">¶</a></h3>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1">#hide-input</span>
+<span class="c1"># User events</span>
+<span class="n">user_activity_count</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">itertuples</span><span class="p">():</span>
+    <span class="k">if</span> <span class="n">row</span><span class="o">.</span><span class="n">userid</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">user_activity_count</span><span class="p">:</span>
+        <span class="n">user_activity_count</span><span class="p">[</span><span class="n">row</span><span class="o">.</span><span class="n">userid</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;view_item&#39;</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span>
+                                           <span class="s1">&#39;add_to_cart&#39;</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span>
+                                           <span class="s1">&#39;begin_checkout&#39;</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span>
+                                           <span class="s1">&#39;remove_from_cart&#39;</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span>
+                                           <span class="s1">&#39;purchase&#39;</span><span class="p">:</span><span class="mi">0</span><span class="p">}</span>
+    <span class="k">if</span> <span class="n">row</span><span class="o">.</span><span class="n">event</span> <span class="o">==</span> <span class="s1">&#39;view_item&#39;</span><span class="p">:</span>
+        <span class="n">user_activity_count</span><span class="p">[</span><span class="n">row</span><span class="o">.</span><span class="n">userid</span><span class="p">][</span><span class="s1">&#39;view_item&#39;</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="k">elif</span> <span class="n">row</span><span class="o">.</span><span class="n">event</span> <span class="o">==</span> <span class="s1">&#39;add_to_cart&#39;</span><span class="p">:</span>
+        <span class="n">user_activity_count</span><span class="p">[</span><span class="n">row</span><span class="o">.</span><span class="n">userid</span><span class="p">][</span><span class="s1">&#39;add_to_cart&#39;</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="k">elif</span> <span class="n">row</span><span class="o">.</span><span class="n">event</span> <span class="o">==</span> <span class="s1">&#39;begin_checkout&#39;</span><span class="p">:</span>
+        <span class="n">user_activity_count</span><span class="p">[</span><span class="n">row</span><span class="o">.</span><span class="n">userid</span><span class="p">][</span><span class="s1">&#39;begin_checkout&#39;</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="k">elif</span> <span class="n">row</span><span class="o">.</span><span class="n">event</span> <span class="o">==</span> <span class="s1">&#39;remove_from_cart&#39;</span><span class="p">:</span>
+        <span class="n">user_activity_count</span><span class="p">[</span><span class="n">row</span><span class="o">.</span><span class="n">userid</span><span class="p">][</span><span class="s1">&#39;remove_from_cart&#39;</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="k">elif</span> <span class="n">row</span><span class="o">.</span><span class="n">event</span> <span class="o">==</span> <span class="s1">&#39;purchase&#39;</span><span class="p">:</span>
+        <span class="n">user_activity_count</span><span class="p">[</span><span class="n">row</span><span class="o">.</span><span class="n">userid</span><span class="p">][</span><span class="s1">&#39;purchase&#39;</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+
+<span class="n">user_activity</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">user_activity_count</span><span class="p">)</span>
+<span class="n">user_activity</span> <span class="o">=</span> <span class="n">user_activity</span><span class="o">.</span><span class="n">transpose</span><span class="p">()</span>
+<span class="n">user_activity</span><span class="p">[</span><span class="s1">&#39;activity&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">user_activity</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">tempDF</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">user_activity</span><span class="o">.</span><span class="n">activity</span><span class="o">.</span><span class="n">value_counts</span><span class="p">())</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+<span class="n">tempDF</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;#Interactions&#39;</span><span class="p">,</span><span class="s1">&#39;#Users&#39;</span><span class="p">]</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">scatterplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s1">&#39;#Interactions&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;#Users&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">tempDF</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/src_tutorials_recsys-implicit-negative_20_0.png" src="../../_images/src_tutorials_recsys-implicit-negative_20_0.png" />
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1">#hide</span>
+<span class="n">df_activity</span> <span class="o">=</span> <span class="n">user_activity</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">event</span> <span class="o">=</span> <span class="n">df_activity</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;str&#39;</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">countplot</span><span class="p">(</span><span class="n">df_activity</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df_activity</span><span class="p">[</span><span class="n">event</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">,</span><span class="n">event</span><span class="p">[</span><span class="mi">0</span><span class="p">]]);</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/src_tutorials_recsys-implicit-negative_21_0.png" src="../../_images/src_tutorials_recsys-implicit-negative_21_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="Add-to-cart-Event-Counts">
+<h3>Add-to-cart Event Counts<a class="headerlink" href="#Add-to-cart-Event-Counts" title="Permalink to this headline">¶</a></h3>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1">#hide-input</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">countplot</span><span class="p">(</span><span class="n">df_activity</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df_activity</span><span class="p">[</span><span class="n">event</span><span class="p">[</span><span class="mi">1</span><span class="p">]]</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">,</span><span class="n">event</span><span class="p">[</span><span class="mi">1</span><span class="p">]])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/src_tutorials_recsys-implicit-negative_23_0.png" src="../../_images/src_tutorials_recsys-implicit-negative_23_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="Purchase-Event-Counts">
+<h3>Purchase Event Counts<a class="headerlink" href="#Purchase-Event-Counts" title="Permalink to this headline">¶</a></h3>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1">#hide-input</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">countplot</span><span class="p">(</span><span class="n">df_activity</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df_activity</span><span class="p">[</span><span class="n">event</span><span class="p">[</span><span class="mi">4</span><span class="p">]]</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">,</span><span class="n">event</span><span class="p">[</span><span class="mi">4</span><span class="p">]])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/src_tutorials_recsys-implicit-negative_25_0.png" src="../../_images/src_tutorials_recsys-implicit-negative_25_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="Item-Interactions">
+<h3>Item Interactions<a class="headerlink" href="#Item-Interactions" title="Permalink to this headline">¶</a></h3>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1">#hide-input</span>
+<span class="c1"># item events</span>
+<span class="n">item_activity_count</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">itertuples</span><span class="p">():</span>
+    <span class="k">if</span> <span class="n">row</span><span class="o">.</span><span class="n">itemid</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">item_activity_count</span><span class="p">:</span>
+        <span class="n">item_activity_count</span><span class="p">[</span><span class="n">row</span><span class="o">.</span><span class="n">itemid</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;view_item&#39;</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span>
+                                           <span class="s1">&#39;add_to_cart&#39;</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span>
+                                           <span class="s1">&#39;begin_checkout&#39;</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span>
+                                           <span class="s1">&#39;remove_from_cart&#39;</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span>
+                                           <span class="s1">&#39;purchase&#39;</span><span class="p">:</span><span class="mi">0</span><span class="p">}</span>
+    <span class="k">if</span> <span class="n">row</span><span class="o">.</span><span class="n">event</span> <span class="o">==</span> <span class="s1">&#39;view_item&#39;</span><span class="p">:</span>
+        <span class="n">item_activity_count</span><span class="p">[</span><span class="n">row</span><span class="o">.</span><span class="n">itemid</span><span class="p">][</span><span class="s1">&#39;view_item&#39;</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="k">elif</span> <span class="n">row</span><span class="o">.</span><span class="n">event</span> <span class="o">==</span> <span class="s1">&#39;add_to_cart&#39;</span><span class="p">:</span>
+        <span class="n">item_activity_count</span><span class="p">[</span><span class="n">row</span><span class="o">.</span><span class="n">itemid</span><span class="p">][</span><span class="s1">&#39;add_to_cart&#39;</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="k">elif</span> <span class="n">row</span><span class="o">.</span><span class="n">event</span> <span class="o">==</span> <span class="s1">&#39;begin_checkout&#39;</span><span class="p">:</span>
+        <span class="n">item_activity_count</span><span class="p">[</span><span class="n">row</span><span class="o">.</span><span class="n">itemid</span><span class="p">][</span><span class="s1">&#39;begin_checkout&#39;</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="k">elif</span> <span class="n">row</span><span class="o">.</span><span class="n">event</span> <span class="o">==</span> <span class="s1">&#39;remove_from_cart&#39;</span><span class="p">:</span>
+        <span class="n">item_activity_count</span><span class="p">[</span><span class="n">row</span><span class="o">.</span><span class="n">itemid</span><span class="p">][</span><span class="s1">&#39;remove_from_cart&#39;</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="k">elif</span> <span class="n">row</span><span class="o">.</span><span class="n">event</span> <span class="o">==</span> <span class="s1">&#39;purchase&#39;</span><span class="p">:</span>
+        <span class="n">item_activity_count</span><span class="p">[</span><span class="n">row</span><span class="o">.</span><span class="n">itemid</span><span class="p">][</span><span class="s1">&#39;purchase&#39;</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+
+<span class="n">item_activity</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">item_activity_count</span><span class="p">)</span>
+<span class="n">item_activity</span> <span class="o">=</span> <span class="n">item_activity</span><span class="o">.</span><span class="n">transpose</span><span class="p">()</span>
+<span class="n">item_activity</span><span class="p">[</span><span class="s1">&#39;activity&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">item_activity</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">tempDF</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">item_activity</span><span class="o">.</span><span class="n">activity</span><span class="o">.</span><span class="n">value_counts</span><span class="p">())</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+<span class="n">tempDF</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;#Interactions&#39;</span><span class="p">,</span><span class="s1">&#39;#Items&#39;</span><span class="p">]</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">scatterplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s1">&#39;#Interactions&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;#Items&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">tempDF</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/src_tutorials_recsys-implicit-negative_27_0.png" src="../../_images/src_tutorials_recsys-implicit-negative_27_0.png" />
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1">#hide</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;figure.figsize&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">15</span><span class="p">,</span><span class="mi">3</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;timestamp&#39;</span><span class="p">],</span> <span class="n">infer_datetime_format</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+<span class="n">data</span><span class="p">[</span><span class="s1">&#39;Count&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">data</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;timestamp&#39;</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">resample</span><span class="p">(</span><span class="s1">&#39;D&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">apply</span><span class="p">({</span><span class="s1">&#39;Count&#39;</span><span class="p">:</span><span class="s1">&#39;count&#39;</span><span class="p">})</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;Count&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/src_tutorials_recsys-implicit-negative_28_0.png" src="../../_images/src_tutorials_recsys-implicit-negative_28_0.png" />
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="Rule-based-Approaches">
+<h2>Rule-based Approaches<a class="headerlink" href="#Rule-based-Approaches" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="Top-N-Trending-Products">
+<h3>Top-N Trending Products<a class="headerlink" href="#Top-N-Trending-Products" title="Permalink to this headline">¶</a></h3>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[21]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1">#collapse</span>
+<span class="k">def</span> <span class="nf">top_trending</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">timeperiod</span><span class="p">,</span> <span class="n">timestamp</span><span class="p">):</span>
+  <span class="n">start</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">timestamp</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">microsecond</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="o">-</span> <span class="n">pd</span><span class="o">.</span><span class="n">Timedelta</span><span class="p">(</span><span class="n">minutes</span><span class="o">=</span><span class="n">timeperiod</span><span class="p">))</span>
+  <span class="n">end</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">timestamp</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">microsecond</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
+  <span class="n">trending_items</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">df</span><span class="o">.</span><span class="n">timestamp</span><span class="o">.</span><span class="n">between</span><span class="p">(</span><span class="n">start</span><span class="p">,</span><span class="n">end</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">event</span><span class="o">==</span><span class="s1">&#39;view_item&#39;</span><span class="p">)),:]</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s1">&#39;timestamp&#39;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+  <span class="k">return</span> <span class="n">trending_items</span><span class="o">.</span><span class="n">itemid</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">index</span><span class="p">[:</span><span class="n">n</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[27]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">user_current_time</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">timestamp</span><span class="p">[</span><span class="mi">100</span><span class="p">]</span>
+<span class="n">top_trending</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="n">user_current_time</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[27]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Int64Index([2241, 972, 393, 1118, 126], dtype=&#39;int64&#39;)
+</pre></div></div>
+</div>
+</div>
+<div class="section" id="Top-N-Least-Viewed-Items">
+<h3>Top-N Least Viewed Items<a class="headerlink" href="#Top-N-Least-Viewed-Items" title="Permalink to this headline">¶</a></h3>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[28]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1">#collapse</span>
+<span class="k">def</span> <span class="nf">least_n_items</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
+  <span class="n">temp1</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">event</span><span class="o">==</span><span class="s1">&#39;view_item&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;itemid&#39;</span><span class="p">])[</span><span class="s1">&#39;event&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">count</span><span class="p">()</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+  <span class="n">temp2</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;itemid&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">timestamp</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+  <span class="n">item_ids</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">temp1</span><span class="p">,</span><span class="n">temp2</span><span class="p">,</span><span class="n">on</span><span class="o">=</span><span class="s1">&#39;itemid&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">sort_values</span><span class="p">([</span><span class="s1">&#39;event&#39;</span><span class="p">,</span> <span class="s1">&#39;timestamp&#39;</span><span class="p">],</span> <span class="n">ascending</span><span class="o">=</span><span class="p">[</span><span class="kc">True</span><span class="p">,</span> <span class="kc">False</span><span class="p">])</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span><span class="o">.</span><span class="n">loc</span><span class="p">[:</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="s1">&#39;itemid&#39;</span><span class="p">]</span>
+  <span class="k">return</span> <span class="n">itemid_encoder</span><span class="o">.</span><span class="n">inverse_transform</span><span class="p">(</span><span class="n">item_ids</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[29]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">least_n_items</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[29]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+array([&#39;15742&#39;, &#39;16052&#39;, &#39;16443&#39;, &#39;16074&#39;, &#39;16424&#39;, &#39;11574&#39;, &#39;11465&#39;, &#39;16033&#39;, &#39;11711&#39;, &#39;16013&#39;], dtype=object)
+</pre></div></div>
+</div>
+</div>
+</div>
+<div class="section" id="Data-Transformation">
+<h2>Data Transformation<a class="headerlink" href="#Data-Transformation" title="Permalink to this headline">¶</a></h2>
+<p>Many times there are no explicit ratings or preferences given by users, that is, the interactions are usually implicit. This information may reflect users’ preference towards the items in an implicit manner.</p>
+<p>Option 1 - Simple Count: The most simple technique is to count times of interactions between user and item for producing affinity scores.</p>
+<p>Option 2 - Weighted Count: It is useful to consider the types of different interactions as weights in the count aggregation. For example, assuming weights of the three differen types, “click”, “add”, and “purchase”, are 1, 2, and 3, respectively.</p>
+<p>Option 3 - Time-dependent Count: In many scenarios, time dependency plays a critical role in preparing dataset for building a collaborative filtering model that captures user interests drift over time. One of the common techniques for achieving time dependent count is to add a time decay factor in the counting.</p>
+<div class="section" id="A.-Count">
+<h3>A. Count<a class="headerlink" href="#A.-Count" title="Permalink to this headline">¶</a></h3>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[30]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1">#collapse</span>
+<span class="n">data_count</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;userid&#39;</span><span class="p">,</span> <span class="s1">&#39;itemid&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">agg</span><span class="p">({</span><span class="s1">&#39;timestamp&#39;</span><span class="p">:</span> <span class="s1">&#39;count&#39;</span><span class="p">})</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+<span class="n">data_count</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;userid&#39;</span><span class="p">,</span> <span class="s1">&#39;itemid&#39;</span><span class="p">,</span> <span class="s1">&#39;affinity&#39;</span><span class="p">]</span>
+<span class="n">data_count</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[30]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>userid</th>
+      <th>itemid</th>
+      <th>affinity</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0</td>
+      <td>328</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1</td>
+      <td>1122</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1</td>
+      <td>1204</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1</td>
+      <td>1271</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1</td>
+      <td>1821</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+</div>
+<div class="section" id="B.-Weighted-Count">
+<h3>B. Weighted Count<a class="headerlink" href="#B.-Weighted-Count" title="Permalink to this headline">¶</a></h3>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[34]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1">#hide</span>
+<span class="n">data_w</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">event</span><span class="o">!=</span><span class="s1">&#39;remove_from_cart&#39;</span><span class="p">,:]</span>
+
+<span class="n">affinity_weights</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;view_item&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="s1">&#39;add_to_cart&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
+    <span class="s1">&#39;begin_checkout&#39;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span>
+    <span class="s1">&#39;purchase&#39;</span><span class="p">:</span> <span class="mi">6</span><span class="p">,</span>
+    <span class="s1">&#39;remove_from_cart&#39;</span><span class="p">:</span> <span class="mi">3</span>
+<span class="p">}</span>
+
+<span class="n">data_w</span><span class="p">[</span><span class="s1">&#39;event&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">affinity_weights</span><span class="p">[</span><span class="n">x</span><span class="p">])</span>
+
+<span class="n">data_w</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[34]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>event</th>
+      <th>userid</th>
+      <th>itemid</th>
+      <th>timestamp</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>view_item</td>
+      <td>3141</td>
+      <td>236</td>
+      <td>2020-01-13 16:05:31.244000+00:00</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>add_to_cart</td>
+      <td>3421</td>
+      <td>1001</td>
+      <td>2020-01-13 22:36:38.680000+00:00</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>view_item</td>
+      <td>550</td>
+      <td>972</td>
+      <td>2020-01-14 10:54:41.886000+00:00</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>view_item</td>
+      <td>550</td>
+      <td>972</td>
+      <td>2020-01-14 10:54:47.692000+00:00</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>add_to_cart</td>
+      <td>550</td>
+      <td>972</td>
+      <td>2020-01-14 10:54:48.479000+00:00</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[36]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1">#collapse</span>
+<span class="n">data_w</span><span class="p">[</span><span class="s1">&#39;weight&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data_w</span><span class="p">[</span><span class="s1">&#39;event&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">affinity_weights</span><span class="p">[</span><span class="n">x</span><span class="p">])</span>
+<span class="n">data_wcount</span> <span class="o">=</span> <span class="n">data_w</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;userid&#39;</span><span class="p">,</span> <span class="s1">&#39;itemid&#39;</span><span class="p">])[</span><span class="s1">&#39;weight&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+<span class="n">data_wcount</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;userid&#39;</span><span class="p">,</span> <span class="s1">&#39;itemid&#39;</span><span class="p">,</span> <span class="s1">&#39;affinity&#39;</span><span class="p">]</span>
+<span class="n">data_wcount</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[36]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>userid</th>
+      <th>itemid</th>
+      <th>affinity</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0</td>
+      <td>328</td>
+      <td>6</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1</td>
+      <td>1122</td>
+      <td>6</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1</td>
+      <td>1204</td>
+      <td>6</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1</td>
+      <td>1271</td>
+      <td>6</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1</td>
+      <td>1821</td>
+      <td>6</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+</div>
+<div class="section" id="C.-Time-dependent-Count">
+<h3>C. Time dependent Count<a class="headerlink" href="#C.-Time-dependent-Count" title="Permalink to this headline">¶</a></h3>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[39]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1">#hide</span>
+<span class="n">T</span> <span class="o">=</span> <span class="mi">30</span>
+<span class="n">t_ref</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">utcnow</span><span class="p">()</span>
+
+<span class="n">data_w</span><span class="p">[</span><span class="s1">&#39;timedecay&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data_w</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span>
+    <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="s1">&#39;weight&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">math</span><span class="o">.</span><span class="n">log2</span><span class="p">((</span><span class="n">t_ref</span> <span class="o">-</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="s1">&#39;timestamp&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">tz_convert</span><span class="p">(</span><span class="kc">None</span><span class="p">))</span><span class="o">.</span><span class="n">days</span> <span class="o">/</span> <span class="n">T</span><span class="p">)),</span>
+    <span class="n">axis</span><span class="o">=</span><span class="mi">1</span>
+<span class="p">)</span>
+
+<span class="n">data_w</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[39]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>event</th>
+      <th>userid</th>
+      <th>itemid</th>
+      <th>timestamp</th>
+      <th>weight</th>
+      <th>timedecay</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>view_item</td>
+      <td>3141</td>
+      <td>236</td>
+      <td>2020-01-13 16:05:31.244000+00:00</td>
+      <td>1</td>
+      <td>0.019056</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>add_to_cart</td>
+      <td>3421</td>
+      <td>1001</td>
+      <td>2020-01-13 22:36:38.680000+00:00</td>
+      <td>3</td>
+      <td>0.057167</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>view_item</td>
+      <td>550</td>
+      <td>972</td>
+      <td>2020-01-14 10:54:41.886000+00:00</td>
+      <td>1</td>
+      <td>0.019056</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>view_item</td>
+      <td>550</td>
+      <td>972</td>
+      <td>2020-01-14 10:54:47.692000+00:00</td>
+      <td>1</td>
+      <td>0.019056</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>add_to_cart</td>
+      <td>550</td>
+      <td>972</td>
+      <td>2020-01-14 10:54:48.479000+00:00</td>
+      <td>3</td>
+      <td>0.057167</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[40]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1">#collapse</span>
+<span class="n">data_wt</span> <span class="o">=</span> <span class="n">data_w</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;userid&#39;</span><span class="p">,</span> <span class="s1">&#39;itemid&#39;</span><span class="p">])[</span><span class="s1">&#39;timedecay&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+<span class="n">data_wt</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;userid&#39;</span><span class="p">,</span> <span class="s1">&#39;itemid&#39;</span><span class="p">,</span> <span class="s1">&#39;affinity&#39;</span><span class="p">]</span>
+<span class="n">data_wt</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[40]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>userid</th>
+      <th>itemid</th>
+      <th>affinity</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0</td>
+      <td>328</td>
+      <td>0.117590</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1</td>
+      <td>1122</td>
+      <td>0.120232</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1</td>
+      <td>1204</td>
+      <td>0.120232</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1</td>
+      <td>1271</td>
+      <td>0.120232</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1</td>
+      <td>1821</td>
+      <td>0.120232</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+</div>
+</div>
+<div class="section" id="Train-Test-Split">
+<h2>Train Test Split<a class="headerlink" href="#Train-Test-Split" title="Permalink to this headline">¶</a></h2>
+<p>Option 1 - Random Split: Random split simply takes in a data set and outputs the splits of the data, given the split ratios</p>
+<p>Option 2 - Chronological split: Chronogically splitting method takes in a dataset and splits it on timestamp</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[41]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1">#collapse</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">data_w</span><span class="p">[[</span><span class="s1">&#39;userid&#39;</span><span class="p">,</span><span class="s1">&#39;itemid&#39;</span><span class="p">,</span><span class="s1">&#39;timedecay&#39;</span><span class="p">,</span><span class="s1">&#39;timestamp&#39;</span><span class="p">]]</span>
+
+<span class="n">col</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="s1">&#39;col_user&#39;</span><span class="p">:</span> <span class="s1">&#39;userid&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;col_item&#39;</span><span class="p">:</span> <span class="s1">&#39;itemid&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;col_rating&#39;</span><span class="p">:</span> <span class="s1">&#39;timedecay&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;col_timestamp&#39;</span><span class="p">:</span> <span class="s1">&#39;timestamp&#39;</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="n">col3</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="s1">&#39;col_user&#39;</span><span class="p">:</span> <span class="s1">&#39;userid&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;col_item&#39;</span><span class="p">:</span> <span class="s1">&#39;itemid&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;col_timestamp&#39;</span><span class="p">:</span> <span class="s1">&#39;timestamp&#39;</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="n">train</span><span class="p">,</span> <span class="n">test</span> <span class="o">=</span> <span class="n">python_chrono_split</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">ratio</span><span class="o">=</span><span class="mf">0.75</span><span class="p">,</span> <span class="n">min_rating</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+                                  <span class="n">filter_by</span><span class="o">=</span><span class="s1">&#39;user&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">col3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[44]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">train</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">train</span><span class="o">.</span><span class="n">userid</span><span class="o">==</span><span class="mi">7</span><span class="p">,:]</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[44]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>userid</th>
+      <th>itemid</th>
+      <th>timedecay</th>
+      <th>timestamp</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>16679</th>
+      <td>7</td>
+      <td>1464</td>
+      <td>0.019174</td>
+      <td>2020-01-16 06:42:31.341000+00:00</td>
+    </tr>
+    <tr>
+      <th>16691</th>
+      <td>7</td>
+      <td>1464</td>
+      <td>0.019174</td>
+      <td>2020-01-16 06:43:29.482000+00:00</td>
+    </tr>
+    <tr>
+      <th>16692</th>
+      <td>7</td>
+      <td>2109</td>
+      <td>0.019174</td>
+      <td>2020-01-16 06:43:42.262000+00:00</td>
+    </tr>
+    <tr>
+      <th>16694</th>
+      <td>7</td>
+      <td>1464</td>
+      <td>0.019174</td>
+      <td>2020-01-16 06:43:57.961000+00:00</td>
+    </tr>
+    <tr>
+      <th>16805</th>
+      <td>7</td>
+      <td>201</td>
+      <td>0.019174</td>
+      <td>2020-01-16 06:45:55.261000+00:00</td>
+    </tr>
+    <tr>
+      <th>16890</th>
+      <td>7</td>
+      <td>2570</td>
+      <td>0.019174</td>
+      <td>2020-01-16 06:54:12.315000+00:00</td>
+    </tr>
+    <tr>
+      <th>16999</th>
+      <td>7</td>
+      <td>2570</td>
+      <td>0.019174</td>
+      <td>2020-01-16 06:54:29.130000+00:00</td>
+    </tr>
+    <tr>
+      <th>17000</th>
+      <td>7</td>
+      <td>2570</td>
+      <td>0.057522</td>
+      <td>2020-01-16 06:54:35.097000+00:00</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[45]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">test</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">test</span><span class="o">.</span><span class="n">userid</span><span class="o">==</span><span class="mi">7</span><span class="p">,:]</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[45]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>userid</th>
+      <th>itemid</th>
+      <th>timedecay</th>
+      <th>timestamp</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>17001</th>
+      <td>7</td>
+      <td>1464</td>
+      <td>0.019174</td>
+      <td>2020-01-16 06:54:41.415000+00:00</td>
+    </tr>
+    <tr>
+      <th>17003</th>
+      <td>7</td>
+      <td>1464</td>
+      <td>0.057522</td>
+      <td>2020-01-16 06:54:44.195000+00:00</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+</div>
+<div class="section" id="Experiments">
+<h2>Experiments<a class="headerlink" href="#Experiments" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="Item-Popularity-Recomendation-Model">
+<h3>Item Popularity Recomendation Model<a class="headerlink" href="#Item-Popularity-Recomendation-Model" title="Permalink to this headline">¶</a></h3>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[46]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1">#hide</span>
+<span class="c1"># Recommending the most popular items is intuitive and simple approach</span>
+<span class="n">item_counts</span> <span class="o">=</span> <span class="n">train</span><span class="p">[</span><span class="s1">&#39;itemid&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">to_frame</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+<span class="n">item_counts</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;itemid&#39;</span><span class="p">,</span> <span class="s1">&#39;count&#39;</span><span class="p">]</span>
+<span class="n">item_counts</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[46]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>itemid</th>
+      <th>count</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2564</td>
+      <td>461</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1463</td>
+      <td>302</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1710</td>
+      <td>267</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1985</td>
+      <td>243</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>886</td>
+      <td>229</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[47]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1">#hide</span>
+<span class="n">user_item_col</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;userid&#39;</span><span class="p">,</span> <span class="s1">&#39;itemid&#39;</span><span class="p">]</span>
+
+<span class="c1"># Cross join users and items</span>
+<span class="n">test_users</span> <span class="o">=</span> <span class="n">test</span><span class="p">[</span><span class="s1">&#39;userid&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+<span class="n">user_item_list</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">itertools</span><span class="o">.</span><span class="n">product</span><span class="p">(</span><span class="n">test_users</span><span class="p">,</span> <span class="n">item_counts</span><span class="p">[</span><span class="s1">&#39;itemid&#39;</span><span class="p">]))</span>
+<span class="n">users_items</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">user_item_list</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">user_item_col</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Number of user-item pairs:&quot;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">users_items</span><span class="p">))</span>
+
+<span class="c1"># Remove seen items (items in the train set) as we will not recommend those again to the users</span>
+<span class="kn">from</span> <span class="nn">reco_utils.dataset.pandas_df_utils</span> <span class="kn">import</span> <span class="n">filter_by</span>
+<span class="n">users_items_remove_seen</span> <span class="o">=</span> <span class="n">filter_by</span><span class="p">(</span><span class="n">users_items</span><span class="p">,</span> <span class="n">train</span><span class="p">,</span> <span class="n">user_item_col</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;After remove seen items:&quot;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">users_items_remove_seen</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Number of user-item pairs: 4124250
+After remove seen items: 4107466
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[48]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1"># Generate recommendations</span>
+<span class="n">baseline_recommendations</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">item_counts</span><span class="p">,</span> <span class="n">users_items_remove_seen</span><span class="p">,</span>
+                                    <span class="n">on</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;itemid&#39;</span><span class="p">],</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;inner&#39;</span><span class="p">)</span>
+<span class="n">baseline_recommendations</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[48]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>itemid</th>
+      <th>count</th>
+      <th>userid</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2564</td>
+      <td>461</td>
+      <td>7</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2564</td>
+      <td>461</td>
+      <td>21</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2564</td>
+      <td>461</td>
+      <td>73</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2564</td>
+      <td>461</td>
+      <td>75</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2564</td>
+      <td>461</td>
+      <td>113</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1">#hide</span>
+<span class="n">k</span> <span class="o">=</span> <span class="mi">10</span>
+
+<span class="n">cols</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="s1">&#39;col_user&#39;</span><span class="p">:</span> <span class="s1">&#39;userid&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;col_item&#39;</span><span class="p">:</span> <span class="s1">&#39;itemid&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;col_rating&#39;</span><span class="p">:</span> <span class="s1">&#39;timedecay&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;col_prediction&#39;</span><span class="p">:</span> <span class="s1">&#39;count&#39;</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="n">eval_map</span> <span class="o">=</span> <span class="n">map_at_k</span><span class="p">(</span><span class="n">test</span><span class="p">,</span> <span class="n">baseline_recommendations</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="n">k</span><span class="p">,</span> <span class="o">**</span><span class="n">cols</span><span class="p">)</span>
+<span class="n">eval_ndcg</span> <span class="o">=</span> <span class="n">ndcg_at_k</span><span class="p">(</span><span class="n">test</span><span class="p">,</span> <span class="n">baseline_recommendations</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="n">k</span><span class="p">,</span> <span class="o">**</span><span class="n">cols</span><span class="p">)</span>
+<span class="n">eval_precision</span> <span class="o">=</span> <span class="n">precision_at_k</span><span class="p">(</span><span class="n">test</span><span class="p">,</span> <span class="n">baseline_recommendations</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="n">k</span><span class="p">,</span> <span class="o">**</span><span class="n">cols</span><span class="p">)</span>
+<span class="n">eval_recall</span> <span class="o">=</span> <span class="n">recall_at_k</span><span class="p">(</span><span class="n">test</span><span class="p">,</span> <span class="n">baseline_recommendations</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="n">k</span><span class="p">,</span> <span class="o">**</span><span class="n">cols</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[49]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;MAP:</span><span class="se">\t</span><span class="si">%f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">eval_map</span><span class="p">,</span>
+      <span class="s2">&quot;NDCG@K:</span><span class="se">\t</span><span class="si">%f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">eval_ndcg</span><span class="p">,</span>
+      <span class="s2">&quot;Precision@K:</span><span class="se">\t</span><span class="si">%f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">eval_precision</span><span class="p">,</span>
+      <span class="s2">&quot;Recall@K:</span><span class="se">\t</span><span class="si">%f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">eval_recall</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+MAP:    0.005334
+NDCG@K: 0.010356
+Precision@K:    0.007092
+Recall@K:       0.011395
+</pre></div></div>
+</div>
+</div>
+<div class="section" id="Cornac-BPR-Model">
+<h3>Cornac BPR Model<a class="headerlink" href="#Cornac-BPR-Model" title="Permalink to this headline">¶</a></h3>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[53]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1">#hide</span>
+<span class="n">TOP_K</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">NUM_FACTORS</span> <span class="o">=</span> <span class="mi">200</span>
+<span class="n">NUM_EPOCHS</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">SEED</span> <span class="o">=</span> <span class="mi">40</span>
+
+<span class="n">train_set</span> <span class="o">=</span> <span class="n">cornac</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">Dataset</span><span class="o">.</span><span class="n">from_uir</span><span class="p">(</span><span class="n">train</span><span class="o">.</span><span class="n">itertuples</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">),</span> <span class="n">seed</span><span class="o">=</span><span class="n">SEED</span><span class="p">)</span>
+
+<span class="n">bpr</span> <span class="o">=</span> <span class="n">cornac</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">BPR</span><span class="p">(</span>
+    <span class="n">k</span><span class="o">=</span><span class="n">NUM_FACTORS</span><span class="p">,</span>
+    <span class="n">max_iter</span><span class="o">=</span><span class="n">NUM_EPOCHS</span><span class="p">,</span>
+    <span class="n">learning_rate</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span>
+    <span class="n">lambda_reg</span><span class="o">=</span><span class="mf">0.001</span><span class="p">,</span>
+    <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">seed</span><span class="o">=</span><span class="n">SEED</span>
+<span class="p">)</span>
+
+<span class="kn">from</span> <span class="nn">reco_utils.common.timer</span> <span class="kn">import</span> <span class="n">Timer</span>
+<span class="k">with</span> <span class="n">Timer</span><span class="p">()</span> <span class="k">as</span> <span class="n">t</span><span class="p">:</span>
+    <span class="n">bpr</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">train_set</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Took </span><span class="si">{}</span><span class="s2"> seconds for training.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">t</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "eac0651563a24e698eb8203b1f8e4b68", "version_major": 2, "version_minor": 0}</script></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+
+Optimization finished!
+Took 3.1812 seconds for training.
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[54]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1">#hide</span>
+<span class="k">with</span> <span class="n">Timer</span><span class="p">()</span> <span class="k">as</span> <span class="n">t</span><span class="p">:</span>
+    <span class="n">all_predictions</span> <span class="o">=</span> <span class="n">predict_ranking</span><span class="p">(</span><span class="n">bpr</span><span class="p">,</span> <span class="n">train</span><span class="p">,</span> <span class="n">usercol</span><span class="o">=</span><span class="s1">&#39;userid&#39;</span><span class="p">,</span> <span class="n">itemcol</span><span class="o">=</span><span class="s1">&#39;itemid&#39;</span><span class="p">,</span> <span class="n">remove_seen</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Took </span><span class="si">{}</span><span class="s2"> seconds for prediction.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">t</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Took 4.7581 seconds for prediction.
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[55]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">all_predictions</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[55]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>userid</th>
+      <th>itemid</th>
+      <th>prediction</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>51214</th>
+      <td>7</td>
+      <td>2551</td>
+      <td>-0.438445</td>
+    </tr>
+    <tr>
+      <th>51215</th>
+      <td>7</td>
+      <td>481</td>
+      <td>2.522187</td>
+    </tr>
+    <tr>
+      <th>51216</th>
+      <td>7</td>
+      <td>1185</td>
+      <td>2.406107</td>
+    </tr>
+    <tr>
+      <th>51217</th>
+      <td>7</td>
+      <td>1766</td>
+      <td>1.112975</td>
+    </tr>
+    <tr>
+      <th>51218</th>
+      <td>7</td>
+      <td>1359</td>
+      <td>2.083620</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1">#hide</span>
+<span class="n">k</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">cols</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="s1">&#39;col_user&#39;</span><span class="p">:</span> <span class="s1">&#39;userid&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;col_item&#39;</span><span class="p">:</span> <span class="s1">&#39;itemid&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;col_rating&#39;</span><span class="p">:</span> <span class="s1">&#39;timedecay&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;col_prediction&#39;</span><span class="p">:</span> <span class="s1">&#39;prediction&#39;</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="n">eval_map</span> <span class="o">=</span> <span class="n">map_at_k</span><span class="p">(</span><span class="n">test</span><span class="p">,</span> <span class="n">all_predictions</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="n">k</span><span class="p">,</span> <span class="o">**</span><span class="n">cols</span><span class="p">)</span>
+<span class="n">eval_ndcg</span> <span class="o">=</span> <span class="n">ndcg_at_k</span><span class="p">(</span><span class="n">test</span><span class="p">,</span> <span class="n">all_predictions</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="n">k</span><span class="p">,</span> <span class="o">**</span><span class="n">cols</span><span class="p">)</span>
+<span class="n">eval_precision</span> <span class="o">=</span> <span class="n">precision_at_k</span><span class="p">(</span><span class="n">test</span><span class="p">,</span> <span class="n">all_predictions</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="n">k</span><span class="p">,</span> <span class="o">**</span><span class="n">cols</span><span class="p">)</span>
+<span class="n">eval_recall</span> <span class="o">=</span> <span class="n">recall_at_k</span><span class="p">(</span><span class="n">test</span><span class="p">,</span> <span class="n">all_predictions</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="n">k</span><span class="p">,</span> <span class="o">**</span><span class="n">cols</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1">#hide-input</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;MAP:</span><span class="se">\t</span><span class="si">%f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">eval_map</span><span class="p">,</span>
+      <span class="s2">&quot;NDCG:</span><span class="se">\t</span><span class="si">%f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">eval_ndcg</span><span class="p">,</span>
+      <span class="s2">&quot;Precision@K:</span><span class="se">\t</span><span class="si">%f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">eval_precision</span><span class="p">,</span>
+      <span class="s2">&quot;Recall@K:</span><span class="se">\t</span><span class="si">%f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">eval_recall</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="SARS-Model">
+<h3>SARS Model<a class="headerlink" href="#SARS-Model" title="Permalink to this headline">¶</a></h3>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1">#collapse</span>
+<span class="kn">from</span> <span class="nn">reco_utils.recommender.sar.sar_singlenode</span> <span class="kn">import</span> <span class="n">SARSingleNode</span>
+
+<span class="n">TOP_K</span> <span class="o">=</span> <span class="mi">10</span>
+
+<span class="n">header</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;col_user&quot;</span><span class="p">:</span> <span class="s2">&quot;userid&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;col_item&quot;</span><span class="p">:</span> <span class="s2">&quot;itemid&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;col_rating&quot;</span><span class="p">:</span> <span class="s2">&quot;timedecay&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;col_timestamp&quot;</span><span class="p">:</span> <span class="s2">&quot;timestamp&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;col_prediction&quot;</span><span class="p">:</span> <span class="s2">&quot;prediction&quot;</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="n">model</span> <span class="o">=</span> <span class="n">SARSingleNode</span><span class="p">(</span>
+    <span class="n">similarity_type</span><span class="o">=</span><span class="s2">&quot;jaccard&quot;</span><span class="p">,</span>
+    <span class="n">time_decay_coefficient</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+    <span class="n">time_now</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">timedecay_formula</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">header</span>
+<span class="p">)</span>
+
+<span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">train</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1">#hide</span>
+<span class="n">top_k</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">recommend_k_items</span><span class="p">(</span><span class="n">test</span><span class="p">,</span> <span class="n">remove_seen</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># all ranking metrics have the same arguments</span>
+<span class="n">args</span> <span class="o">=</span> <span class="p">[</span><span class="n">test</span><span class="p">,</span> <span class="n">top_k</span><span class="p">]</span>
+<span class="n">kwargs</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">col_user</span><span class="o">=</span><span class="s1">&#39;userid&#39;</span><span class="p">,</span>
+              <span class="n">col_item</span><span class="o">=</span><span class="s1">&#39;itemid&#39;</span><span class="p">,</span>
+              <span class="n">col_rating</span><span class="o">=</span><span class="s1">&#39;timedecay&#39;</span><span class="p">,</span>
+              <span class="n">col_prediction</span><span class="o">=</span><span class="s1">&#39;prediction&#39;</span><span class="p">,</span>
+              <span class="n">relevancy_method</span><span class="o">=</span><span class="s1">&#39;top_k&#39;</span><span class="p">,</span>
+              <span class="n">k</span><span class="o">=</span><span class="n">TOP_K</span><span class="p">)</span>
+
+<span class="n">eval_map</span> <span class="o">=</span> <span class="n">map_at_k</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="n">eval_ndcg</span> <span class="o">=</span> <span class="n">ndcg_at_k</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="n">eval_precision</span> <span class="o">=</span> <span class="n">precision_at_k</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="n">eval_recall</span> <span class="o">=</span> <span class="n">recall_at_k</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1">#hide-input</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Model:&quot;</span><span class="p">,</span>
+      <span class="sa">f</span><span class="s2">&quot;Top K:</span><span class="se">\t\t</span><span class="s2"> </span><span class="si">{</span><span class="n">TOP_K</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+      <span class="sa">f</span><span class="s2">&quot;MAP:</span><span class="se">\t\t</span><span class="s2"> </span><span class="si">{</span><span class="n">eval_map</span><span class="si">:</span><span class="s2">f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+      <span class="sa">f</span><span class="s2">&quot;NDCG:</span><span class="se">\t\t</span><span class="s2"> </span><span class="si">{</span><span class="n">eval_ndcg</span><span class="si">:</span><span class="s2">f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+      <span class="sa">f</span><span class="s2">&quot;Precision@K:</span><span class="se">\t</span><span class="s2"> </span><span class="si">{</span><span class="n">eval_precision</span><span class="si">:</span><span class="s2">f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+      <span class="sa">f</span><span class="s2">&quot;Recall@K:</span><span class="se">\t</span><span class="s2"> </span><span class="si">{</span><span class="n">eval_recall</span><span class="si">:</span><span class="s2">f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="Spotlight">
+<h3>Spotlight<a class="headerlink" href="#Spotlight" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="Implicit-Factorization-Model">
+<h4>Implicit Factorization Model<a class="headerlink" href="#Implicit-Factorization-Model" title="Permalink to this headline">¶</a></h4>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1">#collapse</span>
+<span class="n">interactions</span> <span class="o">=</span> <span class="n">Interactions</span><span class="p">(</span><span class="n">user_ids</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">userid</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;int32&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">values</span><span class="p">,</span>
+                            <span class="n">item_ids</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">itemid</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;int32&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">values</span><span class="p">,</span>
+                            <span class="n">timestamps</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">timestamp</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;int32&#39;</span><span class="p">),</span>
+                            <span class="n">num_users</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">userid</span><span class="o">.</span><span class="n">nunique</span><span class="p">(),</span>
+                            <span class="n">num_items</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">itemid</span><span class="o">.</span><span class="n">nunique</span><span class="p">())</span>
+
+<span class="n">train_user</span><span class="p">,</span> <span class="n">test_user</span> <span class="o">=</span> <span class="n">random_train_test_split</span><span class="p">(</span><span class="n">interactions</span><span class="p">,</span> <span class="n">test_percentage</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
+
+<span class="n">model</span> <span class="o">=</span> <span class="n">ImplicitFactorizationModel</span><span class="p">(</span><span class="n">loss</span><span class="o">=</span><span class="s1">&#39;bpr&#39;</span><span class="p">,</span> <span class="n">embedding_dim</span><span class="o">=</span><span class="mi">64</span><span class="p">,</span> <span class="n">n_iter</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+                                   <span class="n">batch_size</span><span class="o">=</span><span class="mi">256</span><span class="p">,</span> <span class="n">l2</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">learning_rate</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span>
+                                   <span class="n">optimizer_func</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">use_cuda</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                                   <span class="n">representation</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">sparse</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                                   <span class="n">num_negative_samples</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+
+<span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">train_user</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">pr</span> <span class="o">=</span> <span class="n">precision_recall_score</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">test</span><span class="o">=</span><span class="n">test_user</span><span class="p">,</span> <span class="n">train</span><span class="o">=</span><span class="n">train_user</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Pricison@10 is </span><span class="si">{:.3f}</span><span class="s1"> and Recall@10 is </span><span class="si">{:.3f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">pr</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="n">pr</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()))</span>
+</pre></div>
+</div>
+</div>
+<p>Implicit Factorization Model with Grid Search</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1">#hide</span>
+<span class="n">interactions</span> <span class="o">=</span> <span class="n">Interactions</span><span class="p">(</span><span class="n">user_ids</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">userid</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;int32&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">values</span><span class="p">,</span>
+                            <span class="n">item_ids</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">itemid</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;int32&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">values</span><span class="p">,</span>
+                            <span class="n">timestamps</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">timestamp</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;int32&#39;</span><span class="p">),</span>
+                            <span class="n">num_users</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">userid</span><span class="o">.</span><span class="n">nunique</span><span class="p">(),</span>
+                            <span class="n">num_items</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">itemid</span><span class="o">.</span><span class="n">nunique</span><span class="p">())</span>
+
+<span class="n">train_user</span><span class="p">,</span> <span class="n">test_user</span> <span class="o">=</span> <span class="n">random_train_test_split</span><span class="p">(</span><span class="n">interactions</span><span class="p">,</span> <span class="n">test_percentage</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
+
+<span class="n">params_grid</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;loss&#39;</span><span class="p">:[</span><span class="s1">&#39;bpr&#39;</span><span class="p">,</span> <span class="s1">&#39;hinge&#39;</span><span class="p">],</span>
+               <span class="s1">&#39;embedding_dim&#39;</span><span class="p">:[</span><span class="mi">32</span><span class="p">,</span> <span class="mi">64</span><span class="p">],</span>
+               <span class="s1">&#39;learning_rate&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">],</span>
+               <span class="s1">&#39;num_negative_samples&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">50</span><span class="p">]</span>
+               <span class="p">}</span>
+<span class="n">grid</span> <span class="o">=</span> <span class="n">ParameterGrid</span><span class="p">(</span><span class="n">params_grid</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">grid</span><span class="p">:</span>
+  <span class="n">model</span> <span class="o">=</span> <span class="n">ImplicitFactorizationModel</span><span class="p">(</span><span class="o">**</span><span class="n">p</span><span class="p">,</span> <span class="n">n_iter</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">256</span><span class="p">,</span> <span class="n">l2</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
+                                    <span class="n">optimizer_func</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">use_cuda</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                                    <span class="n">representation</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">sparse</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+  <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">train_user</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+  <span class="n">pr</span> <span class="o">=</span> <span class="n">precision_recall_score</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">test</span><span class="o">=</span><span class="n">test_user</span><span class="p">,</span> <span class="n">train</span><span class="o">=</span><span class="n">train_user</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+  <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Pricison@10 is </span><span class="si">{:.3f}</span><span class="s1"> and Recall@10 is </span><span class="si">{:.3f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">pr</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="n">pr</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="CNN-Pooling-Sequence-Model">
+<h4>CNN Pooling Sequence Model<a class="headerlink" href="#CNN-Pooling-Sequence-Model" title="Permalink to this headline">¶</a></h4>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1">#collapse</span>
+<span class="n">interactions</span> <span class="o">=</span> <span class="n">Interactions</span><span class="p">(</span><span class="n">user_ids</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">userid</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;int32&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">values</span><span class="p">,</span>
+                            <span class="n">item_ids</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">itemid</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;int32&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">values</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span>
+                            <span class="n">timestamps</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">timestamp</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;int32&#39;</span><span class="p">))</span>
+
+<span class="n">train</span><span class="p">,</span> <span class="n">test</span> <span class="o">=</span> <span class="n">random_train_test_split</span><span class="p">(</span><span class="n">interactions</span><span class="p">,</span> <span class="n">test_percentage</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
+<span class="n">train_seq</span> <span class="o">=</span> <span class="n">train</span><span class="o">.</span><span class="n">to_sequence</span><span class="p">(</span><span class="n">max_sequence_length</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">test_seq</span> <span class="o">=</span> <span class="n">test</span><span class="o">.</span><span class="n">to_sequence</span><span class="p">(</span><span class="n">max_sequence_length</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+
+<span class="n">model</span> <span class="o">=</span> <span class="n">ImplicitSequenceModel</span><span class="p">(</span><span class="n">loss</span><span class="o">=</span><span class="s1">&#39;bpr&#39;</span><span class="p">,</span> <span class="n">representation</span><span class="o">=</span><span class="s1">&#39;pooling&#39;</span><span class="p">,</span>
+                              <span class="n">embedding_dim</span><span class="o">=</span><span class="mi">32</span><span class="p">,</span> <span class="n">n_iter</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">256</span><span class="p">,</span>
+                              <span class="n">l2</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">learning_rate</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span> <span class="n">optimizer_func</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                              <span class="n">use_cuda</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">sparse</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">num_negative_samples</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+
+<span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">train_seq</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">mrr_seq</span> <span class="o">=</span> <span class="n">sequence_mrr_score</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">test_seq</span><span class="p">)</span>
+<span class="n">mrr_seq</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="FastAI-CollabLearner">
+<h2>FastAI CollabLearner<a class="headerlink" href="#FastAI-CollabLearner" title="Permalink to this headline">¶</a></h2>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1">#hide</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;rating&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;event&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">map</span><span class="p">({</span><span class="s1">&#39;view_item&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+                                <span class="s1">&#39;add_to_cart&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+                                <span class="s1">&#39;begin_checkout&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
+                                <span class="s1">&#39;purchase&#39;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span>
+                               <span class="s1">&#39;remove_from_cart&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+                                <span class="p">})</span>
+
+<span class="n">ratings</span> <span class="o">=</span> <span class="n">df</span><span class="p">[[</span><span class="s2">&quot;userid&quot;</span><span class="p">,</span> <span class="s1">&#39;itemid&#39;</span><span class="p">,</span> <span class="s2">&quot;rating&quot;</span><span class="p">,</span> <span class="s1">&#39;timestamp&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+<span class="n">data</span> <span class="o">=</span> <span class="n">CollabDataBunch</span><span class="o">.</span><span class="n">from_df</span><span class="p">(</span><span class="n">ratings</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">data</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1">#hide</span>
+<span class="n">learn</span> <span class="o">=</span> <span class="n">collab_learner</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">n_factors</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">y_range</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mf">5.5</span><span class="p">])</span>
+<span class="n">learn</span><span class="o">.</span><span class="n">lr_find</span><span class="p">()</span>
+<span class="n">learn</span><span class="o">.</span><span class="n">recorder</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">skip_end</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">learn</span><span class="o">.</span><span class="n">fit_one_cycle</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mf">5e-6</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">learn</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+EmbeddingDotBias
+======================================================================
+Layer (type)         Output Shape         Param #    Trainable
+======================================================================
+Embedding            [50]                 534,000    True
+______________________________________________________________________
+Embedding            [50]                 129,150    True
+______________________________________________________________________
+Embedding            [1]                  10,680     True
+______________________________________________________________________
+Embedding            [1]                  2,583      True
+______________________________________________________________________
+
+Total params: 676,413
+Total trainable params: 676,413
+Total non-trainable params: 0
+Optimized with &#39;torch.optim.adam.Adam&#39;, betas=(0.9, 0.99)
+Using true weight decay as discussed in https://www.fast.ai/2018/07/02/adam-weight-decay/
+Loss function : FlattenedLoss
+======================================================================
+Callbacks functions applied
+</pre></div></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">learn</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mf">1e-3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<script type="application/vnd.jupyter.widget-state+json">
+{"1b3df8a975e8479690d9b23df9db5271": {"model_module": "@jupyter-widgets/base", "model_name": "LayoutModel", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "925673dfcae74e57bb8bba183e1442fb": {"model_module": "@jupyter-widgets/base", "model_name": "LayoutModel", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "9a928c20fe8a474a870a42f92995f7a7": {"model_module": "@jupyter-widgets/controls", "model_name": "HTMLModel", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "HTMLModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "HTMLView", "description": "", "description_tooltip": null, "layout": "IPY_MODEL_c4bd4f149a00418ab9321a8fc76aa4b8", "placeholder": "\u200b", "style": "IPY_MODEL_ac36e1c7b8c54cc1bb8e2dbf5642b745", "value": " 100/100 [00:05&lt;00:00, 19.89it/s, correct=78.60%, skipped=0.73%]"}}, "ac36e1c7b8c54cc1bb8e2dbf5642b745": {"model_module": "@jupyter-widgets/controls", "model_name": "DescriptionStyleModel", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "DescriptionStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "description_width": ""}}, "c4bd4f149a00418ab9321a8fc76aa4b8": {"model_module": "@jupyter-widgets/base", "model_name": "LayoutModel", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "d3706039787a45d9a4005e8ca1fa9dbd": {"model_module": "@jupyter-widgets/controls", "model_name": "ProgressStyleModel", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "ProgressStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "bar_color": null, "description_width": "initial"}}, "eac0651563a24e698eb8203b1f8e4b68": {"model_module": "@jupyter-widgets/controls", "model_name": "HBoxModel", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "HBoxModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "HBoxView", "box_style": "", "children": ["IPY_MODEL_f7bfd6ea4bfb4d1ca7e846ec8db49fb9", "IPY_MODEL_9a928c20fe8a474a870a42f92995f7a7"], "layout": "IPY_MODEL_1b3df8a975e8479690d9b23df9db5271"}}, "f7bfd6ea4bfb4d1ca7e846ec8db49fb9": {"model_module": "@jupyter-widgets/controls", "model_name": "FloatProgressModel", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "FloatProgressModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "ProgressView", "bar_style": "success", "description": "100%", "description_tooltip": null, "layout": "IPY_MODEL_925673dfcae74e57bb8bba183e1442fb", "max": 100, "min": 0, "orientation": "horizontal", "style": "IPY_MODEL_d3706039787a45d9a4005e8ca1fa9dbd", "value": 100}}}
+</script></div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="recsys-ncf.html" class="btn btn-neutral float-right" title="Neural Matrix Factorization" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="recsys-imgsim.html" class="btn btn-neutral float-left" title="Similar Product Recommendations" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Sparsh A..
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

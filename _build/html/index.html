@@ -1,0 +1,354 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Welcome to RecoBase! &mdash; recobase  documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+        <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Overview" href="src/Knowledge.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="#" class="icon icon-home"> recobase
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Knowledge</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="src/Knowledge.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="src/Knowledge.html#Examples">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="src/Knowledge.html#Datasets">Datasets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="src/Knowledge.html#Models">Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="src/Knowledge.html#Notebooks">Notebooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="src/Knowledge.html#Libraries">Libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="src/Knowledge.html#Papers">Papers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="src/Knowledge.html#Projects">Projects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="src/Knowledge.html#Vendors">Vendors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="src/Knowledge.html#Use-Cases">Use Cases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="src/Knowledge.html#Resources">Resources</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="src/tutorials/recsys-imgsim.html">Similar Product Recommendations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="src/tutorials/recsys-implicit-negative.html">Retail Product Recommendation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="src/tutorials/recsys-ncf.html">Neural Matrix Factorization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="src/tutorials/recsys-node2vec.html">Recommender System with Node2vec</a></li>
+<li class="toctree-l1"><a class="reference internal" href="src/tutorials/recsys-prodsim.html">Similar Product Recommender</a></li>
+<li class="toctree-l1"><a class="reference internal" href="src/tutorials/recsys-retrieval.html">Document Retrieval with ElasticSearch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="src/tutorials/recsys-vw-contextual.html">Contextual News Personalizer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="src/tutorials/recsys-word2vec.html">Product Recommender with word2vec</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="#">recobase</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="#" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Welcome to RecoBase!</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/index.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<div class="section" id="welcome-to-recobase">
+<h1>Welcome to RecoBase!<a class="headerlink" href="#welcome-to-recobase" title="Permalink to this headline">¶</a></h1>
+<p>RecoBase is a collection of python code, notebooks and other essential resources to know and build recommender systems.</p>
+<img alt="https://github.com/sparsh-ai/reco-base/blob/main/utils/images/recobase_logo.png?raw=true" src="https://github.com/sparsh-ai/reco-base/blob/main/utils/images/recobase_logo.png?raw=true" />
+<div class="toctree-wrapper compound">
+<p class="caption"><span class="caption-text">Knowledge</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="src/Knowledge.html">Overview</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="src/Knowledge.html#What-is-a-Recommender-System?">What is a Recommender System?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src/Knowledge.html#The-Rise-of-Recommendation-Engines">The Rise of Recommendation Engines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src/Knowledge.html#Personalization-Challenges">Personalization Challenges</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src/Knowledge.html#Why-deep-learning-for-recommendations?">Why deep learning for recommendations?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src/Knowledge.html#How-recommendation-engines-benefit-sites?">How recommendation engines benefit sites?</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="src/Knowledge.html#Examples">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="src/Knowledge.html#Datasets">Datasets</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="src/Knowledge.html#Shopping">Shopping</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src/Knowledge.html#Advertising">Advertising</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src/Knowledge.html#Check-in">Check-in</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src/Knowledge.html#Movies">Movies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src/Knowledge.html#Music">Music</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src/Knowledge.html#Books">Books</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src/Knowledge.html#Games">Games</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src/Knowledge.html#Anime">Anime</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src/Knowledge.html#Pictures">Pictures</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src/Knowledge.html#Jokes">Jokes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src/Knowledge.html#Exercises">Exercises</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src/Knowledge.html#Websites">Websites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src/Knowledge.html#Adult">Adult</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src/Knowledge.html#News">News</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src/Knowledge.html#Uncategorized">Uncategorized</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src/Knowledge.html#Statistics">Statistics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src/Knowledge.html#Data-Sources">Data Sources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src/Knowledge.html#References">References</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src/Knowledge.html#Appendix">Appendix</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="src/Knowledge.html#Models">Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="src/Knowledge.html#Notebooks">Notebooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="src/Knowledge.html#Libraries">Libraries</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="src/Knowledge.html#General">General</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src/Knowledge.html#Graph-based">Graph based</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src/Knowledge.html#Conversational">Conversational</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src/Knowledge.html#Causal">Causal</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="src/Knowledge.html#Papers">Papers</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="src/Knowledge.html#Survey">Survey</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src/Knowledge.html#General-Methods">General Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src/Knowledge.html#Social-Recommendation">Social Recommendation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src/Knowledge.html#Sequential-Recommendation">Sequential Recommendation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src/Knowledge.html#Feature-based-Recommendation-(CTR-Prediction)">Feature-based Recommendation (CTR Prediction)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src/Knowledge.html#Knowledge-Graph-based-Recommendation">Knowledge Graph-based Recommendation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src/Knowledge.html#Reinforcement-Learning-for-Recommendation">Reinforcement Learning for Recommendation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src/Knowledge.html#POI-Recommendation">POI Recommendation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src/Knowledge.html#Cold-Start-Recommendation">Cold-Start Recommendation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src/Knowledge.html#Security/Robutness-of-RecSys">Security/Robutness of RecSys</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src/Knowledge.html#Causal-Recommendation">Causal Recommendation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="src/Knowledge.html#Projects">Projects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="src/Knowledge.html#Vendors">Vendors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="src/Knowledge.html#Use-Cases">Use Cases</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="src/Knowledge.html#Most-common">Most common</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src/Knowledge.html#Industry-specific">Industry specific</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src/Knowledge.html#Other">Other</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="src/Knowledge.html#Resources">Resources</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="src/Knowledge.html#id1">Projects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src/Knowledge.html#Blog-Posts">Blog Posts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src/Knowledge.html#Tutorials">Tutorials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src/Knowledge.html#Knowledge-Sources">Knowledge Sources</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<p class="caption"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="src/tutorials/recsys-imgsim.html">Similar Product Recommendations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="src/tutorials/recsys-implicit-negative.html">Retail Product Recommendation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="src/tutorials/recsys-ncf.html">Neural Matrix Factorization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="src/tutorials/recsys-node2vec.html">Recommender System with Node2vec</a></li>
+<li class="toctree-l1"><a class="reference internal" href="src/tutorials/recsys-prodsim.html">Similar Product Recommender</a></li>
+<li class="toctree-l1"><a class="reference internal" href="src/tutorials/recsys-retrieval.html">Document Retrieval with ElasticSearch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="src/tutorials/recsys-vw-contextual.html">Contextual News Personalizer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="src/tutorials/recsys-word2vec.html">Product Recommender with word2vec</a></li>
+</ul>
+</div>
+</div>
+<div class="section" id="indices-and-tables">
+<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><p><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></p></li>
+<li><p><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></p></li>
+<li><p><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></p></li>
+</ul>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="src/Knowledge.html" class="btn btn-neutral float-right" title="Overview" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Sparsh A..
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

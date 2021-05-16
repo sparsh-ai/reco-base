@@ -1,0 +1,38 @@
+.. recobase documentation master file, created by
+   sphinx-quickstart on Sun May 16 11:29:04 2021.
+   You can adapt this file completely to your liking, but it should at least
+   contain the root `toctree` directive.
+
+Welcome to RecoBase!
+====================================
+RecoBase is a collection of python code, notebooks and other essential resources to know and build recommender systems.
+
+.. image:: https://github.com/sparsh-ai/reco-base/blob/main/utils/images/recobase_logo.png?raw=true
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Knowledge
+
+   src/Knowledge
+
+.. toctree::
+   :maxdepth: 1
+   :caption: Tutorials
+
+   src/tutorials/recsys-imgsim
+   src/tutorials/recsys-implicit-negative
+   src/tutorials/recsys-music-sequence-aware
+   src/tutorials/recsys-ncf
+   src/tutorials/recsys-node2vec
+   src/tutorials/recsys-prodsim
+   src/tutorials/recsys-retrieval
+   src/tutorials/recsys-vw-contextual
+   src/tutorials/recsys-word2vec
+
+
+Indices and tables
+==================
+
+* :ref:`genindex`
+* :ref:`modindex`
+* :ref:`search`

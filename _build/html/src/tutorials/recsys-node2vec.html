@@ -1,0 +1,2651 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Recommender System with Node2vec &mdash; recobase  documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+        <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Similar Product Recommender" href="recsys-prodsim.html" />
+    <link rel="prev" title="Neural Matrix Factorization" href="recsys-ncf.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> recobase
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Knowledge</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Knowledge.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Knowledge.html#Examples">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Knowledge.html#Datasets">Datasets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Knowledge.html#Models">Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Knowledge.html#Notebooks">Notebooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Knowledge.html#Libraries">Libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Knowledge.html#Papers">Papers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Knowledge.html#Projects">Projects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Knowledge.html#Vendors">Vendors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Knowledge.html#Use-Cases">Use Cases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Knowledge.html#Resources">Resources</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Tutorials</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="recsys-imgsim.html">Similar Product Recommendations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recsys-implicit-negative.html">Retail Product Recommendation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recsys-ncf.html">Neural Matrix Factorization</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Recommender System with Node2vec</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#Data-gathering-and-exploration">Data gathering and exploration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Neighborhood-method">Neighborhood method</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#Jaccard-Similarity">Jaccard Similarity</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Cosine-similarity">Cosine similarity</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#Factorization-method">Factorization method</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#Singular-Value-Decomposition">Singular Value Decomposition</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#Graph-Embedding-method">Graph Embedding method</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#DeepWalk">DeepWalk</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Evaluation">Evaluation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#Enriched-network-with-additional-information-:-Genres">Enriched network with additional information : Genres</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="recsys-prodsim.html">Similar Product Recommender</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recsys-retrieval.html">Document Retrieval with ElasticSearch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recsys-vw-contextual.html">Contextual News Personalizer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recsys-word2vec.html">Product Recommender with word2vec</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">recobase</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Recommender System with Node2vec</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../../_sources/src/tutorials/recsys-node2vec.ipynb.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS for nbsphinx extension */
+
+/* remove conflicting styling from Sphinx themes */
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt *,
+div.nbinput.container div.input_area pre,
+div.nboutput.container div.output_area pre,
+div.nbinput.container div.input_area .highlight,
+div.nboutput.container div.output_area .highlight {
+    border: none;
+    padding: 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+div.nbinput.container > div[class*=highlight],
+div.nboutput.container > div[class*=highlight] {
+    margin: 0;
+}
+
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt * {
+    background: none;
+}
+
+div.nboutput.container div.output_area .highlight,
+div.nboutput.container div.output_area pre {
+    background: unset;
+}
+
+div.nboutput.container div.output_area div.highlight {
+    color: unset;  /* override Pygments text color */
+}
+
+/* avoid gaps between output lines */
+div.nboutput.container div[class*=highlight] pre {
+    line-height: normal;
+}
+
+/* input/output containers */
+div.nbinput.container,
+div.nboutput.container {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+    width: 100%;
+}
+@media (max-width: 540px) {
+    div.nbinput.container,
+    div.nboutput.container {
+        flex-direction: column;
+    }
+}
+
+/* input container */
+div.nbinput.container {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast.container {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput.container div.prompt pre {
+    color: #307FC1;
+}
+
+/* output prompt */
+div.nboutput.container div.prompt pre {
+    color: #BF5B3D;
+}
+
+/* all prompts */
+div.nbinput.container div.prompt,
+div.nboutput.container div.prompt {
+    width: 4.5ex;
+    padding-top: 5px;
+    position: relative;
+    user-select: none;
+}
+
+div.nbinput.container div.prompt > div,
+div.nboutput.container div.prompt > div {
+    position: absolute;
+    right: 0;
+    margin-right: 0.3ex;
+}
+
+@media (max-width: 540px) {
+    div.nbinput.container div.prompt,
+    div.nboutput.container div.prompt {
+        width: unset;
+        text-align: left;
+        padding: 0.4em;
+    }
+    div.nboutput.container div.prompt.empty {
+        padding: 0;
+    }
+
+    div.nbinput.container div.prompt > div,
+    div.nboutput.container div.prompt > div {
+        position: unset;
+    }
+}
+
+/* disable scrollbars on prompts */
+div.nbinput.container div.prompt pre,
+div.nboutput.container div.prompt pre {
+    overflow: hidden;
+}
+
+/* input/output area */
+div.nbinput.container div.input_area,
+div.nboutput.container div.output_area {
+    -webkit-flex: 1;
+    flex: 1;
+    overflow: auto;
+}
+@media (max-width: 540px) {
+    div.nbinput.container div.input_area,
+    div.nboutput.container div.output_area {
+        width: 100%;
+    }
+}
+
+/* input area */
+div.nbinput.container div.input_area {
+    border: 1px solid #e0e0e0;
+    border-radius: 2px;
+    /*background: #f5f5f5;*/
+}
+
+/* override MathJax center alignment in output cells */
+div.nboutput.container div[class*=MathJax] {
+    text-align: left !important;
+}
+
+/* override sphinx.ext.imgmath center alignment in output cells */
+div.nboutput.container div.math p {
+    text-align: left;
+}
+
+/* standard error */
+div.nboutput.container div.output_area.stderr {
+    background: #fdd;
+}
+
+/* ANSI colors */
+.ansi-black-fg { color: #3E424D; }
+.ansi-black-bg { background-color: #3E424D; }
+.ansi-black-intense-fg { color: #282C36; }
+.ansi-black-intense-bg { background-color: #282C36; }
+.ansi-red-fg { color: #E75C58; }
+.ansi-red-bg { background-color: #E75C58; }
+.ansi-red-intense-fg { color: #B22B31; }
+.ansi-red-intense-bg { background-color: #B22B31; }
+.ansi-green-fg { color: #00A250; }
+.ansi-green-bg { background-color: #00A250; }
+.ansi-green-intense-fg { color: #007427; }
+.ansi-green-intense-bg { background-color: #007427; }
+.ansi-yellow-fg { color: #DDB62B; }
+.ansi-yellow-bg { background-color: #DDB62B; }
+.ansi-yellow-intense-fg { color: #B27D12; }
+.ansi-yellow-intense-bg { background-color: #B27D12; }
+.ansi-blue-fg { color: #208FFB; }
+.ansi-blue-bg { background-color: #208FFB; }
+.ansi-blue-intense-fg { color: #0065CA; }
+.ansi-blue-intense-bg { background-color: #0065CA; }
+.ansi-magenta-fg { color: #D160C4; }
+.ansi-magenta-bg { background-color: #D160C4; }
+.ansi-magenta-intense-fg { color: #A03196; }
+.ansi-magenta-intense-bg { background-color: #A03196; }
+.ansi-cyan-fg { color: #60C6C8; }
+.ansi-cyan-bg { background-color: #60C6C8; }
+.ansi-cyan-intense-fg { color: #258F8F; }
+.ansi-cyan-intense-bg { background-color: #258F8F; }
+.ansi-white-fg { color: #C5C1B4; }
+.ansi-white-bg { background-color: #C5C1B4; }
+.ansi-white-intense-fg { color: #A1A6B2; }
+.ansi-white-intense-bg { background-color: #A1A6B2; }
+
+.ansi-default-inverse-fg { color: #FFFFFF; }
+.ansi-default-inverse-bg { background-color: #000000; }
+
+.ansi-bold { font-weight: bold; }
+.ansi-underline { text-decoration: underline; }
+
+
+div.nbinput.container div.input_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight].math,
+div.nboutput.container div.output_area.rendered_html,
+div.nboutput.container div.output_area > div.output_javascript,
+div.nboutput.container div.output_area:not(.rendered_html) > img{
+    padding: 5px;
+    margin: 0;
+}
+
+/* fix copybtn overflow problem in chromium (needed for 'sphinx_copybutton') */
+div.nbinput.container div.input_area > div[class^='highlight'],
+div.nboutput.container div.output_area > div[class^='highlight']{
+    overflow-y: hidden;
+}
+
+/* hide copybtn icon on prompts (needed for 'sphinx_copybutton') */
+.prompt a.copybtn {
+    display: none;
+}
+
+/* Some additional styling taken form the Jupyter notebook CSS */
+div.rendered_html table {
+  border: none;
+  border-collapse: collapse;
+  border-spacing: 0;
+  color: black;
+  font-size: 12px;
+  table-layout: fixed;
+}
+div.rendered_html thead {
+  border-bottom: 1px solid black;
+  vertical-align: bottom;
+}
+div.rendered_html tr,
+div.rendered_html th,
+div.rendered_html td {
+  text-align: right;
+  vertical-align: middle;
+  padding: 0.5em 0.5em;
+  line-height: normal;
+  white-space: normal;
+  max-width: none;
+  border: none;
+}
+div.rendered_html th {
+  font-weight: bold;
+}
+div.rendered_html tbody tr:nth-child(odd) {
+  background: #f5f5f5;
+}
+div.rendered_html tbody tr:hover {
+  background: rgba(66, 165, 245, 0.2);
+}
+
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<div class="section" id="Recommender-System-with-Node2vec">
+<h1>Recommender System with Node2vec<a class="headerlink" href="#Recommender-System-with-Node2vec" title="Permalink to this headline">¶</a></h1>
+<blockquote>
+<div><p><strong>Recommender System with Node2vec Graph Embeddings</strong> - A tutorial on building a movie recommender system that will learn user-item representation using graph embedding and comparing performance with other methods like matrix factorization</p>
+</div></blockquote>
+<div class="section" id="Data-gathering-and-exploration">
+<h2>Data gathering and exploration<a class="headerlink" href="#Data-gathering-and-exploration" title="Permalink to this headline">¶</a></h2>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
+</pre></div>
+</div>
+<div class="input_area highlight-python notranslate"><div class="highlight"><pre>
+<span></span>#hide
+!wget https://raw.githubusercontent.com/sparsh-ai/rec-data-public/master/ml-other/ml100k_ratings.csv
+!wget https://raw.githubusercontent.com/sparsh-ai/rec-data-public/master/ml-other/ml100k_movies.csv
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+--2021-04-24 09:03:32--  https://raw.githubusercontent.com/sparsh-ai/rec-data-public/master/ml-other/ml100k_ratings.csv
+Resolving raw.githubusercontent.com (raw.githubusercontent.com)... 185.199.108.133, 185.199.110.133, 185.199.109.133, ...
+Connecting to raw.githubusercontent.com (raw.githubusercontent.com)|185.199.108.133|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 2483723 (2.4M) [text/plain]
+Saving to: ‘ml100k_ratings.csv’
+
+ml100k_ratings.csv  100%[===================&gt;]   2.37M  13.0MB/s    in 0.2s
+
+2021-04-24 09:03:32 (13.0 MB/s) - ‘ml100k_ratings.csv’ saved [2483723/2483723]
+
+--2021-04-24 09:03:32--  https://raw.githubusercontent.com/sparsh-ai/rec-data-public/master/ml-other/ml100k_movies.csv
+Resolving raw.githubusercontent.com (raw.githubusercontent.com)... 185.199.111.133, 185.199.110.133, 185.199.108.133, ...
+Connecting to raw.githubusercontent.com (raw.githubusercontent.com)|185.199.111.133|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 494431 (483K) [text/plain]
+Saving to: ‘ml100k_movies.csv’
+
+ml100k_movies.csv   100%[===================&gt;] 482.84K  --.-KB/s    in 0.05s
+
+2021-04-24 09:03:33 (8.59 MB/s) - ‘ml100k_movies.csv’ saved [494431/494431]
+
+</pre></div></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[236]:
+</pre></div>
+</div>
+<div class="input_area highlight-python notranslate"><div class="highlight"><pre>
+<span></span><span class="c1">#hide</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">scipy.sparse</span> <span class="kn">import</span> <span class="n">coo_matrix</span><span class="p">,</span> <span class="n">csr_matrix</span>
+<span class="kn">from</span> <span class="nn">scipy.sparse.linalg</span> <span class="kn">import</span> <span class="n">svds</span><span class="p">,</span> <span class="n">norm</span>
+<span class="kn">from</span> <span class="nn">scipy.spatial.distance</span> <span class="kn">import</span> <span class="n">cosine</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics.pairwise</span> <span class="kn">import</span> <span class="n">cosine_similarity</span>
+<span class="kn">import</span> <span class="nn">operator</span>
+<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span>
+<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">LabelEncoder</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[237]:
+</pre></div>
+</div>
+<div class="input_area highlight-python notranslate"><div class="highlight"><pre>
+<span></span><span class="c1">#hide</span>
+<span class="k">def</span> <span class="nf">print_stats</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">uid</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+  <span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+  <span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">movieId</span><span class="o">.</span><span class="n">nunique</span><span class="p">())</span>
+  <span class="nb">print</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">movieId</span><span class="p">))</span>
+  <span class="k">if</span> <span class="n">uid</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">userId</span><span class="o">.</span><span class="n">nunique</span><span class="p">())</span>
+    <span class="nb">print</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">userId</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[238]:
+</pre></div>
+</div>
+<div class="input_area highlight-python notranslate"><div class="highlight"><pre>
+<span></span><span class="n">rating_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;ml100k_ratings.csv&#39;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">rating_df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[238]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>userId</th>
+      <th>movieId</th>
+      <th>rating</th>
+      <th>timestamp</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>1</td>
+      <td>4.0</td>
+      <td>964982703</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1</td>
+      <td>3</td>
+      <td>4.0</td>
+      <td>964981247</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1</td>
+      <td>6</td>
+      <td>4.0</td>
+      <td>964982224</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1</td>
+      <td>47</td>
+      <td>5.0</td>
+      <td>964983815</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1</td>
+      <td>50</td>
+      <td>5.0</td>
+      <td>964982931</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[239]:
+</pre></div>
+</div>
+<div class="input_area highlight-python notranslate"><div class="highlight"><pre>
+<span></span><span class="c1">#hide</span>
+<span class="n">print_stats</span><span class="p">(</span><span class="n">rating_df</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+(100836, 4)
+9724
+193609
+610
+610
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[240]:
+</pre></div>
+</div>
+<div class="input_area highlight-python notranslate"><div class="highlight"><pre>
+<span></span><span class="n">movie_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;ml100k_movies.csv&#39;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">movie_df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[240]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>movieId</th>
+      <th>title</th>
+      <th>genres</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>Toy Story (1995)</td>
+      <td>Adventure|Animation|Children|Comedy|Fantasy</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2</td>
+      <td>Jumanji (1995)</td>
+      <td>Adventure|Children|Fantasy</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>3</td>
+      <td>Grumpier Old Men (1995)</td>
+      <td>Comedy|Romance</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>4</td>
+      <td>Waiting to Exhale (1995)</td>
+      <td>Comedy|Drama|Romance</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>5</td>
+      <td>Father of the Bride Part II (1995)</td>
+      <td>Comedy</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[241]:
+</pre></div>
+</div>
+<div class="input_area highlight-python notranslate"><div class="highlight"><pre>
+<span></span><span class="c1">#hide</span>
+<span class="n">print_stats</span><span class="p">(</span><span class="n">movie_df</span><span class="p">,</span> <span class="n">uid</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+(9742, 3)
+9742
+193609
+</pre></div></div>
+</div>
+</div>
+<div class="section" id="Neighborhood-method">
+<h2>Neighborhood method<a class="headerlink" href="#Neighborhood-method" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="Jaccard-Similarity">
+<h3>Jaccard Similarity<a class="headerlink" href="#Jaccard-Similarity" title="Permalink to this headline">¶</a></h3>
+<p>If we ignore the ratings that the users have given to the movies, and consider the movies that the users have watched, we get a set of movies/users for every user/movie. Think of this formulation as a bipartite graph of users and movies where there is an edge between a user and a movie if a user has watched the movie, the edges have all same weights.</p>
+<p>Create a dictionary of movies as keys and values as users that have rated them</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[242]:
+</pre></div>
+</div>
+<div class="input_area highlight-python notranslate"><div class="highlight"><pre>
+<span></span><span class="c1">#hide</span>
+<span class="n">movie_sets</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">((</span><span class="n">movie</span><span class="p">,</span> <span class="nb">set</span><span class="p">(</span><span class="n">users</span><span class="p">))</span> <span class="k">for</span> <span class="n">movie</span><span class="p">,</span> <span class="n">users</span> <span class="ow">in</span> <span class="n">rating_df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;movieId&#39;</span><span class="p">)[</span><span class="s1">&#39;userId&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<p>Since we have a set of users to characterize each movie, to compute the similarity of two movies, we use Jaccard Index which, for two sets, is the ratio of number of elements in the intersection and number of elements in the union.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[243]:
+</pre></div>
+</div>
+<div class="input_area highlight-python notranslate"><div class="highlight"><pre>
+<span></span><span class="c1">#collapse</span>
+<span class="k">def</span> <span class="nf">jaccard</span><span class="p">(</span><span class="n">movie1</span><span class="p">,</span> <span class="n">movie2</span><span class="p">,</span> <span class="n">movie_sets</span><span class="p">):</span>
+    <span class="n">a</span> <span class="o">=</span> <span class="n">movie_sets</span><span class="p">[</span><span class="n">movie1</span><span class="p">]</span>
+    <span class="n">b</span> <span class="o">=</span> <span class="n">movie_sets</span><span class="p">[</span><span class="n">movie2</span><span class="p">]</span>
+    <span class="n">intersection</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">intersection</span><span class="p">(</span><span class="n">b</span><span class="p">)))</span>
+    <span class="k">return</span> <span class="n">intersection</span> <span class="o">/</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="n">b</span><span class="p">)</span> <span class="o">-</span> <span class="n">intersection</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p>Let’s explore similarity between some movies, qualitatively. We use the movies dataframe to get the names of the movies via their Ids.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[244]:
+</pre></div>
+</div>
+<div class="input_area highlight-python notranslate"><div class="highlight"><pre>
+<span></span><span class="n">movie_df</span><span class="p">[</span><span class="n">movie_df</span><span class="o">.</span><span class="n">movieId</span> <span class="o">==</span> <span class="mi">260</span><span class="p">]</span><span class="o">.</span><span class="n">title</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[244]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&#39;Star Wars: Episode IV - A New Hope (1977)&#39;
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[246]:
+</pre></div>
+</div>
+<div class="input_area highlight-python notranslate"><div class="highlight"><pre>
+<span></span><span class="c1">#hide-input</span>
+<span class="n">title</span> <span class="o">=</span> <span class="n">movie_df</span><span class="p">[</span><span class="n">movie_df</span><span class="o">.</span><span class="n">movieId</span> <span class="o">==</span> <span class="mi">260</span><span class="p">]</span><span class="o">.</span><span class="n">title</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">title</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">title</span><span class="o">.</span><span class="n">split</span><span class="p">())</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Jaccard distance between &#39;</span><span class="si">%s</span><span class="s2">&#39; and &#39;</span><span class="si">%s</span><span class="s2">&#39; is </span><span class="si">%.2f</span><span class="s2">&quot;</span><span class="o">%</span><span class="p">(</span>
+    <span class="n">title</span><span class="p">,</span>
+     <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">movie_df</span><span class="p">[</span><span class="n">movie_df</span><span class="o">.</span><span class="n">movieId</span> <span class="o">==</span> <span class="mi">1196</span><span class="p">]</span><span class="o">.</span><span class="n">title</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">()),</span>
+    <span class="n">jaccard</span><span class="p">(</span><span class="mi">260</span><span class="p">,</span> <span class="mi">1196</span><span class="p">,</span> <span class="n">movie_sets</span><span class="p">)))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Jaccard distance between &#39;</span><span class="si">%s</span><span class="s2">&#39; and &#39;</span><span class="si">%s</span><span class="s2">&#39; is </span><span class="si">%.2f</span><span class="s2">&quot;</span><span class="o">%</span><span class="p">(</span>
+    <span class="n">title</span><span class="p">,</span>
+    <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">movie_df</span><span class="p">[</span><span class="n">movie_df</span><span class="o">.</span><span class="n">movieId</span> <span class="o">==</span> <span class="mi">1210</span><span class="p">]</span><span class="o">.</span><span class="n">title</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">()),</span>
+    <span class="n">jaccard</span><span class="p">(</span><span class="mi">260</span><span class="p">,</span> <span class="mi">1210</span><span class="p">,</span> <span class="n">movie_sets</span><span class="p">)))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Jaccard distance between &#39;</span><span class="si">%s</span><span class="s2">&#39; and &#39;</span><span class="si">%s</span><span class="s2">&#39; is </span><span class="si">%.2f</span><span class="s2">&quot;</span><span class="o">%</span><span class="p">(</span>
+    <span class="n">title</span><span class="p">,</span>
+    <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">movie_df</span><span class="p">[</span><span class="n">movie_df</span><span class="o">.</span><span class="n">movieId</span> <span class="o">==</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">title</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">()),</span>
+    <span class="n">jaccard</span><span class="p">(</span><span class="mi">260</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">movie_sets</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Jaccard distance between &#39;StarWars:EpisodeIV-ANewHope(1977)&#39; and &#39;StarWars:EpisodeV-TheEmpireStrikesBack(1980)&#39; is 0.70
+Jaccard distance between &#39;StarWars:EpisodeIV-ANewHope(1977)&#39; and &#39;StarWars:EpisodeVI-ReturnoftheJedi(1983)&#39; is 0.64
+Jaccard distance between &#39;StarWars:EpisodeIV-ANewHope(1977)&#39; and &#39;ToyStory(1995)&#39; is 0.40
+</pre></div></div>
+</div>
+<p>The movie Star Wars IV has higher similarity score with other Star Wars as compared to Toy Story.</p>
+<p>Using the Jaccard Index, we can retrieve top-k similar movies to a given movie. This provides a way to recommend movies of a user which are similar to the movies that the user has watched.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[247]:
+</pre></div>
+</div>
+<div class="input_area highlight-python notranslate"><div class="highlight"><pre>
+<span></span><span class="c1">#hide</span>
+<span class="kn">import</span> <span class="nn">operator</span>
+
+<span class="k">def</span> <span class="nf">get_similar_movies_jaccard</span><span class="p">(</span><span class="n">movieid</span><span class="p">,</span> <span class="n">movie_sets</span><span class="p">,</span> <span class="n">top_n</span><span class="o">=</span><span class="mi">5</span><span class="p">):</span>
+    <span class="n">movie</span> <span class="o">=</span> <span class="n">movie_df</span><span class="p">[</span><span class="n">movie_df</span><span class="o">.</span><span class="n">movieId</span> <span class="o">==</span> <span class="n">movieid</span><span class="p">]</span><span class="o">.</span><span class="n">title</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">jaccard_dict</span> <span class="o">=</span> <span class="p">{</span><span class="n">x</span><span class="p">:</span> <span class="n">jaccard</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">movieid</span><span class="p">,</span> <span class="n">movie_sets</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">movie_sets</span><span class="p">}</span>
+    <span class="n">ranked_movies</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">jaccard_dict</span><span class="o">.</span><span class="n">items</span><span class="p">(),</span> <span class="n">key</span><span class="o">=</span><span class="n">operator</span><span class="o">.</span><span class="n">itemgetter</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">)[:</span><span class="n">top_n</span><span class="p">]</span>
+    <span class="n">sim_movies</span> <span class="o">=</span> <span class="p">[</span><span class="n">movie_df</span><span class="p">[</span><span class="n">movie_df</span><span class="o">.</span><span class="n">movieId</span> <span class="o">==</span> <span class="nb">id</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span><span class="o">.</span><span class="n">title</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="nb">id</span> <span class="ow">in</span> <span class="n">ranked_movies</span><span class="p">]</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s1">&#39;movie&#39;</span><span class="p">:</span> <span class="n">movie</span><span class="p">,</span> <span class="s1">&#39;sim_movies&#39;</span><span class="p">:</span> <span class="n">sim_movies</span><span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[248]:
+</pre></div>
+</div>
+<div class="input_area highlight-python notranslate"><div class="highlight"><pre>
+<span></span><span class="n">get_similar_movies_jaccard</span><span class="p">(</span><span class="mi">260</span><span class="p">,</span> <span class="n">movie_sets</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[248]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+{&#39;movie&#39;: &#39;Star Wars: Episode IV - A New Hope (1977)&#39;,
+ &#39;sim_movies&#39;: [&#39;Star Wars: Episode IV - A New Hope (1977)&#39;,
+  &#39;Star Wars: Episode V - The Empire Strikes Back (1980)&#39;,
+  &#39;Star Wars: Episode VI - Return of the Jedi (1983)&#39;,
+  &#39;Raiders of the Lost Ark (Indiana Jones and the Raiders of the Lost Ark) (1981)&#39;,
+  &#39;Matrix, The (1999)&#39;]}
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[249]:
+</pre></div>
+</div>
+<div class="input_area highlight-python notranslate"><div class="highlight"><pre>
+<span></span><span class="n">get_similar_movies_jaccard</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">movie_sets</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[249]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+{&#39;movie&#39;: &#39;Toy Story (1995)&#39;,
+ &#39;sim_movies&#39;: [&#39;Toy Story (1995)&#39;,
+  &#39;Independence Day (a.k.a. ID4) (1996)&#39;,
+  &#39;Jurassic Park (1993)&#39;,
+  &#39;Star Wars: Episode IV - A New Hope (1977)&#39;,
+  &#39;Forrest Gump (1994)&#39;]}
+</pre></div></div>
+</div>
+</div>
+<div class="section" id="Cosine-similarity">
+<h3>Cosine similarity<a class="headerlink" href="#Cosine-similarity" title="Permalink to this headline">¶</a></h3>
+<p>Rather than the set based similarity like Jaccard, we can define every movie as a sparse vector of dimension equal to the number of users and the vector entry corresponding to each user is given by the rating that the user has for the movie or zero if no rating exists (i.e. the user hasn’t seen/rated the movie).</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[250]:
+</pre></div>
+</div>
+<div class="input_area highlight-python notranslate"><div class="highlight"><pre>
+<span></span><span class="c1">#hide</span>
+<span class="kn">from</span> <span class="nn">scipy.spatial.distance</span> <span class="kn">import</span> <span class="n">cosine</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics.pairwise</span> <span class="kn">import</span> <span class="n">cosine_similarity</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[251]:
+</pre></div>
+</div>
+<div class="input_area highlight-python notranslate"><div class="highlight"><pre>
+<span></span><span class="c1">#hide</span>
+<span class="n">num_users</span> <span class="o">=</span> <span class="n">rating_df</span><span class="o">.</span><span class="n">userId</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span>
+<span class="n">num_users</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[251]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+610
+</pre></div></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[252]:
+</pre></div>
+</div>
+<div class="input_area highlight-python notranslate"><div class="highlight"><pre>
+<span></span><span class="c1">#hide</span>
+<span class="n">movie_sparse_vecs</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">movies</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">movie</span><span class="p">,</span> <span class="n">group</span> <span class="ow">in</span> <span class="n">rating_df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;movieId&#39;</span><span class="p">):</span>
+    <span class="n">vec</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">num_users</span>
+    <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">group</span><span class="p">[[</span><span class="s1">&#39;userId&#39;</span><span class="p">,</span> <span class="s1">&#39;rating&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">values</span><span class="p">:</span>
+        <span class="n">vec</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">movie_sparse_vecs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">vec</span><span class="p">)</span>
+    <span class="n">movies</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">movie</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[253]:
+</pre></div>
+</div>
+<div class="input_area highlight-python notranslate"><div class="highlight"><pre>
+<span></span><span class="c1">#hide</span>
+<span class="n">movie_sparse_vecs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">movie_sparse_vecs</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">movie_sparse_vecs</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+(9724, 610)
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[254]:
+</pre></div>
+</div>
+<div class="input_area highlight-python notranslate"><div class="highlight"><pre>
+<span></span><span class="nb">print</span><span class="p">(</span><span class="mf">1.0</span> <span class="o">-</span> <span class="n">cosine</span><span class="p">(</span><span class="n">movie_sparse_vecs</span><span class="p">[</span><span class="mi">224</span><span class="p">],</span> <span class="n">movie_sparse_vecs</span><span class="p">[</span><span class="mi">897</span><span class="p">]))</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+0.8324073552233735
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[255]:
+</pre></div>
+</div>
+<div class="input_area highlight-python notranslate"><div class="highlight"><pre>
+<span></span><span class="c1">#hide</span>
+<span class="n">movie2id</span> <span class="o">=</span> <span class="p">{</span><span class="n">x</span><span class="p">:</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">x</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">movies</span><span class="p">)}</span>
+<span class="n">movie2id</span><span class="p">[</span><span class="mi">260</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[255]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+224
+</pre></div></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[256]:
+</pre></div>
+</div>
+<div class="input_area highlight-python notranslate"><div class="highlight"><pre>
+<span></span><span class="c1">#collapse</span>
+<span class="k">def</span> <span class="nf">get_similar_movies_nbd_cosine</span><span class="p">(</span><span class="n">movieid</span><span class="p">,</span> <span class="n">movie_vecs</span><span class="p">,</span> <span class="n">top_n</span><span class="o">=</span><span class="mi">5</span><span class="p">):</span>
+    <span class="n">movie</span> <span class="o">=</span> <span class="n">movie_df</span><span class="p">[</span><span class="n">movie_df</span><span class="o">.</span><span class="n">movieId</span> <span class="o">==</span> <span class="n">movieid</span><span class="p">]</span><span class="o">.</span><span class="n">title</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">movie_idx</span> <span class="o">=</span> <span class="n">movie2id</span><span class="p">[</span><span class="n">movieid</span><span class="p">]</span>
+    <span class="n">query</span> <span class="o">=</span> <span class="n">movie_vecs</span><span class="p">[</span><span class="n">movie_idx</span><span class="p">]</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">ranking</span> <span class="o">=</span> <span class="n">cosine_similarity</span><span class="p">(</span><span class="n">movie_vecs</span><span class="p">,</span><span class="n">query</span><span class="p">)</span>
+    <span class="n">top_ids</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argsort</span><span class="p">(</span><span class="n">ranking</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">top_ids</span> <span class="o">=</span> <span class="n">top_ids</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">][:</span><span class="n">top_n</span><span class="p">]</span>
+    <span class="n">top_movie_ids</span> <span class="o">=</span> <span class="p">[</span><span class="n">movies</span><span class="p">[</span><span class="n">j</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">top_ids</span><span class="p">]</span>
+    <span class="n">sim_movies</span> <span class="o">=</span> <span class="p">[</span><span class="n">movie_df</span><span class="p">[</span><span class="n">movie_df</span><span class="o">.</span><span class="n">movieId</span> <span class="o">==</span> <span class="nb">id</span><span class="p">]</span><span class="o">.</span><span class="n">title</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="nb">id</span> <span class="ow">in</span> <span class="n">top_movie_ids</span><span class="p">]</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s1">&#39;movie&#39;</span><span class="p">:</span> <span class="n">movie</span><span class="p">,</span> <span class="s1">&#39;sim_movies&#39;</span><span class="p">:</span> <span class="n">sim_movies</span><span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[257]:
+</pre></div>
+</div>
+<div class="input_area highlight-python notranslate"><div class="highlight"><pre>
+<span></span><span class="n">movieid</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">movie_data</span> <span class="o">=</span> <span class="n">movie_sparse_vecs</span>
+<span class="n">get_similar_movies_nbd_cosine</span><span class="p">(</span><span class="n">movieid</span><span class="p">,</span> <span class="n">movie_data</span><span class="p">,</span> <span class="n">top_n</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[257]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+{&#39;movie&#39;: &#39;Toy Story (1995)&#39;,
+ &#39;sim_movies&#39;: [&#39;Toy Story (1995)&#39;,
+  &#39;Toy Story 2 (1999)&#39;,
+  &#39;Jurassic Park (1993)&#39;,
+  &#39;Independence Day (a.k.a. ID4) (1996)&#39;,
+  &#39;Star Wars: Episode IV - A New Hope (1977)&#39;]}
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[258]:
+</pre></div>
+</div>
+<div class="input_area highlight-python notranslate"><div class="highlight"><pre>
+<span></span><span class="n">movieid</span> <span class="o">=</span> <span class="mi">260</span>
+<span class="n">movie_data</span> <span class="o">=</span> <span class="n">movie_sparse_vecs</span>
+<span class="n">get_similar_movies_nbd_cosine</span><span class="p">(</span><span class="n">movieid</span><span class="p">,</span> <span class="n">movie_data</span><span class="p">,</span> <span class="n">top_n</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[258]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+{&#39;movie&#39;: &#39;Star Wars: Episode IV - A New Hope (1977)&#39;,
+ &#39;sim_movies&#39;: [&#39;Star Wars: Episode IV - A New Hope (1977)&#39;,
+  &#39;Star Wars: Episode V - The Empire Strikes Back (1980)&#39;,
+  &#39;Star Wars: Episode VI - Return of the Jedi (1983)&#39;,
+  &#39;Raiders of the Lost Ark (Indiana Jones and the Raiders of the Lost Ark) (1981)&#39;,
+  &#39;Matrix, The (1999)&#39;]}
+</pre></div></div>
+</div>
+</div>
+</div>
+<div class="section" id="Factorization-method">
+<h2>Factorization method<a class="headerlink" href="#Factorization-method" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="Singular-Value-Decomposition">
+<h3>Singular Value Decomposition<a class="headerlink" href="#Singular-Value-Decomposition" title="Permalink to this headline">¶</a></h3>
+<p>A very popular technique for recommendation systems is via matrix factorization. The idea is to reduce the dimensionality of the data before calculating similar movies/users. We factorize the user-item matrix to obtain the user factors and item factors which are the low-dimensional embeddings such that ‘similar’ user/items are mapped to ‘nearby’ points.</p>
+<p>This kind of analysis can generate matches that are impossible to find with the techniques discussed above as the latent factors can capture attributes which are hard for raw data to deciper e.g. a latent factor can correspond to the degree to which a movie is female oriented or degree to which there is a slow development of the charcters.</p>
+<p>Moreover, the user and the movies are embedded to the same space, which provides a direct way to compute user-movie similarity.</p>
+<p>We will use Singular Value Decomposition (SVD) for factorizing the matrix.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[259]:
+</pre></div>
+</div>
+<div class="input_area highlight-python notranslate"><div class="highlight"><pre>
+<span></span><span class="c1">#hide</span>
+<span class="n">le_movie</span> <span class="o">=</span> <span class="n">LabelEncoder</span><span class="p">()</span>
+<span class="n">movie_df</span> <span class="o">=</span> <span class="n">movie_df</span><span class="p">[</span><span class="n">movie_df</span><span class="o">.</span><span class="n">movieId</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">rating_df</span><span class="o">.</span><span class="n">movieId</span><span class="o">.</span><span class="n">unique</span><span class="p">())]</span>
+<span class="n">rating_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="s1">&#39;movieId&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">le_movie</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">rating_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="s1">&#39;movieId&#39;</span><span class="p">])</span>
+<span class="n">rating_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="s1">&#39;movieId&#39;</span><span class="p">]</span><span class="o">+=</span><span class="mi">1</span>
+<span class="n">movie_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="s1">&#39;movieId&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">le_movie</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">movie_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="s1">&#39;movieId&#39;</span><span class="p">])</span>
+<span class="n">movie_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="s1">&#39;movieId&#39;</span><span class="p">]</span><span class="o">+=</span><span class="mi">1</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[260]:
+</pre></div>
+</div>
+<div class="input_area highlight-python notranslate"><div class="highlight"><pre>
+<span></span><span class="c1">#hide</span>
+<span class="n">ratings_mat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">(</span>
+    <span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">rating_df</span><span class="o">.</span><span class="n">movieId</span><span class="o">.</span><span class="n">values</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">rating_df</span><span class="o">.</span><span class="n">userId</span><span class="o">.</span><span class="n">values</span><span class="p">)),</span>
+    <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">)</span>
+<span class="n">ratings_mat</span><span class="p">[</span><span class="n">rating_df</span><span class="o">.</span><span class="n">movieId</span><span class="o">.</span><span class="n">values</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">rating_df</span><span class="o">.</span><span class="n">userId</span><span class="o">.</span><span class="n">values</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">rating_df</span><span class="o">.</span><span class="n">rating</span><span class="o">.</span><span class="n">values</span>
+<span class="n">ratings_mat</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[260]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+(9724, 610)
+</pre></div></div>
+</div>
+<p>Normalize the rating matrix</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[261]:
+</pre></div>
+</div>
+<div class="input_area highlight-python notranslate"><div class="highlight"><pre>
+<span></span><span class="n">normalised_mat</span> <span class="o">=</span> <span class="n">ratings_mat</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">([(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">ratings_mat</span><span class="p">,</span> <span class="mi">1</span><span class="p">))])</span><span class="o">.</span><span class="n">T</span>
+</pre></div>
+</div>
+</div>
+<p>The number of the latent-factors is chosen to be 50 i.e. top-50 singular values of the SVD are considered. The choice of the number of latent factors is a hyperparameter of the model, and requires a more sophisticated analysis to tune. We provide no reason for the choice of 50.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[262]:
+</pre></div>
+</div>
+<div class="input_area highlight-python notranslate"><div class="highlight"><pre>
+<span></span><span class="n">n_factors</span> <span class="o">=</span> <span class="mi">50</span>
+
+<span class="n">A</span> <span class="o">=</span> <span class="n">normalised_mat</span><span class="o">.</span><span class="n">T</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">ratings_mat</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">U</span><span class="p">,</span> <span class="n">S</span><span class="p">,</span> <span class="n">V</span> <span class="o">=</span> <span class="n">svds</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">n_factors</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">U</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">V</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+(610, 50) (50, 9724)
+</pre></div></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[263]:
+</pre></div>
+</div>
+<div class="input_area highlight-python notranslate"><div class="highlight"><pre>
+<span></span><span class="n">movie_factors</span> <span class="o">=</span> <span class="n">V</span><span class="o">.</span><span class="n">T</span>
+<span class="n">user_factors</span> <span class="o">=</span> <span class="n">U</span>
+</pre></div>
+</div>
+</div>
+<p>Instead of representing each movie as a sparse vector of the ratings of all 360,000 possible users for it, after factorizing the matrix each movie will be represented by a 50 dimensional dense vector.</p>
+<p>Define a routine to get top-n movies similar to a given movie.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[264]:
+</pre></div>
+</div>
+<div class="input_area highlight-python notranslate"><div class="highlight"><pre>
+<span></span><span class="c1">#collapse</span>
+<span class="k">def</span> <span class="nf">get_similar_movies_matrix_factorization</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">movieid</span><span class="p">,</span> <span class="n">top_n</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
+    <span class="n">index</span> <span class="o">=</span> <span class="n">movieid</span> <span class="o">-</span> <span class="mi">1</span> <span class="c1"># Movie id starts from 1</span>
+    <span class="n">movie</span> <span class="o">=</span> <span class="n">movie_df</span><span class="p">[</span><span class="n">movie_df</span><span class="o">.</span><span class="n">movieId</span> <span class="o">==</span> <span class="n">movieid</span><span class="p">]</span><span class="o">.</span><span class="n">title</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">movie_row</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">index</span><span class="p">]</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">similarity</span> <span class="o">=</span> <span class="n">cosine_similarity</span><span class="p">(</span><span class="n">movie_row</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+    <span class="n">sort_indexes</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argsort</span><span class="p">(</span><span class="o">-</span><span class="n">similarity</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s1">&#39;movie&#39;</span><span class="p">:</span> <span class="n">movie</span><span class="p">,</span> <span class="s1">&#39;sim_movies&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">movie_df</span><span class="p">[</span><span class="n">movie_df</span><span class="o">.</span><span class="n">movieId</span> <span class="o">==</span> <span class="nb">id</span><span class="p">]</span><span class="o">.</span><span class="n">title</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="nb">id</span> <span class="ow">in</span> <span class="n">sort_indexes</span><span class="p">[:</span><span class="n">top_n</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]}</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[265]:
+</pre></div>
+</div>
+<div class="input_area highlight-python notranslate"><div class="highlight"><pre>
+<span></span><span class="n">movie_id</span> <span class="o">=</span> <span class="mi">260</span>
+<span class="n">get_similar_movies_matrix_factorization</span><span class="p">(</span><span class="n">movie_factors</span><span class="p">,</span> <span class="n">movie_id</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[265]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+{&#39;movie&#39;: &#39;Priest (1994)&#39;,
+ &#39;sim_movies&#39;: [&#39;Priest (1994)&#39;,
+  &#39;Heidi Fleiss: Hollywood Madam (1995)&#39;,
+  &#39;Reds (1981)&#39;,
+  &#39;I Went Down (1997)&#39;,
+  &#39;Metroland (1997)&#39;,
+  &#39;Love Serenade (1996)&#39;,
+  &#39;Cold Fever (Á köldum klaka) (1995)&#39;,
+  &#39;Suture (1993)&#39;,
+  &#39;Whole Wide World, The (1996)&#39;,
+  &#39;Walking and Talking (1996)&#39;]}
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[266]:
+</pre></div>
+</div>
+<div class="input_area highlight-python notranslate"><div class="highlight"><pre>
+<span></span><span class="n">movie_id</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">get_similar_movies_matrix_factorization</span><span class="p">(</span><span class="n">movie_factors</span><span class="p">,</span> <span class="n">movie_id</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[266]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+{&#39;movie&#39;: &#39;Toy Story (1995)&#39;,
+ &#39;sim_movies&#39;: [&#39;Toy Story (1995)&#39;,
+  &#39;Back to the Future (1985)&#39;,
+  &#34;Bug&#39;s Life, A (1998)&#34;,
+  &#39;Babe (1995)&#39;,
+  &#39;Star Wars: Episode IV - A New Hope (1977)&#39;,
+  &#39;Who Framed Roger Rabbit? (1988)&#39;,
+  &#39;Mrs. Doubtfire (1993)&#39;,
+  &#39;When Harry Met Sally... (1989)&#39;,
+  &#39;101 Dalmatians (One Hundred and One Dalmatians) (1961)&#39;,
+  &#39;Home Alone (1990)&#39;]}
+</pre></div></div>
+</div>
+<p>Since the user and movies are in the same space, we can also compute movies similar to a user. A recommendation model can be defined as showing movies similar to the given user.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[267]:
+</pre></div>
+</div>
+<div class="input_area highlight-python notranslate"><div class="highlight"><pre>
+<span></span><span class="c1">#collapse</span>
+<span class="k">def</span> <span class="nf">get_recommendations_matrix_factorization</span><span class="p">(</span><span class="n">userid</span><span class="p">,</span> <span class="n">user_factors</span><span class="p">,</span> <span class="n">movie_factors</span><span class="p">,</span> <span class="n">top_n</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
+    <span class="n">user_vec</span> <span class="o">=</span> <span class="n">user_factors</span><span class="p">[</span><span class="n">userid</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">similarity</span> <span class="o">=</span> <span class="n">cosine_similarity</span><span class="p">(</span><span class="n">user_vec</span><span class="p">,</span> <span class="n">movie_factors</span><span class="p">)</span>
+    <span class="n">sort_indexes</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argsort</span><span class="p">(</span><span class="o">-</span><span class="n">similarity</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">movie_df</span><span class="p">[</span><span class="n">movie_df</span><span class="o">.</span><span class="n">movieId</span> <span class="o">==</span> <span class="nb">id</span><span class="p">]</span><span class="o">.</span><span class="n">title</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="nb">id</span> <span class="ow">in</span> <span class="n">sort_indexes</span><span class="p">[:</span><span class="n">top_n</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[268]:
+</pre></div>
+</div>
+<div class="input_area highlight-python notranslate"><div class="highlight"><pre>
+<span></span><span class="n">top_recos</span> <span class="o">=</span> <span class="n">get_recommendations_matrix_factorization</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">user_factors</span><span class="p">,</span> <span class="n">movie_factors</span><span class="p">)</span>
+<span class="n">top_recos</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[268]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+[&#39;Jungle2Jungle (a.k.a. Jungle 2 Jungle) (1997)&#39;,
+ &#34;Pete&#39;s Dragon (2016)&#34;,
+ &#39;Cellular (2004)&#39;,
+ &#39;Replacement Killers, The (1998)&#39;,
+ &#39;Rough Night (2017)&#39;,
+ &#39;Star Wars: Episode III - Revenge of the Sith (2005)&#39;,
+ &#39;Gentlemen Prefer Blondes (1953)&#39;,
+ &#39;Spanglish (2004)&#39;,
+ &#39;Sorry to Bother You (2018)&#39;,
+ &#39;Planet of the Apes (2001)&#39;]
+</pre></div></div>
+</div>
+</div>
+</div>
+<div class="section" id="Graph-Embedding-method">
+<h2>Graph Embedding method<a class="headerlink" href="#Graph-Embedding-method" title="Permalink to this headline">¶</a></h2>
+<p>Create a user-movie graph with edge weights as the ratings. We will use DeepWalk to embed every node of the graph to a low-dimensional space.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[269]:
+</pre></div>
+</div>
+<div class="input_area highlight-python notranslate"><div class="highlight"><pre>
+<span></span><span class="c1">#hide</span>
+<span class="kn">import</span> <span class="nn">networkx</span> <span class="k">as</span> <span class="nn">nx</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[270]:
+</pre></div>
+</div>
+<div class="input_area highlight-python notranslate"><div class="highlight"><pre>
+<span></span><span class="n">user_item_edgelist</span> <span class="o">=</span> <span class="n">rating_df</span><span class="p">[[</span><span class="s1">&#39;userId&#39;</span><span class="p">,</span> <span class="s1">&#39;movieId&#39;</span><span class="p">,</span> <span class="s1">&#39;rating&#39;</span><span class="p">]]</span>
+<span class="n">user_item_edgelist</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[270]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>userId</th>
+      <th>movieId</th>
+      <th>rating</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>1</td>
+      <td>4.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1</td>
+      <td>3</td>
+      <td>4.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1</td>
+      <td>6</td>
+      <td>4.0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1</td>
+      <td>44</td>
+      <td>5.0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1</td>
+      <td>47</td>
+      <td>5.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[271]:
+</pre></div>
+</div>
+<div class="input_area highlight-python notranslate"><div class="highlight"><pre>
+<span></span><span class="c1">#hide</span>
+<span class="n">user2dict</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+<span class="n">movie2dict</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+<span class="n">cnt</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">user_item_edgelist</span><span class="o">.</span><span class="n">values</span><span class="p">:</span>
+    <span class="n">usr</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="s1">&#39;user&#39;</span><span class="p">)</span>
+    <span class="n">movie</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="s1">&#39;movie&#39;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">usr</span> <span class="ow">in</span> <span class="n">user2dict</span><span class="p">:</span>
+        <span class="k">pass</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">user2dict</span><span class="p">[</span><span class="n">usr</span><span class="p">]</span> <span class="o">=</span> <span class="n">cnt</span>
+        <span class="n">cnt</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="k">if</span> <span class="n">movie</span> <span class="ow">in</span> <span class="n">movie2dict</span><span class="p">:</span>
+        <span class="k">pass</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">movie2dict</span><span class="p">[</span><span class="n">movie</span><span class="p">]</span> <span class="o">=</span> <span class="n">cnt</span>
+        <span class="n">cnt</span> <span class="o">+=</span> <span class="mi">1</span>
+</pre></div>
+</div>
+</div>
+<p>Create a user-movie weighted graph using python library networkx.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[272]:
+</pre></div>
+</div>
+<div class="input_area highlight-python notranslate"><div class="highlight"><pre>
+<span></span><span class="n">user_movie_graph</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">Graph</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[273]:
+</pre></div>
+</div>
+<div class="input_area highlight-python notranslate"><div class="highlight"><pre>
+<span></span><span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">user_item_edgelist</span><span class="o">.</span><span class="n">values</span><span class="p">:</span>
+    <span class="n">usr</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="s1">&#39;user&#39;</span><span class="p">)</span>
+    <span class="n">movie</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="s1">&#39;movie&#39;</span><span class="p">)</span>
+    <span class="n">user_movie_graph</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="n">user2dict</span><span class="p">[</span><span class="n">usr</span><span class="p">])</span>
+    <span class="n">user_movie_graph</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="n">movie2dict</span><span class="p">[</span><span class="n">movie</span><span class="p">])</span>
+    <span class="n">user_movie_graph</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="n">user2dict</span><span class="p">[</span><span class="n">usr</span><span class="p">],</span> <span class="n">movie2dict</span><span class="p">[</span><span class="n">movie</span><span class="p">],</span> <span class="n">weight</span><span class="o">=</span><span class="nb">float</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">2</span><span class="p">]))</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[274]:
+</pre></div>
+</div>
+<div class="input_area highlight-python notranslate"><div class="highlight"><pre>
+<span></span><span class="n">user_movie_graph</span><span class="o">.</span><span class="n">number_of_edges</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[274]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+100836
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[275]:
+</pre></div>
+</div>
+<div class="input_area highlight-python notranslate"><div class="highlight"><pre>
+<span></span><span class="n">user_movie_graph</span><span class="o">.</span><span class="n">number_of_nodes</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[275]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+10334
+</pre></div></div>
+</div>
+<div class="section" id="DeepWalk">
+<h3>DeepWalk<a class="headerlink" href="#DeepWalk" title="Permalink to this headline">¶</a></h3>
+<p>We will use the implementation of DeepWalk provided in node2vec which is a bit different from original DeepWalk e.g. it uses negative sampling whereas the original DeepWalk paper used hierarchical sampling for the skip-gram model.</p>
+<p>To create embeddings from the context and non-context pairs, we are using Gensim python library. One can easily use Google word2vec or Facebook fasttext for this task.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[276]:
+</pre></div>
+</div>
+<div class="input_area highlight-python notranslate"><div class="highlight"><pre>
+<span></span><span class="c1">#collapse</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">networkx</span> <span class="k">as</span> <span class="nn">nx</span>
+<span class="kn">import</span> <span class="nn">random</span>
+
+
+<span class="k">class</span> <span class="nc">Graph</span><span class="p">():</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nx_G</span><span class="p">,</span> <span class="n">is_directed</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">q</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">G</span> <span class="o">=</span> <span class="n">nx_G</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">is_directed</span> <span class="o">=</span> <span class="n">is_directed</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">p</span> <span class="o">=</span> <span class="n">p</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">q</span> <span class="o">=</span> <span class="n">q</span>
+
+    <span class="k">def</span> <span class="nf">node2vec_walk</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">walk_length</span><span class="p">,</span> <span class="n">start_node</span><span class="p">):</span>
+            <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">            Simulate a random walk starting from start node.</span>
+<span class="sd">            &#39;&#39;&#39;</span>
+            <span class="n">G</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">G</span>
+            <span class="n">alias_nodes</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">alias_nodes</span>
+            <span class="n">alias_edges</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">alias_edges</span>
+
+            <span class="n">walk</span> <span class="o">=</span> <span class="p">[</span><span class="n">start_node</span><span class="p">]</span>
+
+            <span class="k">while</span> <span class="nb">len</span><span class="p">(</span><span class="n">walk</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">walk_length</span><span class="p">:</span>
+                    <span class="n">cur</span> <span class="o">=</span> <span class="n">walk</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+                    <span class="n">cur_nbrs</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">G</span><span class="o">.</span><span class="n">neighbors</span><span class="p">(</span><span class="n">cur</span><span class="p">))</span>
+                    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">cur_nbrs</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">walk</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+                                    <span class="n">walk</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">cur_nbrs</span><span class="p">[</span><span class="n">alias_draw</span><span class="p">(</span><span class="n">alias_nodes</span><span class="p">[</span><span class="n">cur</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="n">alias_nodes</span><span class="p">[</span><span class="n">cur</span><span class="p">][</span><span class="mi">1</span><span class="p">])])</span>
+                            <span class="k">else</span><span class="p">:</span>
+                                    <span class="n">prev</span> <span class="o">=</span> <span class="n">walk</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span>
+                                    <span class="nb">next</span> <span class="o">=</span> <span class="n">cur_nbrs</span><span class="p">[</span><span class="n">alias_draw</span><span class="p">(</span><span class="n">alias_edges</span><span class="p">[(</span><span class="n">prev</span><span class="p">,</span> <span class="n">cur</span><span class="p">)][</span><span class="mi">0</span><span class="p">],</span>
+                                            <span class="n">alias_edges</span><span class="p">[(</span><span class="n">prev</span><span class="p">,</span> <span class="n">cur</span><span class="p">)][</span><span class="mi">1</span><span class="p">])]</span>
+                                    <span class="n">walk</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">next</span><span class="p">)</span>
+                    <span class="k">else</span><span class="p">:</span>
+                            <span class="k">break</span>
+
+            <span class="k">return</span> <span class="n">walk</span>
+
+    <span class="k">def</span> <span class="nf">simulate_walks</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">num_walks</span><span class="p">,</span> <span class="n">walk_length</span><span class="p">):</span>
+            <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">            Repeatedly simulate random walks from each node.</span>
+<span class="sd">            &#39;&#39;&#39;</span>
+            <span class="n">G</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">G</span>
+            <span class="n">walks</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="n">nodes</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">G</span><span class="o">.</span><span class="n">nodes</span><span class="p">())</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Walk iteration:&#39;</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">walk_iter</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_walks</span><span class="p">):</span>
+                    <span class="nb">print</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">walk_iter</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span> <span class="s1">&#39;/&#39;</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">num_walks</span><span class="p">))</span>
+                    <span class="n">random</span><span class="o">.</span><span class="n">shuffle</span><span class="p">(</span><span class="n">nodes</span><span class="p">)</span>
+                    <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">nodes</span><span class="p">:</span>
+                            <span class="n">walks</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">node2vec_walk</span><span class="p">(</span><span class="n">walk_length</span><span class="o">=</span><span class="n">walk_length</span><span class="p">,</span> <span class="n">start_node</span><span class="o">=</span><span class="n">node</span><span class="p">))</span>
+
+            <span class="k">return</span> <span class="n">walks</span>
+
+    <span class="k">def</span> <span class="nf">get_alias_edge</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">src</span><span class="p">,</span> <span class="n">dst</span><span class="p">):</span>
+            <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">            Get the alias edge setup lists for a given edge.</span>
+<span class="sd">            &#39;&#39;&#39;</span>
+            <span class="n">G</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">G</span>
+            <span class="n">p</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">p</span>
+            <span class="n">q</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">q</span>
+
+            <span class="n">unnormalized_probs</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="k">for</span> <span class="n">dst_nbr</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">G</span><span class="o">.</span><span class="n">neighbors</span><span class="p">(</span><span class="n">dst</span><span class="p">)):</span>
+                    <span class="k">if</span> <span class="n">dst_nbr</span> <span class="o">==</span> <span class="n">src</span><span class="p">:</span>
+                            <span class="n">unnormalized_probs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">G</span><span class="p">[</span><span class="n">dst</span><span class="p">][</span><span class="n">dst_nbr</span><span class="p">][</span><span class="s1">&#39;weight&#39;</span><span class="p">]</span><span class="o">/</span><span class="n">p</span><span class="p">)</span>
+                    <span class="k">elif</span> <span class="n">G</span><span class="o">.</span><span class="n">has_edge</span><span class="p">(</span><span class="n">dst_nbr</span><span class="p">,</span> <span class="n">src</span><span class="p">):</span>
+                            <span class="n">unnormalized_probs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">G</span><span class="p">[</span><span class="n">dst</span><span class="p">][</span><span class="n">dst_nbr</span><span class="p">][</span><span class="s1">&#39;weight&#39;</span><span class="p">])</span>
+                    <span class="k">else</span><span class="p">:</span>
+                            <span class="n">unnormalized_probs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">G</span><span class="p">[</span><span class="n">dst</span><span class="p">][</span><span class="n">dst_nbr</span><span class="p">][</span><span class="s1">&#39;weight&#39;</span><span class="p">]</span><span class="o">/</span><span class="n">q</span><span class="p">)</span>
+            <span class="n">norm_const</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">unnormalized_probs</span><span class="p">)</span>
+            <span class="k">try</span><span class="p">:</span>
+                    <span class="n">normalized_probs</span> <span class="o">=</span>  <span class="p">[</span><span class="nb">float</span><span class="p">(</span><span class="n">u_prob</span><span class="p">)</span><span class="o">/</span><span class="n">norm_const</span> <span class="k">for</span> <span class="n">u_prob</span> <span class="ow">in</span> <span class="n">unnormalized_probs</span><span class="p">]</span>
+            <span class="k">except</span><span class="p">:</span>
+                    <span class="n">normalized_probs</span> <span class="o">=</span>  <span class="p">[</span><span class="mf">0.0</span> <span class="k">for</span> <span class="n">u_prob</span> <span class="ow">in</span> <span class="n">unnormalized_probs</span><span class="p">]</span>
+
+            <span class="k">return</span> <span class="n">alias_setup</span><span class="p">(</span><span class="n">normalized_probs</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">preprocess_transition_probs</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+            <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">            Preprocessing of transition probabilities for guiding the random walks.</span>
+<span class="sd">            &#39;&#39;&#39;</span>
+            <span class="n">G</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">G</span>
+            <span class="n">is_directed</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_directed</span>
+
+            <span class="n">alias_nodes</span> <span class="o">=</span> <span class="p">{}</span>
+            <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">G</span><span class="o">.</span><span class="n">nodes</span><span class="p">():</span>
+                    <span class="n">unnormalized_probs</span> <span class="o">=</span> <span class="p">[</span><span class="n">G</span><span class="p">[</span><span class="n">node</span><span class="p">][</span><span class="n">nbr</span><span class="p">][</span><span class="s1">&#39;weight&#39;</span><span class="p">]</span> <span class="k">for</span> <span class="n">nbr</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">G</span><span class="o">.</span><span class="n">neighbors</span><span class="p">(</span><span class="n">node</span><span class="p">))]</span>
+                    <span class="n">norm_const</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">unnormalized_probs</span><span class="p">)</span>
+                    <span class="k">try</span><span class="p">:</span>
+                            <span class="n">normalized_probs</span> <span class="o">=</span>  <span class="p">[</span><span class="nb">float</span><span class="p">(</span><span class="n">u_prob</span><span class="p">)</span><span class="o">/</span><span class="n">norm_const</span> <span class="k">for</span> <span class="n">u_prob</span> <span class="ow">in</span> <span class="n">unnormalized_probs</span><span class="p">]</span>
+                    <span class="k">except</span><span class="p">:</span>
+                            <span class="nb">print</span><span class="p">(</span><span class="n">node</span><span class="p">)</span>
+                            <span class="n">normalized_probs</span> <span class="o">=</span>  <span class="p">[</span><span class="mf">0.0</span> <span class="k">for</span> <span class="n">u_prob</span> <span class="ow">in</span> <span class="n">unnormalized_probs</span><span class="p">]</span>
+                    <span class="n">alias_nodes</span><span class="p">[</span><span class="n">node</span><span class="p">]</span> <span class="o">=</span> <span class="n">alias_setup</span><span class="p">(</span><span class="n">normalized_probs</span><span class="p">)</span>
+
+            <span class="n">alias_edges</span> <span class="o">=</span> <span class="p">{}</span>
+            <span class="n">triads</span> <span class="o">=</span> <span class="p">{}</span>
+
+            <span class="k">if</span> <span class="n">is_directed</span><span class="p">:</span>
+                    <span class="k">for</span> <span class="n">edge</span> <span class="ow">in</span> <span class="n">G</span><span class="o">.</span><span class="n">edges</span><span class="p">():</span>
+                            <span class="n">alias_edges</span><span class="p">[</span><span class="n">edge</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_alias_edge</span><span class="p">(</span><span class="n">edge</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">edge</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+            <span class="k">else</span><span class="p">:</span>
+                    <span class="k">for</span> <span class="n">edge</span> <span class="ow">in</span> <span class="n">G</span><span class="o">.</span><span class="n">edges</span><span class="p">():</span>
+                            <span class="n">alias_edges</span><span class="p">[</span><span class="n">edge</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_alias_edge</span><span class="p">(</span><span class="n">edge</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">edge</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+                            <span class="n">alias_edges</span><span class="p">[(</span><span class="n">edge</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">edge</span><span class="p">[</span><span class="mi">0</span><span class="p">])]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_alias_edge</span><span class="p">(</span><span class="n">edge</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">edge</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">alias_nodes</span> <span class="o">=</span> <span class="n">alias_nodes</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">alias_edges</span> <span class="o">=</span> <span class="n">alias_edges</span>
+
+            <span class="k">return</span>
+
+
+<span class="k">def</span> <span class="nf">alias_setup</span><span class="p">(</span><span class="n">probs</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Compute utility lists for non-uniform sampling from discrete distributions.</span>
+<span class="sd">    Refer to https://hips.seas.harvard.edu/blog/2013/03/03/the-alias-method-efficient-sampling-with-many-discrete-outcomes/</span>
+<span class="sd">    for details</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="n">K</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">probs</span><span class="p">)</span>
+    <span class="n">q</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">K</span><span class="p">)</span>
+    <span class="n">J</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">K</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int</span><span class="p">)</span>
+
+    <span class="n">smaller</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">larger</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">kk</span><span class="p">,</span> <span class="n">prob</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">probs</span><span class="p">):</span>
+        <span class="n">q</span><span class="p">[</span><span class="n">kk</span><span class="p">]</span> <span class="o">=</span> <span class="n">K</span><span class="o">*</span><span class="n">prob</span>
+        <span class="k">if</span> <span class="n">q</span><span class="p">[</span><span class="n">kk</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mf">1.0</span><span class="p">:</span>
+            <span class="n">smaller</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">kk</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">larger</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">kk</span><span class="p">)</span>
+
+    <span class="k">while</span> <span class="nb">len</span><span class="p">(</span><span class="n">smaller</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">larger</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">small</span> <span class="o">=</span> <span class="n">smaller</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+        <span class="n">large</span> <span class="o">=</span> <span class="n">larger</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+
+        <span class="n">J</span><span class="p">[</span><span class="n">small</span><span class="p">]</span> <span class="o">=</span> <span class="n">large</span>
+        <span class="n">q</span><span class="p">[</span><span class="n">large</span><span class="p">]</span> <span class="o">=</span> <span class="n">q</span><span class="p">[</span><span class="n">large</span><span class="p">]</span> <span class="o">+</span> <span class="n">q</span><span class="p">[</span><span class="n">small</span><span class="p">]</span> <span class="o">-</span> <span class="mf">1.0</span>
+        <span class="k">if</span> <span class="n">q</span><span class="p">[</span><span class="n">large</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mf">1.0</span><span class="p">:</span>
+            <span class="n">smaller</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">large</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">larger</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">large</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">J</span><span class="p">,</span> <span class="n">q</span>
+
+<span class="k">def</span> <span class="nf">alias_draw</span><span class="p">(</span><span class="n">J</span><span class="p">,</span> <span class="n">q</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Draw sample from a non-uniform discrete distribution using alias sampling.</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="n">K</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">J</span><span class="p">)</span>
+
+    <span class="n">kk</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">floor</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">()</span><span class="o">*</span><span class="n">K</span><span class="p">))</span>
+    <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">()</span> <span class="o">&lt;</span> <span class="n">q</span><span class="p">[</span><span class="n">kk</span><span class="p">]:</span>
+        <span class="k">return</span> <span class="n">kk</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">J</span><span class="p">[</span><span class="n">kk</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[277]:
+</pre></div>
+</div>
+<div class="input_area highlight-python notranslate"><div class="highlight"><pre>
+<span></span><span class="c1">#hide</span>
+<span class="kn">from</span> <span class="nn">gensim.models</span> <span class="kn">import</span> <span class="n">Word2Vec</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[278]:
+</pre></div>
+</div>
+<div class="input_area highlight-python notranslate"><div class="highlight"><pre>
+<span></span><span class="n">G</span> <span class="o">=</span> <span class="n">Graph</span><span class="p">(</span><span class="n">user_movie_graph</span><span class="p">,</span> <span class="n">is_directed</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">q</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p>p,q = 1 for DeeWalk as the random walks are completely unbiased.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[279]:
+</pre></div>
+</div>
+<div class="input_area highlight-python notranslate"><div class="highlight"><pre>
+<span></span><span class="c1"># Compute the transition probabilities based on the edge weights.</span>
+<span class="n">G</span><span class="o">.</span><span class="n">preprocess_transition_probs</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<p>Compute the random walks. - 10 walks for every node. - Each walk of length 80.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[280]:
+</pre></div>
+</div>
+<div class="input_area highlight-python notranslate"><div class="highlight"><pre>
+<span></span><span class="n">walks</span> <span class="o">=</span> <span class="n">G</span><span class="o">.</span><span class="n">simulate_walks</span><span class="p">(</span><span class="n">num_walks</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">walk_length</span><span class="o">=</span><span class="mi">80</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Walk iteration:
+1 / 10
+2 / 10
+3 / 10
+4 / 10
+5 / 10
+6 / 10
+7 / 10
+8 / 10
+9 / 10
+10 / 10
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[281]:
+</pre></div>
+</div>
+<div class="input_area highlight-python notranslate"><div class="highlight"><pre>
+<span></span><span class="nb">len</span><span class="p">(</span><span class="n">walks</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[281]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+103340
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[282]:
+</pre></div>
+</div>
+<div class="input_area highlight-python notranslate"><div class="highlight"><pre>
+<span></span><span class="c1">#hide</span>
+<span class="n">walks</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[282]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+[8518,
+ 8176,
+ 421,
+ 8148,
+ 3862,
+ 5031,
+ 3,
+ 8148,
+ 5914,
+ 8148,
+ 7874,
+ 7834,
+ 4200,
+ 4142,
+ 192,
+ 9507,
+ 74,
+ 5797,
+ 77,
+ 4848,
+ 487,
+ 5989,
+ 3111,
+ 5989,
+ 167,
+ 2707,
+ 274,
+ 2539,
+ 180,
+ 8085,
+ 8095,
+ 8085,
+ 1494,
+ 5470,
+ 1188,
+ 6251,
+ 116,
+ 6430,
+ 35,
+ 8614,
+ 846,
+ 9940,
+ 497,
+ 9090,
+ 1440,
+ 2942,
+ 280,
+ 7265,
+ 1959,
+ 5739,
+ 1117,
+ 5758,
+ 234,
+ 7035,
+ 729,
+ 7334,
+ 335,
+ 4775,
+ 3570,
+ 7286,
+ 492,
+ 486,
+ 469,
+ 5842,
+ 5878,
+ 5842,
+ 5873,
+ 5842,
+ 172,
+ 6651,
+ 414,
+ 8625,
+ 270,
+ 9047,
+ 3499,
+ 7380,
+ 2067,
+ 4142,
+ 566,
+ 5357]
+</pre></div></div>
+</div>
+<p>Learn Embeddings via Gensim, which creates context/non-context pairs and then Skip-gram.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[283]:
+</pre></div>
+</div>
+<div class="input_area highlight-python notranslate"><div class="highlight"><pre>
+<span></span><span class="c1">#collapse</span>
+<span class="k">def</span> <span class="nf">learn_embeddings</span><span class="p">(</span><span class="n">walks</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Learn embeddings by optimizing the Skipgram objective using SGD.</span>
+<span class="sd">    Uses Gensim Word2Vec.</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="n">walks</span> <span class="o">=</span> <span class="p">[</span><span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">walk</span><span class="p">))</span> <span class="k">for</span> <span class="n">walk</span> <span class="ow">in</span> <span class="n">walks</span><span class="p">]</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">Word2Vec</span><span class="p">(</span><span class="n">walks</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">window</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">min_count</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">sg</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">workers</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="nb">iter</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">model</span><span class="o">.</span><span class="n">wv</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[284]:
+</pre></div>
+</div>
+<div class="input_area highlight-python notranslate"><div class="highlight"><pre>
+<span></span><span class="n">node_embeddings</span> <span class="o">=</span> <span class="n">learn_embeddings</span><span class="p">(</span><span class="n">walks</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p>The output of gensim is a specific type of key-value pair with keys as the string-ed node ids and the values are numpy array of embeddings, each of shape (50,)</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[285]:
+</pre></div>
+</div>
+<div class="input_area highlight-python notranslate"><div class="highlight"><pre>
+<span></span><span class="n">node_embeddings</span><span class="p">[</span><span class="s1">&#39;0&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[285]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+array([-2.1159494e-02, -4.3432057e-01,  6.9623584e-01,  4.8146245e-01,
+        9.6677847e-02, -3.1050149e-02,  1.9733864e-01,  7.9867625e-01,
+       -6.6979128e-01,  6.5312237e-01,  3.1304079e-01, -1.3411559e-01,
+       -1.5454048e-01, -2.7333325e-01,  1.4711864e-01,  2.2469629e-01,
+       -4.3890166e-01,  2.9871342e-01, -6.9798152e-03, -1.7996507e-02,
+       -6.7855030e-02, -4.3489739e-01,  1.5584855e-01,  7.7486165e-02,
+        3.7617716e-01,  2.8012756e-01, -8.3905622e-02, -3.5362533e-01,
+        2.2293477e-01, -1.4108117e-01,  1.6970167e-01, -6.3179672e-01,
+        1.5170584e-02,  6.1733756e-02, -1.2013953e-01, -2.3064958e-01,
+        2.4610328e-02,  5.0556450e-04,  2.1398006e-01, -1.0361964e-01,
+        4.8838145e-01, -3.6318046e-01, -3.1330651e-01,  8.6576389e-03,
+        1.9654050e-02, -4.6078888e-01,  2.7895319e-01, -1.7853497e-04,
+       -1.7593203e-01,  2.8144377e-01], dtype=float32)
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[286]:
+</pre></div>
+</div>
+<div class="input_area highlight-python notranslate"><div class="highlight"><pre>
+<span></span><span class="n">movie1</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">movie2dict</span><span class="p">[(</span><span class="mi">260</span><span class="p">,</span> <span class="s1">&#39;movie&#39;</span><span class="p">)])</span>
+<span class="n">movie2</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">movie2dict</span><span class="p">[(</span><span class="mi">1196</span><span class="p">,</span> <span class="s1">&#39;movie&#39;</span><span class="p">)])</span>
+<span class="mf">1.0</span> <span class="o">-</span> <span class="n">cosine</span><span class="p">(</span><span class="n">node_embeddings</span><span class="p">[</span><span class="n">movie1</span><span class="p">],</span> <span class="n">node_embeddings</span><span class="p">[</span><span class="n">movie2</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[286]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+0.42126354575157166
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[287]:
+</pre></div>
+</div>
+<div class="input_area highlight-python notranslate"><div class="highlight"><pre>
+<span></span><span class="n">movie3</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">movie2dict</span><span class="p">[(</span><span class="mi">1210</span><span class="p">,</span> <span class="s1">&#39;movie&#39;</span><span class="p">)])</span>
+<span class="mf">1.0</span> <span class="o">-</span> <span class="n">cosine</span><span class="p">(</span><span class="n">node_embeddings</span><span class="p">[</span><span class="n">movie1</span><span class="p">],</span> <span class="n">node_embeddings</span><span class="p">[</span><span class="n">movie3</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[287]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+0.29301050305366516
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[288]:
+</pre></div>
+</div>
+<div class="input_area highlight-python notranslate"><div class="highlight"><pre>
+<span></span><span class="n">movie4</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">movie2dict</span><span class="p">[(</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;movie&#39;</span><span class="p">)])</span>
+<span class="mf">1.0</span> <span class="o">-</span> <span class="n">cosine</span><span class="p">(</span><span class="n">node_embeddings</span><span class="p">[</span><span class="n">movie1</span><span class="p">],</span> <span class="n">node_embeddings</span><span class="p">[</span><span class="n">movie4</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[288]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+0.5913276672363281
+</pre></div></div>
+</div>
+<p>Since we worked with integer ids for nodes, let’s create reverse mapping dictionaries that map integer user/movie to their actual ids.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[289]:
+</pre></div>
+</div>
+<div class="input_area highlight-python notranslate"><div class="highlight"><pre>
+<span></span><span class="n">reverse_movie2dict</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span><span class="n">v</span> <span class="k">for</span> <span class="n">v</span><span class="p">,</span><span class="n">k</span> <span class="ow">in</span> <span class="n">movie2dict</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
+<span class="n">reverse_user2dict</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span><span class="n">v</span> <span class="k">for</span> <span class="n">v</span><span class="p">,</span><span class="n">k</span> <span class="ow">in</span> <span class="n">user2dict</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[290]:
+</pre></div>
+</div>
+<div class="input_area highlight-python notranslate"><div class="highlight"><pre>
+<span></span><span class="n">node_vecs</span> <span class="o">=</span> <span class="p">[</span><span class="n">node_embeddings</span><span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">cnt</span><span class="p">)]</span>
+<span class="n">node_vecs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">node_vecs</span><span class="p">)</span>
+<span class="n">node_vecs</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[290]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+(10334, 50)
+</pre></div></div>
+</div>
+<p>Movies similar to a given movie as an evaluation of the system.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[291]:
+</pre></div>
+</div>
+<div class="input_area highlight-python notranslate"><div class="highlight"><pre>
+<span></span><span class="c1">#collapse</span>
+<span class="k">def</span> <span class="nf">get_similar_movies_graph_embeddings</span><span class="p">(</span><span class="n">movieid</span><span class="p">,</span> <span class="n">movie_embed</span><span class="p">,</span> <span class="n">top_n</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
+    <span class="n">movie_idx</span> <span class="o">=</span> <span class="n">movie2dict</span><span class="p">[</span><span class="n">movieid</span><span class="p">]</span>
+    <span class="n">query</span> <span class="o">=</span> <span class="n">movie_embed</span><span class="p">[</span><span class="n">movie_idx</span><span class="p">]</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">ranking</span> <span class="o">=</span> <span class="n">cosine_similarity</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">movie_embed</span><span class="p">)</span>
+    <span class="n">top_ids</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argsort</span><span class="p">(</span><span class="o">-</span><span class="n">ranking</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">top_movie_ids</span> <span class="o">=</span> <span class="p">[</span><span class="n">reverse_movie2dict</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">top_ids</span> <span class="k">if</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">reverse_movie2dict</span><span class="p">][:</span><span class="n">top_n</span><span class="p">]</span>
+    <span class="n">sim_movies</span> <span class="o">=</span> <span class="p">[</span><span class="n">movie_df</span><span class="p">[</span><span class="n">movie_df</span><span class="o">.</span><span class="n">movieId</span> <span class="o">==</span> <span class="nb">id</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span><span class="o">.</span><span class="n">title</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="nb">id</span> <span class="ow">in</span> <span class="n">top_movie_ids</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">sim_movies</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[292]:
+</pre></div>
+</div>
+<div class="input_area highlight-python notranslate"><div class="highlight"><pre>
+<span></span><span class="n">get_similar_movies_graph_embeddings</span><span class="p">((</span><span class="mi">260</span><span class="p">,</span> <span class="s1">&#39;movie&#39;</span><span class="p">),</span> <span class="n">node_vecs</span><span class="p">)[:</span><span class="mi">10</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[292]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+[&#39;Priest (1994)&#39;,
+ &#39;Heidi Fleiss: Hollywood Madam (1995)&#39;,
+ &#39;My Crazy Life (Mi vida loca) (1993)&#39;,
+ &#39;Before the Rain (Pred dozhdot) (1994)&#39;,
+ &#39;Boys of St. Vincent, The (1992)&#39;,
+ &#39;Last Dance (1996)&#39;,
+ &#39;Awfully Big Adventure, An (1995)&#39;,
+ &#39;Queen Margot (Reine Margot, La) (1994)&#39;,
+ &#34;Widows&#39; Peak (1994)&#34;,
+ &#39;What Happened Was... (1994)&#39;]
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[294]:
+</pre></div>
+</div>
+<div class="input_area highlight-python notranslate"><div class="highlight"><pre>
+<span></span><span class="n">get_similar_movies_graph_embeddings</span><span class="p">((</span><span class="mi">122</span><span class="p">,</span> <span class="s1">&#39;movie&#39;</span><span class="p">),</span> <span class="n">node_vecs</span><span class="p">)[:</span><span class="mi">10</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[294]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+[&#39;Awfully Big Adventure, An (1995)&#39;,
+ &#39;What Happened Was... (1994)&#39;,
+ &#39;Song of the Little Road (Pather Panchali) (1955)&#39;,
+ &#39;Death and the Maiden (1994)&#39;,
+ &#39;Heidi Fleiss: Hollywood Madam (1995)&#39;,
+ &#39;My Crazy Life (Mi vida loca) (1993)&#39;,
+ &#39;Love &amp; Human Remains (1993)&#39;,
+ &#34;It&#39;s My Party (1996)&#34;,
+ &#39;Perez Family, The (1995)&#39;,
+ &#39;Bitter Moon (1992)&#39;]
+</pre></div></div>
+</div>
+<p>We can also define the recommendation model based on the cosine similarity i.e the movies are ranked for a given user in terms of the cosine similarities of their corresponding embeddings with the embedding of the user.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[295]:
+</pre></div>
+</div>
+<div class="input_area highlight-python notranslate"><div class="highlight"><pre>
+<span></span><span class="c1">#collapse</span>
+<span class="k">def</span> <span class="nf">get_recommended_movies_graph_embeddings</span><span class="p">(</span><span class="n">userid</span><span class="p">,</span> <span class="n">node_embed</span><span class="p">,</span> <span class="n">top_n</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
+    <span class="n">user_idx</span> <span class="o">=</span> <span class="n">user2dict</span><span class="p">[</span><span class="n">userid</span><span class="p">]</span>
+    <span class="n">query</span> <span class="o">=</span> <span class="n">node_embed</span><span class="p">[</span><span class="n">user_idx</span><span class="p">]</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">ranking</span> <span class="o">=</span> <span class="n">cosine_similarity</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">node_embed</span><span class="p">)</span>
+    <span class="n">top_ids</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argsort</span><span class="p">(</span><span class="o">-</span><span class="n">ranking</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">top_movie_ids</span> <span class="o">=</span> <span class="p">[</span><span class="n">reverse_movie2dict</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">top_ids</span> <span class="k">if</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">reverse_movie2dict</span><span class="p">][:</span><span class="n">top_n</span><span class="p">]</span>
+    <span class="n">reco_movies</span> <span class="o">=</span> <span class="p">[</span><span class="n">movie_df</span><span class="p">[</span><span class="n">movie_df</span><span class="o">.</span><span class="n">movieId</span> <span class="o">==</span> <span class="nb">id</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span><span class="o">.</span><span class="n">title</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="nb">id</span> <span class="ow">in</span> <span class="n">top_movie_ids</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">reco_movies</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[296]:
+</pre></div>
+</div>
+<div class="input_area highlight-python notranslate"><div class="highlight"><pre>
+<span></span><span class="n">get_recommended_movies_graph_embeddings</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;user&#39;</span><span class="p">),</span> <span class="n">node_vecs</span><span class="p">,</span> <span class="n">top_n</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[296]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+[&#39;Best Men (1997)&#39;,
+ &#39;Newton Boys, The (1998)&#39;,
+ &#39;Howard the Duck (1986)&#39;,
+ &#34;Gulliver&#39;s Travels (1939)&#34;,
+ &#39;Shaft (1971)&#39;,
+ &#39;Teenage Mutant Ninja Turtles III (1993)&#39;,
+ &#39;Welcome to Woop-Woop (1997)&#39;,
+ &#39;Song of the South (1946)&#39;,
+ &#39;Three Caballeros, The (1945)&#39;,
+ &#39;Lord of the Rings, The (1978)&#39;]
+</pre></div></div>
+</div>
+</div>
+<div class="section" id="Evaluation">
+<h3>Evaluation<a class="headerlink" href="#Evaluation" title="Permalink to this headline">¶</a></h3>
+<p>As another evalution, let’s compare the generated recommendation for a user to the movies tnat the user has actually rated highly. We will get top 10 recommendations for a user, ranked by the cosine similarity, and compute how many of these movies comes from the set of the movies that the user has rated &gt;= 4.5. This tantamounts to <a class="reference external" href="mailto:Precision&#37;&#52;&#48;10">Precision<span>&#64;</span>10</a> metric. For comparison, we will also compute the Precision for the recommendations produced by the matrix factorization model.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[303]:
+</pre></div>
+</div>
+<div class="input_area highlight-python notranslate"><div class="highlight"><pre>
+<span></span><span class="n">idx</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">recos</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">get_recommended_movies_graph_embeddings</span><span class="p">((</span><span class="n">idx</span><span class="p">,</span> <span class="s1">&#39;user&#39;</span><span class="p">),</span> <span class="n">node_vecs</span><span class="p">,</span> <span class="n">top_n</span><span class="o">=</span><span class="mi">10</span><span class="p">))</span>
+<span class="n">true_pos</span> <span class="o">=</span> <span class="nb">set</span><span class="p">([</span><span class="n">movie_df</span><span class="p">[</span><span class="n">movie_df</span><span class="o">.</span><span class="n">movieId</span> <span class="o">==</span> <span class="nb">id</span><span class="p">]</span><span class="o">.</span><span class="n">title</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="nb">id</span> <span class="ow">in</span> <span class="n">rating_df</span><span class="p">[(</span><span class="n">rating_df</span><span class="p">[</span><span class="s1">&#39;userId&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">idx</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">rating_df</span><span class="p">[</span><span class="s1">&#39;rating&#39;</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mf">4.5</span><span class="p">)]</span><span class="o">.</span><span class="n">movieId</span><span class="o">.</span><span class="n">values</span><span class="p">])</span>
+<span class="n">recos</span><span class="o">.</span><span class="n">intersection</span><span class="p">(</span><span class="n">true_pos</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[303]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+{&#34;Gulliver&#39;s Travels (1939)&#34;,
+ &#39;Lord of the Rings, The (1978)&#39;,
+ &#39;Newton Boys, The (1998)&#39;,
+ &#39;Shaft (1971)&#39;,
+ &#39;Three Caballeros, The (1945)&#39;}
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[302]:
+</pre></div>
+</div>
+<div class="input_area highlight-python notranslate"><div class="highlight"><pre>
+<span></span><span class="n">mf_recos</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">get_recommendations_matrix_factorization</span><span class="p">(</span><span class="n">idx</span><span class="p">,</span> <span class="n">user_factors</span><span class="p">,</span> <span class="n">movie_factors</span><span class="p">))</span>
+<span class="n">mf_recos</span><span class="o">.</span><span class="n">intersection</span><span class="p">(</span><span class="n">true_pos</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[302]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+set()
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[306]:
+</pre></div>
+</div>
+<div class="input_area highlight-python notranslate"><div class="highlight"><pre>
+<span></span><span class="n">idx</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">recos</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">get_recommended_movies_graph_embeddings</span><span class="p">((</span><span class="n">idx</span><span class="p">,</span> <span class="s1">&#39;user&#39;</span><span class="p">),</span> <span class="n">node_vecs</span><span class="p">,</span> <span class="n">top_n</span><span class="o">=</span><span class="mi">10</span><span class="p">))</span>
+<span class="n">true_pos</span> <span class="o">=</span> <span class="nb">set</span><span class="p">([</span><span class="n">movie_df</span><span class="p">[</span><span class="n">movie_df</span><span class="o">.</span><span class="n">movieId</span> <span class="o">==</span> <span class="nb">id</span><span class="p">]</span><span class="o">.</span><span class="n">title</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="nb">id</span> <span class="ow">in</span> <span class="n">rating_df</span><span class="p">[(</span><span class="n">rating_df</span><span class="p">[</span><span class="s1">&#39;userId&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">idx</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">rating_df</span><span class="p">[</span><span class="s1">&#39;rating&#39;</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mf">4.5</span><span class="p">)]</span><span class="o">.</span><span class="n">movieId</span><span class="o">.</span><span class="n">values</span><span class="p">])</span>
+<span class="n">recos</span><span class="o">.</span><span class="n">intersection</span><span class="p">(</span><span class="n">true_pos</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[306]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+{&#39;Dark Knight, The (2008)&#39;,
+ &#39;Inglourious Basterds (2009)&#39;,
+ &#39;The Jinx: The Life and Deaths of Robert Durst (2015)&#39;,
+ &#39;Warrior (2011)&#39;,
+ &#39;Wolf of Wall Street, The (2013)&#39;}
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[307]:
+</pre></div>
+</div>
+<div class="input_area highlight-python notranslate"><div class="highlight"><pre>
+<span></span><span class="n">mf_recos</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">get_recommendations_matrix_factorization</span><span class="p">(</span><span class="n">idx</span><span class="p">,</span> <span class="n">user_factors</span><span class="p">,</span> <span class="n">movie_factors</span><span class="p">))</span>
+<span class="n">mf_recos</span><span class="o">.</span><span class="n">intersection</span><span class="p">(</span><span class="n">true_pos</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[307]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+set()
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[308]:
+</pre></div>
+</div>
+<div class="input_area highlight-python notranslate"><div class="highlight"><pre>
+<span></span><span class="n">idx</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">recos</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">get_recommended_movies_graph_embeddings</span><span class="p">((</span><span class="n">idx</span><span class="p">,</span> <span class="s1">&#39;user&#39;</span><span class="p">),</span> <span class="n">node_vecs</span><span class="p">,</span> <span class="n">top_n</span><span class="o">=</span><span class="mi">10</span><span class="p">))</span>
+<span class="n">true_pos</span> <span class="o">=</span> <span class="nb">set</span><span class="p">([</span><span class="n">movie_df</span><span class="p">[</span><span class="n">movie_df</span><span class="o">.</span><span class="n">movieId</span> <span class="o">==</span> <span class="nb">id</span><span class="p">]</span><span class="o">.</span><span class="n">title</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="nb">id</span> <span class="ow">in</span> <span class="n">rating_df</span><span class="p">[(</span><span class="n">rating_df</span><span class="p">[</span><span class="s1">&#39;userId&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">idx</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">rating_df</span><span class="p">[</span><span class="s1">&#39;rating&#39;</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mf">4.5</span><span class="p">)]</span><span class="o">.</span><span class="n">movieId</span><span class="o">.</span><span class="n">values</span><span class="p">])</span>
+<span class="n">recos</span><span class="o">.</span><span class="n">intersection</span><span class="p">(</span><span class="n">true_pos</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[308]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+{&#39;Alien Contamination (1980)&#39;,
+ &#39;Android (1982)&#39;,
+ &#39;Clonus Horror, The (1979)&#39;,
+ &#39;Death Race 2000 (1975)&#39;,
+ &#39;Galaxy of Terror (Quest) (1981)&#39;,
+ &#39;Hangar 18 (1980)&#39;,
+ &#39;Looker (1981)&#39;,
+ &#39;Master of the Flying Guillotine (Du bi quan wang da po xue di zi) (1975)&#39;,
+ &#39;Saturn 3 (1980)&#39;,
+ &#39;The Lair of the White Worm (1988)&#39;}
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[309]:
+</pre></div>
+</div>
+<div class="input_area highlight-python notranslate"><div class="highlight"><pre>
+<span></span><span class="n">mf_recos</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">get_recommendations_matrix_factorization</span><span class="p">(</span><span class="n">idx</span><span class="p">,</span> <span class="n">user_factors</span><span class="p">,</span> <span class="n">movie_factors</span><span class="p">))</span>
+<span class="n">mf_recos</span><span class="o">.</span><span class="n">intersection</span><span class="p">(</span><span class="n">true_pos</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[309]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+set()
+</pre></div></div>
+</div>
+</div>
+</div>
+<div class="section" id="Enriched-network-with-additional-information-:-Genres">
+<h2>Enriched network with additional information : Genres<a class="headerlink" href="#Enriched-network-with-additional-information-:-Genres" title="Permalink to this headline">¶</a></h2>
+<p>Genres of the movies can be used as additional signal for better recommendations</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[311]:
+</pre></div>
+</div>
+<div class="input_area highlight-python notranslate"><div class="highlight"><pre>
+<span></span><span class="n">movie_genre_edgelist</span> <span class="o">=</span> <span class="n">movie_df</span><span class="p">[[</span><span class="s1">&#39;movieId&#39;</span><span class="p">,</span> <span class="s1">&#39;genres&#39;</span><span class="p">]]</span>
+<span class="n">movie_genre_edgelist</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[311]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>movieId</th>
+      <th>genres</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>Adventure|Animation|Children|Comedy|Fantasy</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2</td>
+      <td>Adventure|Children|Fantasy</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>3</td>
+      <td>Comedy|Romance</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>4</td>
+      <td>Comedy|Drama|Romance</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>5</td>
+      <td>Comedy</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[312]:
+</pre></div>
+</div>
+<div class="input_area highlight-python notranslate"><div class="highlight"><pre>
+<span></span><span class="c1">#hide</span>
+<span class="n">genre2int</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">movie_genre_edgelist</span><span class="o">.</span><span class="n">values</span><span class="p">:</span>
+    <span class="n">genres</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;|&#39;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">genre</span> <span class="ow">in</span> <span class="n">genres</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">genre</span> <span class="ow">in</span> <span class="n">genre2int</span><span class="p">:</span>
+            <span class="k">pass</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">genre2int</span><span class="p">[</span><span class="n">genre</span><span class="p">]</span> <span class="o">=</span> <span class="n">cnt</span>
+            <span class="n">cnt</span> <span class="o">+=</span> <span class="mi">1</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[313]:
+</pre></div>
+</div>
+<div class="input_area highlight-python notranslate"><div class="highlight"><pre>
+<span></span><span class="n">genre2int</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[313]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+{&#39;(no genres listed)&#39;: 10353,
+ &#39;Action&#39;: 10341,
+ &#39;Adventure&#39;: 10334,
+ &#39;Animation&#39;: 10335,
+ &#39;Children&#39;: 10336,
+ &#39;Comedy&#39;: 10337,
+ &#39;Crime&#39;: 10342,
+ &#39;Documentary&#39;: 10349,
+ &#39;Drama&#39;: 10340,
+ &#39;Fantasy&#39;: 10338,
+ &#39;Film-Noir&#39;: 10352,
+ &#39;Horror&#39;: 10344,
+ &#39;IMAX&#39;: 10350,
+ &#39;Musical&#39;: 10348,
+ &#39;Mystery&#39;: 10345,
+ &#39;Romance&#39;: 10339,
+ &#39;Sci-Fi&#39;: 10346,
+ &#39;Thriller&#39;: 10343,
+ &#39;War&#39;: 10347,
+ &#39;Western&#39;: 10351}
+</pre></div></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[314]:
+</pre></div>
+</div>
+<div class="input_area highlight-python notranslate"><div class="highlight"><pre>
+<span></span><span class="c1">#hide</span>
+<span class="n">movie_genre_graph</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">Graph</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">movie_genre_edgelist</span><span class="o">.</span><span class="n">values</span><span class="p">:</span>
+    <span class="n">movie</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="s1">&#39;movie&#39;</span><span class="p">)</span>
+    <span class="n">genres</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;|&#39;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">movie</span> <span class="ow">in</span> <span class="n">movie2dict</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">genre</span> <span class="ow">in</span> <span class="n">genres</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">genre</span> <span class="ow">in</span> <span class="n">genre2int</span><span class="p">:</span>
+                <span class="n">movie_genre_graph</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="n">movie2dict</span><span class="p">[</span><span class="n">movie</span><span class="p">])</span>
+                <span class="n">movie_genre_graph</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="n">genre2int</span><span class="p">[</span><span class="n">genre</span><span class="p">])</span>
+                <span class="n">movie_genre_graph</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="n">movie2dict</span><span class="p">[</span><span class="n">movie</span><span class="p">],</span> <span class="n">genre2int</span><span class="p">[</span><span class="n">genre</span><span class="p">],</span> <span class="n">weight</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">pass</span>
+</pre></div>
+</div>
+</div>
+<p>Combine the user-movie and movie-genre graph</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[315]:
+</pre></div>
+</div>
+<div class="input_area highlight-python notranslate"><div class="highlight"><pre>
+<span></span><span class="n">user_movie_genre_graph</span> <span class="o">=</span>  <span class="n">nx</span><span class="o">.</span><span class="n">Graph</span><span class="p">()</span>
+<span class="n">user_movie_genre_graph</span><span class="o">.</span><span class="n">add_weighted_edges_from</span><span class="p">([(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">user_movie_graph</span><span class="p">[</span><span class="n">x</span><span class="p">][</span><span class="n">y</span><span class="p">][</span><span class="s1">&#39;weight&#39;</span><span class="p">])</span> <span class="k">for</span> <span class="n">x</span><span class="p">,</span><span class="n">y</span> <span class="ow">in</span> <span class="n">user_movie_graph</span><span class="o">.</span><span class="n">edges</span><span class="p">()])</span>
+<span class="n">user_movie_genre_graph</span><span class="o">.</span><span class="n">add_weighted_edges_from</span><span class="p">([(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">movie_genre_graph</span><span class="p">[</span><span class="n">x</span><span class="p">][</span><span class="n">y</span><span class="p">][</span><span class="s1">&#39;weight&#39;</span><span class="p">])</span> <span class="k">for</span> <span class="n">x</span><span class="p">,</span><span class="n">y</span> <span class="ow">in</span> <span class="n">movie_genre_graph</span><span class="o">.</span><span class="n">edges</span><span class="p">()])</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[316]:
+</pre></div>
+</div>
+<div class="input_area highlight-python notranslate"><div class="highlight"><pre>
+<span></span><span class="n">user_movie_genre_graph</span><span class="o">.</span><span class="n">number_of_edges</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[316]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+122882
+</pre></div></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[317]:
+</pre></div>
+</div>
+<div class="input_area highlight-python notranslate"><div class="highlight"><pre>
+<span></span><span class="n">G_enriched</span> <span class="o">=</span> <span class="n">Graph</span><span class="p">(</span><span class="n">user_movie_genre_graph</span><span class="p">,</span> <span class="n">is_directed</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">q</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">G_enriched</span><span class="o">.</span><span class="n">preprocess_transition_probs</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[318]:
+</pre></div>
+</div>
+<div class="input_area highlight-python notranslate"><div class="highlight"><pre>
+<span></span><span class="n">walks_enriched</span> <span class="o">=</span> <span class="n">G_enriched</span><span class="o">.</span><span class="n">simulate_walks</span><span class="p">(</span><span class="n">num_walks</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">walk_length</span><span class="o">=</span><span class="mi">80</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Walk iteration:
+1 / 10
+2 / 10
+3 / 10
+4 / 10
+5 / 10
+6 / 10
+7 / 10
+8 / 10
+9 / 10
+10 / 10
+</pre></div></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[319]:
+</pre></div>
+</div>
+<div class="input_area highlight-python notranslate"><div class="highlight"><pre>
+<span></span><span class="n">node_embeddings_enriched</span> <span class="o">=</span> <span class="n">learn_embeddings</span><span class="p">(</span><span class="n">walks_enriched</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[320]:
+</pre></div>
+</div>
+<div class="input_area highlight-python notranslate"><div class="highlight"><pre>
+<span></span><span class="n">node_vecs_enriched</span> <span class="o">=</span> <span class="p">[</span><span class="n">node_embeddings_enriched</span><span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">cnt</span><span class="p">)]</span>
+<span class="n">node_vecs_enriched</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">node_vecs_enriched</span><span class="p">)</span>
+<span class="n">node_vecs_enriched</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[320]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+(10354, 50)
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[321]:
+</pre></div>
+</div>
+<div class="input_area highlight-python notranslate"><div class="highlight"><pre>
+<span></span><span class="n">get_similar_movies_graph_embeddings</span><span class="p">((</span><span class="mi">260</span><span class="p">,</span> <span class="s1">&#39;movie&#39;</span><span class="p">),</span> <span class="n">node_vecs_enriched</span><span class="p">)[:</span><span class="mi">10</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[321]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+[&#39;Priest (1994)&#39;,
+ &#39;Mrs. Parker and the Vicious Circle (1994)&#39;,
+ &#39;Last Dance (1996)&#39;,
+ &#39;Tom &amp; Viv (1994)&#39;,
+ &#39;Georgia (1995)&#39;,
+ &#39;My Crazy Life (Mi vida loca) (1993)&#39;,
+ &#39;Before the Rain (Pred dozhdot) (1994)&#39;,
+ &#39;Haunted World of Edward D. Wood Jr., The (1996)&#39;,
+ &#39;To Live (Huozhe) (1994)&#39;,
+ &#39;Vanya on 42nd Street (1994)&#39;]
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[322]:
+</pre></div>
+</div>
+<div class="input_area highlight-python notranslate"><div class="highlight"><pre>
+<span></span><span class="n">get_similar_movies_graph_embeddings</span><span class="p">((</span><span class="mi">260</span><span class="p">,</span> <span class="s1">&#39;movie&#39;</span><span class="p">),</span> <span class="n">node_vecs</span><span class="p">)[:</span><span class="mi">10</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[322]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+[&#39;Priest (1994)&#39;,
+ &#39;Heidi Fleiss: Hollywood Madam (1995)&#39;,
+ &#39;My Crazy Life (Mi vida loca) (1993)&#39;,
+ &#39;Before the Rain (Pred dozhdot) (1994)&#39;,
+ &#39;Boys of St. Vincent, The (1992)&#39;,
+ &#39;Last Dance (1996)&#39;,
+ &#39;Awfully Big Adventure, An (1995)&#39;,
+ &#39;Queen Margot (Reine Margot, La) (1994)&#39;,
+ &#34;Widows&#39; Peak (1994)&#34;,
+ &#39;What Happened Was... (1994)&#39;]
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[323]:
+</pre></div>
+</div>
+<div class="input_area highlight-python notranslate"><div class="highlight"><pre>
+<span></span><span class="n">idx</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">true_pos</span> <span class="o">=</span> <span class="nb">set</span><span class="p">([</span><span class="n">movie_df</span><span class="p">[</span><span class="n">movie_df</span><span class="o">.</span><span class="n">movieId</span> <span class="o">==</span> <span class="nb">id</span><span class="p">]</span><span class="o">.</span><span class="n">title</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="nb">id</span> <span class="ow">in</span> <span class="n">rating_df</span><span class="p">[(</span><span class="n">rating_df</span><span class="p">[</span><span class="s1">&#39;userId&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">idx</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">rating_df</span><span class="p">[</span><span class="s1">&#39;rating&#39;</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mf">4.5</span><span class="p">)]</span><span class="o">.</span><span class="n">movieId</span><span class="o">.</span><span class="n">values</span><span class="p">])</span>
+
+<span class="n">mf_recos</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">get_recommendations_matrix_factorization</span><span class="p">(</span><span class="n">idx</span><span class="p">,</span> <span class="n">user_factors</span><span class="p">,</span> <span class="n">movie_factors</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">mf_recos</span><span class="o">.</span><span class="n">intersection</span><span class="p">(</span><span class="n">true_pos</span><span class="p">)))</span>
+
+<span class="n">ge_recos</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">get_recommended_movies_graph_embeddings</span><span class="p">((</span><span class="n">idx</span><span class="p">,</span> <span class="s1">&#39;user&#39;</span><span class="p">),</span> <span class="n">node_vecs</span><span class="p">,</span> <span class="n">top_n</span><span class="o">=</span><span class="mi">10</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">ge_recos</span><span class="o">.</span><span class="n">intersection</span><span class="p">(</span><span class="n">true_pos</span><span class="p">)))</span>
+
+<span class="n">ge_enriched_reso</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">get_recommended_movies_graph_embeddings</span><span class="p">((</span><span class="n">idx</span><span class="p">,</span> <span class="s1">&#39;user&#39;</span><span class="p">),</span> <span class="n">node_vecs_enriched</span><span class="p">,</span> <span class="n">top_n</span><span class="o">=</span><span class="mi">10</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">ge_enriched_reso</span><span class="o">.</span><span class="n">intersection</span><span class="p">(</span><span class="n">true_pos</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+0
+5
+5
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[324]:
+</pre></div>
+</div>
+<div class="input_area highlight-python notranslate"><div class="highlight"><pre>
+<span></span><span class="n">idx</span> <span class="o">=</span> <span class="mi">8</span>
+<span class="n">true_pos</span> <span class="o">=</span> <span class="nb">set</span><span class="p">([</span><span class="n">movie_df</span><span class="p">[</span><span class="n">movie_df</span><span class="o">.</span><span class="n">movieId</span> <span class="o">==</span> <span class="nb">id</span><span class="p">]</span><span class="o">.</span><span class="n">title</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="nb">id</span> <span class="ow">in</span> <span class="n">rating_df</span><span class="p">[(</span><span class="n">rating_df</span><span class="p">[</span><span class="s1">&#39;userId&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">idx</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">rating_df</span><span class="p">[</span><span class="s1">&#39;rating&#39;</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mf">4.5</span><span class="p">)]</span><span class="o">.</span><span class="n">movieId</span><span class="o">.</span><span class="n">values</span><span class="p">])</span>
+
+<span class="n">mf_recos</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">get_recommendations_matrix_factorization</span><span class="p">(</span><span class="n">idx</span><span class="p">,</span> <span class="n">user_factors</span><span class="p">,</span> <span class="n">movie_factors</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">mf_recos</span><span class="o">.</span><span class="n">intersection</span><span class="p">(</span><span class="n">true_pos</span><span class="p">)))</span>
+
+<span class="n">ge_recos</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">get_recommended_movies_graph_embeddings</span><span class="p">((</span><span class="n">idx</span><span class="p">,</span> <span class="s1">&#39;user&#39;</span><span class="p">),</span> <span class="n">node_vecs</span><span class="p">,</span> <span class="n">top_n</span><span class="o">=</span><span class="mi">10</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">ge_recos</span><span class="o">.</span><span class="n">intersection</span><span class="p">(</span><span class="n">true_pos</span><span class="p">)))</span>
+
+<span class="n">ge_enriched_reso</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">get_recommended_movies_graph_embeddings</span><span class="p">((</span><span class="n">idx</span><span class="p">,</span> <span class="s1">&#39;user&#39;</span><span class="p">),</span> <span class="n">node_vecs_enriched</span><span class="p">,</span> <span class="n">top_n</span><span class="o">=</span><span class="mi">10</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">ge_enriched_reso</span><span class="o">.</span><span class="n">intersection</span><span class="p">(</span><span class="n">true_pos</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+0
+2
+1
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[325]:
+</pre></div>
+</div>
+<div class="input_area highlight-python notranslate"><div class="highlight"><pre>
+<span></span><span class="n">idx</span> <span class="o">=</span> <span class="mi">20</span>
+<span class="n">true_pos</span> <span class="o">=</span> <span class="nb">set</span><span class="p">([</span><span class="n">movie_df</span><span class="p">[</span><span class="n">movie_df</span><span class="o">.</span><span class="n">movieId</span> <span class="o">==</span> <span class="nb">id</span><span class="p">]</span><span class="o">.</span><span class="n">title</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="nb">id</span> <span class="ow">in</span> <span class="n">rating_df</span><span class="p">[(</span><span class="n">rating_df</span><span class="p">[</span><span class="s1">&#39;userId&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">idx</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">rating_df</span><span class="p">[</span><span class="s1">&#39;rating&#39;</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mf">4.5</span><span class="p">)]</span><span class="o">.</span><span class="n">movieId</span><span class="o">.</span><span class="n">values</span><span class="p">])</span>
+
+<span class="n">mf_recos</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">get_recommendations_matrix_factorization</span><span class="p">(</span><span class="n">idx</span><span class="p">,</span> <span class="n">user_factors</span><span class="p">,</span> <span class="n">movie_factors</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">mf_recos</span><span class="o">.</span><span class="n">intersection</span><span class="p">(</span><span class="n">true_pos</span><span class="p">)))</span>
+
+<span class="n">ge_recos</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">get_recommended_movies_graph_embeddings</span><span class="p">((</span><span class="n">idx</span><span class="p">,</span> <span class="s1">&#39;user&#39;</span><span class="p">),</span> <span class="n">node_vecs</span><span class="p">,</span> <span class="n">top_n</span><span class="o">=</span><span class="mi">10</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">ge_recos</span><span class="o">.</span><span class="n">intersection</span><span class="p">(</span><span class="n">true_pos</span><span class="p">)))</span>
+
+<span class="n">ge_enriched_reso</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">get_recommended_movies_graph_embeddings</span><span class="p">((</span><span class="n">idx</span><span class="p">,</span> <span class="s1">&#39;user&#39;</span><span class="p">),</span> <span class="n">node_vecs_enriched</span><span class="p">,</span> <span class="n">top_n</span><span class="o">=</span><span class="mi">10</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">ge_enriched_reso</span><span class="o">.</span><span class="n">intersection</span><span class="p">(</span><span class="n">true_pos</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+0
+0
+1
+</pre></div></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-python notranslate"><div class="highlight"><pre>
+<span></span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="recsys-prodsim.html" class="btn btn-neutral float-right" title="Similar Product Recommender" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="recsys-ncf.html" class="btn btn-neutral float-left" title="Neural Matrix Factorization" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Sparsh A..
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

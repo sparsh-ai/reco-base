@@ -1,0 +1,1505 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Contextual News Personalizer &mdash; recobase  documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/language_data.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+        <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Product Recommender with word2vec" href="recsys-word2vec.html" />
+    <link rel="prev" title="Document Retrieval with ElasticSearch" href="recsys-retrieval.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> recobase
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Knowledge</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../Overview.html">Welcome to RecoBase</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Datasets.html">Shopping</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Datasets.html#advertising">Advertising</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Datasets.html#check-in">Check-in</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Datasets.html#movies">Movies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Datasets.html#music">Music</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Datasets.html#books">Books</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Datasets.html#games">Games</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Datasets.html#anime">Anime</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Datasets.html#pictures">Pictures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Datasets.html#jokes">Jokes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Datasets.html#exercises">Exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Datasets.html#websites">Websites</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Datasets.html#adult">Adult</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Datasets.html#news">News</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Datasets.html#uncategorized">Uncategorized</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Datasets.html#statistics">Statistics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Datasets.html#data-sources">Data Sources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Datasets.html#references">References</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Datasets.html#appendix">Appendix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Libraries.html">Graph based</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Libraries.html#conversational">Conversational</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Libraries.html#causal">Causal</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Papers.html">Survey</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Papers.html#general-methods">General Methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Papers.html#social-recommendation">Social Recommendation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Papers.html#sequential-recommendation">Sequential Recommendation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Papers.html#feature-based-recommendation-ctr-prediction">Feature-based Recommendation (CTR Prediction)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Papers.html#knowledge-graph-based-recommendation">Knowledge Graph-based Recommendation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Papers.html#reinforcement-learning-for-recommendation">Reinforcement Learning for Recommendation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Papers.html#poi-recommendation">POI Recommendation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Papers.html#cold-start-recommendation">Cold-Start Recommendation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Papers.html#security-robutness-of-recsys">Security/Robutness of RecSys</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Papers.html#causal-recommendation">Causal Recommendation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Use-Cases.html">Most common</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Use-Cases.html#industry-specific">Industry specific</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Use-Cases.html#other">Other</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Resources.html">Projects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Resources.html#blog-posts">Blog Posts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Resources.html#tutorials">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Resources.html#knowledge-sources">Knowledge Sources</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Tutorials</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="recsys-imgsim.html">Similar Product Recommendations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recsys-implicit-negative.html">Retail Product Recommendation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recsys-ncf.html">Neural Matrix Factorization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recsys-node2vec.html">Recommender System with Node2vec</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recsys-prodsim.html">Similar Product Recommender</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recsys-retrieval.html">Document Retrieval with ElasticSearch</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Contextual News Personalizer</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#Simulate-reward">Simulate reward</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Understanding-VW-format">Understanding VW format</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Getting-a-decision">Getting a decision</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Simulation-set-up">Simulation set up</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Scenario-1">Scenario 1</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#With-learning">With learning</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Without-learning">Without learning</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#Scenario-2">Scenario 2</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#Tom">Tom</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Anna">Anna</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id1">With learning</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">Without learning</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#Scenario-3">Scenario 3</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id3">Tom</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">Anna</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id5">With learning</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Without-Learning">Without Learning</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#Summary">Summary</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="recsys-word2vec.html">Product Recommender with word2vec</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">recobase</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Contextual News Personalizer</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../../../_sources/src/tutorials/notebooks/recsys-vw-contextual.ipynb.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS for nbsphinx extension */
+
+/* remove conflicting styling from Sphinx themes */
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt *,
+div.nbinput.container div.input_area pre,
+div.nboutput.container div.output_area pre,
+div.nbinput.container div.input_area .highlight,
+div.nboutput.container div.output_area .highlight {
+    border: none;
+    padding: 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+div.nbinput.container > div[class*=highlight],
+div.nboutput.container > div[class*=highlight] {
+    margin: 0;
+}
+
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt * {
+    background: none;
+}
+
+div.nboutput.container div.output_area .highlight,
+div.nboutput.container div.output_area pre {
+    background: unset;
+}
+
+div.nboutput.container div.output_area div.highlight {
+    color: unset;  /* override Pygments text color */
+}
+
+/* avoid gaps between output lines */
+div.nboutput.container div[class*=highlight] pre {
+    line-height: normal;
+}
+
+/* input/output containers */
+div.nbinput.container,
+div.nboutput.container {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+    width: 100%;
+}
+@media (max-width: 540px) {
+    div.nbinput.container,
+    div.nboutput.container {
+        flex-direction: column;
+    }
+}
+
+/* input container */
+div.nbinput.container {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast.container {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput.container div.prompt pre {
+    color: #307FC1;
+}
+
+/* output prompt */
+div.nboutput.container div.prompt pre {
+    color: #BF5B3D;
+}
+
+/* all prompts */
+div.nbinput.container div.prompt,
+div.nboutput.container div.prompt {
+    width: 4.5ex;
+    padding-top: 5px;
+    position: relative;
+    user-select: none;
+}
+
+div.nbinput.container div.prompt > div,
+div.nboutput.container div.prompt > div {
+    position: absolute;
+    right: 0;
+    margin-right: 0.3ex;
+}
+
+@media (max-width: 540px) {
+    div.nbinput.container div.prompt,
+    div.nboutput.container div.prompt {
+        width: unset;
+        text-align: left;
+        padding: 0.4em;
+    }
+    div.nboutput.container div.prompt.empty {
+        padding: 0;
+    }
+
+    div.nbinput.container div.prompt > div,
+    div.nboutput.container div.prompt > div {
+        position: unset;
+    }
+}
+
+/* disable scrollbars on prompts */
+div.nbinput.container div.prompt pre,
+div.nboutput.container div.prompt pre {
+    overflow: hidden;
+}
+
+/* input/output area */
+div.nbinput.container div.input_area,
+div.nboutput.container div.output_area {
+    -webkit-flex: 1;
+    flex: 1;
+    overflow: auto;
+}
+@media (max-width: 540px) {
+    div.nbinput.container div.input_area,
+    div.nboutput.container div.output_area {
+        width: 100%;
+    }
+}
+
+/* input area */
+div.nbinput.container div.input_area {
+    border: 1px solid #e0e0e0;
+    border-radius: 2px;
+    /*background: #f5f5f5;*/
+}
+
+/* override MathJax center alignment in output cells */
+div.nboutput.container div[class*=MathJax] {
+    text-align: left !important;
+}
+
+/* override sphinx.ext.imgmath center alignment in output cells */
+div.nboutput.container div.math p {
+    text-align: left;
+}
+
+/* standard error */
+div.nboutput.container div.output_area.stderr {
+    background: #fdd;
+}
+
+/* ANSI colors */
+.ansi-black-fg { color: #3E424D; }
+.ansi-black-bg { background-color: #3E424D; }
+.ansi-black-intense-fg { color: #282C36; }
+.ansi-black-intense-bg { background-color: #282C36; }
+.ansi-red-fg { color: #E75C58; }
+.ansi-red-bg { background-color: #E75C58; }
+.ansi-red-intense-fg { color: #B22B31; }
+.ansi-red-intense-bg { background-color: #B22B31; }
+.ansi-green-fg { color: #00A250; }
+.ansi-green-bg { background-color: #00A250; }
+.ansi-green-intense-fg { color: #007427; }
+.ansi-green-intense-bg { background-color: #007427; }
+.ansi-yellow-fg { color: #DDB62B; }
+.ansi-yellow-bg { background-color: #DDB62B; }
+.ansi-yellow-intense-fg { color: #B27D12; }
+.ansi-yellow-intense-bg { background-color: #B27D12; }
+.ansi-blue-fg { color: #208FFB; }
+.ansi-blue-bg { background-color: #208FFB; }
+.ansi-blue-intense-fg { color: #0065CA; }
+.ansi-blue-intense-bg { background-color: #0065CA; }
+.ansi-magenta-fg { color: #D160C4; }
+.ansi-magenta-bg { background-color: #D160C4; }
+.ansi-magenta-intense-fg { color: #A03196; }
+.ansi-magenta-intense-bg { background-color: #A03196; }
+.ansi-cyan-fg { color: #60C6C8; }
+.ansi-cyan-bg { background-color: #60C6C8; }
+.ansi-cyan-intense-fg { color: #258F8F; }
+.ansi-cyan-intense-bg { background-color: #258F8F; }
+.ansi-white-fg { color: #C5C1B4; }
+.ansi-white-bg { background-color: #C5C1B4; }
+.ansi-white-intense-fg { color: #A1A6B2; }
+.ansi-white-intense-bg { background-color: #A1A6B2; }
+
+.ansi-default-inverse-fg { color: #FFFFFF; }
+.ansi-default-inverse-bg { background-color: #000000; }
+
+.ansi-bold { font-weight: bold; }
+.ansi-underline { text-decoration: underline; }
+
+
+div.nbinput.container div.input_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight].math,
+div.nboutput.container div.output_area.rendered_html,
+div.nboutput.container div.output_area > div.output_javascript,
+div.nboutput.container div.output_area:not(.rendered_html) > img{
+    padding: 5px;
+    margin: 0;
+}
+
+/* fix copybtn overflow problem in chromium (needed for 'sphinx_copybutton') */
+div.nbinput.container div.input_area > div[class^='highlight'],
+div.nboutput.container div.output_area > div[class^='highlight']{
+    overflow-y: hidden;
+}
+
+/* hide copybtn icon on prompts (needed for 'sphinx_copybutton') */
+.prompt a.copybtn {
+    display: none;
+}
+
+/* Some additional styling taken form the Jupyter notebook CSS */
+div.rendered_html table {
+  border: none;
+  border-collapse: collapse;
+  border-spacing: 0;
+  color: black;
+  font-size: 12px;
+  table-layout: fixed;
+}
+div.rendered_html thead {
+  border-bottom: 1px solid black;
+  vertical-align: bottom;
+}
+div.rendered_html tr,
+div.rendered_html th,
+div.rendered_html td {
+  text-align: right;
+  vertical-align: middle;
+  padding: 0.5em 0.5em;
+  line-height: normal;
+  white-space: normal;
+  max-width: none;
+  border: none;
+}
+div.rendered_html th {
+  font-weight: bold;
+}
+div.rendered_html tbody tr:nth-child(odd) {
+  background: #f5f5f5;
+}
+div.rendered_html tbody tr:hover {
+  background: rgba(66, 165, 245, 0.2);
+}
+
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<div class="section" id="Contextual-News-Personalizer">
+<h1>Contextual News Personalizer<a class="headerlink" href="#Contextual-News-Personalizer" title="Permalink to this headline">¶</a></h1>
+<blockquote>
+<div><p><strong>Simulating a news personalization scenario using Contextual Bandits</strong> - A tutorial to understand the process of building a contextual recommender system using vowpalwabbit</p>
+</div></blockquote>
+<p>In the Contextual Bandit(CB) introduction tutorial, we learnt about CB and different CB algorithms. In this tutorial we will simulate the scenario of personalizing news content on a site, using CB, to users. The goal is to maximize user engagement quantified by measuring click through rate (CTR).</p>
+<p>Let’s recall that in a CB setting, a data point has four components,</p>
+<ul class="simple">
+<li><p>Context</p></li>
+<li><p>Action</p></li>
+<li><p>Probability of choosing action</p></li>
+<li><p>Reward/cost for chosen action</p></li>
+</ul>
+<p>In our simulator, we will need to generate a context, get an action/decision for the given context and also simulate generating a reward.</p>
+<p>In our simulator, our goal is to maximize reward (click through rate/CTR) or minimize loss (-CTR)</p>
+<ul class="simple">
+<li><p>We have two website visitors: ‘Tom’ and ‘Anna’</p></li>
+<li><p>Each of them may visit the website either in the morning or in the afternoon</p></li>
+</ul>
+<p>The <strong>context</strong> is therefore (user, time_of_day)</p>
+<p>We have the option of recommending a variety of articles to Tom and Anna. Therefore, <strong>actions</strong> are the different choices of articles: “politics”, “sports”, “music”, “food”, “finance”, “health”, “cheese”</p>
+<p>The <strong>reward</strong> is whether they click on the article or not: ‘click’ or ‘no click’</p>
+<p>Let’s first start with importing the necessary packages:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1">#hide</span>
+<span class="o">!</span>pip install vowpalwabbit
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Collecting vowpalwabbit
+  Downloading https://files.pythonhosted.org/packages/3d/1e/dd4cb7143ed9d2b088d1e2e64f9a643039085837b5ea90f5600f3984b8eb/vowpalwabbit-8.10.1-cp37-cp37m-manylinux2010_x86_64.whl (2.6MB)
+     |████████████████████████████████| 2.6MB 5.5MB/s
+Installing collected packages: vowpalwabbit
+Successfully installed vowpalwabbit-8.10.1
+</pre></div></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1">#hide</span>
+<span class="kn">from</span> <span class="nn">vowpalwabbit</span> <span class="kn">import</span> <span class="n">pyvw</span>
+<span class="kn">import</span> <span class="nn">random</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">itertools</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="Simulate-reward">
+<h2>Simulate reward<a class="headerlink" href="#Simulate-reward" title="Permalink to this headline">¶</a></h2>
+<p>In the real world, we will have to learn Tom and Anna’s preferences for articles as we observe their interactions. Since this is a simulation, we will have to define Tom and Anna’s preference profile. The reward that we provide to the learner will follow this preference profile. Our hope is to see if the learner can take better and better decisions as we see more samples which in turn means we are maximizing the reward.</p>
+<p>We will also modify the reward function in a few different ways and see if the CB learner picks up the changes. We will compare the CTR with and without learning.</p>
+<p>VW optimizes to minimize <strong>cost which is negative of reward</strong>. Therefore, we will always pass negative of reward as cost to VW.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1"># VW tries to minimize loss/cost, therefore we will pass cost as -reward</span>
+<span class="n">USER_LIKED_ARTICLE</span> <span class="o">=</span> <span class="o">-</span><span class="mf">1.0</span>
+<span class="n">USER_DISLIKED_ARTICLE</span> <span class="o">=</span> <span class="mf">0.0</span>
+</pre></div>
+</div>
+</div>
+<p>The reward function below specifies that Tom likes politics in the morning and music in the afternoon whereas Anna likes sports in the morning and politics in the afternoon. It looks dense but we are just simulating our hypothetical world in the format of the feedback the learner understands: cost. If the learner recommends an article that aligns with the reward function, we give a positive reward. In our simulated world this is a click.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="k">def</span> <span class="nf">get_cost</span><span class="p">(</span><span class="n">context</span><span class="p">,</span><span class="n">action</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">context</span><span class="p">[</span><span class="s1">&#39;user&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;Tom&quot;</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">context</span><span class="p">[</span><span class="s1">&#39;time_of_day&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;morning&quot;</span> <span class="ow">and</span> <span class="n">action</span> <span class="o">==</span> <span class="s1">&#39;politics&#39;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">USER_LIKED_ARTICLE</span>
+        <span class="k">elif</span> <span class="n">context</span><span class="p">[</span><span class="s1">&#39;time_of_day&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;afternoon&quot;</span> <span class="ow">and</span> <span class="n">action</span> <span class="o">==</span> <span class="s1">&#39;music&#39;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">USER_LIKED_ARTICLE</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">USER_DISLIKED_ARTICLE</span>
+    <span class="k">elif</span> <span class="n">context</span><span class="p">[</span><span class="s1">&#39;user&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;Anna&quot;</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">context</span><span class="p">[</span><span class="s1">&#39;time_of_day&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;morning&quot;</span> <span class="ow">and</span> <span class="n">action</span> <span class="o">==</span> <span class="s1">&#39;sports&#39;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">USER_LIKED_ARTICLE</span>
+        <span class="k">elif</span> <span class="n">context</span><span class="p">[</span><span class="s1">&#39;time_of_day&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;afternoon&quot;</span> <span class="ow">and</span> <span class="n">action</span> <span class="o">==</span> <span class="s1">&#39;politics&#39;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">USER_LIKED_ARTICLE</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">USER_DISLIKED_ARTICLE</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="Understanding-VW-format">
+<h2>Understanding VW format<a class="headerlink" href="#Understanding-VW-format" title="Permalink to this headline">¶</a></h2>
+<p>There are some things we need to do to get our input into a format VW understands. This function handles converting from our context as a dictionary, list of articles and the cost if there is one into the text format VW understands.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1"># This function modifies (context, action, cost, probability) to VW friendly format</span>
+<span class="k">def</span> <span class="nf">to_vw_example_format</span><span class="p">(</span><span class="n">context</span><span class="p">,</span> <span class="n">actions</span><span class="p">,</span> <span class="n">cb_label</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">cb_label</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">chosen_action</span><span class="p">,</span> <span class="n">cost</span><span class="p">,</span> <span class="n">prob</span> <span class="o">=</span> <span class="n">cb_label</span>
+    <span class="n">example_string</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+    <span class="n">example_string</span> <span class="o">+=</span> <span class="s2">&quot;shared |User user=</span><span class="si">{}</span><span class="s2"> time_of_day=</span><span class="si">{}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">context</span><span class="p">[</span><span class="s2">&quot;user&quot;</span><span class="p">],</span> <span class="n">context</span><span class="p">[</span><span class="s2">&quot;time_of_day&quot;</span><span class="p">])</span>
+    <span class="k">for</span> <span class="n">action</span> <span class="ow">in</span> <span class="n">actions</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">cb_label</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">action</span> <span class="o">==</span> <span class="n">chosen_action</span><span class="p">:</span>
+            <span class="n">example_string</span> <span class="o">+=</span> <span class="s2">&quot;0:</span><span class="si">{}</span><span class="s2">:</span><span class="si">{}</span><span class="s2"> &quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">cost</span><span class="p">,</span> <span class="n">prob</span><span class="p">)</span>
+        <span class="n">example_string</span> <span class="o">+=</span> <span class="s2">&quot;|Action article=</span><span class="si">{}</span><span class="s2"> </span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">action</span><span class="p">)</span>
+    <span class="c1">#Strip the last newline</span>
+    <span class="k">return</span> <span class="n">example_string</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<p>To understand what’s going on here let’s go through an example. Here, it’s the morning and the user is Tom. There are four possible articles. So in the VW format there is one line that starts with shared, this is the shared context, followed by four lines each corresponding to an article.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1">#collapse-input</span>
+<span class="n">context</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;user&quot;</span><span class="p">:</span><span class="s2">&quot;Tom&quot;</span><span class="p">,</span><span class="s2">&quot;time_of_day&quot;</span><span class="p">:</span><span class="s2">&quot;morning&quot;</span><span class="p">}</span>
+<span class="n">actions</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;politics&quot;</span><span class="p">,</span> <span class="s2">&quot;sports&quot;</span><span class="p">,</span> <span class="s2">&quot;music&quot;</span><span class="p">,</span> <span class="s2">&quot;food&quot;</span><span class="p">]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">to_vw_example_format</span><span class="p">(</span><span class="n">context</span><span class="p">,</span><span class="n">actions</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+shared |User user=Tom time_of_day=morning
+|Action article=politics
+|Action article=sports
+|Action article=music
+|Action article=food
+</pre></div></div>
+</div>
+</div>
+<div class="section" id="Getting-a-decision">
+<h2>Getting a decision<a class="headerlink" href="#Getting-a-decision" title="Permalink to this headline">¶</a></h2>
+<p>When we call VW we get a <em>pmf</em>, <a class="reference external" href="https://en.wikipedia.org/wiki/Probability_mass_function">probability mass function</a>, as the output. Since we are incorporating exploration into our strategy, VW will give us a list of probabilities over the set of actions. This means that the probability at a given index in the list corresponds to the likelihood of picking that specific action. In order to arrive at a decision/action, we will have to sample from this list.</p>
+<p>So, given a list <code class="docutils literal notranslate"><span class="pre">[0.7,</span> <span class="pre">0.1,</span> <span class="pre">0.1,</span> <span class="pre">0.1]</span></code>, we would choose the first item with a 70% chance. <code class="docutils literal notranslate"><span class="pre">sample_custom_pmf</span></code> takes such a list and gives us the index it chose and what the probability of choosing that index was.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="k">def</span> <span class="nf">sample_custom_pmf</span><span class="p">(</span><span class="n">pmf</span><span class="p">):</span>
+    <span class="n">total</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">pmf</span><span class="p">)</span>
+    <span class="n">scale</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="n">total</span>
+    <span class="n">pmf</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span> <span class="o">*</span> <span class="n">scale</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">pmf</span><span class="p">]</span>
+    <span class="n">draw</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">()</span>
+    <span class="n">sum_prob</span> <span class="o">=</span> <span class="mf">0.0</span>
+    <span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">prob</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">pmf</span><span class="p">):</span>
+        <span class="n">sum_prob</span> <span class="o">+=</span> <span class="n">prob</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">sum_prob</span> <span class="o">&gt;</span> <span class="n">draw</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">index</span><span class="p">,</span> <span class="n">prob</span>
+</pre></div>
+</div>
+</div>
+<p>We have all of the information we need to choose an action for a specific user and context. To use VW to achieve this, we will do the following:</p>
+<ol class="arabic simple">
+<li><p>We convert our context and actions into the text format we need</p></li>
+<li><p>We pass this example to vw and get the pmf out</p></li>
+<li><p>Now, we sample this pmf to get what article we will end up showing</p></li>
+<li><p>Finally we return the article chosen, and the probability of choosing it (we are going to need the probability when we learn form this example)</p></li>
+</ol>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="k">def</span> <span class="nf">get_action</span><span class="p">(</span><span class="n">vw</span><span class="p">,</span> <span class="n">context</span><span class="p">,</span> <span class="n">actions</span><span class="p">):</span>
+    <span class="n">vw_text_example</span> <span class="o">=</span> <span class="n">to_vw_example_format</span><span class="p">(</span><span class="n">context</span><span class="p">,</span><span class="n">actions</span><span class="p">)</span>
+    <span class="n">pmf</span> <span class="o">=</span> <span class="n">vw</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">vw_text_example</span><span class="p">)</span>
+    <span class="n">chosen_action_index</span><span class="p">,</span> <span class="n">prob</span> <span class="o">=</span> <span class="n">sample_custom_pmf</span><span class="p">(</span><span class="n">pmf</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">actions</span><span class="p">[</span><span class="n">chosen_action_index</span><span class="p">],</span> <span class="n">prob</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="Simulation-set-up">
+<h2>Simulation set up<a class="headerlink" href="#Simulation-set-up" title="Permalink to this headline">¶</a></h2>
+<p>Now that we have done all of the setup work and know how to interface with VW, let’s simulate the world of Tom and Anna. The scenario is they go to a website and are shown an article. Remember that the reward function allows us to define the worlds reaction to what VW recommends.</p>
+<p>We will choose between Tom and Anna uniformly at random and also choose their time of visit uniformly at random. You can think of this as us tossing a coin to choose between Tom and Anna (Anna if heads and Tom if tails) and another coin toss for choosing time of day.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1">#hide-input</span>
+<span class="n">users</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Tom&#39;</span><span class="p">,</span> <span class="s1">&#39;Anna&#39;</span><span class="p">]</span>
+<span class="n">times_of_day</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;morning&#39;</span><span class="p">,</span> <span class="s1">&#39;afternoon&#39;</span><span class="p">]</span>
+<span class="n">actions</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;politics&quot;</span><span class="p">,</span> <span class="s2">&quot;sports&quot;</span><span class="p">,</span> <span class="s2">&quot;music&quot;</span><span class="p">,</span> <span class="s2">&quot;food&quot;</span><span class="p">,</span> <span class="s2">&quot;finance&quot;</span><span class="p">,</span> <span class="s2">&quot;health&quot;</span><span class="p">,</span> <span class="s2">&quot;camping&quot;</span><span class="p">]</span>
+
+<span class="k">def</span> <span class="nf">choose_user</span><span class="p">(</span><span class="n">users</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">users</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">choose_time_of_day</span><span class="p">(</span><span class="n">times_of_day</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">times_of_day</span><span class="p">)</span>
+
+<span class="c1"># display preference matrix</span>
+<span class="k">def</span> <span class="nf">get_preference_matrix</span><span class="p">(</span><span class="n">cost_fun</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">expand_grid</span><span class="p">(</span><span class="n">data_dict</span><span class="p">):</span>
+        <span class="n">rows</span> <span class="o">=</span> <span class="n">itertools</span><span class="o">.</span><span class="n">product</span><span class="p">(</span><span class="o">*</span><span class="n">data_dict</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
+        <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="o">.</span><span class="n">from_records</span><span class="p">(</span><span class="n">rows</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">data_dict</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+
+    <span class="n">df</span> <span class="o">=</span> <span class="n">expand_grid</span><span class="p">({</span><span class="s1">&#39;users&#39;</span><span class="p">:</span><span class="n">users</span><span class="p">,</span> <span class="s1">&#39;times_of_day&#39;</span><span class="p">:</span> <span class="n">times_of_day</span><span class="p">,</span> <span class="s1">&#39;actions&#39;</span><span class="p">:</span> <span class="n">actions</span><span class="p">})</span>
+    <span class="n">df</span><span class="p">[</span><span class="s1">&#39;cost&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">r</span><span class="p">:</span> <span class="n">cost_fun</span><span class="p">({</span><span class="s1">&#39;user&#39;</span><span class="p">:</span> <span class="n">r</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="s1">&#39;time_of_day&#39;</span><span class="p">:</span> <span class="n">r</span><span class="p">[</span><span class="mi">1</span><span class="p">]},</span> <span class="n">r</span><span class="p">[</span><span class="mi">2</span><span class="p">]),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">df</span><span class="o">.</span><span class="n">pivot_table</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;users&#39;</span><span class="p">,</span> <span class="s1">&#39;times_of_day&#39;</span><span class="p">],</span>
+            <span class="n">columns</span><span class="o">=</span><span class="s1">&#39;actions&#39;</span><span class="p">,</span>
+            <span class="n">values</span><span class="o">=</span><span class="s1">&#39;cost&#39;</span><span class="p">)</span>
+
+<span class="n">get_preference_matrix</span><span class="p">(</span><span class="n">get_cost</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>actions</th>
+      <th>camping</th>
+      <th>finance</th>
+      <th>food</th>
+      <th>health</th>
+      <th>music</th>
+      <th>politics</th>
+      <th>sports</th>
+    </tr>
+    <tr>
+      <th>users</th>
+      <th>times_of_day</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th rowspan="2" valign="top">Anna</th>
+      <th>afternoon</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>-1.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>morning</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>-1.0</td>
+    </tr>
+    <tr>
+      <th rowspan="2" valign="top">Tom</th>
+      <th>afternoon</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>-1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>morning</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>-1.0</td>
+      <td>0.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<p>We will instantiate a CB learner in VW and then simulate Tom and Anna’s website visits <code class="docutils literal notranslate"><span class="pre">num_iterations</span></code> number of times. In each visit, we:</p>
+<ol class="arabic simple">
+<li><p>Decide between Tom and Anna</p></li>
+<li><p>Decide time of day</p></li>
+<li><p>Pass context i.e. (user, time of day) to learner to get action i.e. article recommendation and probability of choosing action</p></li>
+<li><p>Receive reward i.e. see if user clicked or not. Remember that cost is just negative reward.</p></li>
+<li><p>Format context, action, probability, reward in VW format</p></li>
+<li><p>Learn from the example</p>
+<ul class="simple">
+<li><p>VW <em>reduces</em> a CB problem to a cost sensitive multiclass classification problem.</p></li>
+</ul>
+</li>
+</ol>
+<p>This is the same for every one of our simulations, so we define the process in the <code class="docutils literal notranslate"><span class="pre">run_simulation</span></code> function. The cost function must be supplied as this is essentially us simulating how the world works.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="k">def</span> <span class="nf">run_simulation</span><span class="p">(</span><span class="n">vw</span><span class="p">,</span> <span class="n">num_iterations</span><span class="p">,</span> <span class="n">users</span><span class="p">,</span> <span class="n">times_of_day</span><span class="p">,</span> <span class="n">actions</span><span class="p">,</span> <span class="n">cost_function</span><span class="p">,</span> <span class="n">do_learn</span> <span class="o">=</span> <span class="kc">True</span><span class="p">):</span>
+    <span class="n">cost_sum</span> <span class="o">=</span> <span class="mf">0.</span>
+    <span class="n">ctr</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">num_iterations</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+        <span class="c1"># 1. In each simulation choose a user</span>
+        <span class="n">user</span> <span class="o">=</span> <span class="n">choose_user</span><span class="p">(</span><span class="n">users</span><span class="p">)</span>
+        <span class="c1"># 2. Choose time of day for a given user</span>
+        <span class="n">time_of_day</span> <span class="o">=</span> <span class="n">choose_time_of_day</span><span class="p">(</span><span class="n">times_of_day</span><span class="p">)</span>
+
+        <span class="c1"># 3. Pass context to vw to get an action</span>
+        <span class="n">context</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;user&#39;</span><span class="p">:</span> <span class="n">user</span><span class="p">,</span> <span class="s1">&#39;time_of_day&#39;</span><span class="p">:</span> <span class="n">time_of_day</span><span class="p">}</span>
+        <span class="n">action</span><span class="p">,</span> <span class="n">prob</span> <span class="o">=</span> <span class="n">get_action</span><span class="p">(</span><span class="n">vw</span><span class="p">,</span> <span class="n">context</span><span class="p">,</span> <span class="n">actions</span><span class="p">)</span>
+
+        <span class="c1"># 4. Get cost of the action we chose</span>
+        <span class="n">cost</span> <span class="o">=</span> <span class="n">cost_function</span><span class="p">(</span><span class="n">context</span><span class="p">,</span> <span class="n">action</span><span class="p">)</span>
+        <span class="n">cost_sum</span> <span class="o">+=</span> <span class="n">cost</span>
+
+        <span class="k">if</span> <span class="n">do_learn</span><span class="p">:</span>
+            <span class="c1"># 5. Inform VW of what happened so we can learn from it</span>
+            <span class="n">vw_format</span> <span class="o">=</span> <span class="n">vw</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">to_vw_example_format</span><span class="p">(</span><span class="n">context</span><span class="p">,</span> <span class="n">actions</span><span class="p">,</span> <span class="p">(</span><span class="n">action</span><span class="p">,</span> <span class="n">cost</span><span class="p">,</span> <span class="n">prob</span><span class="p">)),</span><span class="n">pyvw</span><span class="o">.</span><span class="n">vw</span><span class="o">.</span><span class="n">lContextualBandit</span><span class="p">)</span>
+            <span class="c1"># 6. Learn</span>
+            <span class="n">vw</span><span class="o">.</span><span class="n">learn</span><span class="p">(</span><span class="n">vw_format</span><span class="p">)</span>
+
+        <span class="c1"># We negate this so that on the plot instead of minimizing cost, we are maximizing reward</span>
+        <span class="n">ctr</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="o">*</span><span class="n">cost_sum</span><span class="o">/</span><span class="n">i</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">ctr</span>
+</pre></div>
+</div>
+</div>
+<p>We want to be able to visualize what is occurring, so we are going to plot the click through rate over each iteration of the simulation. If VW is showing actions the get rewards the ctr will be higher. Below is a little utility function to make showing the plot easier.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1">#hide</span>
+<span class="k">def</span> <span class="nf">plot_ctr</span><span class="p">(</span><span class="n">num_iterations</span><span class="p">,</span> <span class="n">ctr</span><span class="p">):</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">num_iterations</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span> <span class="n">ctr</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;num_iterations&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;ctr&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="Scenario-1">
+<h2>Scenario 1<a class="headerlink" href="#Scenario-1" title="Permalink to this headline">¶</a></h2>
+<p>We will use the first reward function <code class="docutils literal notranslate"><span class="pre">get_cost</span></code> and assume that Tom and Anna do not change their preferences over time and see what happens to user engagement as we learn. We will also see what happens when there is no learning. We will use the “no learning” case as our baseline to compare to.</p>
+<div class="section" id="With-learning">
+<h3>With learning<a class="headerlink" href="#With-learning" title="Permalink to this headline">¶</a></h3>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1"># Instantiate learner in VW</span>
+<span class="n">vw</span> <span class="o">=</span> <span class="n">pyvw</span><span class="o">.</span><span class="n">vw</span><span class="p">(</span><span class="s2">&quot;--cb_explore_adf -q UA --quiet --epsilon 0.2&quot;</span><span class="p">)</span>
+
+<span class="n">num_iterations</span> <span class="o">=</span> <span class="mi">5000</span>
+<span class="n">ctr</span> <span class="o">=</span> <span class="n">run_simulation</span><span class="p">(</span><span class="n">vw</span><span class="p">,</span> <span class="n">num_iterations</span><span class="p">,</span> <span class="n">users</span><span class="p">,</span> <span class="n">times_of_day</span><span class="p">,</span> <span class="n">actions</span><span class="p">,</span> <span class="n">get_cost</span><span class="p">)</span>
+
+<span class="n">plot_ctr</span><span class="p">(</span><span class="n">num_iterations</span><span class="p">,</span> <span class="n">ctr</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../../_images/src_tutorials_notebooks_recsys-vw-contextual_23_0.png" src="../../../_images/src_tutorials_notebooks_recsys-vw-contextual_23_0.png" />
+</div>
+</div>
+<p>Aside: interactions</p>
+<p>You’ll notice in the arguments we supply to VW, <strong>we include ``-q UA``</strong>. This is telling VW to create additional features which are the features in the (U)ser namespace and (A)ction namespaces multiplied together. This allows us to learn the interaction between when certain actions are good in certain times of days and for particular users. If we didn’t do that, the learning wouldn’t really work. We can see that in action below.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1"># Instantiate learner in VW but without -q</span>
+<span class="n">vw</span> <span class="o">=</span> <span class="n">pyvw</span><span class="o">.</span><span class="n">vw</span><span class="p">(</span><span class="s2">&quot;--cb_explore_adf --quiet --epsilon 0.2&quot;</span><span class="p">)</span>
+
+<span class="n">num_iterations</span> <span class="o">=</span> <span class="mi">5000</span>
+<span class="n">ctr</span> <span class="o">=</span> <span class="n">run_simulation</span><span class="p">(</span><span class="n">vw</span><span class="p">,</span> <span class="n">num_iterations</span><span class="p">,</span> <span class="n">users</span><span class="p">,</span> <span class="n">times_of_day</span><span class="p">,</span> <span class="n">actions</span><span class="p">,</span> <span class="n">get_cost</span><span class="p">)</span>
+
+<span class="n">plot_ctr</span><span class="p">(</span><span class="n">num_iterations</span><span class="p">,</span> <span class="n">ctr</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../../_images/src_tutorials_notebooks_recsys-vw-contextual_25_0.png" src="../../../_images/src_tutorials_notebooks_recsys-vw-contextual_25_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="Without-learning">
+<h3>Without learning<a class="headerlink" href="#Without-learning" title="Permalink to this headline">¶</a></h3>
+<p>Let’s do the same thing again (but with <code class="docutils literal notranslate"><span class="pre">-q</span></code>, but this time show the effect if we don’t learn from what happens. The ctr never improves are we just hover around 0.2.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1"># Instantiate learner in VW</span>
+<span class="n">vw</span> <span class="o">=</span> <span class="n">pyvw</span><span class="o">.</span><span class="n">vw</span><span class="p">(</span><span class="s2">&quot;--cb_explore_adf -q UA --quiet --epsilon 0.2&quot;</span><span class="p">)</span>
+
+<span class="n">num_iterations</span> <span class="o">=</span> <span class="mi">5000</span>
+<span class="n">ctr</span> <span class="o">=</span> <span class="n">run_simulation</span><span class="p">(</span><span class="n">vw</span><span class="p">,</span> <span class="n">num_iterations</span><span class="p">,</span> <span class="n">users</span><span class="p">,</span> <span class="n">times_of_day</span><span class="p">,</span> <span class="n">actions</span><span class="p">,</span> <span class="n">get_cost</span><span class="p">,</span> <span class="n">do_learn</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="n">plot_ctr</span><span class="p">(</span><span class="n">num_iterations</span><span class="p">,</span> <span class="n">ctr</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../../_images/src_tutorials_notebooks_recsys-vw-contextual_27_0.png" src="../../../_images/src_tutorials_notebooks_recsys-vw-contextual_27_0.png" />
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="Scenario-2">
+<h2>Scenario 2<a class="headerlink" href="#Scenario-2" title="Permalink to this headline">¶</a></h2>
+<p>In the real world people’s preferences change over time. So now in the simulation we are going to incorporate two different cost functions, and swap over to the second one halfway through. Below is a a table of the new reward function we are going to use, <code class="docutils literal notranslate"><span class="pre">get_cost_1</span></code>:</p>
+<div class="section" id="Tom">
+<h3>Tom<a class="headerlink" href="#Tom" title="Permalink to this headline">¶</a></h3>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 31%" />
+<col style="width: 29%" />
+<col style="width: 40%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"></th>
+<th class="head"><p><code class="docutils literal notranslate"><span class="pre">get_cost</span></code></p></th>
+<th class="head"><p><code class="docutils literal notranslate"><span class="pre">get_cost_new1</span></code></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Morning</strong></p></td>
+<td><p>Politics</p></td>
+<td><p>Politics</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Afternoon</strong></p></td>
+<td><p>Music</p></td>
+<td><p>Sports</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="Anna">
+<h3>Anna<a class="headerlink" href="#Anna" title="Permalink to this headline">¶</a></h3>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 31%" />
+<col style="width: 29%" />
+<col style="width: 40%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"></th>
+<th class="head"><p><code class="docutils literal notranslate"><span class="pre">get_cost</span></code></p></th>
+<th class="head"><p><code class="docutils literal notranslate"><span class="pre">get_cost_new1</span></code></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Morning</strong></p></td>
+<td><p>Sports</p></td>
+<td><p>Sports</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Afternoon</strong></p></td>
+<td><p>Politics</p></td>
+<td><p>Sports</p></td>
+</tr>
+</tbody>
+</table>
+<p>This reward function is still working with actions that the learner has seen previously.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1">#hide</span>
+<span class="k">def</span> <span class="nf">get_cost_new1</span><span class="p">(</span><span class="n">context</span><span class="p">,</span><span class="n">action</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">context</span><span class="p">[</span><span class="s1">&#39;user&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;Tom&quot;</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">context</span><span class="p">[</span><span class="s1">&#39;time_of_day&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;morning&quot;</span> <span class="ow">and</span> <span class="n">action</span> <span class="o">==</span> <span class="s1">&#39;politics&#39;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">USER_LIKED_ARTICLE</span>
+        <span class="k">elif</span> <span class="n">context</span><span class="p">[</span><span class="s1">&#39;time_of_day&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;afternoon&quot;</span> <span class="ow">and</span> <span class="n">action</span> <span class="o">==</span> <span class="s1">&#39;sports&#39;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">USER_LIKED_ARTICLE</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">USER_DISLIKED_ARTICLE</span>
+    <span class="k">elif</span> <span class="n">context</span><span class="p">[</span><span class="s1">&#39;user&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;Anna&quot;</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">context</span><span class="p">[</span><span class="s1">&#39;time_of_day&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;morning&quot;</span> <span class="ow">and</span> <span class="n">action</span> <span class="o">==</span> <span class="s1">&#39;sports&#39;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">USER_LIKED_ARTICLE</span>
+        <span class="k">elif</span> <span class="n">context</span><span class="p">[</span><span class="s1">&#39;time_of_day&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;afternoon&quot;</span> <span class="ow">and</span> <span class="n">action</span> <span class="o">==</span> <span class="s1">&#39;sports&#39;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">USER_LIKED_ARTICLE</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">USER_DISLIKED_ARTICLE</span>
+
+<span class="n">get_preference_matrix</span><span class="p">(</span><span class="n">get_cost_new1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>actions</th>
+      <th>camping</th>
+      <th>finance</th>
+      <th>food</th>
+      <th>health</th>
+      <th>music</th>
+      <th>politics</th>
+      <th>sports</th>
+    </tr>
+    <tr>
+      <th>users</th>
+      <th>times_of_day</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th rowspan="2" valign="top">Anna</th>
+      <th>afternoon</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>-1.0</td>
+    </tr>
+    <tr>
+      <th>morning</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>-1.0</td>
+    </tr>
+    <tr>
+      <th rowspan="2" valign="top">Tom</th>
+      <th>afternoon</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>-1.0</td>
+    </tr>
+    <tr>
+      <th>morning</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>-1.0</td>
+      <td>0.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<p>To make it easy to show the effect of the cost function changing we are going to modify the <code class="docutils literal notranslate"><span class="pre">run_simulation</span></code> function. It is a little less readable now, but it supports accepting a list of cost functions and it will operate over each cost function in turn. This is perfect for what we need.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1">#hide</span>
+<span class="k">def</span> <span class="nf">run_simulation_multiple_cost_functions</span><span class="p">(</span><span class="n">vw</span><span class="p">,</span> <span class="n">num_iterations</span><span class="p">,</span> <span class="n">users</span><span class="p">,</span> <span class="n">times_of_day</span><span class="p">,</span> <span class="n">actions</span><span class="p">,</span> <span class="n">cost_functions</span><span class="p">,</span> <span class="n">do_learn</span> <span class="o">=</span> <span class="kc">True</span><span class="p">):</span>
+    <span class="n">cost_sum</span> <span class="o">=</span> <span class="mf">0.</span>
+    <span class="n">ctr</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="n">start_counter</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="n">end_counter</span> <span class="o">=</span> <span class="n">start_counter</span> <span class="o">+</span> <span class="n">num_iterations</span>
+    <span class="k">for</span> <span class="n">cost_function</span> <span class="ow">in</span> <span class="n">cost_functions</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">start_counter</span><span class="p">,</span> <span class="n">end_counter</span><span class="p">):</span>
+            <span class="c1"># 1. in each simulation choose a user</span>
+            <span class="n">user</span> <span class="o">=</span> <span class="n">choose_user</span><span class="p">(</span><span class="n">users</span><span class="p">)</span>
+            <span class="c1"># 2. choose time of day for a given user</span>
+            <span class="n">time_of_day</span> <span class="o">=</span> <span class="n">choose_time_of_day</span><span class="p">(</span><span class="n">times_of_day</span><span class="p">)</span>
+
+            <span class="c1"># Construct context based on chosen user and time of day</span>
+            <span class="n">context</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;user&#39;</span><span class="p">:</span> <span class="n">user</span><span class="p">,</span> <span class="s1">&#39;time_of_day&#39;</span><span class="p">:</span> <span class="n">time_of_day</span><span class="p">}</span>
+
+            <span class="c1"># 3. Use the get_action function we defined earlier</span>
+            <span class="n">action</span><span class="p">,</span> <span class="n">prob</span> <span class="o">=</span> <span class="n">get_action</span><span class="p">(</span><span class="n">vw</span><span class="p">,</span> <span class="n">context</span><span class="p">,</span> <span class="n">actions</span><span class="p">)</span>
+
+            <span class="c1"># 4. Get cost of the action we chose</span>
+            <span class="n">cost</span> <span class="o">=</span> <span class="n">cost_function</span><span class="p">(</span><span class="n">context</span><span class="p">,</span> <span class="n">action</span><span class="p">)</span>
+            <span class="n">cost_sum</span> <span class="o">+=</span> <span class="n">cost</span>
+
+            <span class="k">if</span> <span class="n">do_learn</span><span class="p">:</span>
+                <span class="c1"># 5. Inform VW of what happened so we can learn from it</span>
+                <span class="n">vw_format</span> <span class="o">=</span> <span class="n">vw</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">to_vw_example_format</span><span class="p">(</span><span class="n">context</span><span class="p">,</span> <span class="n">actions</span><span class="p">,</span> <span class="p">(</span><span class="n">action</span><span class="p">,</span> <span class="n">cost</span><span class="p">,</span> <span class="n">prob</span><span class="p">)),</span><span class="n">pyvw</span><span class="o">.</span><span class="n">vw</span><span class="o">.</span><span class="n">lContextualBandit</span><span class="p">)</span>
+                <span class="c1"># 6. Learn</span>
+                <span class="n">vw</span><span class="o">.</span><span class="n">learn</span><span class="p">(</span><span class="n">vw_format</span><span class="p">)</span>
+
+            <span class="c1"># We negate this so that on the plot instead of minimizing cost, we are maximizing reward</span>
+            <span class="n">ctr</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="o">*</span><span class="n">cost_sum</span><span class="o">/</span><span class="n">i</span><span class="p">)</span>
+        <span class="n">start_counter</span> <span class="o">=</span> <span class="n">end_counter</span>
+        <span class="n">end_counter</span> <span class="o">=</span> <span class="n">start_counter</span> <span class="o">+</span> <span class="n">num_iterations</span>
+
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1">#hide</span>
+<span class="k">def</span> <span class="nf">run_simulation_multiple_cost_functions</span><span class="p">(</span><span class="n">vw</span><span class="p">,</span> <span class="n">num_iterations</span><span class="p">,</span> <span class="n">users</span><span class="p">,</span> <span class="n">times_of_day</span><span class="p">,</span> <span class="n">actions</span><span class="p">,</span> <span class="n">cost_functions</span><span class="p">,</span> <span class="n">do_learn</span> <span class="o">=</span> <span class="kc">True</span><span class="p">):</span>
+    <span class="n">cost_sum</span> <span class="o">=</span> <span class="mf">0.</span>
+    <span class="n">ctr</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="n">start_counter</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="n">end_counter</span> <span class="o">=</span> <span class="n">start_counter</span> <span class="o">+</span> <span class="n">num_iterations</span>
+    <span class="k">for</span> <span class="n">cost_function</span> <span class="ow">in</span> <span class="n">cost_functions</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">start_counter</span><span class="p">,</span> <span class="n">end_counter</span><span class="p">):</span>
+            <span class="c1"># 1. in each simulation choose a user</span>
+            <span class="n">user</span> <span class="o">=</span> <span class="n">choose_user</span><span class="p">(</span><span class="n">users</span><span class="p">)</span>
+            <span class="c1"># 2. choose time of day for a given user</span>
+            <span class="n">time_of_day</span> <span class="o">=</span> <span class="n">choose_time_of_day</span><span class="p">(</span><span class="n">times_of_day</span><span class="p">)</span>
+
+            <span class="c1"># Construct context based on chosen user and time of day</span>
+            <span class="n">context</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;user&#39;</span><span class="p">:</span> <span class="n">user</span><span class="p">,</span> <span class="s1">&#39;time_of_day&#39;</span><span class="p">:</span> <span class="n">time_of_day</span><span class="p">}</span>
+
+            <span class="c1"># 3. Use the get_action function we defined earlier</span>
+            <span class="n">action</span><span class="p">,</span> <span class="n">prob</span> <span class="o">=</span> <span class="n">get_action</span><span class="p">(</span><span class="n">vw</span><span class="p">,</span> <span class="n">context</span><span class="p">,</span> <span class="n">actions</span><span class="p">)</span>
+
+            <span class="c1"># 4. Get cost of the action we chose</span>
+            <span class="n">cost</span> <span class="o">=</span> <span class="n">cost_function</span><span class="p">(</span><span class="n">context</span><span class="p">,</span> <span class="n">action</span><span class="p">)</span>
+            <span class="n">cost_sum</span> <span class="o">+=</span> <span class="n">cost</span>
+
+            <span class="k">if</span> <span class="n">do_learn</span><span class="p">:</span>
+                <span class="c1"># 5. Inform VW of what happened so we can learn from it</span>
+                <span class="n">vw_format</span> <span class="o">=</span> <span class="n">vw</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">to_vw_example_format</span><span class="p">(</span><span class="n">context</span><span class="p">,</span> <span class="n">actions</span><span class="p">,</span> <span class="p">(</span><span class="n">action</span><span class="p">,</span> <span class="n">cost</span><span class="p">,</span> <span class="n">prob</span><span class="p">)),</span><span class="n">pyvw</span><span class="o">.</span><span class="n">vw</span><span class="o">.</span><span class="n">lContextualBandit</span><span class="p">)</span>
+                <span class="c1"># 6. Learn</span>
+                <span class="n">vw</span><span class="o">.</span><span class="n">learn</span><span class="p">(</span><span class="n">vw_format</span><span class="p">)</span>
+
+            <span class="c1"># We negate this so that on the plot instead of minimizing cost, we are maximizing reward</span>
+            <span class="n">ctr</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="o">*</span><span class="n">cost_sum</span><span class="o">/</span><span class="n">i</span><span class="p">)</span>
+        <span class="n">start_counter</span> <span class="o">=</span> <span class="n">end_counter</span>
+        <span class="n">end_counter</span> <span class="o">=</span> <span class="n">start_counter</span> <span class="o">+</span> <span class="n">num_iterations</span>
+
+    <span class="k">return</span> <span class="n">ctr</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="id1">
+<h3>With learning<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<p>Let us now switch to the second reward function after a few samples (running the first reward function). Recall that this reward function changes the preferences of the web users but it is still working with the same action space as before. We should see the learner pick up these changes and optimize towards the new preferences.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1"># use first reward function initially and then switch to second reward function</span>
+
+<span class="c1"># Instantiate learner in VW</span>
+<span class="n">vw</span> <span class="o">=</span> <span class="n">pyvw</span><span class="o">.</span><span class="n">vw</span><span class="p">(</span><span class="s2">&quot;--cb_explore_adf -q UA --quiet --epsilon 0.2&quot;</span><span class="p">)</span>
+
+<span class="n">num_iterations_per_cost_func</span> <span class="o">=</span> <span class="mi">5000</span>
+<span class="n">cost_functions</span> <span class="o">=</span> <span class="p">[</span><span class="n">get_cost</span><span class="p">,</span> <span class="n">get_cost_new1</span><span class="p">]</span>
+<span class="n">total_iterations</span> <span class="o">=</span> <span class="n">num_iterations_per_cost_func</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">cost_functions</span><span class="p">)</span>
+
+<span class="n">ctr</span> <span class="o">=</span> <span class="n">run_simulation_multiple_cost_functions</span><span class="p">(</span><span class="n">vw</span><span class="p">,</span> <span class="n">num_iterations_per_cost_func</span><span class="p">,</span> <span class="n">users</span><span class="p">,</span> <span class="n">times_of_day</span><span class="p">,</span> <span class="n">actions</span><span class="p">,</span> <span class="n">cost_functions</span><span class="p">)</span>
+
+<span class="n">plot_ctr</span><span class="p">(</span><span class="n">total_iterations</span><span class="p">,</span> <span class="n">ctr</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../../_images/src_tutorials_notebooks_recsys-vw-contextual_34_0.png" src="../../../_images/src_tutorials_notebooks_recsys-vw-contextual_34_0.png" />
+</div>
+</div>
+<p><strong>Note:</strong> The initial spike in CTR depends on the rewards received for the first few examples. When you run on your own, you may see something different initially because our simulator is designed to have randomness.</p>
+</div>
+<div class="section" id="id2">
+<h3>Without learning<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1"># Do not learn</span>
+<span class="c1"># use first reward function initially and then switch to second reward function</span>
+
+<span class="c1"># Instantiate learner in VW</span>
+<span class="n">vw</span> <span class="o">=</span> <span class="n">pyvw</span><span class="o">.</span><span class="n">vw</span><span class="p">(</span><span class="s2">&quot;--cb_explore_adf -q UA --quiet --epsilon 0.2&quot;</span><span class="p">)</span>
+
+<span class="n">num_iterations_per_cost_func</span> <span class="o">=</span> <span class="mi">5000</span>
+<span class="n">cost_functions</span> <span class="o">=</span> <span class="p">[</span><span class="n">get_cost</span><span class="p">,</span> <span class="n">get_cost_new1</span><span class="p">]</span>
+<span class="n">total_iterations</span> <span class="o">=</span> <span class="n">num_iterations_per_cost_func</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">cost_functions</span><span class="p">)</span>
+
+<span class="n">ctr</span> <span class="o">=</span> <span class="n">run_simulation_multiple_cost_functions</span><span class="p">(</span><span class="n">vw</span><span class="p">,</span> <span class="n">num_iterations_per_cost_func</span><span class="p">,</span> <span class="n">users</span><span class="p">,</span> <span class="n">times_of_day</span><span class="p">,</span> <span class="n">actions</span><span class="p">,</span> <span class="n">cost_functions</span><span class="p">,</span> <span class="n">do_learn</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">plot_ctr</span><span class="p">(</span><span class="n">total_iterations</span><span class="p">,</span> <span class="n">ctr</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../../_images/src_tutorials_notebooks_recsys-vw-contextual_36_0.png" src="../../../_images/src_tutorials_notebooks_recsys-vw-contextual_36_0.png" />
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="Scenario-3">
+<h2>Scenario 3<a class="headerlink" href="#Scenario-3" title="Permalink to this headline">¶</a></h2>
+<p>In this scenario we are going to start rewarding actions that have never seen a reward previously when we change the cost function.</p>
+<div class="section" id="id3">
+<h3>Tom<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 31%" />
+<col style="width: 29%" />
+<col style="width: 40%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"></th>
+<th class="head"><p><code class="docutils literal notranslate"><span class="pre">get_cost</span></code></p></th>
+<th class="head"><p><code class="docutils literal notranslate"><span class="pre">get_cost_new2</span></code></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Morning</strong></p></td>
+<td><p>Politics</p></td>
+<td><p>Politics</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Afternoon</strong></p></td>
+<td><p>Music</p></td>
+<td><p>Food</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id4">
+<h3>Anna<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 31%" />
+<col style="width: 29%" />
+<col style="width: 40%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"></th>
+<th class="head"><p><code class="docutils literal notranslate"><span class="pre">get_cost</span></code></p></th>
+<th class="head"><p><code class="docutils literal notranslate"><span class="pre">get_cost_new2</span></code></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Morning</strong></p></td>
+<td><p>Sports</p></td>
+<td><p>Food</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Afternoon</strong></p></td>
+<td><p>Politics</p></td>
+<td><p>Food</p></td>
+</tr>
+</tbody>
+</table>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="k">def</span> <span class="nf">get_cost_new2</span><span class="p">(</span><span class="n">context</span><span class="p">,</span><span class="n">action</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">context</span><span class="p">[</span><span class="s1">&#39;user&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;Tom&quot;</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">context</span><span class="p">[</span><span class="s1">&#39;time_of_day&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;morning&quot;</span> <span class="ow">and</span> <span class="n">action</span> <span class="o">==</span> <span class="s1">&#39;politics&#39;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">USER_LIKED_ARTICLE</span>
+        <span class="k">elif</span> <span class="n">context</span><span class="p">[</span><span class="s1">&#39;time_of_day&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;afternoon&quot;</span> <span class="ow">and</span> <span class="n">action</span> <span class="o">==</span> <span class="s1">&#39;food&#39;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">USER_LIKED_ARTICLE</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">USER_DISLIKED_ARTICLE</span>
+    <span class="k">elif</span> <span class="n">context</span><span class="p">[</span><span class="s1">&#39;user&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;Anna&quot;</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">context</span><span class="p">[</span><span class="s1">&#39;time_of_day&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;morning&quot;</span> <span class="ow">and</span> <span class="n">action</span> <span class="o">==</span> <span class="s1">&#39;food&#39;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">USER_LIKED_ARTICLE</span>
+        <span class="k">elif</span> <span class="n">context</span><span class="p">[</span><span class="s1">&#39;time_of_day&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;afternoon&quot;</span> <span class="ow">and</span> <span class="n">action</span> <span class="o">==</span> <span class="s1">&#39;food&#39;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">USER_LIKED_ARTICLE</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">USER_DISLIKED_ARTICLE</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="id5">
+<h3>With learning<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
+<p>Let us now switch to the third reward function after a few samples (running the first reward function). Recall that this reward function changes the preferences of the users and is working with a <strong>different</strong> action space than before. We should see the learner pick up these changes and optimize towards the new preferences</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[21]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1"># use first reward function initially and then switch to third reward function</span>
+
+<span class="c1"># Instantiate learner in VW</span>
+<span class="n">vw</span> <span class="o">=</span> <span class="n">pyvw</span><span class="o">.</span><span class="n">vw</span><span class="p">(</span><span class="s2">&quot;--cb_explore_adf -q UA --quiet --epsilon 0.2&quot;</span><span class="p">)</span>
+
+<span class="n">num_iterations_per_cost_func</span> <span class="o">=</span> <span class="mi">5000</span>
+<span class="n">cost_functions</span> <span class="o">=</span> <span class="p">[</span><span class="n">get_cost</span><span class="p">,</span> <span class="n">get_cost_new2</span><span class="p">]</span>
+<span class="n">total_iterations</span> <span class="o">=</span> <span class="n">num_iterations_per_cost_func</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">cost_functions</span><span class="p">)</span>
+
+<span class="n">ctr</span> <span class="o">=</span> <span class="n">run_simulation_multiple_cost_functions</span><span class="p">(</span><span class="n">vw</span><span class="p">,</span> <span class="n">num_iterations_per_cost_func</span><span class="p">,</span> <span class="n">users</span><span class="p">,</span> <span class="n">times_of_day</span><span class="p">,</span> <span class="n">actions</span><span class="p">,</span> <span class="n">cost_functions</span><span class="p">)</span>
+
+<span class="n">plot_ctr</span><span class="p">(</span><span class="n">total_iterations</span><span class="p">,</span> <span class="n">ctr</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../../_images/src_tutorials_notebooks_recsys-vw-contextual_40_0.png" src="../../../_images/src_tutorials_notebooks_recsys-vw-contextual_40_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="Without-Learning">
+<h3>Without Learning<a class="headerlink" href="#Without-Learning" title="Permalink to this headline">¶</a></h3>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[22]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1"># Do not learn</span>
+<span class="c1"># use first reward function initially and then switch to third reward function</span>
+
+<span class="c1"># Instantiate learner in VW</span>
+<span class="n">vw</span> <span class="o">=</span> <span class="n">pyvw</span><span class="o">.</span><span class="n">vw</span><span class="p">(</span><span class="s2">&quot;--cb_explore_adf -q UA --quiet --epsilon 0.2&quot;</span><span class="p">)</span>
+
+<span class="n">num_iterations_per_cost_func</span> <span class="o">=</span> <span class="mi">5000</span>
+<span class="n">cost_functions</span> <span class="o">=</span> <span class="p">[</span><span class="n">get_cost</span><span class="p">,</span> <span class="n">get_cost_new2</span><span class="p">]</span>
+<span class="n">total_iterations</span> <span class="o">=</span> <span class="n">num_iterations_per_cost_func</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">cost_functions</span><span class="p">)</span>
+
+<span class="n">ctr</span> <span class="o">=</span> <span class="n">run_simulation_multiple_cost_functions</span><span class="p">(</span><span class="n">vw</span><span class="p">,</span> <span class="n">num_iterations_per_cost_func</span><span class="p">,</span> <span class="n">users</span><span class="p">,</span> <span class="n">times_of_day</span><span class="p">,</span> <span class="n">actions</span><span class="p">,</span> <span class="n">cost_functions</span><span class="p">,</span> <span class="n">do_learn</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="n">plot_ctr</span><span class="p">(</span><span class="n">total_iterations</span><span class="p">,</span> <span class="n">ctr</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../../_images/src_tutorials_notebooks_recsys-vw-contextual_42_0.png" src="../../../_images/src_tutorials_notebooks_recsys-vw-contextual_42_0.png" />
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="Summary">
+<h2>Summary<a class="headerlink" href="#Summary" title="Permalink to this headline">¶</a></h2>
+<p>This tutorial aimed at showcasing a real world scenario where contextual bandit algorithms can be used. We were able to take a context and set of actions and learn what actions worked best for a given context. We saw that the learner was able to respond rapidly to changes in the world. We showed that allowing the learner to interact with the world resulted in higher rewards than the no learning baseline.</p>
+<p>This tutorial worked with simplistic features. VW supports high dimensional sparse features, different exploration algorithms and policy evaluation approaches.</p>
+<p><a class="reference external" href="https://vowpalwabbit.org/tutorials/cb_simulation.html">credits</a></p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="recsys-word2vec.html" class="btn btn-neutral float-right" title="Product Recommender with word2vec" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="recsys-retrieval.html" class="btn btn-neutral float-left" title="Document Retrieval with ElasticSearch" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Sparsh A..
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
