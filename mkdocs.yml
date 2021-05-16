@@ -1,5 +1,13 @@
 site_name: RecoBase
+repo_url: https://github.com/sparsh-ai/reco-base/
+google_analytics: ['UA-36723568-3', 'mkdocs.org']
 theme:
   name: material
+  # name: mkdocs
+  # include_sidebar: false
+docs_dir: 'docs'
 plugins:
   - mknotebooks
+mknotebooks:
+  enable_default_jupyter_cell_styling: true
+  enable_default_pandas_dataframe_styling: true
