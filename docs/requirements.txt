@@ -4,7 +4,7 @@ pandoc
 latex
 nbsphinx
 sphinx-rtd-theme
-python>=3.7
+python
 nbformat
 jupyter_client
 ipython
