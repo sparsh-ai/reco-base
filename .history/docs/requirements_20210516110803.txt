@@ -1,0 +1,6 @@
+sphinx
+nbconvert
+pandoc
+latex
+nbsphinx
+sphinx-rtd-theme

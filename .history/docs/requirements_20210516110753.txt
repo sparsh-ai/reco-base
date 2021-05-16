@@ -1,0 +1,5 @@
+sphinx
+nbconvert
+pandoc
+latex
+nbsphinx

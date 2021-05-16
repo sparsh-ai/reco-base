@@ -1,0 +1,5 @@
+sphinx
+!pip install nbconvert
+!pip install pandoc
+!pip install latex
+!pip install nbsphinx
