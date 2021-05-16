@@ -1,3 +1,0 @@
-Welcome to RecoBase - a collection of python code, notebooks and other essential resources to know and build recommender systems.
-
-![recobase_logo](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/6991102d-e3d3-4394-a191-e8b7af266b4d/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAT73L2G45O3KS52Y5%2F20210515%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20210515T171425Z&X-Amz-Expires=86400&X-Amz-Signature=121b2ad8c1cb211d874b84dd0f725a9cd8da53060a43f73d9d444add631fca04&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%22Untitled.png%22)

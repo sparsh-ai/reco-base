@@ -3,10 +3,3 @@ repo_url: https://github.com/sparsh-ai/reco-base/
 theme:
   name: material
 docs_dir: 'docs'
-plugins:
-  - mknotebooks:
-      write_markdown: true
-      binder: true
-      binder_service_name: "gh"
-      binder_branch: "master"
-      binder_ui: "lab"
