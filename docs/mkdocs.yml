@@ -1,0 +1,5 @@
+site_name: RecoBase
+theme:
+  name: material
+plugins:
+  - mknotebooks

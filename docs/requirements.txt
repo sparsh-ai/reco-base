@@ -10,3 +10,5 @@ ipython
 ipykernel
 rst2pdf
 nbsphinx-link
+
+mknotebooks
