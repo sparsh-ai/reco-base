@@ -7,9 +7,9 @@ This repository contains the python code, jupyter notebooks and other essential 
 Contains python code and jupyter notebooks. Check [this](https://github.com/sparsh-ai/reco-base/wiki/Notebooks) wiki page for full list of notebooks and its associated colab/nbviewer links.
 
 ## Documentation
-https://github.com/sparsh-ai/reco-base/wiki
-https://reco-base.readthedocs.io/en/latest
-https://sparsh-ai.github.io/reco-base
+- https://github.com/sparsh-ai/reco-base/wiki
+- https://reco-base.readthedocs.io/en/latest
+- https://sparsh-ai.github.io/reco-base
 
 ## Resources
 ### Tutorials
