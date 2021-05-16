@@ -1,0 +1,8 @@
+{
+  "path": "../../notebooks/introduction.ipynb",
+  "extra-media": [
+    "../../notebooks/images",
+    "../../notebooks/smile.png",
+    "not_a_path"
+  ]
+}

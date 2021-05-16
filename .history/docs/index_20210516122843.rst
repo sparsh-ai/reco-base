@@ -1,0 +1,37 @@
+.. recobase documentation master file, created by
+   sphinx-quickstart on Sun May 16 11:29:04 2021.
+   You can adapt this file completely to your liking, but it should at least
+   contain the root `toctree` directive.
+
+Welcome to RecoBase!
+====================================
+
+.. toctree::
+   :maxdepth: 1
+   :caption: Tutorials
+
+   src/tutorials/notebooks/recsys-imgsim
+   src/tutorials/notebooks/recsys-implicit-negative
+   src/tutorials/notebooks/recsys-imgsim
+   src/tutorials/notebooks/recsys-imgsim
+   src/tutorials/notebooks/recsys-imgsim
+   src/tutorials/notebooks/recsys-imgsim
+   src/tutorials/notebooks/recsys-imgsim
+   src/tutorials/notebooks/recsys-imgsim
+   \src\tutorials\notebooks\recsys-imgsim.ipynb
+docs\src\tutorials\notebooks\recsys-implicit-negative.ipynb
+docs\src\tutorials\notebooks\recsys-music-sequence-aware.ipynb
+docs\src\tutorials\notebooks\recsys-ncf.ipynb
+docs\src\tutorials\notebooks\recsys-node2vec.ipynb
+docs\src\tutorials\notebooks\recsys-prodsim.ipynb
+docs\src\tutorials\notebooks\recsys-retrieval.ipynb
+docs\src\tutorials\notebooks\recsys-vw-contextual.ipynb
+docs\src\tutorials\notebooks\recsys-word2vec.ipynb
+
+
+Indices and tables
+==================
+
+* :ref:`genindex`
+* :ref:`modindex`
+* :ref:`search`

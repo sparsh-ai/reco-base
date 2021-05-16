@@ -9,5 +9,5 @@ nbformat
 jupyter_client
 ipython
 ipykernel
-rst2pdf
-nbsphinx-link
+sphinx_rtd_theme
+nbsphinx

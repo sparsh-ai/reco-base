@@ -8,6 +8,7 @@ python>=3.7
 nbformat
 jupyter_client
 ipython
+sphinx>=1.5.1
 ipykernel
-rst2pdf
-nbsphinx-link
+sphinx_rtd_theme
+nbsphinx

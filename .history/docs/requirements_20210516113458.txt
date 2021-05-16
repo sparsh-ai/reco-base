@@ -4,10 +4,13 @@ pandoc
 latex
 nbsphinx
 sphinx-rtd-theme
-python>=3.7
+python==3.8
+pandoc
 nbformat
 jupyter_client
 ipython
+nbconvert
+sphinx>=1.5.1
 ipykernel
-rst2pdf
-nbsphinx-link
+sphinx_rtd_theme
+nbsphinx

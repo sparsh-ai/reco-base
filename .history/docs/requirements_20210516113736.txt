@@ -10,4 +10,3 @@ jupyter_client
 ipython
 ipykernel
 rst2pdf
-nbsphinx-link
