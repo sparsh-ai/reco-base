@@ -8,6 +8,22 @@ Welcome to RecoBase!
 
 .. toctree::
    :maxdepth: 1
+   :caption: Knowledge
+
+   src/Overview
+   src/Examples
+   src/Datasets
+   src/Models
+   src/Notebooks
+   src/Libraries
+   src/Papers
+   src/Projects
+   src/Vendors
+   src/Use-Cases
+   src/Resources
+
+.. toctree::
+   :maxdepth: 1
    :caption: Tutorials
 
    src/tutorials/notebooks/recsys-imgsim
