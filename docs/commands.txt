@@ -1,3 +1,4 @@
 sphinx-build -b pdf . build/pdf
 sphinx-build -b html .
+cd docs
 make html

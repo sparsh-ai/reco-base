@@ -10,3 +10,4 @@ ipython
 ipykernel
 rst2pdf
 nbsphinx-link
+myst_parser

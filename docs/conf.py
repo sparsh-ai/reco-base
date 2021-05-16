@@ -8,6 +8,7 @@ extensions = ['sphinx.ext.autodoc',
               'sphinx.ext.githubpages',
               'IPython.sphinxext.ipython_console_highlighting',
               'rst2pdf.pdfbuilder',
+              'myst_parser',
 ]
 
 source_suffix = ['.rst', '.ipynb']

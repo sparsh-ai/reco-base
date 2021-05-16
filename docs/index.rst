@@ -5,36 +5,29 @@
 
 Welcome to RecoBase!
 ====================================
+RecoBase is a collection of python code, notebooks and other essential resources to know and build recommender systems.
+
+.. image:: https://github.com/sparsh-ai/reco-base/blob/main/utils/images/recobase_logo.png?raw=true
 
 .. toctree::
-   :maxdepth: 1
+   :maxdepth: 2
    :caption: Knowledge
 
-   src/Overview
-   src/Examples
-   src/Datasets
-   src/Models
-   src/Notebooks
-   src/Libraries
-   src/Papers
-   src/Projects
-   src/Vendors
-   src/Use-Cases
-   src/Resources
+   src/Knowledge
 
 .. toctree::
    :maxdepth: 1
    :caption: Tutorials
 
-   src/tutorials/notebooks/recsys-imgsim
-   src/tutorials/notebooks/recsys-implicit-negative
-   src/tutorials/notebooks/recsys-music-sequence-aware
-   src/tutorials/notebooks/recsys-ncf
-   src/tutorials/notebooks/recsys-node2vec
-   src/tutorials/notebooks/recsys-prodsim
-   src/tutorials/notebooks/recsys-retrieval
-   src/tutorials/notebooks/recsys-vw-contextual
-   src/tutorials/notebooks/recsys-word2vec
+   src/tutorials/recsys-imgsim
+   src/tutorials/recsys-implicit-negative
+   src/tutorials/recsys-music-sequence-aware
+   src/tutorials/recsys-ncf
+   src/tutorials/recsys-node2vec
+   src/tutorials/recsys-prodsim
+   src/tutorials/recsys-retrieval
+   src/tutorials/recsys-vw-contextual
+   src/tutorials/recsys-word2vec
 
 
 Indices and tables
