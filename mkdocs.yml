@@ -3,3 +3,13 @@ repo_url: https://github.com/sparsh-ai/reco-base/
 theme:
   name: material
 docs_dir: 'docs'
+nav:
+  - Overview:
+    - Introduction: 'index.md'
+    - About: 'about.md'
+  - Resources:
+    - Datasets: 'Datasets.md'
+    - Models: 'Models.md'
+    - Vendors: 'Vendors.md'
+   - Other:
+    - 'Issue Tracker': 'https://example.com/'
